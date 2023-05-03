@@ -1,10 +1,11 @@
 #pragma once
 
 
-#include <WinSock2.h>
 #include <map>
 #include <thread>
 #include <iostream>
+#include <WinSock2.h>
+#include <Windows.h>
 
 #include "Helper.h"
 #include "LoginRequestHandler.h"
@@ -15,8 +16,9 @@ class Communicator
 public:
 	void startHandleRequests();
 
-private:
+	Communicator();
 
+private:
 	void bindAndListen();
 	void handleNewClient(SOCKET clientSocket);
 
