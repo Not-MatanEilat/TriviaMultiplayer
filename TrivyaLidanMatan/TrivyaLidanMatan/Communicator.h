@@ -8,8 +8,6 @@
 
 #include "Helper.h"
 
-#include "IRequestHandler.h"
-
 class Communicator
 {
 public:

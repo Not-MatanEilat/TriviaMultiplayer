@@ -20,6 +20,12 @@ void Communicator::startHandleRequests()
 			throw std::exception(__FUNCTION__);
 
 		TRACE("Client accepted !");
+
+		// add client to the clients map
+
+		IRequestHandler* requestHandler;
+		m_clients.insert(client_socket, requestHandler);
+
 		// create new thread for client	and detach from it
 		std::thread tr(&Communicator::handleNewClient, this, client_socket);
 		tr.detach();
