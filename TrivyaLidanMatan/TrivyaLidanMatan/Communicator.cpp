@@ -6,7 +6,26 @@ static const unsigned int IFACE = 0;
 
 void Communicator::startHandleRequests()
 {
+	while (true)
+	{
+		// the main thread is only accepting clients 
+		// and add then to the list of handlers
+		TRACE("accepting client...");
 
+		SOCKET client_socket = accept(m_serverSocket, NULL, NULL);
+		if (client_socket == INVALID_SOCKET)
+			throw std::exception(__FUNCTION__);
+
+		TRACE("Client accepted !");
+		// create new thread for client	and detach from it
+		std::thread tr(&Communicator::handleNewClient, this, client_socket);
+		tr.detach();
+	}
+}
+
+void Communicator::handleNewClient(SOCKET socket)
+{
+	
 }
 
 /**

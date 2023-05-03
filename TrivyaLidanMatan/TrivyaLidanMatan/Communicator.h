@@ -3,6 +3,7 @@
 
 #include <WinSock2.h>
 #include <map>
+#include <thread>
 
 
 #include "Helper.h"
@@ -17,6 +18,7 @@ public:
 private:
 
 	void bindAndListen();
+	void handleNewClient(SOCKET socket);
 
 
 	SOCKET m_serverSocket;
