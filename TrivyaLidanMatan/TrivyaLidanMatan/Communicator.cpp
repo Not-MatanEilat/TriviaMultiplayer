@@ -9,6 +9,9 @@ static const unsigned int IFACE = 0;
  */
 void Communicator::startHandleRequests()
 {
+
+	bindAndListen();
+
 	while (true)
 	{
 		// the main thread is only accepting clients 
