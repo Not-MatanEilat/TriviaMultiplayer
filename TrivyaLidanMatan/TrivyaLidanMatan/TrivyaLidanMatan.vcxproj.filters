@@ -21,9 +21,15 @@
     <ClInclude Include="Communicator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Communicator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
