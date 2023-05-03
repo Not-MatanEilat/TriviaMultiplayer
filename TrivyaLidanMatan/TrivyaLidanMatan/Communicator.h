@@ -7,6 +7,8 @@
 #include <iostream>
 
 #include "Helper.h"
+#include "LoginRequestHandler.h"
+
 
 class Communicator
 {
@@ -20,6 +22,6 @@ private:
 
 
 	SOCKET m_serverSocket;
-	std::map<SOCKET, IRequestHandler*> m_clients;
+	std::map<SOCKET, LoginRequestHandler*> m_clients;
 };
 

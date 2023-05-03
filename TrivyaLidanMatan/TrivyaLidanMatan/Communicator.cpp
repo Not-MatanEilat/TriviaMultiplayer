@@ -23,8 +23,8 @@ void Communicator::startHandleRequests()
 
 		// add client to the clients map
 
-		IRequestHandler* requestHandler;
-		m_clients.insert(client_socket, requestHandler);
+		LoginRequestHandler* loginRequestHandler;
+		m_clients[client_socket] = loginRequestHandler;
 
 		// create new thread for client	and detach from it
 		std::thread tr(&Communicator::handleNewClient, this, client_socket);
