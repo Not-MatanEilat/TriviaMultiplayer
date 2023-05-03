@@ -23,7 +23,7 @@ void Communicator::startHandleRequests()
 
 		// add client to the clients map
 
-		LoginRequestHandler* loginRequestHandler;
+		LoginRequestHandler* loginRequestHandler = new LoginRequestHandler();
 		m_clients[client_socket] = loginRequestHandler;
 
 		// create new thread for client	and detach from it
