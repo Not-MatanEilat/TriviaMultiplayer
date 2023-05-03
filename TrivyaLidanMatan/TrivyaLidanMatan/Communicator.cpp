@@ -4,6 +4,9 @@
 static const unsigned short PORT = 8826;
 static const unsigned int IFACE = 0;
 
+/**
+ * \brief The function will start listening to incoming connections
+ */
 void Communicator::startHandleRequests()
 {
 	while (true)
@@ -23,9 +26,15 @@ void Communicator::startHandleRequests()
 	}
 }
 
-void Communicator::handleNewClient(SOCKET socket)
+/**
+ * \brief The function will handle a new client - for now sends hello and prints its answer
+ * \param clientSocket - the socket of the new client
+ */
+void Communicator::handleNewClient(SOCKET clientSocket)
 {
-	
+	Helper::sendData(clientSocket, "Hello");
+
+	std::cout << Helper::getIntPartFromSocket(clientSocket, 5) << std::endl;
 }
 
 /**
