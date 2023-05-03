@@ -1,6 +1,6 @@
 import socket
 
-SERVER_PORT = 8822
+SERVER_PORT = 8826
 BYTES_SIZE = 1024 
 
 def main():
