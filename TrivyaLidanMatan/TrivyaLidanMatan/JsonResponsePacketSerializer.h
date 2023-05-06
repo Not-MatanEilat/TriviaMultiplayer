@@ -19,7 +19,7 @@ class JsonResponsePacketSerializer
 	} SignupResponse;
 	typedef struct ErrorResponse
 	{
-		string message;
+		string message;	
 	} ErrorResponse;
 
 
