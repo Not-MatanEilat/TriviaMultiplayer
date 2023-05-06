@@ -35,6 +35,9 @@ void Communicator::startHandleRequests()
 	}
 }
 
+/// <summary>
+/// The constructor of the communicator, it will create a new socket for the server to listen from later on
+/// </summary>
 Communicator::Communicator()
 {
 	// this server use TCP. that why SOCK_STREAM & IPPROTO_TCP
@@ -71,10 +74,14 @@ void Communicator::bindAndListen()
 
 	// Connects between the socket and the configuration (port and etc..)
 	if (bind(m_serverSocket, (struct sockaddr*)&sa, sizeof(sa)) == SOCKET_ERROR)
+	{
 		throw std::exception(__FUNCTION__ " - bind");
+	}
 
 	// Start listening for incoming requests of clients
 	if (listen(m_serverSocket, SOMAXCONN) == SOCKET_ERROR)
+	{
 		throw std::exception(__FUNCTION__ " - listen");
+	}
 	std::cout << "Listening on port " << PORT << std::endl;
 }

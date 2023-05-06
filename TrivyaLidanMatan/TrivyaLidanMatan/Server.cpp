@@ -6,8 +6,8 @@
 void Server::run()
 {
 	// create new thread for client	and detach from it
-	std::thread t1(&Communicator::startHandleRequests, m_communicator);
-	t1.detach();
+	std::thread communicatorThread(&Communicator::startHandleRequests, m_communicator);
+	communicatorThread.detach();
 
 	while(true)
 	{
