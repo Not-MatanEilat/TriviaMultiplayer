@@ -2,8 +2,10 @@
 
 
 #include <string>
+#include "json.hpp"
 
 using std::string;
+using json = nlohmann::json;
 
 class JsonResponsePacketSerializer
 {
@@ -28,5 +30,6 @@ public:
 	static string serializeResponse(ErrorResponse errorResponse);
 	static string serializeResponse(LoginResponse loginResponse);
 	static string serializeResponse(SignupResponse signupResponse);
+
 };
 
