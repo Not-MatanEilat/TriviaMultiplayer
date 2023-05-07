@@ -5,7 +5,7 @@
  * \param errorResponse the error response to serialize
  * \return error response serialized to a string
  */
-string JsonResponsePacketSerializer::serializeResponse(ErrorResponse errorResponse)
+vector<unsi JsonResponsePacketSerializer::serializeResponse(ErrorResponse errorResponse)
 {
 	
 	json j;

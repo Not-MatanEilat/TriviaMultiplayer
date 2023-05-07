@@ -1,8 +1,12 @@
 #pragma once
 
 #include <string>
+#include <vector>
+
+#include "Communicator.h"
 
 
+using std::vector;
 using std::string;
 
 typedef struct LoginRequest
@@ -22,7 +26,7 @@ typedef struct SignupRequest
 class JsonRequestPacketDeserializer
 {
 public:
-	static LoginRequest deserializeLoginRequest(string buffer);
-	static SignupRequest deserializeSignupRequest(string buffer);
+	static LoginRequest deserializeLoginRequest(vector<byte> buffer);
+	static SignupRequest deserializeSignupRequest(vector<byte> buffer);
 };
 

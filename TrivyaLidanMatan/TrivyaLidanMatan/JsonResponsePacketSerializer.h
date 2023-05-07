@@ -2,9 +2,11 @@
 
 
 #include <string>
+#include <vector>
 #include "json.hpp"
 
 using std::string;
+using std::vector;
 using json = nlohmann::json;
 
 class JsonResponsePacketSerializer
@@ -27,9 +29,8 @@ class JsonResponsePacketSerializer
 
 
 public:
-	static string serializeResponse(ErrorResponse errorResponse);
-	static string serializeResponse(LoginResponse loginResponse);
-	static string serializeResponse(SignupResponse signupResponse);
-
+	static vector<unsigned char> serializeResponse(ErrorResponse errorResponse);
+	static vector<unsigned char> serializeResponse(LoginResponse loginResponse);
+	static vector<unsigned char> serializeResponse(SignupResponse signupResponse);
 };
 
