@@ -87,9 +87,11 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 		}
 		else
 		{
-			ErrorResponse errorResponse;
-			errorResponse.message = "Invalid message code";
+			ErrorResponse response;
+			response.message = "Invalid message code";
 
+			Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
+			Helper::sendData(clientSocket, buffer);
 		}
 	}
 }
