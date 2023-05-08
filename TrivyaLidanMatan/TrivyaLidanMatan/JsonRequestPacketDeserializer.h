@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Communicator.h"
+#include "JsonResponsePacketSerializer.h"
 
 
 using std::vector;
@@ -26,7 +27,7 @@ typedef struct SignupRequest
 class JsonRequestPacketDeserializer
 {
 public:
-	static LoginRequest deserializeLoginRequest(vector<byte> buffer);
-	static SignupRequest deserializeSignupRequest(vector<byte> buffer);
+	static LoginRequest deserializeLoginRequest(Buffer buffer);
+	static SignupRequest deserializeSignupRequest(Buffer buffer);
 };
 

@@ -4,14 +4,11 @@
 #include <string>
 #include <vector>
 #include "json.hpp"
+#include "Communicator.h"
 
 using std::string;
 using std::vector;
 using json = nlohmann::json;
-
-typedef unsigned char byte;
-typedef vector<byte> Buffer;
-
 
 typedef struct LoginResponse
 {
