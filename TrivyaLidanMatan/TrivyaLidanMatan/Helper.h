@@ -4,6 +4,11 @@
 #include <string>
 #include <WinSock2.h>
 
+using std::vector;
+using std::string;
+
+typedef unsigned char byte;
+typedef vector<byte> Buffer;
 
 enum MessageType : byte
 {
@@ -23,7 +28,9 @@ public:
 	static int getMessageTypeCode(const SOCKET sc);
 	static int getIntPartFromSocket(const SOCKET sc, const int bytesNum);
 	static std::string getStringPartFromSocket(SOCKET sc, const int bytesNum);
+	static Buffer getBufferPartFromSocket(SOCKET sc, int bytesNum);
 	static void sendData(const SOCKET sc, const std::string message);
+	void sendData(SOCKET sc, Buffer message);
 	static void send_update_message_to_client(const SOCKET sc, const std::string& file_content, const std::string& second_username, const std::string& all_users);
 	static std::string getPaddedNumber(const int num, const int digits);
 

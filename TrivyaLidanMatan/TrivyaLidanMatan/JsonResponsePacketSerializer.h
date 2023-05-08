@@ -25,13 +25,6 @@ typedef struct ErrorResponse
 	string message;
 } ErrorResponse;
 
-enum RESPONSE_CODES
-{
-	ERROR_CODE = 0,
-	LOGIN_CODE = 1,
-	SIGNUP_CODE = 2
-};
-
 class JsonResponsePacketSerializer
 {
 

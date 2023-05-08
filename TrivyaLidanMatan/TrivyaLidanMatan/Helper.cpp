@@ -4,8 +4,6 @@
 #include <iomanip>
 #include <sstream>
 
-using std::string;
-
 // recieves the type code of the message from socket (3 bytes)
 // and returns the code. if no message found in the socket returns 0 (which means the client disconnected)
 int Helper::getMessageTypeCode(const SOCKET sc)
@@ -46,6 +44,15 @@ string Helper::getStringPartFromSocket(const SOCKET sc, const int bytesNum)
 	return getPartFromSocket(sc, bytesNum, 0);
 }
 
+// recieve data from socket according byteSize
+// returns the data as string
+Buffer Helper::getBufferPartFromSocket(const SOCKET sc, const int bytesNum)
+{
+	string part = getPartFromSocket(sc, bytesNum, 0);
+	Buffer buffer(part.begin(), part.end());
+	return buffer;
+}
+
 // return string after padding zeros if necessary
 string Helper::getPaddedNumber(const int num, const int digits)
 {
@@ -67,6 +74,18 @@ std::string Helper::getPartFromSocket(const SOCKET sc, const int bytesNum)
 void Helper::sendData(const SOCKET sc, const std::string message)
 {
 	const char* data = message.c_str();
+
+	if (send(sc, data, message.size(), 0) == INVALID_SOCKET)
+	{
+		throw std::exception("Error while sending message to client");
+	}
+}
+
+// send data to socket
+// this is private function
+void Helper::sendData(const SOCKET sc, const Buffer message)
+{
+	const char* data = (char*) message.data();
 
 	if (send(sc, data, message.size(), 0) == INVALID_SOCKET)
 	{

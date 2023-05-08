@@ -1,5 +1,7 @@
 #include "Communicator.h"
 
+#include "JsonRequestPacketDeserializer.h"
+
 // using static const instead of macros 
 static const unsigned short PORT = 8826;
 static const unsigned int IFACE = 0;
@@ -58,7 +60,38 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 {
 	Helper::sendData(clientSocket, "Hello");
 
-	std::cout << Helper::getIntPartFromSocket(clientSocket, 5) << std::endl;
+	while (true)
+	{
+		int code = Helper::getMessageTypeCode(clientSocket);
+		int len = Helper::getIntPartFromSocket(clientSocket, 4);
+		string msg = Helper::getStringPartFromSocket(clientSocket, len);
+		if (code == LOGIN_CODE)
+		{
+			LoginRequest loginRequest = JsonRequestPacketDeserializer::deserializeLoginRequest(msg);
+
+			LoginResponse response;
+			response.status = 1;
+
+			Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
+			Helper::sendData(clientSocket, buffer);
+		}
+		else if (code == SIGNUP_CODE)
+		{
+			SignupRequest signupRequest = JsonRequestPacketDeserializer::deserializeSignupRequest(msg);
+
+			SignupResponse response;
+			response.status = 1;
+
+			Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
+			Helper::sendData(clientSocket, buffer);
+		}
+		else
+		{
+			ErrorResponse errorResponse;
+			errorResponse.message = "Invalid message code";
+
+		}
+	}
 }
 
 /**

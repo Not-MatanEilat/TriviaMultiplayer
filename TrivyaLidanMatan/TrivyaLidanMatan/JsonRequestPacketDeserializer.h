@@ -27,7 +27,7 @@ typedef struct SignupRequest
 class JsonRequestPacketDeserializer
 {
 public:
-	static LoginRequest deserializeLoginRequest(Buffer buffer);
-	static SignupRequest deserializeSignupRequest(Buffer buffer);
+	static LoginRequest deserializeLoginRequest(string buffer);
+	static SignupRequest deserializeSignupRequest(string buffer);
 };
 
