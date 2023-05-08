@@ -51,7 +51,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(LoginResponse loginRespon
 {
 	json j;
 	j["status"] = loginResponse.status;
-	Buffer vec = serializeResponseFromJson(SIGNUP_CODE, j);
+	Buffer vec = serializeResponseFromJson(LOGIN_CODE, j);
 	return vec;
 }
 
@@ -64,7 +64,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(SignupResponse signupResp
 {
 	json j;
 	j["status"] = signupResponse.status;
-	Buffer vec = serializeResponseFromJson(LOGIN_CODE, j);
+	Buffer vec = serializeResponseFromJson(SIGNUP_CODE, j);
 	return vec;
 }
 

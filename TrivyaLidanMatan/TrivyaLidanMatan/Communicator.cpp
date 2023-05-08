@@ -60,40 +60,50 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 {
 	Helper::sendData(clientSocket, "Hello");
 
-	while (true)
+	try
 	{
-		int code = Helper::getMessageTypeCode(clientSocket);
-		int len = Helper::getIntPartFromSocket(clientSocket, 4);
-		string msg = Helper::getStringPartFromSocket(clientSocket, len);
-		if (code == LOGIN_CODE)
+		while (true)
 		{
-			LoginRequest loginRequest = JsonRequestPacketDeserializer::deserializeLoginRequest(msg);
+			int code = Helper::getMessageTypeCode(clientSocket);
+			int len = Helper::getIntPartFromSocket(clientSocket, 4);
+			string msg = Helper::getStringPartFromSocket(clientSocket, len);
+			if (code == LOGIN_CODE)
+			{
+				TRACE("got login request");
+				LoginRequest loginRequest = JsonRequestPacketDeserializer::deserializeLoginRequest(msg);
 
-			LoginResponse response;
-			response.status = 1;
+				LoginResponse response;
+				response.status = 1;
 
-			Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
-			Helper::sendData(clientSocket, buffer);
-		}
-		else if (code == SIGNUP_CODE)
-		{
-			SignupRequest signupRequest = JsonRequestPacketDeserializer::deserializeSignupRequest(msg);
+				Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
+				Helper::sendData(clientSocket, buffer);
+			}
+			else if (code == SIGNUP_CODE)
+			{
+				TRACE("got signup request");
+				SignupRequest signupRequest = JsonRequestPacketDeserializer::deserializeSignupRequest(msg);
 
-			SignupResponse response;
-			response.status = 1;
+				SignupResponse response;
+				response.status = 1;
 
-			Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
-			Helper::sendData(clientSocket, buffer);
-		}
-		else
-		{
-			ErrorResponse response;
-			response.message = "Invalid message code";
+				Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
+				Helper::sendData(clientSocket, buffer);
+			}
+			else
+			{
+				ErrorResponse response;
+				response.message = "Invalid message code";
 
-			Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
-			Helper::sendData(clientSocket, buffer);
+				Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
+				Helper::sendData(clientSocket, buffer);
+			}
 		}
 	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	
 }
 
 /**

@@ -8,12 +8,12 @@
 // and returns the code. if no message found in the socket returns 0 (which means the client disconnected)
 int Helper::getMessageTypeCode(const SOCKET sc)
 {
-	std::string msg = getPartFromSocket(sc, 3, 0);
+	Buffer msg = getBufferPartFromSocket(sc, 1);
 
-	if (msg == "")
+	if (msg.empty())
 		return 0;
 
-	int res = std::atoi(msg.c_str());
+	int res = msg[0];
 	return  res;
 }
 
@@ -34,7 +34,14 @@ void Helper::send_update_message_to_client(const SOCKET sc, const string& file_c
 // returns the data as int
 int Helper::getIntPartFromSocket(const SOCKET sc, const int bytesNum)
 {
-	return atoi(getPartFromSocket(sc, bytesNum, 0).c_str());
+	Buffer bytes = getBufferPartFromSocket(sc, bytesNum);
+	unsigned int len = 0;
+	int max = bytesNum * 8 - 8;
+	for (int i = bytesNum - 1; i >= 0; --i)
+	{
+		len |= ((bytes[i]) << (max - i*8));
+	}
+	return len;
 }
 
 // recieve data from socket according byteSize
@@ -48,8 +55,22 @@ string Helper::getStringPartFromSocket(const SOCKET sc, const int bytesNum)
 // returns the data as string
 Buffer Helper::getBufferPartFromSocket(const SOCKET sc, const int bytesNum)
 {
-	string part = getPartFromSocket(sc, bytesNum, 0);
-	Buffer buffer(part.begin(), part.end());
+	if (bytesNum == 0)
+	{
+		return Buffer();
+	}
+
+	char* data = new char[bytesNum + 1];
+	int res = recv(sc, data, bytesNum, 0);
+	if (res == INVALID_SOCKET)
+	{
+		std::string s = "Error while recieving from socket: ";
+		s += std::to_string(sc);
+		throw std::exception(s.c_str());
+	}
+	data[bytesNum] = 0;
+	Buffer buffer(data, data + bytesNum);
+	delete[] data;
 	return buffer;
 }
 
