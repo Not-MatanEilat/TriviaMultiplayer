@@ -10,6 +10,10 @@
 #include "Helper.h"
 #include "LoginRequestHandler.h"
 
+using std::vector;
+
+typedef unsigned char byte;
+typedef vector<byte> Buffer;
 
 class Communicator
 {
