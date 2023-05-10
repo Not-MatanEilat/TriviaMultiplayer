@@ -1,7 +1,7 @@
 #pragma once
 
 #include <ctime>
-#include "Communicator.h"
+#include "Helper.h"
 
 class IRequestHandler;
 
