@@ -66,6 +66,7 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 		{
 			int code = Helper::getMessageTypeCode(clientSocket);
 			int len = Helper::getIntPartFromSocket(clientSocket, 4);
+			std::cout << "code: " << code << " len: " << len << std::endl;
 			Buffer msg = Helper::getBufferPartFromSocket(clientSocket, len);
 			RequestInfo requestInfo;
 			requestInfo.requestId = code;
