@@ -51,4 +51,5 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo info)
 		Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
 		result.response = buffer;
 	}
+	return result;
 }
