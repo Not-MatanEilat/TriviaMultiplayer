@@ -83,6 +83,11 @@ string Helper::getPaddedNumber(const int num, const int digits)
 
 }
 
+string Helper::getStringFromBuffer(const Buffer& buffer)
+{
+	return string(buffer.begin(), buffer.end());
+}
+
 // recieve data from socket according byteSize
 // this is private function
 std::string Helper::getPartFromSocket(const SOCKET sc, const int bytesNum)

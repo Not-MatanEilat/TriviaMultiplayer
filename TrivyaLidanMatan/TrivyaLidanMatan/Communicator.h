@@ -36,6 +36,6 @@ private:
 
 
 	SOCKET m_serverSocket;
-	std::map<SOCKET, LoginRequestHandler*> m_clients;
+	std::map<SOCKET, IRequestHandler*> m_clients;
 };
 

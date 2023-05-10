@@ -6,7 +6,7 @@
 class LoginRequestHandler : public IRequestHandler
 {
 public:
-	bool isRequestRelevant(RequestInfo) override;
-	RequestResult handleRequest(RequestInfo) override;
+	bool isRequestRelevant(RequestInfo info) override;
+	RequestResult handleRequest(RequestInfo info) override;
 };
 

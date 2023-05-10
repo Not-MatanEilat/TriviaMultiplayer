@@ -33,6 +33,7 @@ public:
 	static void sendData(SOCKET sc, Buffer message);
 	static void send_update_message_to_client(const SOCKET sc, const std::string& file_content, const std::string& second_username, const std::string& all_users);
 	static std::string getPaddedNumber(const int num, const int digits);
+	static string getStringFromBuffer(const Buffer& buffer);
 
 private:
 	static std::string getPartFromSocket(const SOCKET sc, const int bytesNum);
