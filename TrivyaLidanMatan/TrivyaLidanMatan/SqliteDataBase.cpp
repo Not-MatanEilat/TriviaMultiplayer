@@ -19,3 +19,20 @@ bool SqliteDataBase::close()
 	return _db.close();
 }
 
+/**
+ * \brief Function checks if the user exists in the database
+ * \param username the username to check
+ * \return 1 if the user exists, 0 if not
+ */
+int SqliteDataBase::doesUserExist(string const &username)
+{
+	string sqlStatement = "SELECT * FROM users WHERE username = '" + username + "'";
+	Result result = _db.exec(sqlStatement);
+	if (result.empty())
+	{
+		return 0;
+	}
+	return 1;
+}
+
+
