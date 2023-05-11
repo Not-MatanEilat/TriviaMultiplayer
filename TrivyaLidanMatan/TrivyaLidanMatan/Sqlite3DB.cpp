@@ -6,7 +6,7 @@
  */
 Sqlite3DB::Sqlite3DB(const string& dbFileName): _dbFileName(dbFileName)
 {
-	open();
+
 }
 
 /**
@@ -20,22 +20,26 @@ Sqlite3DB::~Sqlite3DB()
 /**
  * \brief open database connection
  */
-void Sqlite3DB::open()
+bool Sqlite3DB::open()
 {
 	if (_db != nullptr)
 	{
-		return;
+		return false;
 	}
 	_fileExist = _access(_dbFileName.c_str(), 0);
 	int res = sqlite3_open(_dbFileName.c_str(), &_db);
+	// if the database open, return false
 	if (res != SQLITE_OK)
 	{
-		throw std::runtime_error("Failed to open DB");
+		return false;
 	}
 	if (_fileExist != 0) 
 	{
 		init();
 	}
+
+	// if the database ended up creating, return true
+	return true;
 }
 
 /**
@@ -43,6 +47,7 @@ void Sqlite3DB::open()
  */
 void Sqlite3DB::init()
 {
+	exec("CREATE TABLE users (username TEXT, password TEXT, email TEXT)");
 }
 
 /**
@@ -100,13 +105,23 @@ Result Sqlite3DB::exec(const char* sqlStatement)
 /**
  * \brief close database connection
  */
-void Sqlite3DB::close()
+bool Sqlite3DB::close()
 {
+	bool res = false;
 	if (_db != nullptr)
 	{
-		sqlite3_close(_db);
+		res = sqlite3_close(_db);
 		_db = nullptr;
 	}
+
+	// check if the database didn't close properly, if it didn't return false
+	if (res != SQLITE_OK)
+	{
+		return false;
+	}
+
+	// if the database closed properly, then just return true
+	return true;
 }
 
 /**

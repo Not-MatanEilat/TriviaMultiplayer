@@ -14,6 +14,7 @@
 using std::cout;
 using std::endl;
 using std::string;
+using std::vector;
 
 typedef std::map<string, string> Row;
 typedef std::vector<Row> Result;
@@ -25,12 +26,12 @@ class Sqlite3DB
 public:
 	Sqlite3DB(const string& dbFileName);
 	virtual ~Sqlite3DB();
-	void open();
+	bool open();
 	virtual void init();
 	Result exec(string sqlStatement);
 	Result exec(string sqlStatement, std::vector<string>& args);
 	Result exec(const char* sqlStatement);
-	void close();
+	bool close();
 
 	sqlite3* getDb() const;
 	string getDbFileName() const;
