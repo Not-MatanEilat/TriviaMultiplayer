@@ -26,13 +26,31 @@ bool SqliteDataBase::close()
  */
 int SqliteDataBase::doesUserExist(string const &username)
 {
-	string sqlStatement = "SELECT * FROM users WHERE username = '" + username + "'";
-	Result result = _db.exec(sqlStatement);
+	string const sqlStatement = "SELECT * FROM users WHERE username = '" + username + "'";
+	Result const result = _db.exec(sqlStatement);
 	if (result.empty())
 	{
 		return 0;
 	}
 	return 1;
 }
+
+/**
+ * \brief Function checks if the username given has the password given, returns bool for result
+ * \param username the username to check the password for
+ * \param password the password to check
+ * \return True or False if the password matches the given username's password
+ */
+int SqliteDataBase::doesPasswordMatch(string const& username, string const& password)
+{
+	string const sqlStatement = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'";
+	Result const result = _db.exec(sqlStatement);
+	if (result.empty())
+	{
+		return 0;
+	}
+	return 1;
+}
+
 
 
