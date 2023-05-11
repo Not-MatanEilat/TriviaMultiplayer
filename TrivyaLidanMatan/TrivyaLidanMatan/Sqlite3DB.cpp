@@ -105,13 +105,23 @@ Result Sqlite3DB::exec(const char* sqlStatement)
 /**
  * \brief close database connection
  */
-void Sqlite3DB::close()
+bool Sqlite3DB::close()
 {
+	bool res = false;
 	if (_db != nullptr)
 	{
-		sqlite3_close(_db);
+		res = sqlite3_close(_db);
 		_db = nullptr;
 	}
+
+	// check if the database didn't close properly, if it didn't return false
+	if (res != SQLITE_OK)
+	{
+		return false;
+	}
+
+	// if the database closed properly, then just return true
+	return true;
 }
 
 /**

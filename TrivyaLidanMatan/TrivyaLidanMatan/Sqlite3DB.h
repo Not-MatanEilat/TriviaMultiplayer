@@ -30,7 +30,7 @@ public:
 	Result exec(string sqlStatement);
 	Result exec(string sqlStatement, std::vector<string>& args);
 	Result exec(const char* sqlStatement);
-	void close();
+	bool close();
 
 	sqlite3* getDb() const;
 	string getDbFileName() const;
