@@ -24,7 +24,7 @@ bool Sqlite3DB::open()
 {
 	if (_db != nullptr)
 	{
-		return;
+		return false;
 	}
 	_fileExist = _access(_dbFileName.c_str(), 0);
 	int res = sqlite3_open(_dbFileName.c_str(), &_db);

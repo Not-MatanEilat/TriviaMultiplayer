@@ -26,8 +26,9 @@ bool SqliteDataBase::close()
  */
 int SqliteDataBase::doesUserExist(string const &username)
 {
-	string const sqlStatement = "SELECT * FROM users WHERE username = '" + username + "'";
-	Result const result = _db.exec(sqlStatement);
+	string const sqlStatement = "SELECT * FROM users WHERE username = '$0'";
+	vector<string> params = {username};
+	Result const result = _db.exec(sqlStatement,  params);
 	if (result.empty())
 	{
 		return 0;
@@ -43,14 +44,43 @@ int SqliteDataBase::doesUserExist(string const &username)
  */
 int SqliteDataBase::doesPasswordMatch(string const& username, string const& password)
 {
-	string const sqlStatement = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'";
-	Result const result = _db.exec(sqlStatement);
+	string const sqlStatement = "SELECT * FROM users WHERE username = '$0' AND password = '$1'";
+	vector<string> params = { username, password };
+	Result const result = _db.exec(sqlStatement, params);
 	if (result.empty())
 	{
 		return 0;
 	}
 	return 1;
 }
+
+/**
+ * \brief Function adds a new user to the database
+ * \param username the username to add
+ * \param password the password to add
+ * \param email the email to add
+ * \return 1 or 0, depends on if the user was added, 1 for true, 0 for a false
+ */
+int SqliteDataBase::addNewUser(string const& username, string const& password, string const& email)
+{
+	string const sqlStatement = "INSERT INTO users (username, password, email) VALUES ('$0', '$1', '$2')";
+	vector<string> params = { username, password, email };
+	_db.exec(sqlStatement, params);
+
+	// check if the given user was successfully added
+	string const sqlStatement2 = "SELECT * FROM users WHERE username = '$0' AND password = '$1' AND email = '$2' ";
+	params = { username, password, email };
+	Result const result = _db.exec(sqlStatement2, params);
+
+	// if the list is empty and we didn't find the user, it means the user wasn't added, so return 0 here
+	if (result.empty())
+	{
+		return 0;
+	}
+
+	return 1;
+}
+
 
 
 

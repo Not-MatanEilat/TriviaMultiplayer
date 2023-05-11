@@ -14,6 +14,7 @@
 using std::cout;
 using std::endl;
 using std::string;
+using std::vector;
 
 typedef std::map<string, string> Row;
 typedef std::vector<Row> Result;
