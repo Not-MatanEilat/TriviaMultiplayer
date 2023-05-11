@@ -6,7 +6,7 @@
  */
 Sqlite3DB::Sqlite3DB(const string& dbFileName): _dbFileName(dbFileName)
 {
-	open();
+
 }
 
 /**
@@ -20,7 +20,7 @@ Sqlite3DB::~Sqlite3DB()
 /**
  * \brief open database connection
  */
-void Sqlite3DB::open()
+bool Sqlite3DB::open()
 {
 	if (_db != nullptr)
 	{
@@ -28,14 +28,18 @@ void Sqlite3DB::open()
 	}
 	_fileExist = _access(_dbFileName.c_str(), 0);
 	int res = sqlite3_open(_dbFileName.c_str(), &_db);
+	// if the database open, return false
 	if (res != SQLITE_OK)
 	{
-		throw std::runtime_error("Failed to open DB");
+		return false;
 	}
 	if (_fileExist != 0) 
 	{
 		init();
 	}
+
+	// if the database ended up creating, return true
+	return true;
 }
 
 /**

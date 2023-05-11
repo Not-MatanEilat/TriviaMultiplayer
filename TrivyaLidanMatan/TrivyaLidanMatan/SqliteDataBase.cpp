@@ -3,6 +3,6 @@
 bool SqliteDataBase::open()
 {
 	_db =  Sqlite3DB("trivia.db");
-	return _db.isOpen();
+	return _db.open();
 }
 

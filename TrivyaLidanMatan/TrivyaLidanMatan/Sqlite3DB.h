@@ -25,7 +25,7 @@ class Sqlite3DB
 public:
 	Sqlite3DB(const string& dbFileName);
 	virtual ~Sqlite3DB();
-	void open();
+	bool open();
 	virtual void init();
 	Result exec(string sqlStatement);
 	Result exec(string sqlStatement, std::vector<string>& args);
