@@ -43,6 +43,7 @@ void Sqlite3DB::open()
  */
 void Sqlite3DB::init()
 {
+	exec("CREATE TABLE users (username TEXT, password TEXT, email TEXT)");
 }
 
 /**

@@ -1,6 +1,7 @@
 #pragma once
 class IDataBase
 {
+public:
 	virtual bool open() = 0;
 	virtual bool close() = 0;
 	virtual int doesUserExist(string username) = 0;
