@@ -1,6 +1,9 @@
 #include "SqliteDataBase.h"
 
 
+/**
+ * \brief The constructor for the SqliteDataBase
+ */
 SqliteDataBase::SqliteDataBase()
 {
 	_db = Sqlite3DB(DB_PATH);
