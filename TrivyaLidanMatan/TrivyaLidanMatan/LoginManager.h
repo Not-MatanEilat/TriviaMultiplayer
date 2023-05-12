@@ -16,8 +16,6 @@ public:
 
 private:
 
-	bool isUserLoggedIn(string const& username) const;
-
 	IDataBase* m_database;
 	vector<LoggedUser> m_loggedUsers;
 };
