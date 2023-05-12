@@ -1,4 +1,8 @@
 #pragma once
+
+#define DB_PATH "Trivia.db"
+
+
 class IDataBase
 {
 public:

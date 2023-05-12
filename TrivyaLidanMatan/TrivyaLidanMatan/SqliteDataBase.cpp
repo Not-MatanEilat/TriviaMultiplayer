@@ -1,12 +1,17 @@
 #include "SqliteDataBase.h"
 
+
+SqliteDataBase::SqliteDataBase()
+{
+	_db = Sqlite3DB(DB_PATH);
+}
+
 /**
  * \brief Will open the database
  * \return True or False, if the database opened
  */
 bool SqliteDataBase::open()
 {
-	_db =  Sqlite3DB("Trivia.db");
 	return _db.open();
 }
 

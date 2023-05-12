@@ -7,6 +7,9 @@
 class SqliteDataBase : public IDataBase
 {
 public:
+
+	SqliteDataBase();
+
 	bool open() override;
 	bool close() override;
 	int doesUserExist(string const &username) override;

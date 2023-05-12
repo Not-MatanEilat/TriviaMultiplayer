@@ -7,11 +7,14 @@
 class LoginManager
 {
 public:
+
+	LoginManager();
+
 	void signUp(string const &username, string const& password, string const& email);
 	void login(string const& username, string const& password);
 	void logout(string const& username);
 
 private:
 	IDataBase* m_database;
-	vector<L
+	vector<LoggedUser> m_loggedUsers;
 };
