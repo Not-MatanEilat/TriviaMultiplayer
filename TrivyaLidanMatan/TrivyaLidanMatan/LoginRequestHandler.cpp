@@ -59,11 +59,31 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo info)
  * \param info the info of the request
  * \return the request login result
  */
-RequestResult LoginRequestHandler::handleLoginRequest(RequestInfo const &info)
+RequestResult LoginRequestHandler::login(RequestInfo const &info)
 {
 	LoginRequest loginRequest = JsonRequestPacketDeserializer::deserializeLoginRequest(info.buffer);
 	LoginResponse response;
 	response.status = LOGIN_CODE;
+	Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
+
+	RequestResult result;
+
+	result.newHandler = this;
+	result.response = buffer;
+
+	return result;
+}
+
+/**
+ * \brief The function will take a signup request and deserialize it to a signup request object
+ * \param info the info of the request
+ * \return the request signup result
+ */
+RequestResult LoginRequestHandler::signup(RequestInfo const &info)
+{
+	SignupRequest signupRequest = JsonRequestPacketDeserializer::deserializeSignupRequest(info.buffer);
+	SignupResponse response;
+	response.status = SIGNUP_CODE;
 	Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
 
 	RequestResult result;

@@ -10,6 +10,7 @@ public:
 	RequestResult handleRequest(RequestInfo info) override;
 
 private:
-	RequestResult handleLoginRequest(RequestInfo const &info);
+	RequestResult login(RequestInfo const &info);
+	RequestResult signup(RequestInfo const &info);
 };
 
