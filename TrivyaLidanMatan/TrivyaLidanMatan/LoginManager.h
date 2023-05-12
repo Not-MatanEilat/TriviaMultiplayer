@@ -10,7 +10,7 @@ public:
 
 	LoginManager();
 
-	void signUp(string const &username, string const& password, string const& email);
+	void signUp(string const &username, string const& password, string const& email) const;
 	void login(string const& username, string const& password);
 	void logout(string const& username);
 
