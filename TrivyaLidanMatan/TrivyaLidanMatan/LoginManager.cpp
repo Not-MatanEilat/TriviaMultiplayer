@@ -49,4 +49,29 @@ void LoginManager::login(string const& username, string const& password)
 	m_loggedUsers.push_back(user);
 }
 
+/**
+ * \brief Will logout the give user, throws an exception if the user isn't logged in
+ * \param username the username to logout
+ */
+void LoginManager::logout(string const& username)
+{
+	bool isUserFound = false;
+
+	for (int i = 0; i < m_loggedUsers.size(); i++)
+	{
+		if (m_loggedUsers[i].getUsername() == username)
+		{
+			m_loggedUsers.erase(m_loggedUsers.begin() + i);
+			isUserFound = true;
+		}
+	}
+
+	if (!isUserFound)
+	{
+		throw std::exception("User isn't logged in");
+	}
+}
+
+
+
 
