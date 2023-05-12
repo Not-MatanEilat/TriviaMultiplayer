@@ -5,9 +5,11 @@
  * \param buffer buffer of json data
  * \return deserialized LoginRequest
  */
-LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(string buffer)
+LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(Buffer const &buffer)
 {
-	json j = json::parse(buffer);
+	string bufferStr = Helper::getStringFromBuffer(buffer);
+
+	json j = json::parse(bufferStr);
 
 	LoginRequest request;
 	request.username = j["username"];
@@ -22,9 +24,11 @@ LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(string buffe
  * \param buffer buffer of json data
  * \return deserialized SignupRequest
  */
-SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(string buffer)
+SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(Buffer const &buffer)
 {
-	json j = json::parse(buffer);
+	string bufferStr = Helper::getStringFromBuffer(buffer);
+
+	json j = json::parse(bufferStr);
 
 	SignupRequest request;
 	request.username = j["username"];
