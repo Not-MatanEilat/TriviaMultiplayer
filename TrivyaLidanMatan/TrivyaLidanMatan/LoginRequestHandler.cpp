@@ -18,13 +18,12 @@ bool LoginRequestHandler::isRequestRelevant(RequestInfo info)
  */
 RequestResult LoginRequestHandler::handleRequest(RequestInfo info)
 {
-	string msg = Helper::getStringFromBuffer(info.buffer);
 	RequestResult result;
 	result.newHandler = this;
 	if (info.requestId == LOGIN_CODE)
 	{
 		TRACE("got login request");
-		LoginRequest loginRequest = JsonRequestPacketDeserializer::deserializeLoginRequest(msg);
+		LoginRequest loginRequest = JsonRequestPacketDeserializer::deserializeLoginRequest(info.buffer);
 
 		LoginResponse response;
 		response.status = 1;
@@ -35,7 +34,7 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo info)
 	else if (info.requestId == SIGNUP_CODE)
 	{
 		TRACE("got signup request");
-		SignupRequest signupRequest = JsonRequestPacketDeserializer::deserializeSignupRequest(msg);
+		SignupRequest signupRequest = JsonRequestPacketDeserializer::deserializeSignupRequest(info.buffer);
 
 		SignupResponse response;
 		response.status = 1;
@@ -51,5 +50,26 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo info)
 		Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
 		result.response = buffer;
 	}
+	return result;
+}
+
+
+/**
+ * \brief The function will take a login request and deserialize it to a login request object
+ * \param info the info of the request
+ * \return the request login result
+ */
+RequestResult LoginRequestHandler::handleLoginRequest(RequestInfo const &info)
+{
+	LoginRequest loginRequest = JsonRequestPacketDeserializer::deserializeLoginRequest(info.buffer);
+	LoginResponse response;
+	response.status = LOGIN_CODE;
+	Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
+
+	RequestResult result;
+
+	result.newHandler = this;
+	result.response = buffer;
+
 	return result;
 }
