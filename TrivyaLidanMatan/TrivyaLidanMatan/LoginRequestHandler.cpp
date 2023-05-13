@@ -23,24 +23,12 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo info)
 	if (info.requestId == LOGIN_CODE)
 	{
 		TRACE("got login request");
-		LoginRequest loginRequest = JsonRequestPacketDeserializer::deserializeLoginRequest(info.buffer);
-
-		LoginResponse response;
-		response.status = 1;
-
-		Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
-		result.response = buffer;
+		result = login(info);
 	}
 	else if (info.requestId == SIGNUP_CODE)
 	{
 		TRACE("got signup request");
-		SignupRequest signupRequest = JsonRequestPacketDeserializer::deserializeSignupRequest(info.buffer);
-
-		SignupResponse response;
-		response.status = 1;
-
-		Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
-		result.response = buffer;
+		result = signup(info);
 	}
 	else
 	{
@@ -67,6 +55,7 @@ RequestResult LoginRequestHandler::login(RequestInfo const &info)
 	LoginResponse response;
 	try
 	{
+		// login, if failed (username or password is wrong) will return a response with a failed status
 		m_handlerFactory.getLoginManager().login(loginRequest.username, loginRequest.password);
 		response.status = SUCCESS;
 		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
@@ -97,6 +86,7 @@ RequestResult LoginRequestHandler::signup(RequestInfo const &info)
 	SignupResponse response;
 	try
 	{
+		// signup, if failed (something went wrong there) will return a response with a failed status
 		m_handlerFactory.getLoginManager().signUp(signupRequest.username, signupRequest.password, signupRequest.email);
 		response.status = SUCCESS;
 		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
