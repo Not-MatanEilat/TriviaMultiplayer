@@ -4,9 +4,8 @@
 /**
  * \brief The constructor for the SqliteDataBase
  */
-SqliteDataBase::SqliteDataBase()
+SqliteDataBase::SqliteDataBase() : _db(DB_PATH)
 {
-	_db = Sqlite3DB(DB_PATH);
 }
 
 /**

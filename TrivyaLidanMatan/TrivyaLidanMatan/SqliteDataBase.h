@@ -3,6 +3,7 @@
 #include "IDataBase.h"
 #include "Sqlite3DB.h"
 
+class IDataBase;
 
 class SqliteDataBase : public IDataBase
 {

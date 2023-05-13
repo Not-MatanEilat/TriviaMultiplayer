@@ -28,7 +28,7 @@ void Communicator::startHandleRequests()
 
 		// add client to the clients map
 
-		LoginRequestHandler* loginRequestHandler = new LoginRequestHandler();
+		LoginRequestHandler* loginRequestHandler = new LoginRequestHandler(m_handlerFactory);
 		m_clients[client_socket] = loginRequestHandler;
 
 		// create new thread for client	and detach from it
@@ -40,7 +40,7 @@ void Communicator::startHandleRequests()
 /// <summary>
 /// The constructor of the communicator, it will create a new socket for the server to listen from later on
 /// </summary>
-Communicator::Communicator()
+Communicator::Communicator(RequestHandlerFactory& handlerFactory) : m_handlerFactory(handlerFactory)
 {
 	// this server use TCP. that why SOCK_STREAM & IPPROTO_TCP
 	// if the server use UDP we will use: SOCK_DGRAM & IPPROTO_UDP
