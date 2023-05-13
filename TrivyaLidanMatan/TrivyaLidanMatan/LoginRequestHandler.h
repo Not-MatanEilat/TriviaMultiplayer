@@ -1,7 +1,13 @@
 #pragma once
 
-
+#include "RequestHandlerFactory.h"
 #include "IRequestHandler.h"
+
+enum StatusCodes
+{
+	SUCCESS = 1,
+	FAILED = 0
+};
 
 class LoginRequestHandler : public IRequestHandler
 {
@@ -12,5 +18,7 @@ public:
 private:
 	RequestResult login(RequestInfo const &info);
 	RequestResult signup(RequestInfo const &info);
+
+	RequestHandlerFactory& m_handlerFactory;
 };
 

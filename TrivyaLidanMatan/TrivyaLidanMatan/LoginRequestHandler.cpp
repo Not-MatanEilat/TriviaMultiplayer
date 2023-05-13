@@ -61,15 +61,25 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo info)
  */
 RequestResult LoginRequestHandler::login(RequestInfo const &info)
 {
-	LoginRequest loginRequest = JsonRequestPacketDeserializer::deserializeLoginRequest(info.buffer);
-	LoginResponse response;
-	response.status = LOGIN_CODE;
-	Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
+	LoginRequest const loginRequest = JsonRequestPacketDeserializer::deserializeLoginRequest(info.buffer);
 
 	RequestResult result;
-
-	result.newHandler = this;
-	result.response = buffer;
+	LoginResponse response;
+	try
+	{
+		m_handlerFactory.getLoginManager().login(loginRequest.username, loginRequest.password);
+		response.status = SUCCESS;
+		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
+		result.newHandler = this;
+		result.response = buffer;
+	}
+	catch (std::exception const &e)
+	{
+		response.status = FAILED;
+		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
+		result.newHandler = nullptr;
+		result.response = buffer;
+	}
 
 	return result;
 }
@@ -81,15 +91,25 @@ RequestResult LoginRequestHandler::login(RequestInfo const &info)
  */
 RequestResult LoginRequestHandler::signup(RequestInfo const &info)
 {
-	SignupRequest signupRequest = JsonRequestPacketDeserializer::deserializeSignupRequest(info.buffer);
-	SignupResponse response;
-	response.status = SIGNUP_CODE;
-	Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
+	SignupRequest const signupRequest = JsonRequestPacketDeserializer::deserializeSignupRequest(info.buffer);
 
 	RequestResult result;
-
-	result.newHandler = this;
-	result.response = buffer;
+	SignupResponse response;
+	try
+	{
+		m_handlerFactory.getLoginManager().signUp(signupRequest.username, signupRequest.password, signupRequest.email);
+		response.status = SUCCESS;
+		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
+		result.newHandler = this;
+		result.response = buffer;
+	}
+	catch (std::exception const& e)
+	{
+		response.status = FAILED;
+		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
+		result.newHandler = nullptr;
+		result.response = buffer;
+	}
 
 	return result;
 }
