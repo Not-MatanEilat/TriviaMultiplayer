@@ -4,6 +4,15 @@
 #include "JsonResponsePacketSerializer.h"
 
 /**
+ * \brief Constructor for the LoginRequestHandler
+ * \param handlerFactory The factory for the class
+ */
+LoginRequestHandler::LoginRequestHandler(RequestHandlerFactory& handlerFactory) : m_handlerFactory(handlerFactory)
+{
+
+}
+
+/**
  * \brief checks if the request is relevant
  * \return true if request is relevant
  */

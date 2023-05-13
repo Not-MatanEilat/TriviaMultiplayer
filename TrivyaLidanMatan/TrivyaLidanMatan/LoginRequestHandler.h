@@ -12,6 +12,8 @@ enum StatusCodes
 class LoginRequestHandler : public IRequestHandler
 {
 public:
+	LoginRequestHandler(RequestHandlerFactory& handlerFactory);
+
 	bool isRequestRelevant(RequestInfo info) override;
 	RequestResult handleRequest(RequestInfo info) override;
 
