@@ -10,10 +10,10 @@ RequestHandlerFactory::RequestHandlerFactory(const LoginManager& mLoginManager, 
 {
 }
 
-//LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
-//{
-//	return nullptr;
-//}
+LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
+{
+	return nullptr;
+}
 
 LoginManager& RequestHandlerFactory::getLoginManager()
 {

@@ -13,7 +13,7 @@ public:
 
 	RequestHandlerFactory(const LoginManager& mLoginManager, IDataBase* mDatabase);
 
-	// LoginRequestHandler* createLoginRequestHandler();
+	LoginRequestHandler* createLoginRequestHandler();
 	LoginManager& getLoginManager();
 
 private:
