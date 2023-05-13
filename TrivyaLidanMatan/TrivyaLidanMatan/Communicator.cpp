@@ -28,7 +28,7 @@ void Communicator::startHandleRequests()
 
 		// add client to the clients map
 
-		LoginRequestHandler* loginRequestHandler = new LoginRequestHandler(m_handlerFactory);
+		LoginRequestHandler* loginRequestHandler = m_handlerFactory.createLoginRequestHandler();
 		m_clients[client_socket] = loginRequestHandler;
 
 		// create new thread for client	and detach from it
