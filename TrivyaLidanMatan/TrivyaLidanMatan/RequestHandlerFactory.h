@@ -5,6 +5,7 @@
 #include "LoginRequestHandler.h"
 
 
+class LoginRequestHandler;
 
 class RequestHandlerFactory
 {

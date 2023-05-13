@@ -12,7 +12,7 @@ RequestHandlerFactory::RequestHandlerFactory(const LoginManager& mLoginManager, 
 
 LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
 {
-	return nullptr;
+	return new LoginRequestHandler(*this);
 }
 
 LoginManager& RequestHandlerFactory::getLoginManager()
