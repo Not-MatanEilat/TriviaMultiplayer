@@ -5,6 +5,7 @@
 #include "LoginRequestHandler.h"
 
 
+class LoginRequestHandler;
 
 class RequestHandlerFactory
 {
@@ -13,7 +14,7 @@ public:
 
 	RequestHandlerFactory(const LoginManager& mLoginManager, IDataBase* mDatabase);
 
-	// LoginRequestHandler* createLoginRequestHandler();
+	LoginRequestHandler* createLoginRequestHandler();
 	LoginManager& getLoginManager();
 
 private:
