@@ -9,10 +9,14 @@
 class RequestHandlerFactory
 {
 public:
-	LoginRequestHandler* createLoginRequestHandler();
+	RequestHandlerFactory(IDataBase* mDatabase);
+
+	RequestHandlerFactory(const LoginManager& mLoginManager, IDataBase* mDatabase);
+
+	// LoginRequestHandler* createLoginRequestHandler();
 	LoginManager& getLoginManager();
 
 private:
 	LoginManager m_loginManager;
-	SqliteDataBase m_database;
+	IDataBase* m_database;
 };

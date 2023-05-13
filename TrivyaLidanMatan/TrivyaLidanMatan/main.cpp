@@ -6,7 +6,8 @@
 int main()
 {
 	WSAInitializer wsaInit;
-	Server server;
+	SqliteDataBase db;
+	Server server(&db);
 	server.run();
 	return 0;
 }

@@ -1,7 +1,9 @@
 #pragma once
 
 #define DB_PATH "Trivia.db"
+#include <string>
 
+using std::string;
 
 class IDataBase
 {

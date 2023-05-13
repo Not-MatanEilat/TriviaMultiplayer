@@ -95,7 +95,7 @@ Result Sqlite3DB::exec(const char* sqlStatement)
 	{
 		if (errMessage == NULL)
 		{
-			errMessage = "SQLITE ERROR";
+			errMessage = (char*)"SQLITE ERROR";
 		}
 		throw std::runtime_error(errMessage);
 	}

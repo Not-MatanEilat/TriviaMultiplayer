@@ -3,6 +3,9 @@
 #include "RequestHandlerFactory.h"
 #include "IRequestHandler.h"
 
+
+class RequestHandlerFactory;
+
 enum StatusCodes
 {
 	SUCCESS = 1,
