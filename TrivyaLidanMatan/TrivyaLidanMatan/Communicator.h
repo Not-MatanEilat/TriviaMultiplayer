@@ -9,6 +9,7 @@
 
 #include "Helper.h"
 #include "LoginRequestHandler.h"
+#include "RequestHandlerFactory.h"
 
 using std::vector;
 using std::string;
@@ -22,6 +23,8 @@ enum RESPONSE_CODES
 	LOGIN_CODE = 1,
 	SIGNUP_CODE = 2
 };
+
+class RequestHandlerFactory;
 
 class Communicator
 {

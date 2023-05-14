@@ -1,12 +1,11 @@
 #include "LoginManager.h"
 
 /**
-* \brief Constructor for LoginManager, will also open the database
+* \brief Constructor for LoginManager
 */
-LoginManager:: LoginManager()
+LoginManager::LoginManager(IDataBase* database) : m_database(database)
 {
-	m_database = new SqliteDataBase();
-	m_database->open();
+	
 }
 
 /**
@@ -27,7 +26,7 @@ void LoginManager::signUp(string const& username, string const& password, string
 
 /**
  * \brief The function will login the given user to the database, throws
- * an excetion if the user doesn't exists, also adds the user to the list of logged users
+ * an exception if the user doesn't exists, also adds the user to the list of logged users
  * \param username the username to login
  * \param password the password to login
  */

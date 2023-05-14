@@ -39,14 +39,6 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo info)
 		TRACE("got signup request");
 		result = signup(info);
 	}
-	else
-	{
-		ErrorResponse response;
-		response.message = "Invalid message code for this state";
-
-		Buffer buffer = JsonResponsePacketSerializer::serializeResponse(response);
-		result.response = buffer;
-	}
 	return result;
 }
 
@@ -62,21 +54,24 @@ RequestResult LoginRequestHandler::login(RequestInfo const &info)
 
 	RequestResult result;
 	LoginResponse response;
+	TRACE("Trying to login with username: " << loginRequest.username << " password: " << loginRequest.password);
 	try
 	{
 		// login, if failed (username or password is wrong) will return a response with a failed status
 		m_handlerFactory.getLoginManager().login(loginRequest.username, loginRequest.password);
 		response.status = SUCCESS;
 		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
-		result.newHandler = this;
+		result.newHandler = m_handlerFactory.createMenuRequestHandler();
 		result.response = buffer;
+		TRACE("Login success");
 	}
 	catch (std::exception const &e)
 	{
 		response.status = FAILED;
 		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
-		result.newHandler = nullptr;
+		result.newHandler = this;
 		result.response = buffer;
+		TRACE("Login failed " << e.what());
 	}
 
 	return result;
@@ -93,21 +88,24 @@ RequestResult LoginRequestHandler::signup(RequestInfo const &info)
 
 	RequestResult result;
 	SignupResponse response;
+	TRACE("Trying to signup with username: " << signupRequest.username << " password: " << signupRequest.password << " email: " << signupRequest.email);
 	try
 	{
 		// signup, if failed (something went wrong there) will return a response with a failed status
 		m_handlerFactory.getLoginManager().signUp(signupRequest.username, signupRequest.password, signupRequest.email);
 		response.status = SUCCESS;
 		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
-		result.newHandler = this;
+		result.newHandler = m_handlerFactory.createMenuRequestHandler();;
 		result.response = buffer;
+		TRACE("Signup success");
 	}
 	catch (std::exception const& e)
 	{
 		response.status = FAILED;
 		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
-		result.newHandler = nullptr;
+		result.newHandler = this;
 		result.response = buffer;
+		TRACE("Signup failed " << e.what());
 	}
 
 	return result;
