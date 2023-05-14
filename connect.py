@@ -53,7 +53,7 @@ def main():
         msg = client.recv(BYTES_SIZE)
         print(msg)
 
-        # build a signup message now this time
+        # build an invalid message now this time
         bin_message = build_message(123, "{NOOOOOOOOOO}")
 
         # send a message to the server

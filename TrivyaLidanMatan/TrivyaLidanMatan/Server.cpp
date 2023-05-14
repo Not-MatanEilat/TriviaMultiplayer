@@ -2,6 +2,7 @@
 
 Server::Server(IDataBase* db) : m_database(db), m_handlerFactory(db), m_communicator(Communicator(m_handlerFactory))
 {
+	m_database->open();
 }
 
 /**

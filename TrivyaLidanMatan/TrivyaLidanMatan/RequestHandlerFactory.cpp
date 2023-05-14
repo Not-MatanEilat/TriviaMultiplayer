@@ -1,8 +1,9 @@
 #include "RequestHandlerFactory.h"
 
-RequestHandlerFactory::RequestHandlerFactory(IDataBase* mDatabase): m_database(mDatabase)
+#include "MenuRequestHandler.h"
+
+RequestHandlerFactory::RequestHandlerFactory(IDataBase* mDatabase): m_database(mDatabase), m_loginManager(mDatabase)
 {
-	m_loginManager = LoginManager();
 }
 
 RequestHandlerFactory::RequestHandlerFactory(const LoginManager& mLoginManager, IDataBase* mDatabase): m_loginManager(mLoginManager),
@@ -13,6 +14,11 @@ RequestHandlerFactory::RequestHandlerFactory(const LoginManager& mLoginManager, 
 LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
 {
 	return new LoginRequestHandler(*this);
+}
+
+MenuRequestHandler* RequestHandlerFactory::createMenuRequestHandler()
+{
+	return new MenuRequestHandler(*this);
 }
 
 LoginManager& RequestHandlerFactory::getLoginManager()
