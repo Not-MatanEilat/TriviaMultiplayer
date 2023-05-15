@@ -28,7 +28,7 @@ void Communicator::startHandleRequests()
 
 		// add client to the clients map
 
-		LoginRequestHandler* loginRequestHandler = new LoginRequestHandler();
+		LoginRequestHandler* loginRequestHandler = m_handlerFactory.createLoginRequestHandler();
 		m_clients[client_socket] = loginRequestHandler;
 
 		// create new thread for client	and detach from it
@@ -40,7 +40,7 @@ void Communicator::startHandleRequests()
 /// <summary>
 /// The constructor of the communicator, it will create a new socket for the server to listen from later on
 /// </summary>
-Communicator::Communicator()
+Communicator::Communicator(RequestHandlerFactory& handlerFactory) : m_handlerFactory(handlerFactory)
 {
 	// this server use TCP. that why SOCK_STREAM & IPPROTO_TCP
 	// if the server use UDP we will use: SOCK_DGRAM & IPPROTO_UDP
@@ -66,7 +66,7 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 		{
 			int code = Helper::getMessageTypeCode(clientSocket);
 			int len = Helper::getIntPartFromSocket(clientSocket, 4);
-			std::cout << "code: " << code << " len: " << len << std::endl;
+			TRACE("code: " << code << " len: " << len);
 			Buffer msg = Helper::getBufferPartFromSocket(clientSocket, len);
 			RequestInfo requestInfo;
 			requestInfo.requestId = code;
@@ -76,15 +76,21 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 			if (m_clients[clientSocket]->isRequestRelevant(requestInfo))
 			{
 				result = m_clients[clientSocket]->handleRequest(requestInfo);
-				Helper::sendData(clientSocket, result.response);
 				m_clients[clientSocket] = result.newHandler;
 			}
-			
+			else
+			{
+				ErrorResponse response;
+				response.message = "Invalid message code for this state";
+
+				result.response = JsonResponsePacketSerializer::serializeResponse(response);
+			}
+			Helper::sendData(clientSocket, result.response);
 		}
 	}
 	catch (const std::exception& e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << "Connection lost: " << e.what() << std::endl;
 	}
 	
 }

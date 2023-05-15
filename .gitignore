@@ -414,6 +414,9 @@ FodyWeavers.xsd
 .vscode/*
 *.code-workspace
 
+#IDEA
+.idea/
+
 # Local History for Visual Studio Code
 .history/
 

@@ -9,6 +9,7 @@
 
 #include "Helper.h"
 #include "LoginRequestHandler.h"
+#include "RequestHandlerFactory.h"
 
 using std::vector;
 using std::string;
@@ -23,12 +24,14 @@ enum RESPONSE_CODES
 	SIGNUP_CODE = 2
 };
 
+class RequestHandlerFactory;
+
 class Communicator
 {
 public:
 	void startHandleRequests();
 
-	Communicator();
+	Communicator(RequestHandlerFactory& handlerFactory);
 
 private:
 	void bindAndListen();
@@ -37,5 +40,6 @@ private:
 
 	SOCKET m_serverSocket;
 	std::map<SOCKET, IRequestHandler*> m_clients;
+	RequestHandlerFactory& m_handlerFactory;
 };
 
