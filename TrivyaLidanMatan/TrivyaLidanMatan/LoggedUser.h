@@ -9,7 +9,7 @@ using std::string;
 class LoggedUser
 {
 public:
-	LoggedUser(string const &username);
+	LoggedUser(const string &username);
 	string getUsername() const;
 
 

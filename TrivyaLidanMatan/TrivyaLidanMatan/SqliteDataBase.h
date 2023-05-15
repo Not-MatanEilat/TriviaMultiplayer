@@ -13,9 +13,9 @@ public:
 
 	bool open() override;
 	bool close() override;
-	int doesUserExist(string const &username) override;
-	int doesPasswordMatch(string const& username, string const& password) override;
-	int addNewUser(string const& username, string const& password, string const& email) override;
+	int doesUserExist(const string &username) override;
+	int doesPasswordMatch(const string& username, const string& password) override;
+	int addNewUser(const string& username, const string& password, const string& email) override;
 
 private:
 	Sqlite3DB _db;

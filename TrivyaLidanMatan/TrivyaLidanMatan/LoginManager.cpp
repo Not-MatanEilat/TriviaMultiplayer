@@ -14,7 +14,7 @@ LoginManager::LoginManager(IDataBase* database) : m_database(database)
  * \param password the password to signUp
  * \param email the email to signUp
  */
-void LoginManager::signUp(string const& username, string const& password, string const& email) const
+void LoginManager::signUp(const string& username, const string& password, const string& email) const
 {
 	// check if user exits already
 	if (m_database->doesUserExist(username))
@@ -30,7 +30,7 @@ void LoginManager::signUp(string const& username, string const& password, string
  * \param username the username to login
  * \param password the password to login
  */
-void LoginManager::login(string const& username, string const& password)
+void LoginManager::login(const string& username, const string& password)
 {
 	if (!m_database->doesUserExist(username))
 	{
@@ -52,7 +52,7 @@ void LoginManager::login(string const& username, string const& password)
  * \brief Will logout the give user, throws an exception if the user isn't logged in
  * \param username the username to logout
  */
-void LoginManager::logout(string const& username)
+void LoginManager::logout(const string& username)
 {
 	bool isUserFound = false;
 

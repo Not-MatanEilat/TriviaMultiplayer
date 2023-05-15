@@ -4,7 +4,7 @@
  * \brief C'tor for LoggedUser
  * \param username the username to set
  */
-LoggedUser::LoggedUser(string const &username): m_username(username)
+LoggedUser::LoggedUser(const string &username): m_username(username)
 {
 	
 }
