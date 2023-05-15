@@ -21,6 +21,11 @@ void LoginManager::signUp(const string& username, const string& password, const 
 	{
 		throw std::exception("User already exists");
 	}
+	// check if password valid
+	if (!m_database->isValidPassword(password))
+	{
+		throw std::exception("Password is invalid");
+	}
 	m_database->addNewUser(username, password, email);
 }
 
