@@ -6,6 +6,7 @@
 
 
 using std::regex;
+using std::regex_search;
 
 using std::string;
 
@@ -19,6 +20,7 @@ public:
 	virtual int addNewUser(string const &username, string const& password, string const &email) = 0;
 
 	static bool isValidPassword(const string& username);
+	static bool isValidEmail(const string& email);
 
 };
 

@@ -28,3 +28,19 @@ bool IDataBase::isValidPassword(const string& username)
 	}
 	return true;
 }
+
+/**
+ * \brief Checks if the email is valid
+ * \param email the email to check
+ * \return true if the email is valid, false otherwise
+ */
+bool IDataBase::isValidEmail(const string& email)
+{
+	// Check if email is valid
+	if (!regex_search(email, regex("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")))
+	{
+		return false;
+	}
+	return true;
+}
+
