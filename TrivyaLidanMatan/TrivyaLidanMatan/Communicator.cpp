@@ -1,5 +1,7 @@
 #include "Communicator.h"
 
+#include "JsonRequestPacketDeserializer.h"
+
 // using static const instead of macros 
 static const unsigned short PORT = 8826;
 static const unsigned int IFACE = 0;
@@ -26,7 +28,7 @@ void Communicator::startHandleRequests()
 
 		// add client to the clients map
 
-		LoginRequestHandler* loginRequestHandler = new LoginRequestHandler();
+		LoginRequestHandler* loginRequestHandler = m_handlerFactory.createLoginRequestHandler();
 		m_clients[client_socket] = loginRequestHandler;
 
 		// create new thread for client	and detach from it
@@ -35,10 +37,11 @@ void Communicator::startHandleRequests()
 	}
 }
 
-/// <summary>
-/// The constructor of the communicator, it will create a new socket for the server to listen from later on
-/// </summary>
-Communicator::Communicator()
+/**
+ * \brief /// The constructor of the communicator, it will create a new socket for the server to listen from later on
+ * \param handlerFactory The factory handler for the class
+ */
+Communicator::Communicator(RequestHandlerFactory& handlerFactory) : m_handlerFactory(handlerFactory)
 {
 	// this server use TCP. that why SOCK_STREAM & IPPROTO_TCP
 	// if the server use UDP we will use: SOCK_DGRAM & IPPROTO_UDP
@@ -58,7 +61,39 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 {
 	Helper::sendData(clientSocket, "Hello");
 
-	std::cout << Helper::getIntPartFromSocket(clientSocket, 5) << std::endl;
+	try
+	{
+		while (true)
+		{
+			int code = Helper::getMessageTypeCode(clientSocket);
+			int len = Helper::getIntPartFromSocket(clientSocket, 4);
+			TRACE("code: " << code << " len: " << len);
+			Buffer msg = Helper::getBufferPartFromSocket(clientSocket, len);
+			RequestInfo requestInfo;
+			requestInfo.requestId = code;
+			requestInfo.buffer = msg;
+			requestInfo.receivalTime = clock();
+			RequestResult result;
+			if (m_clients[clientSocket]->isRequestRelevant(requestInfo))
+			{
+				result = m_clients[clientSocket]->handleRequest(requestInfo);
+				m_clients[clientSocket] = result.newHandler;
+			}
+			else
+			{
+				ErrorResponse response;
+				response.message = "Invalid message code for this state";
+
+				result.response = JsonResponsePacketSerializer::serializeResponse(response);
+			}
+			Helper::sendData(clientSocket, result.response);
+		}
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "Connection lost: " << e.what() << std::endl;
+	}
+	
 }
 
 /**

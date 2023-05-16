@@ -4,6 +4,11 @@
 #include <string>
 #include <WinSock2.h>
 
+using std::vector;
+using std::string;
+
+typedef unsigned char byte;
+typedef vector<byte> Buffer;
 
 enum MessageType : byte
 {
@@ -23,9 +28,12 @@ public:
 	static int getMessageTypeCode(const SOCKET sc);
 	static int getIntPartFromSocket(const SOCKET sc, const int bytesNum);
 	static std::string getStringPartFromSocket(SOCKET sc, const int bytesNum);
+	static Buffer getBufferPartFromSocket(SOCKET sc, int bytesNum);
 	static void sendData(const SOCKET sc, const std::string message);
+	static void sendData(SOCKET sc, Buffer message);
 	static void send_update_message_to_client(const SOCKET sc, const std::string& file_content, const std::string& second_username, const std::string& all_users);
 	static std::string getPaddedNumber(const int num, const int digits);
+	static string getStringFromBuffer(const Buffer& buffer);
 
 private:
 	static std::string getPartFromSocket(const SOCKET sc, const int bytesNum);
@@ -39,7 +47,7 @@ private:
 // Q: why do we need traces ?
 // A: traces are a nice and easy way to detect bugs without even debugging
 // or to understand what happened in case we miss the bug in the first time
-#define TRACE(msg, ...) printf(msg "\n", __VA_ARGS__);
+#define TRACE(msg, ...) std::cout << msg << std::endl;
 // for convenient reasons we did the traces in stdout
 // at general we would do this in the error stream like that
 // #define TRACE(msg, ...) fprintf(stderr, msg "\n", __VA_ARGS__);

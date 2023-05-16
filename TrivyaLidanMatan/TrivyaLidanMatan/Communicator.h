@@ -9,14 +9,29 @@
 
 #include "Helper.h"
 #include "LoginRequestHandler.h"
+#include "RequestHandlerFactory.h"
 
+using std::vector;
+using std::string;
+
+typedef unsigned char byte;
+typedef vector<byte> Buffer;
+
+enum RESPONSE_CODES
+{
+	ERROR_CODE = 0,
+	LOGIN_CODE = 1,
+	SIGNUP_CODE = 2
+};
+
+class RequestHandlerFactory;
 
 class Communicator
 {
 public:
 	void startHandleRequests();
 
-	Communicator();
+	Communicator(RequestHandlerFactory& handlerFactory);
 
 private:
 	void bindAndListen();
@@ -24,6 +39,7 @@ private:
 
 
 	SOCKET m_serverSocket;
-	std::map<SOCKET, LoginRequestHandler*> m_clients;
+	std::map<SOCKET, IRequestHandler*> m_clients;
+	RequestHandlerFactory& m_handlerFactory;
 };
 
