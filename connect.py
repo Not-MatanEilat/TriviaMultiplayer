@@ -87,7 +87,7 @@ def signup(client: socket.socket, username: str, password: str, email: str) -> b
 def main():
     # test signup
     client = create_client_socket()
-    print(signup(client, "dest", "Fd#2ghhh", "testm@ail.com"))
+    print(signup(client, "test", "testtt#1", "test@mail.com"))
 
     # test signup with existing username
     client.close()

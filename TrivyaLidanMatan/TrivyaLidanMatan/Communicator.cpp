@@ -37,9 +37,10 @@ void Communicator::startHandleRequests()
 	}
 }
 
-/// <summary>
-/// The constructor of the communicator, it will create a new socket for the server to listen from later on
-/// </summary>
+/**
+ * \brief /// The constructor of the communicator, it will create a new socket for the server to listen from later on
+ * \param handlerFactory The factory handler for the class
+ */
 Communicator::Communicator(RequestHandlerFactory& handlerFactory) : m_handlerFactory(handlerFactory)
 {
 	// this server use TCP. that why SOCK_STREAM & IPPROTO_TCP

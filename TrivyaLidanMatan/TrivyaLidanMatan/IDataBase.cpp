@@ -37,6 +37,7 @@ bool IDataBase::isValidPassword(const string& username)
 bool IDataBase::isValidEmail(const string& email)
 {
 	// Check if email is valid
+	// Gmail has to have NAME@something.something(2 - 3 chars)
 	if (!regex_search(email, regex("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")))
 	{
 		return false;

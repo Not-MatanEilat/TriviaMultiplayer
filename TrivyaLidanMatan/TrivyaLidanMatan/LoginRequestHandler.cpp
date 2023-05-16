@@ -28,7 +28,7 @@ bool LoginRequestHandler::isRequestRelevant(RequestInfo info)
 RequestResult LoginRequestHandler::handleRequest(RequestInfo info)
 {
 	RequestResult result;
-	result.newHandler = this;
+	result.newHandler = nullptr;
 	if (info.requestId == LOGIN_CODE)
 	{
 		TRACE("got login request");

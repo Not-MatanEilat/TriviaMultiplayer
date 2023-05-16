@@ -1,6 +1,10 @@
 #include "MenuRequestHandler.h"
 #include "JsonResponsePacketSerializer.h"
 
+/**
+ * \brief The constructor for the MenuRequestHandler
+ * \param handlerFactory the factory for the class
+ */
 MenuRequestHandler::MenuRequestHandler(RequestHandlerFactory& handlerFactory) : m_handlerFactory(handlerFactory)
 {
 }
@@ -15,6 +19,12 @@ bool MenuRequestHandler::isRequestRelevant(RequestInfo info)
 	return true;
 }
 
+
+/**
+ * \brief Handlers the request as the menu
+ * \param info the info of request
+ * \return The result for request
+ */
 RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 {
 	RequestResult result;

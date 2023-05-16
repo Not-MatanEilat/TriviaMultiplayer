@@ -1,5 +1,9 @@
 #include "Server.h"
 
+/**
+ * \brief The constructor for the server
+ * \param db the db of the server
+ */
 Server::Server(IDataBase* db) : m_database(db), m_handlerFactory(db), m_communicator(Communicator(m_handlerFactory))
 {
 	m_database->open();

@@ -76,7 +76,6 @@ int SqliteDataBase::addNewUser(const string& username, const string& password, c
 
 	// check if the given user was successfully added
 	const string sqlStatement2 = "SELECT * FROM users WHERE username = '$0' AND password = '$1' AND email = '$2' ";
-	params = { username, password, email };
 	Result const result = _db.exec(sqlStatement2, params);
 
 	// if the list is empty and we didn't find the user, it means the user wasn't added, so return 0 here
