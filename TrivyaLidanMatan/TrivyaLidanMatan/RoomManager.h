@@ -14,14 +14,14 @@ public:
 
 	RoomManager();
 
-	void createRoom(LoggedUser user, RoomData roomData);
+	void createRoom(const LoggedUser& user, const RoomData& roomData);
 	void deleteRoom(int id);
 	unsigned int getRoomState(int id);
 	vector<RoomData> getRooms();
 	Room& getRoom(int id);
 
 private:
-	map<int,Room> m_rooms;
+	map<unsigned int,Room> m_rooms;
 
 };
 
