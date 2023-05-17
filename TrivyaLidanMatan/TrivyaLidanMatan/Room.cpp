@@ -4,7 +4,7 @@
  * \brief C'tor for the room
  * \param metadata the data of room
  */
-Room::Room(const RoomData& metadata): m_metadata(metadata)
+Room::Room(const RoomData& metadata): m_roomData(metadata)
 {
 		
 }
@@ -13,7 +13,7 @@ Room::Room(const RoomData& metadata): m_metadata(metadata)
  * \brief Function will add a user to the current room
  * \param user the user to add
  */
-void Room::addUser(LoggedUser user)
+void Room::addUser(const LoggedUser& user)
 {
 	m_users.push_back(user);
 }
@@ -22,7 +22,7 @@ void Room::addUser(LoggedUser user)
  * \brief Function will remove a user from the current room
  * \param user 
  */
-void Room::removeUser(LoggedUser user)
+void Room::removeUser(const LoggedUser& user)
 {
 	bool isUserFound = false;
 	for (int i = 0; i < m_users.size(); i++)
@@ -53,6 +53,16 @@ std::vector<LoggedUser> Room::getAllUsers()
 {
 	return m_users;
 }
+
+/**
+ * \brief Returns the current RoomData
+ * \return The roomdata
+ */
+RoomData Room::getRoomData() const
+{
+	return m_roomData;
+}
+
 
 
 

@@ -17,20 +17,27 @@ struct RoomData
 	unsigned int isActive;
 };
 
+enum RoomStates
+{
+	WAITING = 1,
+	IN_GAME = 2
+};
+
 
 
 class Room
 {
 public:
 
-	Room(RoomData metadata);
+	Room(const RoomData& metadata);
 
-	void addUser(LoggedUser user);
-	void removeUser(LoggedUser user);
+	void addUser(const LoggedUser& user);
+	void removeUser(const LoggedUser& user);
 	std::vector<LoggedUser> getAllUsers();
+	RoomData getRoomData() const;
 
 private:
 	vector<LoggedUser> m_users;
-	RoomData m_metadata;
+	RoomData m_roomData;
 };
 
