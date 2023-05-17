@@ -80,4 +80,17 @@ unsigned int RoomManager::getRoomState(int id)
 
 
 
+vector<RoomData> RoomManager::getRooms() const
+{
+	vector<RoomData> rooms;
+	for (const auto& room : m_rooms)
+	{
+		rooms.push_back(room.second.getRoomData());
+	}
+	return rooms;
+}
+
+
+
+
 

@@ -17,7 +17,7 @@ public:
 	void createRoom(const LoggedUser& user, const RoomData& roomData);
 	void deleteRoom(unsigned int id);
 	unsigned int getRoomState(int id);
-	vector<RoomData> getRooms();
+	vector<RoomData> getRooms() const;
 	Room& getRoom(int id);
 
 private:
