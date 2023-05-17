@@ -2,7 +2,8 @@
 
 
 #include <vector>
-s
+
+using std::vector;
 
 #include "LoggedUser.h"
 
@@ -21,6 +22,9 @@ struct RoomData
 class Room
 {
 public:
+
+	Room(RoomData metadata);
+
 	void addUser(LoggedUser user);
 	void removeUser(LoggedUser user);
 	std::vector<LoggedUser> getAllUsers();
