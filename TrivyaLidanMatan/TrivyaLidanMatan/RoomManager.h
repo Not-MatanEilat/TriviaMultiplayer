@@ -11,6 +11,9 @@ using std::map;
 class RoomManager
 {
 public:
+
+	RoomManager();
+
 	void createRoom(LoggedUser user, RoomData roomData);
 	void deleteRoom(int id);
 	unsigned int getRoomState(int id);
