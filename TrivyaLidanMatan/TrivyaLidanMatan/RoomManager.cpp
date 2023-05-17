@@ -30,7 +30,10 @@ void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 	m_rooms[roomData.id] = room;
 }
 
-
+/**
+ * \brief The function deletes a room from the vector by the id, if the room doesn't exist, we throw an exception
+ * \param id 
+ */
 void RoomManager::deleteRoom(unsigned int id)
 {
 	bool isRoomFound = false;
@@ -40,7 +43,7 @@ void RoomManager::deleteRoom(unsigned int id)
 		{
 			m_rooms.erase(id);
 			isRoomFound = true;
-			return;
+			break;
 		}
 	}
 
