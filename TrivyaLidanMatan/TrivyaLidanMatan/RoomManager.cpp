@@ -15,19 +15,20 @@ RoomManager::RoomManager()
  */
 void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 {
-	Room room(roomData);
-	room.addUser(user);
-
 	// check if id already exists
-	for (auto& room : m_rooms)
+	for (auto it = m_rooms.begin(); it != m_rooms.end(); it++)
 	{
-		if (room.first == roomData.id)
+		if ((*it).first == roomData.id)
 		{
 			throw std::exception("Room id already exists in the vector");
 		}
 	}
 
-	m_rooms[roomData.id] = room;
+	Room room(roomData);
+	room.addUser(user);
+
+	m_rooms.at(roomData.id) = room;
+
 }
 
 /**
@@ -68,7 +69,7 @@ unsigned int RoomManager::getRoomState(int id)
 		throw std::exception("Room was not found");
 	}
 
-	if (m_rooms[id].getRoomData().isActive)
+	if (m_rooms.at(id).getRoomData().isActive)
 	{
 		return IN_GAME;
 	}
@@ -107,7 +108,7 @@ Room& RoomManager::getRoom(int id)
 		throw std::exception("Room was not found");
 	}
 
-	return m_rooms[id];
+	return m_rooms.at(id);
 }
 
 
