@@ -17,6 +17,12 @@ struct RoomData
 	unsigned int isActive;
 };
 
+enum RoomStates
+{
+	WAITING = 1,
+	IN_GAME = 2
+};
+
 
 
 class Room

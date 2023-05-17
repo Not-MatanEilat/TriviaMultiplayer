@@ -4,7 +4,7 @@
  * \brief C'tor for the room
  * \param metadata the data of room
  */
-Room::Room(const RoomData& metadata): m_metadata(metadata)
+Room::Room(const RoomData& metadata): m_roomData(metadata)
 {
 		
 }
@@ -53,6 +53,16 @@ std::vector<LoggedUser> Room::getAllUsers()
 {
 	return m_users;
 }
+
+/**
+ * \brief Returns the current RoomData
+ * \return The roomdata
+ */
+RoomData Room::getRoomData() const
+{
+	return m_roomData;
+}
+
 
 
 
