@@ -53,5 +53,31 @@ void RoomManager::deleteRoom(unsigned int id)
 	}
 }
 
+/**
+ * \brief The function will get the current RoomState, if the room is active, then we return IN_GAME, else we return WAITING
+ * If roomId doesn't exist, we throw an exception
+ * \param id the if od the room to get the state of off
+ * \return IN_GAME OR WAITING
+ */
+unsigned int RoomManager::getRoomState(int id)
+ {
+
+	// check if room exists even
+	if (m_rooms.find(id) == m_rooms.end())
+	{
+		throw std::exception("Room was not found");
+	}
+
+	if (m_rooms[id].getRoomData().isActive)
+	{
+		return IN_GAME;
+	}
+
+	return WAITING;
+	
+	 
+ }
+
+
 
 
