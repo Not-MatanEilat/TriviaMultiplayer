@@ -8,7 +8,11 @@ RoomManager::RoomManager()
 
 }
 
-
+/**
+ * \brief Creates a new a room, checks if the id given already exists, if it is, then we throw an exception
+ * \param user the user who created the room
+ * \param roomData the data of room
+ */
 void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 {
 	Room room(roomData);
@@ -25,4 +29,26 @@ void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 
 	m_rooms[roomData.id] = room;
 }
+
+
+void RoomManager::deleteRoom(unsigned int id)
+{
+	bool isRoomFound = false;
+	for (const auto& room : m_rooms)
+	{
+		if (room.first == id)
+		{
+			m_rooms.erase(id);
+			isRoomFound = true;
+			return;
+		}
+	}
+
+	if (!isRoomFound)
+	{
+		throw std::exception("Room was not found");
+	}
+}
+
+
 
