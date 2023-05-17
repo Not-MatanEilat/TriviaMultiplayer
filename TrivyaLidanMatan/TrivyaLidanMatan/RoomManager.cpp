@@ -79,7 +79,10 @@ unsigned int RoomManager::getRoomState(int id)
  }
 
 
-
+/**
+ * \brief The function returns a vector of the roomData of all of the rooms
+ * \return Vector of the roomData
+ */
 vector<RoomData> RoomManager::getRooms() const
 {
 	vector<RoomData> rooms;
@@ -89,6 +92,24 @@ vector<RoomData> RoomManager::getRooms() const
 	}
 	return rooms;
 }
+
+
+/**
+ * \brief The function returns a room by the given id, if the room doesn't exist, we throw an exception
+ * \param id the id of the room to get
+ * \return Room of the given id
+ */
+Room& RoomManager::getRoom(int id)
+{
+	// check if room exists, if not, then throw an exception
+	if (m_rooms.find(id) == m_rooms.end())
+	{
+		throw std::exception("Room was not found");
+	}
+
+	return m_rooms[id];
+}
+
 
 
 
