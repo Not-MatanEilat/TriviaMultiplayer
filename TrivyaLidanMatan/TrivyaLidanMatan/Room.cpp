@@ -18,4 +18,32 @@ void Room::addUser(LoggedUser user)
 	m_users.push_back(user);
 }
 
+/**
+ * \brief Function will remove a user from the current room
+ * \param user 
+ */
+void Room::removeUser(LoggedUser user)
+{
+	bool isUserFound = false;
+	for (int i = 0; i < m_users.size(); i++)
+	{
+		if (m_users[i].getUsername() == user.getUsername())
+		{
+			m_users.erase(m_users.begin() + i);
+			isUserFound = true;
+			break;
+		}
+	}
+
+	// if the user was not found then throw an exception
+	if (!isUserFound)
+	{
+		throw std::exception("User not found");
+	}
+
+	
+
+}
+
+
 
