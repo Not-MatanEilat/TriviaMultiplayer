@@ -45,5 +45,15 @@ void Room::removeUser(LoggedUser user)
 
 }
 
+/**
+ * \brief Returns all of the current users in the room
+ * \return the users in room
+ */
+std::vector<LoggedUser> Room::getAllUsers()
+{
+	return m_users;
+}
+
+
 
 
