@@ -48,6 +48,7 @@ bool Sqlite3DB::open()
 void Sqlite3DB::init()
 {
 	exec("CREATE TABLE users (username TEXT, password TEXT, email TEXT, PRIMARY KEY (email))");
+	exec("CREATE TABLE questions (question TEXT, answer1 TEXT, answer2 TEXT, answer3 TEXT, answer4 TEXT, correctAnswer NUMBER, PRIMARY KEY (question))");
 }
 
 /**
