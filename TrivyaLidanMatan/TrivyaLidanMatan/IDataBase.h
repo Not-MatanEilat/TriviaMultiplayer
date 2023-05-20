@@ -15,7 +15,9 @@ typedef struct Question
 {
 	string question;
 	string correctAnswer;
-	vector<string> incorrectAnswers;
+	string answer2;
+	string answer3;
+	string answer4;
 
 } Question;
 
@@ -29,7 +31,7 @@ public:
 	virtual int addNewUser(string const &username, string const& password, string const &email) = 0;
 	
 	virtual vector<Question> getQuestions(int questionsNo) = 0;
-	virtual int getPlayerAverageAnswerTime(string const& username) = 0;
+	virtual float getPlayerAverageAnswerTime(string const& username) = 0;
 	virtual int getNumOfCorrectAnswers(string const& username) = 0;
 	virtual int getNumOfTotalAnswers(string const& username) = 0;
 	virtual int getNumOfPlayerGames(string const& username) = 0;
