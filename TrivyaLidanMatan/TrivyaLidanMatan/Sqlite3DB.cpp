@@ -47,8 +47,9 @@ bool Sqlite3DB::open()
  */
 void Sqlite3DB::init()
 {
-	exec("CREATE TABLE users (username TEXT, password TEXT, email TEXT, PRIMARY KEY (email))");
+	exec("CREATE TABLE users (username TEXT, password TEXT, email TEXT, PRIMARY KEY (username))");
 	exec("CREATE TABLE questions (question TEXT, correctAnswer TEXT, answer2 TEXT, answer3 TEXT, answer4 TEXT, PRIMARY KEY (question))");
+	exec("create table Statistics (username TEXT, averageAnswerTime FLOAT, correctAnswers INTEGER, totalAnswers INTEGER, games INTEGER, PRIMARY KEY (username) );");
 }
 
 /**

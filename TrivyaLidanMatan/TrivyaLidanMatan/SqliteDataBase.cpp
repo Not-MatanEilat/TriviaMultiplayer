@@ -87,6 +87,47 @@ int SqliteDataBase::addNewUser(const string& username, const string& password, c
 	return 1;
 }
 
+std::vector<string> SqliteDataBase::getHighScores()
+{
+	return {};
+}
+
+std::vector<Question> SqliteDataBase::getQuestions(int questionsNo)
+{
+	return {};
+}
+
+int SqliteDataBase::getPlayerAverageAnswerTime(string const& username)
+{
+	return 0;
+}
+
+int SqliteDataBase::getNumOfCorrectAnswers(string const& username)
+{
+	return 0;
+}
+
+int SqliteDataBase::getNumOfTotalAnswers(string const& username)
+{
+	return 0;
+}
+
+int SqliteDataBase::getNumOfPlayerGames(string const& username)
+{
+	return 0;
+}
+
+int SqliteDataBase::getPlayerScore(string const& username)
+{
+	return 0;
+}
+
+Row SqliteDataBase::getPlayerStatistics(string const& username)
+{
+	const string sqlStatement2 = "SELECT * FROM users WHERE username = '$0' AND password = '$1' AND email = '$2' ";
+	return {};
+}
+
 
 
 
