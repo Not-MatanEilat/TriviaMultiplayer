@@ -55,3 +55,20 @@ GetPlayersInRoomRequest JsonRequestPacketDeserializer::deserializeGetPlayersInRo
 	return request;
 }
 
+/**
+ * \brief dererialize CreateRoomRequest
+ * \param buffer buffer of json data
+ * \return deserialized CreateRoomRequest
+ */
+JoinRoomRequest JsonRequestPacketDeserializer::deserializeJoinRoomRequest(const Buffer& buffer)
+{
+	string bufferStr = Helper::getStringFromBuffer(buffer);
+
+	json j = json::parse(bufferStr);
+
+	JoinRoomRequest request;
+	request.roomId = j["roomId"];
+	return request;
+}
+
+

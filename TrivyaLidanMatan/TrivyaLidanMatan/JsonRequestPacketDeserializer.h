@@ -49,5 +49,6 @@ public:
 	static SignupRequest deserializeSignupRequest(const Buffer& buffer);
 
 	static GetPlayersInRoomRequest deserializeGetPlayersInRoomRequest(const Buffer& buffer);
+	static JoinRoomRequest deserializeJoinRoomRequest(const Buffer& buffer);
 };
 
