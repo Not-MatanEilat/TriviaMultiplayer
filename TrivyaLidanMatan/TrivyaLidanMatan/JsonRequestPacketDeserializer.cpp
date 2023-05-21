@@ -72,3 +72,20 @@ JoinRoomRequest JsonRequestPacketDeserializer::deserializeJoinRoomRequest(const 
 }
 
 
+
+CreateRoomRequest JsonRequestPacketDeserializer::deserializeCreateRoomRequest(const Buffer& buffer)
+{
+	string bufferStr = Helper::getStringFromBuffer(buffer);
+
+	json j = json::parse(bufferStr);
+
+	CreateRoomRequest request;
+	request.roomName = j["roomName"];
+	request.maxUsers = j["maxUsers"];
+	request.questionCount = j["questionCount"];
+	request.answerTimeout = j["answerTimeout"];
+	return request;
+}
+
+
+
