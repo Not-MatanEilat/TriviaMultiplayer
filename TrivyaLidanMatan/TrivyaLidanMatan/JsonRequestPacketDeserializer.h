@@ -45,7 +45,9 @@ typedef struct CreateRoomRequest
 class JsonRequestPacketDeserializer
 {
 public:
-	static LoginRequest deserializeLoginRequest(Buffer const &buffer);
-	static SignupRequest deserializeSignupRequest(Buffer const &buffer);
+	static LoginRequest deserializeLoginRequest(const Buffer& buffer);
+	static SignupRequest deserializeSignupRequest(const Buffer& buffer);
+
+	static GetPlayersInRoomRequest deserializeGetPlayersInRoomRequest(const Buffer& buffer);
 };
 

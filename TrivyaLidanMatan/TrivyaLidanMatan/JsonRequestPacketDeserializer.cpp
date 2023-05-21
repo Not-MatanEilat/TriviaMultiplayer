@@ -37,3 +37,21 @@ SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(Buffer con
 
 	return request;
 }
+
+
+/**
+ * \brief deserialize GetPlayersInRoomRequest
+ * \param buffer buffer of json data
+ * \return deserialized GetPlayersInRoomRequest
+ */
+GetPlayersInRoomRequest JsonRequestPacketDeserializer::deserializeGetPlayersInRoomRequest(const Buffer& buffer)
+{
+	string bufferStr = Helper::getStringFromBuffer(buffer);
+
+	json j = json::parse(bufferStr);
+
+	GetPlayersInRoomRequest request;
+	request.roomId = j["roomId"];
+	return request;
+}
+
