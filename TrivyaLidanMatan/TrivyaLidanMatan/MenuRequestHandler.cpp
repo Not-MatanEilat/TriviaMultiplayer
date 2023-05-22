@@ -37,7 +37,7 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 	return result;
 }
 
-RequestResult MenuRequestHandler::roomList(RequestInfo const& info)
+RequestResult MenuRequestHandler::getRooms(RequestInfo const& info)
 {
 	RequestResult result;
 
@@ -51,7 +51,7 @@ RequestResult MenuRequestHandler::roomList(RequestInfo const& info)
 	return result;
 }
 
-RequestResult MenuRequestHandler::playersInRoom(RequestInfo const& info)
+RequestResult MenuRequestHandler::getPlayersInRoom(RequestInfo const& info)
 {
 
 	GetPlayersInRoomRequest request = JsonRequestPacketDeserializer::deserializeGetPlayersInRoomRequest(info.buffer);
@@ -76,7 +76,7 @@ RequestResult MenuRequestHandler::playersInRoom(RequestInfo const& info)
 	return result;
 }
 
-RequestResult MenuRequestHandler::highScores(RequestInfo const& info)
+RequestResult MenuRequestHandler::getHighScore(RequestInfo const& info)
 {
 	RequestResult result;
 
@@ -90,13 +90,30 @@ RequestResult MenuRequestHandler::highScores(RequestInfo const& info)
 	return result;
 }
 
-RequestResult MenuRequestHandler::personalStats(RequestInfo const& info)
+RequestResult MenuRequestHandler::getPersonalStats(RequestInfo const& info)
 {
 	RequestResult result;
 
 	GetPersonalStatsResponse response;
 
 	response.statistics = m_statisticsManager.getUserStatistics(m_user.getUsername());
+	response.status = SUCCESS;
+
+	result.newHandler = this;
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	return result;
+}
+
+RequestResult MenuRequestHandler::joinRoom(RequestInfo const& info)
+{
+	JoinRoomRequest request = JsonRequestPacketDeserializer::deserializeJoinRoomRequest(info.buffer);
+
+	RequestResult result;
+
+	JoinRoomResponse response;
+
+	m_handlerFactory.getRoomManager().joinRoom(m_user ,request.roomId);
+
 	response.status = SUCCESS;
 
 	result.newHandler = this;

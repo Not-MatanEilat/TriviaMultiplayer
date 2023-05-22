@@ -18,10 +18,10 @@ private:
 	RoomManager& m_roomManager;
 	StatisticsManager& m_statisticsManager;
 
-	RequestResult roomList(RequestInfo const& info);
-	RequestResult playersInRoom(RequestInfo const& info);
-	RequestResult highScores(RequestInfo const& info);
-	RequestResult personalStats(RequestInfo const& info);
+	RequestResult getRooms(RequestInfo const& info);
+	RequestResult getPlayersInRoom(RequestInfo const& info);
+	RequestResult getHighScore(RequestInfo const& info);
+	RequestResult getPersonalStats(RequestInfo const& info);
 	RequestResult joinRoom(RequestInfo const& info);
 	RequestResult createRoom(RequestInfo const& info);
 };
