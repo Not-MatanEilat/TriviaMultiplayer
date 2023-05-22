@@ -18,7 +18,7 @@ public:
 	int doesPasswordMatch(const string& username, const string& password) override;
 	int addNewUser(const string& username, const string& password, const string& email) override;
 	std::vector<string> getUsers();
-	bool compareScoresByUserName(string user1, string user2);
+	bool compareScoresByUserName(string& user1, string& user2);
 	std::vector<string> getHighScores() override;
 	std::vector<Question> getQuestions(int questionsNo) override;
 	float getPlayerAverageAnswerTime(string const& username) override;

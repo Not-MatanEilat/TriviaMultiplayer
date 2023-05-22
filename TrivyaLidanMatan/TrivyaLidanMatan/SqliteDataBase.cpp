@@ -105,7 +105,7 @@ std::vector<string> SqliteDataBase::getUsers()
  * \param user2 user 2
  * \return if user1 score is bigger than user2 score
  */
-bool SqliteDataBase::compareScoresByUserName(string user1, string user2)
+bool SqliteDataBase::compareScoresByUserName(string& user1, string& user2)
 {
 	return (getPlayerScore(user1) > getPlayerScore(user2));
 }
@@ -117,7 +117,7 @@ bool SqliteDataBase::compareScoresByUserName(string user1, string user2)
 std::vector<string> SqliteDataBase::getHighScores()
 {
 	std::vector<string> users = getUsers();
-	std::sort(users.begin(), users.end(), compareScoresByUserName);
+	std::sort(users.begin(), users.end(), [&](string a, string b) {return getPlayerScore(a) > getPlayerScore(b); });
 	return users;
 }
 
