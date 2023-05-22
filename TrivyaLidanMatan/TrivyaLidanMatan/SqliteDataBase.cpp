@@ -128,7 +128,7 @@ std::vector<string> SqliteDataBase::getHighScores()
  */
 std::vector<Question> SqliteDataBase::getQuestions(int questionsNo)
 {
-	const string sqlStatement = "SELECT * FROM questions WHERE question = $0";
+	const string sqlStatement = "SELECT * FROM questions LIMIT $0";
 	vector<string> params = { std::to_string(questionsNo) };
 	Result res = _db.exec(sqlStatement, params);
 	std::vector<Question> questions;
