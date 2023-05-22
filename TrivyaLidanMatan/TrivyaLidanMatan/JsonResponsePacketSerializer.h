@@ -26,43 +26,45 @@ typedef struct ErrorResponse
 	string message;
 } ErrorResponse;
 
+
+
 typedef struct LogoutResponse
 {
-    unsigned int status;
+	unsigned int status;
 } LogoutResponse;
 
-typedef struct GetRoomResponse
+typedef struct GetRoomsResponse
 {
-    unsigned int status;
-    vector<RoomData> rooms;
-} GetRoomResponse;
+	unsigned int status;
+	vector<string> rooms;
+} GetRoomsResponse;
 
 typedef struct GetPlayersInRoomResponse
 {
-    unsigned int status;
-    vector<string> players;
+	unsigned int status;
+	vector<string> players;
 } GetPlayersInRoomResponse;
 
 typedef struct GetHighscoreResponse
 {
-    unsigned int status;
-    vector<string> highscores;
-} GetRoomResponseetHighscoreResponse;
+	unsigned int status;
+	vector<string> highscores;
+} GetHighscoreResponse;
 
-typedef struct GetPersonalStatusResponse
+typedef struct GetPersonalStatsResponse
 {
-    unsigned int status;
-    vector<string> statistics;
+	unsigned int status;
+	vector<string> statistics;
 } GetPersonalStatsResponse;
 
 typedef struct JoinRoomResponse
 {
-    unsigned int status;
+	unsigned int status;
 } JoinRoomResponse;
 
 typedef struct CreateRoomResponse
 {
-    unsigned int status;
+	unsigned int status;
 } CreateRoomResponse;
 
 class JsonResponsePacketSerializer
@@ -71,8 +73,16 @@ class JsonResponsePacketSerializer
 
 public:
 	static Buffer serializeResponseFromJson(byte code, json j);
-	static Buffer serializeResponse(LoginResponse response);
-	static Buffer serializeResponse(SignupResponse response);
-	static Buffer serializeResponse(ErrorResponse response);
+	static Buffer serializeResponse(const LoginResponse& loginResponse);
+	static Buffer serializeResponse(const SignupResponse& signupResponse);
+	static Buffer serializeResponse(const ErrorResponse& errorResponse);
+
+	static Buffer serializeResponse(const LogoutResponse& logoutResponse);
+	static Buffer serializeResponse(const GetRoomsResponse& getRoomsResponse);
+	static Buffer serializeResponse(const GetPlayersInRoomResponse& getPlayersInRoomResponse);
+	static Buffer serializeResponse(const GetHighscoreResponse& getHighscoreResponse);
+	static Buffer serializeResponse(const GetPersonalStatsResponse& getPersonalStatsResponse);
+	static Buffer serializeResponse(const JoinRoomResponse& joinRoomResponse);
+	static Buffer serializeResponse(const CreateRoomResponse& createRoomResponse);
 };
 
