@@ -1,6 +1,8 @@
 #pragma once
 #include "IDataBase.h"
 
+#define MAX_HIGHSCORES 5
+
 class StatisticsManager
 {
 public:

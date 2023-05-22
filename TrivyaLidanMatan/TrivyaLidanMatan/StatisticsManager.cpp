@@ -10,10 +10,25 @@ StatisticsManager::StatisticsManager(IDataBase* mDatabase): m_database(mDatabase
 
 /**
  * \brief get the high scores from the database
- * \return the high scores
+ * \return max of 5 high scores
  */
 std::vector<string> StatisticsManager::getHighScore()
 {
+	vector<string> scores = m_database->getHighScores();
+
+	int count = 0;
+
+	for (auto& score : scores)
+	{
+		// the max high scores to return is 5
+		if (count == MAX_HIGHSCORES)
+		{
+			break;
+		}
+
+		count++;
+	}
+
 	return m_database->getHighScores();
 }
 
