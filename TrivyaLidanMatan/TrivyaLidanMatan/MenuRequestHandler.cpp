@@ -75,3 +75,17 @@ RequestResult MenuRequestHandler::playersInRoom(RequestInfo const& info)
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
+
+RequestResult MenuRequestHandler::highScores(RequestInfo const& info)
+{
+	RequestResult result;
+
+	GetHighscoreResponse response;
+
+	response.highscores = m_handlerFactory.getStatisticsManager().getHighScore();
+	response.status = SUCCESS;
+
+	result.newHandler = this;
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	return result;
+}
