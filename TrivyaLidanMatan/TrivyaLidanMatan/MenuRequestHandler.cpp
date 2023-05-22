@@ -50,3 +50,28 @@ RequestResult MenuRequestHandler::roomList(RequestInfo const& info)
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
+
+RequestResult MenuRequestHandler::playersInRoom(RequestInfo const& info)
+{
+
+	GetPlayersInRoomRequest request = JsonRequestPacketDeserializer::deserializeGetPlayersInRoomRequest(info.buffer);
+
+	RequestResult result;
+
+	GetPlayersInRoomResponse response;
+
+	vector<LoggedUser> users = m_handlerFactory.getRoomManager().getRoom(request.roomId).getAllUsers();
+	vector<string> usernames;
+
+	for (auto user : users)
+	{
+		usernames.push_back(user.getUsername());
+	}
+
+	response.players = usernames;
+	response.status = SUCCESS;
+
+	result.newHandler = this;
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	return result;
+}
