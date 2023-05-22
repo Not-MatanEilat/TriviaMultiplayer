@@ -77,5 +77,6 @@ public:
 	static Buffer serializeResponse(ErrorResponse response);
 
 	static Buffer serializeResponse(LogoutResponse response);
+	static Buffer serializeResponse(GetRoomResponse response);
 };
 

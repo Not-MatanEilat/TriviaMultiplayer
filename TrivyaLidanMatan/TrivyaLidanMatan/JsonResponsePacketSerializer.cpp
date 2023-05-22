@@ -1,9 +1,9 @@
 #include "JsonResponsePacketSerializer.h"
 
 /**
- * \brief The function will take an error response and serialize it to a string ("message" : "error message")
+ * \brief The function will take an error response and serialize it to a string ("message" : error message)
  * \param errorResponse the error response to serialize
- * \return error response serialized to a string
+ * \return error response serialized to a buffer
  */
 Buffer JsonResponsePacketSerializer::serializeResponse(ErrorResponse errorResponse)
 {
@@ -43,9 +43,9 @@ Buffer JsonResponsePacketSerializer::serializeResponseFromJson(byte code, json j
 }
 
 /**
- * \brief The function will take a login response and serialize it to a string ("status" : "status")
+ * \brief The function will take a login response and serialize it to a string ("status" : status)
  * \param loginResponse The login response to serialize
- * \return login response serialized to a string
+ * \return login response serialized to a buffer
  */
 Buffer JsonResponsePacketSerializer::serializeResponse(LoginResponse loginResponse)
 {
@@ -56,9 +56,9 @@ Buffer JsonResponsePacketSerializer::serializeResponse(LoginResponse loginRespon
 }
 
 /**
- * \brief The function will take a signup response and serialize it to a string ("status" : "status")
+ * \brief The function will take a signup response and serialize it to a string ("status" : status)
  * \param signupResponse the signup response to serialize
- * \return signup response serialized to a string
+ * \return signup response serialized to a buffer
  */
 Buffer JsonResponsePacketSerializer::serializeResponse(SignupResponse signupResponse)
 {
@@ -69,9 +69,9 @@ Buffer JsonResponsePacketSerializer::serializeResponse(SignupResponse signupResp
 }
 
 /**
- * \brief The function will take a logout response and serialize it to a string ("status" : "status")
+ * \brief The function will take a logout response and serialize it to a string ("status" : status)
  * \param logoutResponse the logout response to serialize
- * \return logout response serialized to a string
+ * \return logout response serialized to a buffer
  */
 Buffer JsonResponsePacketSerializer::serializeResponse(LogoutResponse logoutResponse)
 {
@@ -80,6 +80,24 @@ Buffer JsonResponsePacketSerializer::serializeResponse(LogoutResponse logoutResp
 	Buffer vec = serializeResponseFromJson(LOGOUT_CODE, j);
 	return vec;
 }
+
+/**
+ * \brief The function will take a getRooms response and serialize it to a string ("status" : status, "rooms" : rooms)
+ * \param getRoomResponse the getRooms response to serialize
+ * \return getRooms response serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(GetRoomResponse getRoomResponse)
+{
+	json j;
+	j["status"] = getRoomResponse.status;
+	j["rooms"] = getRoomResponse.rooms;
+	Buffer vec = serializeResponseFromJson(ROOMS_LIST_CODE, j);
+	return vec;
+}
+
+
+
+
 
 
 
