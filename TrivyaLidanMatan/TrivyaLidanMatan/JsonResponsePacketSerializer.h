@@ -75,5 +75,7 @@ public:
 	static Buffer serializeResponse(LoginResponse response);
 	static Buffer serializeResponse(SignupResponse response);
 	static Buffer serializeResponse(ErrorResponse response);
+
+	static Buffer serializeResponse(LogoutResponse response);
 };
 

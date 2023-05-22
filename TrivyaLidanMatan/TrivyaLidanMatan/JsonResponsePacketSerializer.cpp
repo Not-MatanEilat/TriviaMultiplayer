@@ -68,6 +68,21 @@ Buffer JsonResponsePacketSerializer::serializeResponse(SignupResponse signupResp
 	return vec;
 }
 
+/**
+ * \brief The function will take a logout response and serialize it to a string ("status" : "status")
+ * \param logoutResponse the logout response to serialize
+ * \return logout response serialized to a string
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(LogoutResponse logoutResponse)
+{
+		json j;
+	j["status"] = logoutResponse.status;
+	Buffer vec = serializeResponseFromJson(LOGOUT_CODE, j);
+	return vec;
+}
+
+
+
 
 
 
