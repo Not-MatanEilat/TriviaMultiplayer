@@ -37,6 +37,11 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 	return result;
 }
 
+/**
+ * \brief get the rooms
+ * \param info the info of the request
+ * \return the request rooms result
+ */
 RequestResult MenuRequestHandler::getRooms(RequestInfo const& info)
 {
 	RequestResult result;
@@ -51,6 +56,11 @@ RequestResult MenuRequestHandler::getRooms(RequestInfo const& info)
 	return result;
 }
 
+/**
+ * \brief get the players in room
+ * \param info the info of the request
+ * \return the request players result
+ */
 RequestResult MenuRequestHandler::getPlayersInRoom(RequestInfo const& info)
 {
 
@@ -76,6 +86,11 @@ RequestResult MenuRequestHandler::getPlayersInRoom(RequestInfo const& info)
 	return result;
 }
 
+/**
+ * \brief get the high score
+ * \param info the info of the request
+ * \return the high score result
+ */
 RequestResult MenuRequestHandler::getHighScore(RequestInfo const& info)
 {
 	RequestResult result;
@@ -90,6 +105,11 @@ RequestResult MenuRequestHandler::getHighScore(RequestInfo const& info)
 	return result;
 }
 
+/**
+ * \brief get the personal stats
+ * \param info the info of the request
+ * \return the high personal stats
+ */
 RequestResult MenuRequestHandler::getPersonalStats(RequestInfo const& info)
 {
 	RequestResult result;
@@ -104,6 +124,11 @@ RequestResult MenuRequestHandler::getPersonalStats(RequestInfo const& info)
 	return result;
 }
 
+/**
+ * \brief join the room
+ * \param info the info of the request
+ * \return the join room result
+ */
 RequestResult MenuRequestHandler::joinRoom(RequestInfo const& info)
 {
 	JoinRoomRequest request = JsonRequestPacketDeserializer::deserializeJoinRoomRequest(info.buffer);
@@ -121,6 +146,11 @@ RequestResult MenuRequestHandler::joinRoom(RequestInfo const& info)
 	return result;
 }
 
+/**
+ * \brief create room
+ * \param info the info of the request
+ * \return the create room result
+ */
 RequestResult MenuRequestHandler::createRoom(RequestInfo const& info)
 {
 	CreateRoomRequest request = JsonRequestPacketDeserializer::deserializeCreateRoomRequest(info.buffer);
@@ -154,5 +184,3 @@ RequestResult MenuRequestHandler::createRoom(RequestInfo const& info)
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
-
-
