@@ -31,6 +31,12 @@ void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 
 }
 
+void RoomManager::joinRoom(const LoggedUser& user, unsigned id)
+{
+	Room& room = getRoom(id);
+	room.addUser(user);
+}
+
 /**
  * \brief The function deletes a room from the vector by the id, if the room doesn't exist, we throw an exception
  * \param id the id of the room to there delete

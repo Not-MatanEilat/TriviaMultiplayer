@@ -20,6 +20,7 @@ typedef struct SignupResponse
 {
 	unsigned int status;
 } SignupResponse;
+
 typedef struct ErrorResponse
 {
 	string message;

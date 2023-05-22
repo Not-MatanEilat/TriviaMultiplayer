@@ -15,6 +15,7 @@ public:
 	RoomManager();
 
 	void createRoom(const LoggedUser& user, const RoomData& roomData);
+	void joinRoom(const LoggedUser& user, unsigned int id);
 	void deleteRoom(unsigned int id);
 	unsigned int getRoomState(int id);
 	vector<RoomData> getRooms() const;
