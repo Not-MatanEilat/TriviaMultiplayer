@@ -114,7 +114,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomResponse 
  * \param getHighscoreResponse the getHighscore response to serialize
  * \return getHighscore response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(getHighscoreResponse getHighscoreResposne)
+Buffer JsonResponsePacketSerializer::serializeResponse(GetHighscoreResponse getHighscoreResposne)
 {
 	json j;
 	j["status"] = getHighscoreResposne.status;
@@ -128,7 +128,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(getHighscoreResponse getH
  * \param getPersonalStatsResponse the getPersonalStats response to serialize
  * \return getPersonalStats response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(getPersonalStatsResponse getPersonalStatsResponse)
+Buffer JsonResponsePacketSerializer::serializeResponse(GetPersonalStatsResponse getPersonalStatsResponse)
 {
 	json j;
 	j["status"] = getPersonalStatsResponse.status;
@@ -136,6 +136,23 @@ Buffer JsonResponsePacketSerializer::serializeResponse(getPersonalStatsResponse 
 	Buffer vec = serializeResponseFromJson(PERSONAL_STATS_CODE, j);
 	return vec;
 }
+
+/**
+ * \brief The function will take a joinRoom response and serialize it to a buffer ("status" : status)
+ * \param JoinRoomResponse the joinRoom response to serialize
+ * \return joinRoom response serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(JoinRoomResponse joinRoomResponse)
+{
+	json j;
+	j["status"] = joinRoomResponse.status;
+	Buffer vec = serializeResponseFromJson(JOIN_ROOM_CODE, j);
+	return vec;
+}
+
+
+
+
 
 
 

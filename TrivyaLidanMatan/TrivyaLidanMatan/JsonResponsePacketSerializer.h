@@ -34,31 +34,31 @@ typedef struct LogoutResponse
 
 typedef struct GetRoomResponse
 {
-		unsigned int status;
+	unsigned int status;
 	vector<string> rooms;
 } GetRoomResponse;
 
 typedef struct GetPlayersInRoomResponse
 {
-		unsigned int status;
+	unsigned int status;
 	vector<string> players;
 } GetPlayersInRoomResponse;
 
 typedef struct GetHighscoreResponse
 {
-		unsigned int status;
+	unsigned int status;
 	vector<string> highscores;
-} getHighscoreResponse;
+} GetHighscoreResponse;
 
-typedef struct GetPersonalStatusResponse
+typedef struct GetPersonalStatsResponse
 {
 	unsigned int status;
 	vector<string> statistics;
-} getPersonalStatusResponse;
+} GetPersonalStatsResponse;
 
 typedef struct JoinRoomResponse
 {
-		unsigned int status;
+	unsigned int status;
 } JoinRoomResponse;
 
 typedef struct CreateRoomResponse
@@ -79,6 +79,8 @@ public:
 	static Buffer serializeResponse(LogoutResponse response);
 	static Buffer serializeResponse(GetRoomResponse response);
 	static Buffer serializeResponse(GetPlayersInRoomResponse response);
-	static Buffer serializeResponse(getHighscoreResponse response);
+	static Buffer serializeResponse(GetHighscoreResponse response);
+	static Buffer serializeResponse(GetPersonalStatsResponse response);
+	static Buffer serializeResponse(JoinRoomResponse response);
 };
 
