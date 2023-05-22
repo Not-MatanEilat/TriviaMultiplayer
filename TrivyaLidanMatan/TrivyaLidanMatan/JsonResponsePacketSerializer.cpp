@@ -83,14 +83,17 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const LogoutResponse& log
 
 /**
  * \brief The function will take a getRooms response and serialize it to a buffer ("status" : status, "rooms" : rooms)
- * \param getRoomResponse the getRooms response to serialize
+ * \param getRoomsResponse the getRooms response to serialize
  * \return getRooms response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(const GetRoomResponse& getRoomResponse)
+Buffer JsonResponsePacketSerializer::serializeResponse(const GetRoomsResponse& getRoomsResponse)
 {
 	json j;
-	j["status"] = getRoomResponse.status;
-	j["rooms"] = getRoomResponse.rooms;
+	j["status"] = getRoomsResponse.status;
+	j["rooms"] = getRoomsResponse.rooms;
+
+	TRACE(j);
+
 	Buffer vec = serializeResponseFromJson(ROOMS_LIST_CODE, j);
 	return vec;
 }
@@ -114,11 +117,11 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const GetPlayersInRoomRes
  * \param getHighscoreResposne the getHighscore response to serialize
  * \return getHighscore response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(const GetHighscoreResponse& getHighscoreResposne)
+Buffer JsonResponsePacketSerializer::serializeResponse(const GetHighscoreResponse& getHighscoreResponse)
 {
 	json j;
-	j["status"] = getHighscoreResposne.status;
-	j["highscores"] = getHighscoreResposne.highscores;
+	j["status"] = getHighscoreResponse.status;
+	j["highscores"] = getHighscoreResponse.highscores;
 	Buffer vec = serializeResponseFromJson(HIGH_SCORES_CODE, j);
 	return vec;
 }
