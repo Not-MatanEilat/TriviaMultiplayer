@@ -41,6 +41,11 @@ typedef struct CreateRoomRequest
 	unsigned int answerTimeout;
 } CreateRoomRequest;
 
+typedef struct LogoutRequest
+{
+	string username;
+} LogoutRequest;
+
 
 class JsonRequestPacketDeserializer
 {

@@ -20,10 +20,50 @@ typedef struct SignupResponse
 {
 	unsigned int status;
 } SignupResponse;
+
 typedef struct ErrorResponse
 {
 	string message;
 } ErrorResponse;
+
+typedef struct LogoutResponse
+{
+    unsigned int status;
+} LogoutResponse;
+
+typedef struct GetRoomResponse
+{
+    unsigned int status;
+    vector<RoomData> rooms;
+} GetRoomResponse;
+
+typedef struct GetPlayersInRoomResponse
+{
+    unsigned int status;
+    vector<string> players;
+} GetPlayersInRoomResponse;
+
+typedef struct GetHighscoreResponse
+{
+    unsigned int status;
+    vector<string> highscores;
+} GetRoomResponseetHighscoreResponse;
+
+typedef struct GetPersonalStatusResponse
+{
+    unsigned int status;
+    vector<string> statistics;
+} GetPersonalStatusResponse;
+
+typedef struct JoinRoomResponse
+{
+    unsigned int status;
+} JoinRoomResponse;
+
+typedef struct CreateRoomResponse
+{
+    unsigned int status;
+} CreateRoomResponse;
 
 class JsonResponsePacketSerializer
 {

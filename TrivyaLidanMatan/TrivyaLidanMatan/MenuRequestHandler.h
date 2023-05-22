@@ -14,5 +14,12 @@ public:
 
 private:
 	RequestHandlerFactory& m_handlerFactory;
+
+	RequestResult roomList(RequestInfo const& info);
+	RequestResult playersInRoom(RequestInfo const& info);
+	RequestResult highScores(RequestInfo const& info);
+	RequestResult personalStats(RequestInfo const& info);
+	RequestResult joinRoom(RequestInfo const& info);
+	RequestResult createRoom(RequestInfo const& info);
 };
 

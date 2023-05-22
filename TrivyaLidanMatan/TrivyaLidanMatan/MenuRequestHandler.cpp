@@ -1,4 +1,6 @@
 #include "MenuRequestHandler.h"
+
+#include "JsonRequestPacketDeserializer.h"
 #include "JsonResponsePacketSerializer.h"
 
 /**
@@ -31,6 +33,20 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 	result.newHandler = this;
 	ErrorResponse response;
 	response.message = "Request not implemented yet";
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	return result;
+}
+
+RequestResult MenuRequestHandler::roomList(RequestInfo const& info)
+{
+	RequestResult result;
+
+	GetRoomResponse response;
+	
+	response.rooms = m_handlerFactory.getRoomManager().getRooms();
+	response.status = SUCCESS;
+
+	result.newHandler = this;
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
