@@ -12,13 +12,14 @@ MenuRequestHandler::MenuRequestHandler(RequestHandlerFactory& handlerFactory, Lo
 }
 
 /**
- * \brief Checks if the request is relevant to the handler (for now, always true)
+ * \brief Checks if the request is relevant to the handler
  * \param info the request info
- * \return for now always true
+ * \return true if the request is relevant, false otherwise
  */
 bool MenuRequestHandler::isRequestRelevant(RequestInfo info)
 {
-	return true;
+	int code = info.requestId;
+	return code == LOGOUT_CODE || code == ROOMS_LIST_CODE || code == PLAYERS_IN_ROOM_CODE || code == HIGH_SCORES_CODE || code == PERSONAL_STATS_CODE || code == JOIN_ROOM_CODE || code == CREATE_ROOM_CODE;
 }
 
 
@@ -30,9 +31,64 @@ bool MenuRequestHandler::isRequestRelevant(RequestInfo info)
 RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 {
 	RequestResult result;
+	try
+	{
+		if (info.requestId == LOGOUT_CODE)
+		{
+			result = logout(info);
+		}
+		else if (info.requestId == ROOMS_LIST_CODE)
+		{
+			result = getRooms(info);
+		}
+		else if (info.requestId == PLAYERS_IN_ROOM_CODE)
+		{
+			result = getPlayersInRoom(info);
+		}
+		else if (info.requestId == HIGH_SCORES_CODE)
+		{
+			result = getHighScore(info);
+		}
+		else if (info.requestId == PERSONAL_STATS_CODE)
+		{
+			result = getPersonalStats(info);
+		}
+		else if (info.requestId == JOIN_ROOM_CODE)
+		{
+			result = joinRoom(info);
+		}
+		else if (info.requestId == CREATE_ROOM_CODE)
+		{
+			result = createRoom(info);
+		}
+	}
+	catch (...)
+	{
+		ErrorResponse error;
+		error.message = "Something went wrong";
+		RequestResult result;
+		result.response = JsonResponsePacketSerializer::serializeResponse(error);
+		result.newHandler = this;
+	}
+	
+	return result;
+}
+
+/**
+ * \brief get the rooms
+ * \param info the info of the request
+ * \return the request rooms result
+ */
+RequestResult MenuRequestHandler::logout(RequestInfo const& info)
+{
+	RequestResult result;
+
+	LogoutResponse response;
+
+	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
+	response.status = SUCCESS;
+
 	result.newHandler = this;
-	ErrorResponse response;
-	response.message = "Request not implemented yet";
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
