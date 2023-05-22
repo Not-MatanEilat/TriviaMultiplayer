@@ -53,7 +53,7 @@ typedef struct GetPersonalStatusResponse
 {
     unsigned int status;
     vector<string> statistics;
-} GetPersonalStatusResponse;
+} GetPersonalStatsResponse;
 
 typedef struct JoinRoomResponse
 {

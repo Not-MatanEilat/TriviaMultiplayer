@@ -7,7 +7,7 @@
  * \brief The constructor for the MenuRequestHandler
  * \param handlerFactory the factory for the class
  */
-MenuRequestHandler::MenuRequestHandler(RequestHandlerFactory& handlerFactory) : m_handlerFactory(handlerFactory)
+MenuRequestHandler::MenuRequestHandler(RequestHandlerFactory& handlerFactory, LoggedUser user) : m_handlerFactory(handlerFactory), m_user(user), m_roomManager(handlerFactory.getRoomManager()), m_statisticsManager(handlerFactory.getStatisticsManager())
 {
 }
 
@@ -43,7 +43,7 @@ RequestResult MenuRequestHandler::roomList(RequestInfo const& info)
 
 	GetRoomResponse response;
 	
-	response.rooms = m_handlerFactory.getRoomManager().getRooms();
+	response.rooms = m_roomManager.getRooms();
 	response.status = SUCCESS;
 
 	result.newHandler = this;
@@ -82,10 +82,26 @@ RequestResult MenuRequestHandler::highScores(RequestInfo const& info)
 
 	GetHighscoreResponse response;
 
-	response.highscores = m_handlerFactory.getStatisticsManager().getHighScore();
+	response.highscores = m_statisticsManager.getHighScore();
 	response.status = SUCCESS;
 
 	result.newHandler = this;
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
+
+RequestResult MenuRequestHandler::personalStats(RequestInfo const& info)
+{
+	RequestResult result;
+
+	GetPersonalStatsResponse response;
+
+	response.statistics = m_statisticsManager.getUserStatistics(m_user.getUsername());
+	response.status = SUCCESS;
+
+	result.newHandler = this;
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	return result;
+}
+
+

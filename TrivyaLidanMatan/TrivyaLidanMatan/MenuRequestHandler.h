@@ -8,12 +8,15 @@ class MenuRequestHandler :
     public IRequestHandler
 {
 public:
-	MenuRequestHandler(RequestHandlerFactory& handlerFactory);
+	MenuRequestHandler(RequestHandlerFactory& handlerFactory, LoggedUser user);
 	bool isRequestRelevant(RequestInfo info) override;
 	RequestResult handleRequest(RequestInfo info) override;
 
 private:
 	RequestHandlerFactory& m_handlerFactory;
+	LoggedUser m_user;
+	RoomManager& m_roomManager;
+	StatisticsManager& m_statisticsManager;
 
 	RequestResult roomList(RequestInfo const& info);
 	RequestResult playersInRoom(RequestInfo const& info);
