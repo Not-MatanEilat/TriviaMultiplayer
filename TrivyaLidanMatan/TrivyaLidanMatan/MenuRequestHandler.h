@@ -3,6 +3,8 @@
 #include "RequestHandlerFactory.h"
 
 class RequestHandlerFactory;
+class RoomManager;
+class StatisticsManager;
 
 class MenuRequestHandler :
     public IRequestHandler
