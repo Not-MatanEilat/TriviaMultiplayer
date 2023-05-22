@@ -121,4 +121,38 @@ RequestResult MenuRequestHandler::joinRoom(RequestInfo const& info)
 	return result;
 }
 
+RequestResult MenuRequestHandler::createRoom(RequestInfo const& info)
+{
+	CreateRoomRequest request = JsonRequestPacketDeserializer::deserializeCreateRoomRequest(info.buffer);
+	
+	RequestResult result;
+
+	RoomData roomData;
+	roomData.maxPlayers = request.maxUsers;
+	roomData.name = request.roomName;
+	roomData.timePerQuestion = request.answerTimeout;
+	roomData.numOfQuestionsInGame = request.questionCount;
+
+	int id = 0;
+	for (RoomData data : m_roomManager.getRooms())
+	{
+		if (data.id > id)
+		{
+			id = data.id;
+		}
+	}
+	roomData.id = id + 1;
+	roomData.isActive = false;
+
+	m_roomManager.createRoom(m_user, roomData);
+
+
+	CreateRoomResponse response;
+	response.status = SUCCESS;
+
+	result.newHandler = this;
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	return result;
+}
+
 
