@@ -123,6 +123,25 @@ Buffer JsonResponsePacketSerializer::serializeResponse(getHighscoreResponse getH
 	return vec;
 }
 
+/**
+ * \brief The function will take a getPersonalStats response and serialize it to a buffer ("status" : status, "statistics" : statistics)
+ * \param getPersonalStatsResponse the getPersonalStats response to serialize
+ * \return getPersonalStats response serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(getPersonalStatsResponse getPersonalStatsResponse)
+{
+	json j;
+	j["status"] = getPersonalStatsResponse.status;
+	j["statistics"] = getPersonalStatsResponse.statistics;
+	Buffer vec = serializeResponseFromJson(PERSONAL_STATS_CODE, j);
+	return vec;
+}
+
+
+
+
+
+
 
 
 

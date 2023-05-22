@@ -44,13 +44,13 @@ typedef struct GetPlayersInRoomResponse
 	vector<string> players;
 } GetPlayersInRoomResponse;
 
-typedef struct getHighscoreResponse
+typedef struct GetHighscoreResponse
 {
 		unsigned int status;
 	vector<string> highscores;
 } getHighscoreResponse;
 
-typedef struct getPersonalStatusResponse
+typedef struct GetPersonalStatusResponse
 {
 	unsigned int status;
 	vector<string> statistics;
