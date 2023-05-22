@@ -109,6 +109,21 @@ Buffer JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomResponse 
 	return vec;
 }
 
+/**
+ * \brief The function will take a getHighscore response and serialize it to a buffer ("status" : status, "highscores" : players)
+ * \param getHighscoreResponse the getHighscore response to serialize
+ * \return getHighscore response serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(getHighscoreResponse getHighscoreResposne)
+{
+	json j;
+	j["status"] = getHighscoreResposne.status;
+	j["highscores"] = getHighscoreResposne.highscores;
+	Buffer vec = serializeResponseFromJson(HIGH_SCORES_CODE, j);
+	return vec;
+}
+
+
 
 
 
