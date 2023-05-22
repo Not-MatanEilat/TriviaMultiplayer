@@ -70,8 +70,12 @@ int SqliteDataBase::doesPasswordMatch(const string& username, const string& pass
  */
 int SqliteDataBase::addNewUser(const string& username, const string& password, const string& email)
 {
-	const string sqlStatement = "INSERT INTO users (username, password, email) VALUES ('$0', '$1', '$2')";
+	string sqlStatement = "INSERT INTO users (username, password, email) VALUES ('$0', '$1', '$2')";
 	vector<string> params = { username, password, email };
+	_db.exec(sqlStatement, params);
+
+	sqlStatement = "INSERT INTO Statistics (username, averageAnswerTime, correctAnswers, totalAnswers, games) VALUES ('$0', 0, 0, 0, 0)";
+	params = { username };
 	_db.exec(sqlStatement, params);
 
 	// check if the given user was successfully added
