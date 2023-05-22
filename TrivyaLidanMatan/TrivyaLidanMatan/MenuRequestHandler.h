@@ -18,6 +18,7 @@ private:
 	RoomManager& m_roomManager;
 	StatisticsManager& m_statisticsManager;
 
+	RequestResult logout(RequestInfo const& info);
 	RequestResult getRooms(RequestInfo const& info);
 	RequestResult getPlayersInRoom(RequestInfo const& info);
 	RequestResult getHighScore(RequestInfo const& info);
