@@ -36,7 +36,7 @@ typedef struct LogoutResponse
 typedef struct GetRoomsResponse
 {
 	unsigned int status;
-	vector<string> rooms;
+	vector<RoomData> rooms;
 } GetRoomsResponse;
 
 typedef struct GetPlayersInRoomResponse

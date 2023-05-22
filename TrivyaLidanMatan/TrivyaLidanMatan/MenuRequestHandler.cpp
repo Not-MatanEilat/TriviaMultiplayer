@@ -46,7 +46,7 @@ RequestResult MenuRequestHandler::getRooms(RequestInfo const& info)
 {
 	RequestResult result;
 
-	GetRoomResponse response;
+	GetRoomsResponse response;
 	
 	response.rooms = m_roomManager.getRooms();
 	response.status = SUCCESS;
