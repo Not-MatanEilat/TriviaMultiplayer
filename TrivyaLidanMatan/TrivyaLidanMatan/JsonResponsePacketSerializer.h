@@ -78,5 +78,6 @@ public:
 
 	static Buffer serializeResponse(LogoutResponse response);
 	static Buffer serializeResponse(GetRoomResponse response);
+	static Buffer serializeResponse(GetPlayersInRoomResponse response);
 };
 

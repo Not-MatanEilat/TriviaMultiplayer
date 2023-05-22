@@ -1,7 +1,7 @@
 #include "JsonResponsePacketSerializer.h"
 
 /**
- * \brief The function will take an error response and serialize it to a string ("message" : error message)
+ * \brief The function will take an error response and serialize it to a buffer ("message" : error message)
  * \param errorResponse the error response to serialize
  * \return error response serialized to a buffer
  */
@@ -43,7 +43,7 @@ Buffer JsonResponsePacketSerializer::serializeResponseFromJson(byte code, json j
 }
 
 /**
- * \brief The function will take a login response and serialize it to a string ("status" : status)
+ * \brief The function will take a login response and serialize it to a buffer ("status" : status)
  * \param loginResponse The login response to serialize
  * \return login response serialized to a buffer
  */
@@ -56,7 +56,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(LoginResponse loginRespon
 }
 
 /**
- * \brief The function will take a signup response and serialize it to a string ("status" : status)
+ * \brief The function will take a signup response and serialize it to a buffer ("status" : status)
  * \param signupResponse the signup response to serialize
  * \return signup response serialized to a buffer
  */
@@ -69,7 +69,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(SignupResponse signupResp
 }
 
 /**
- * \brief The function will take a logout response and serialize it to a string ("status" : status)
+ * \brief The function will take a logout response and serialize it to a buffer ("status" : status)
  * \param logoutResponse the logout response to serialize
  * \return logout response serialized to a buffer
  */
@@ -82,7 +82,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(LogoutResponse logoutResp
 }
 
 /**
- * \brief The function will take a getRooms response and serialize it to a string ("status" : status, "rooms" : rooms)
+ * \brief The function will take a getRooms response and serialize it to a buffer ("status" : status, "rooms" : rooms)
  * \param getRoomResponse the getRooms response to serialize
  * \return getRooms response serialized to a buffer
  */
@@ -94,6 +94,22 @@ Buffer JsonResponsePacketSerializer::serializeResponse(GetRoomResponse getRoomRe
 	Buffer vec = serializeResponseFromJson(ROOMS_LIST_CODE, j);
 	return vec;
 }
+
+/**
+ * \brief The function will take a getPlayersInRoom response and serialize it to a buffer ("status" : status, "players" : players)
+ * \param getPlayersInRoomResponse the getPlayers response to serialize
+ * \return getPlayers response serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomResponse getPlayersInRoomResponse)
+{
+	json j;
+	j["status"] = getPlayersInRoomResponse.status;
+	j["players"] = getPlayersInRoomResponse.players;
+	Buffer vec = serializeResponseFromJson(PLAYERS_IN_ROOM_CODE, j);
+	return vec;
+}
+
+
 
 
 
