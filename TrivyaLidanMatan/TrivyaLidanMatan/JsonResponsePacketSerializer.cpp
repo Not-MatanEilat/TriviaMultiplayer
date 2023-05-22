@@ -5,7 +5,7 @@
  * \param errorResponse the error response to serialize
  * \return error response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(ErrorResponse errorResponse)
+Buffer JsonResponsePacketSerializer::serializeResponse(const ErrorResponse& errorResponse)
 {
 
 	json j;
@@ -47,7 +47,7 @@ Buffer JsonResponsePacketSerializer::serializeResponseFromJson(byte code, json j
  * \param loginResponse The login response to serialize
  * \return login response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(LoginResponse loginResponse)
+Buffer JsonResponsePacketSerializer::serializeResponse(const LoginResponse& loginResponse)
 {
 	json j;
 	j["status"] = loginResponse.status;
@@ -60,7 +60,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(LoginResponse loginRespon
  * \param signupResponse the signup response to serialize
  * \return signup response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(SignupResponse signupResponse)
+Buffer JsonResponsePacketSerializer::serializeResponse(const SignupResponse& signupResponse)
 {
 	json j;
 	j["status"] = signupResponse.status;
@@ -73,7 +73,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(SignupResponse signupResp
  * \param logoutResponse the logout response to serialize
  * \return logout response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(LogoutResponse logoutResponse)
+Buffer JsonResponsePacketSerializer::serializeResponse(const LogoutResponse& logoutResponse)
 {
 		json j;
 	j["status"] = logoutResponse.status;
@@ -86,7 +86,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(LogoutResponse logoutResp
  * \param getRoomResponse the getRooms response to serialize
  * \return getRooms response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(GetRoomResponse getRoomResponse)
+Buffer JsonResponsePacketSerializer::serializeResponse(const GetRoomResponse& getRoomResponse)
 {
 	json j;
 	j["status"] = getRoomResponse.status;
@@ -100,7 +100,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(GetRoomResponse getRoomRe
  * \param getPlayersInRoomResponse the getPlayers response to serialize
  * \return getPlayers response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomResponse getPlayersInRoomResponse)
+Buffer JsonResponsePacketSerializer::serializeResponse(const GetPlayersInRoomResponse& getPlayersInRoomResponse)
 {
 	json j;
 	j["status"] = getPlayersInRoomResponse.status;
@@ -111,10 +111,10 @@ Buffer JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomResponse 
 
 /**
  * \brief The function will take a getHighscore response and serialize it to a buffer ("status" : status, "highscores" : players)
- * \param getHighscoreResponse the getHighscore response to serialize
+ * \param getHighscoreResposne the getHighscore response to serialize
  * \return getHighscore response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(GetHighscoreResponse getHighscoreResposne)
+Buffer JsonResponsePacketSerializer::serializeResponse(const GetHighscoreResponse& getHighscoreResposne)
 {
 	json j;
 	j["status"] = getHighscoreResposne.status;
@@ -128,7 +128,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(GetHighscoreResponse getH
  * \param getPersonalStatsResponse the getPersonalStats response to serialize
  * \return getPersonalStats response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(GetPersonalStatsResponse getPersonalStatsResponse)
+Buffer JsonResponsePacketSerializer::serializeResponse(const GetPersonalStatsResponse& getPersonalStatsResponse)
 {
 	json j;
 	j["status"] = getPersonalStatsResponse.status;
@@ -139,16 +139,32 @@ Buffer JsonResponsePacketSerializer::serializeResponse(GetPersonalStatsResponse 
 
 /**
  * \brief The function will take a joinRoom response and serialize it to a buffer ("status" : status)
- * \param JoinRoomResponse the joinRoom response to serialize
+ * \param joinRoomResponse the joinRoom response to serialize
  * \return joinRoom response serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(JoinRoomResponse joinRoomResponse)
+Buffer JsonResponsePacketSerializer::serializeResponse(const JoinRoomResponse& joinRoomResponse)
 {
 	json j;
 	j["status"] = joinRoomResponse.status;
 	Buffer vec = serializeResponseFromJson(JOIN_ROOM_CODE, j);
 	return vec;
 }
+
+/**
+ * \brief The function will take a createRoom response and serialize it to a buffer ("status" : status)
+ * \param createRoomResponse the createRoom response to serialize
+ * \return createRooms response serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(const CreateRoomResponse& createRoomResponse)
+{
+	json j;
+	j["status"] = createRoomResponse.status;
+	Buffer vec = serializeResponseFromJson(CREATE_ROOM_CODE, j);
+	return vec;
+}
+
+
+
 
 
 

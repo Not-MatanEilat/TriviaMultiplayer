@@ -72,15 +72,16 @@ class JsonResponsePacketSerializer
 
 public:
 	static Buffer serializeResponseFromJson(byte code, json j);
-	static Buffer serializeResponse(LoginResponse response);
-	static Buffer serializeResponse(SignupResponse response);
-	static Buffer serializeResponse(ErrorResponse response);
+	static Buffer serializeResponse(const LoginResponse loginResponse);
+	static Buffer serializeResponse(const SignupResponse signupResponse);
+	static Buffer serializeResponse(const ErrorResponse errorResponse);
 
-	static Buffer serializeResponse(LogoutResponse response);
-	static Buffer serializeResponse(GetRoomResponse response);
-	static Buffer serializeResponse(GetPlayersInRoomResponse response);
-	static Buffer serializeResponse(GetHighscoreResponse response);
-	static Buffer serializeResponse(GetPersonalStatsResponse response);
-	static Buffer serializeResponse(JoinRoomResponse response);
+	static Buffer serializeResponse(const LogoutResponse logoutResponse);
+	static Buffer serializeResponse(const GetRoomResponse getRoomsResponse);
+	static Buffer serializeResponse(const GetPlayersInRoomResponse getPlayersInRoomResponse);
+	static Buffer serializeResponse(const GetHighscoreResponse getHighscoreResponse);
+	static Buffer serializeResponse(const GetPersonalStatsResponse getPersonalStatsResponse);
+	static Buffer serializeResponse(const JoinRoomResponse joinRoomResponse);
+	static Buffer serializeResponse(const CreateRoomResponse createRoomResponse);
 };
 
