@@ -24,9 +24,9 @@ LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
  * \brief Creates a new Menu handler a returns it with the current handler
  * \return 
  */
-MenuRequestHandler* RequestHandlerFactory::createMenuRequestHandler()
+MenuRequestHandler* RequestHandlerFactory::createMenuRequestHandler(LoggedUser loggedUser)
 {
-	return new MenuRequestHandler(*this);
+	return new MenuRequestHandler(*this, loggedUser);
 }
 
 /**

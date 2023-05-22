@@ -15,6 +15,8 @@ public:
 	void login(const string& username, const string& password);
 	void logout(const string& username);
 
+	LoggedUser getLoggedUser(const string& username) const;
+
 private:
 
 	IDataBase* m_database;

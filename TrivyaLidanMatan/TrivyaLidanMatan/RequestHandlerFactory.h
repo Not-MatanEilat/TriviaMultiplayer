@@ -16,7 +16,7 @@ public:
 	RequestHandlerFactory(IDataBase* mDatabase);
 
 	LoginRequestHandler* createLoginRequestHandler();
-	MenuRequestHandler* createMenuRequestHandler();
+	MenuRequestHandler* createMenuRequestHandler(LoggedUser loggedUser);
 	LoginManager& getLoginManager();
 	RoomManager& getRoomManager();
 	StatisticsManager& getStatisticsManager();

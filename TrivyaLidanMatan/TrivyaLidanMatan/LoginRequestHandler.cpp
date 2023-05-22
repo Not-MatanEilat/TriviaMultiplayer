@@ -61,7 +61,7 @@ RequestResult LoginRequestHandler::login(RequestInfo const &info)
 		m_handlerFactory.getLoginManager().login(loginRequest.username, loginRequest.password);
 		response.status = SUCCESS;
 		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
-		result.newHandler = m_handlerFactory.createMenuRequestHandler();
+		result.newHandler = m_handlerFactory.createMenuRequestHandler(m_handlerFactory.getLoginManager().getLoggedUser(loginRequest.username));;
 		result.response = buffer;
 		TRACE("Login success");
 	}
@@ -95,7 +95,7 @@ RequestResult LoginRequestHandler::signup(RequestInfo const &info)
 		m_handlerFactory.getLoginManager().signUp(signupRequest.username, signupRequest.password, signupRequest.email);
 		response.status = SUCCESS;
 		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
-		result.newHandler = m_handlerFactory.createMenuRequestHandler();;
+		result.newHandler = m_handlerFactory.createMenuRequestHandler(m_handlerFactory.getLoginManager().getLoggedUser(signupRequest.username));;
 		result.response = buffer;
 		TRACE("Signup success");
 	}

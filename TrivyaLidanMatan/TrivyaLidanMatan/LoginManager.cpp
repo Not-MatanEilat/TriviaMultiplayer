@@ -80,6 +80,24 @@ void LoginManager::logout(const string& username)
 	}
 }
 
+/**
+ * \brief Function returns the logged user that was needed
+ * \param username the username to get logged user of
+ * \return Loggeduser of the given username string
+ */
+LoggedUser LoginManager::getLoggedUser(const string& username) const
+{
+	for (int i = 0; i < m_loggedUsers.size(); i++)
+	{
+		if (m_loggedUsers[i].getUsername() == username)
+		{
+			return m_loggedUsers[i];
+		}
+	}
+	throw std::exception("User isn't logged in");
+}
+
+
 
 
 

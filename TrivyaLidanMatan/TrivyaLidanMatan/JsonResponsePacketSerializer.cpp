@@ -82,7 +82,8 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const LogoutResponse& log
 }
 
 /**
- * \brief The function will take a getRooms response and serialize it to a buffer ("status" : status, "rooms" : rooms)
+ * \brief The function will take a getRooms response and serialize it to a buffer
+ * ("status" : status, "rooms" : ("isActive" : isActive, "name" : name, "maxPlayers" : maxPlayers, "numOfQuestionsInGame" : numOfQuestionsInGame, "timePerQuestion" : timePerQuestion, "id" : id))
  * \param getRoomsResponse the getRooms response to serialize
  * \return getRooms response serialized to a buffer
  */
@@ -90,7 +91,18 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const GetRoomsResponse& g
 {
 	json j;
 	j["status"] = getRoomsResponse.status;
-	j["rooms"] = getRoomsResponse.rooms;
+	for (auto& roomData : getRoomsResponse.rooms)
+	{
+		json roomJson;
+		roomJson["isActive"] = roomData.isActive;
+		roomJson["name"] = roomData.name;
+		roomJson["maxPlayers"] = roomData.maxPlayers;
+		roomJson["numOfQuestionsInGame"] = roomData.numOfQuestionsInGame;
+		roomJson["timePerQuestion"] = roomData.timePerQuestion;
+		roomJson["id"] = roomData.id;
+
+		j["rooms"].push_back(roomJson);
+	}
 
 	TRACE(j);
 
