@@ -15,6 +15,13 @@ Room::Room(const RoomData& metadata): m_roomData(metadata)
  */
 void Room::addUser(const LoggedUser& user)
 {
+	for (const auto& loggedUser : m_users)
+	{
+		if (loggedUser.getUsername() == user.getUsername())
+		{
+			throw std::exception("User already in room");
+		}
+	}
 	m_users.push_back(user);
 }
 

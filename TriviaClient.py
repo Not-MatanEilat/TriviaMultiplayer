@@ -178,7 +178,7 @@ class TriviaClient:
         """
         return self.send_request_dict(CREATE_ROOM_CODE, {
             "roomName": room_name,
-            "maxPlayers": max_players,
+            "maxUsers": max_players,
             "questionCount": question_count,
             "answerTimeout": answer_timeout
         })
@@ -220,6 +220,29 @@ def prompt_login():
     return test_login(username, password)
 
 
-if __name__ == '__main__':
+def main():
+    print("Please login to the server")
     me = prompt_login()
     print("Logged in successfully!")
+
+    print("Testing stats...")
+
+    print(me.get_personal_stats())
+    print(me.get_high_scores())
+
+    print("Testing rooms...")
+    print(me.create_room("test", 2, 2, 2))
+    print(me.get_rooms_list())
+
+    print("Testing joining room... for this test to work, you need to login with another user and join room")
+    me2 = prompt_login()
+    print(me2.join_room(1))
+    print(me2.get_players_in_room(1))
+
+    print("Testing logout...")
+    print(me.logout())
+    print(me2.logout())
+
+
+if __name__ == '__main__':
+    main()

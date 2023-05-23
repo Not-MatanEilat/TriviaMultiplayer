@@ -27,7 +27,8 @@ void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 	Room room(roomData);
 	room.addUser(user);
 
-	m_rooms.at(roomData.id) = room;
+	std::pair<int, Room> pair(roomData.id, room);
+	m_rooms.insert(pair);
 
 }
 

@@ -62,11 +62,10 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 			result = createRoom(info);
 		}
 	}
-	catch (...)
+	catch (const std::exception& e)
 	{
 		ErrorResponse error;
-		error.message = "Something went wrong";
-		RequestResult result;
+		error.message = "Something went wrong: " + std::string(e.what());
 		result.response = JsonResponsePacketSerializer::serializeResponse(error);
 		result.newHandler = this;
 	}

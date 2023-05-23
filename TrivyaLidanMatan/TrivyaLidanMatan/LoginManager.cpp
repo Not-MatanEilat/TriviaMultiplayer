@@ -53,6 +53,14 @@ void LoginManager::login(const string& username, const string& password)
 
 	}
 
+	for (const auto& loggedUser : m_loggedUsers)
+	{
+		if (loggedUser.getUsername() == username)
+		{
+			throw std::exception("User already logged in");
+		}
+	}
+
 	// add the user to the logged users
 	LoggedUser const user(username);
 	m_loggedUsers.push_back(user);
