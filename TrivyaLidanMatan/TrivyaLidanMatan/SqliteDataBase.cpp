@@ -70,8 +70,12 @@ int SqliteDataBase::doesPasswordMatch(const string& username, const string& pass
  */
 int SqliteDataBase::addNewUser(const string& username, const string& password, const string& email)
 {
-	const string sqlStatement = "INSERT INTO users (username, password, email) VALUES ('$0', '$1', '$2')";
+	string sqlStatement = "INSERT INTO users (username, password, email) VALUES ('$0', '$1', '$2')";
 	vector<string> params = { username, password, email };
+	_db.exec(sqlStatement, params);
+
+	sqlStatement = "INSERT INTO Statistics (username, averageAnswerTime, correctAnswers, totalAnswers, games) VALUES ('$0', 0, 0, 0, 0)";
+	params = { username };
 	_db.exec(sqlStatement, params);
 
 	// check if the given user was successfully added
@@ -87,6 +91,138 @@ int SqliteDataBase::addNewUser(const string& username, const string& password, c
 	return 1;
 }
 
+std::vector<string> SqliteDataBase::getUsers()
+{
+	const string sqlStatement = "SELECT * FROM users";
+	Result res = _db.exec(sqlStatement);
+	std::vector<string> users;
+	for (Row& row : res)
+	{
+		users.push_back(row["username"]);
+	}
+	return users;
+}
+
+/**
+ * \brief Compares two scores in descending order.
+ * \param user1 user 1
+ * \param user2 user 2
+ * \return if user1 score is bigger than user2 score
+ */
+bool SqliteDataBase::compareScoresByUserName(string& user1, string& user2)
+{
+	return (getPlayerScore(user1) > getPlayerScore(user2));
+}
+
+/**
+ * \brief get the high scores from the database
+ * \return the high scores
+ */
+std::vector<string> SqliteDataBase::getHighScores()
+{
+	std::vector<string> users = getUsers();
+	std::sort(users.begin(), users.end(), [&](string a, string b) {return getPlayerScore(a) > getPlayerScore(b); });
+	return users;
+}
+
+/**
+ * \brief get question from the database
+ * \param questionsNo question number
+ * \return question by number
+ */
+std::vector<Question> SqliteDataBase::getQuestions(int questionsNo)
+{
+	const string sqlStatement = "SELECT * FROM questions LIMIT $0";
+	vector<string> params = { std::to_string(questionsNo) };
+	Result res = _db.exec(sqlStatement, params);
+	std::vector<Question> questions;
+	for (Row& row : res)
+	{
+		Question question;
+		question.question = row["question"];
+		question.correctAnswer = row["correctAnswer"];
+		question.answer2 = row["answer2"];
+		question.answer3 = row["answer3"];
+		question.answer4 = row["answer4"];
+		questions.push_back(question);
+	}
+	return questions;
+}
+
+/**
+ * \brief get average answer time from the database
+ * \param username username
+ * \return the average answer time
+ */
+float SqliteDataBase::getPlayerAverageAnswerTime(string const& username)
+{
+	Row stats = getPlayerStatistics(username);
+	return std::stof(stats["averageAnswerTime"]);
+}
+
+/**
+ * \brief get correct answers from the database
+ * \param username username
+ * \return the correct answers
+ */
+int SqliteDataBase::getNumOfCorrectAnswers(string const& username)
+{
+	Row stats = getPlayerStatistics(username);
+	return std::stoi(stats["correctAnswers"]);
+}
 
 
+/**
+ * \brief get total answers from the database
+ * \param username username
+ * \return the total answers
+ */
+int SqliteDataBase::getNumOfTotalAnswers(string const& username)
+{
+	Row stats = getPlayerStatistics(username);
+	return std::stoi(stats["totalAnswers"]);
+}
 
+
+/**
+ * \brief get games from the database
+ * \param username username
+ * \return the games
+ */
+int SqliteDataBase::getNumOfPlayerGames(string const& username)
+{
+	Row stats = getPlayerStatistics(username);
+	return std::stoi(stats["games"]);
+}
+
+
+/**
+ * \brief get score from the database
+ * \param username username
+ * \return the score
+ */
+int SqliteDataBase::getPlayerScore(string const& username)
+{
+	int correctAnswers = getNumOfCorrectAnswers(username);
+	float averageAnswerTime = getPlayerAverageAnswerTime(username);
+	int score = (correctAnswers * 10) - (averageAnswerTime / 2);
+	return score;
+}
+
+/**
+ * \brief get player statistics from the database
+ * \param username username
+ * \return the player statistics
+ */
+Row SqliteDataBase::getPlayerStatistics(string const& username)
+{
+	const string sqlStatement = "SELECT * FROM Statistics WHERE username = '$0'";
+	vector<string> params = { username };
+	Result res = _db.exec(sqlStatement, params);
+	if (res.empty())
+	{
+		return {};
+	}
+
+	return res[0];
+}

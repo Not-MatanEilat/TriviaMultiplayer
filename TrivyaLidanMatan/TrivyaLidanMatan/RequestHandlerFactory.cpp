@@ -6,17 +6,7 @@
  * \brief Constructor to RequestHandler Factory
  * \param mDatabase the DB of the server
  */
-RequestHandlerFactory::RequestHandlerFactory(IDataBase* mDatabase): m_database(mDatabase), m_loginManager(mDatabase)
-{
-}
-
-/**
- * \brief Constructor to RequestHandler Factory
- * \param mLoginManager the login manager of the server
- * \param mDatabase the DB of the server
- */
-RequestHandlerFactory::RequestHandlerFactory(const LoginManager& mLoginManager, IDataBase* mDatabase): m_loginManager(mLoginManager),
-                                                                                                       m_database(mDatabase)
+RequestHandlerFactory::RequestHandlerFactory(IDataBase* mDatabase): m_database(mDatabase), m_loginManager(mDatabase), m_roomManager(), m_statisticsManager(mDatabase)
 {
 }
 
@@ -34,9 +24,9 @@ LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
  * \brief Creates a new Menu handler a returns it with the current handler
  * \return 
  */
-MenuRequestHandler* RequestHandlerFactory::createMenuRequestHandler()
+MenuRequestHandler* RequestHandlerFactory::createMenuRequestHandler(LoggedUser loggedUser)
 {
-	return new MenuRequestHandler(*this);
+	return new MenuRequestHandler(*this, loggedUser);
 }
 
 /**
@@ -46,4 +36,22 @@ MenuRequestHandler* RequestHandlerFactory::createMenuRequestHandler()
 LoginManager& RequestHandlerFactory::getLoginManager()
 {
 	return m_loginManager;
+}
+
+/**
+ * \brief Returns a ref of the room manager
+ * \return RoomManager
+ */
+RoomManager& RequestHandlerFactory::getRoomManager()
+{
+	return m_roomManager;
+}
+
+/**
+ * \brief Returns a ref of the statistics manager
+ * \return StatisticsManager
+ */
+StatisticsManager& RequestHandlerFactory::getStatisticsManager()
+{
+	return m_statisticsManager;
 }

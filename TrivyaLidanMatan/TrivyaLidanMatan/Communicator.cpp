@@ -91,6 +91,19 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 	}
 	catch (const std::exception& e)
 	{
+		RequestInfo requestInfo;
+		requestInfo.requestId = LOGOUT_CODE;
+		requestInfo.buffer = {};
+		requestInfo.receivalTime = clock();
+		m_clients[clientSocket]->handleRequest(requestInfo);
+		for (auto it = m_clients.begin(); it != m_clients.end(); ++it)
+		{
+			if (it->first == clientSocket)
+			{
+				m_clients.erase(it);
+				break;
+			}
+		}
 		std::cout << "Connection lost: " << e.what() << std::endl;
 	}
 	

@@ -7,8 +7,8 @@
 */
 bool IDataBase::isValidPassword(const string& username)
 {
-	// Password must be exactly 8 characters long
-	if (username.length() != 8)
+	// Password must be at least 8 characters long
+	if (username.length() < 8)
 	{
 		return false;
 	}
