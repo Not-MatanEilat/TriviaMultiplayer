@@ -14,7 +14,7 @@ LoginManager::LoginManager(IDataBase* database) : m_database(database)
  * \param password the password to signUp
  * \param email the email to signUp	
  */
-void LoginManager::signUp(const string& username, const string& password, const string& email) const
+void LoginManager::signUp(const string& username, const string& password, const string& email)
 {
 	// check if user exits already
 	if (m_database->doesUserExist(username))
@@ -31,6 +31,7 @@ void LoginManager::signUp(const string& username, const string& password, const 
 		throw std::exception("Email is invalid");
 	}
 	m_database->addNewUser(username, password, email);
+	login(username, password);
 }
 
 /**

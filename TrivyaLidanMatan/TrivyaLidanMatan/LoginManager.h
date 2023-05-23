@@ -11,7 +11,7 @@ public:
 
 	LoginManager(IDataBase* database);
 
-	void signUp(const string& username, const string& password, const string& email) const;
+	void signUp(const string& username, const string& password, const string& email);
 	void login(const string& username, const string& password);
 	void logout(const string& username);
 
