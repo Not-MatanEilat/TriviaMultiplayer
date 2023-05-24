@@ -10,21 +10,6 @@ using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
-
-    public class Response
-    {
-        public Response(int code, int length, JObject data)
-        {
-            this.code = code;
-            this.length = length;
-            this.data = data;
-        }
-
-        public int code { get; set; }
-        public int length { get; set; }
-        public JObject data { get; set; }
-    }
-
     public class TriviaClient
     {
         public const string SERVER_IP = "localhost";
@@ -67,9 +52,12 @@ namespace TriviaClientApp
 
         private Socket socket;
 
+        public string Username { get; private set; }
+
         public TriviaClient()
         {
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            this.Username = "";
         }
 
         /// <summary>
@@ -207,7 +195,12 @@ namespace TriviaClientApp
         public JObject Login(string username, string password)
         {
             JObject data = new JObject() { { "username", username }, { "password", password } };
-            return SendRequestDict((byte)RequestCodes.LOGIN_CODE, data);
+            JObject result = SendRequestDict((byte)RequestCodes.LOGIN_CODE, data);
+            if ((int) result["message"]["status"] == SUCCESS_CODE)
+            {
+                this.Username = username;
+            }
+            return result;
         }
 
         /// <summary>
@@ -220,7 +213,12 @@ namespace TriviaClientApp
         public JObject Signup(string username, string password, string email)
         {
             JObject data = new JObject() { { "username", username }, { "password", password }, { "email", email } };
-            return SendRequestDict((byte)RequestCodes.SIGNUP_CODE, data);
+            JObject result = SendRequestDict((byte)RequestCodes.SIGNUP_CODE, data);
+            if ((int)result["message"]["status"] == SUCCESS_CODE)
+            {
+                this.Username = username;
+            }
+            return result;
         }
 
         /// <summary>
