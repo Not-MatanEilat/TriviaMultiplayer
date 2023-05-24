@@ -5,14 +5,15 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
 
     public class Response
     {
-        public Response(int code, int length, Dictionary<string, object> data)
+        public Response(int code, int length, JObject data)
         {
             this.code = code;
             this.length = length;
@@ -21,7 +22,7 @@ namespace TriviaClientApp
 
         public int code { get; set; }
         public int length { get; set; }
-        public Dictionary<string, object> data { get; set; }
+        public JObject data { get; set; }
     }
 
     public class TriviaClient
@@ -94,9 +95,9 @@ namespace TriviaClientApp
         /// <param name="code">message code</param>
         /// <param name="dict">message dict</param>
         /// <returns>byte list</returns>
-        public List<byte> BuildMessageFromDict(byte code, Dictionary<string, object> dict)
+        public List<byte> BuildMessageFromDict(byte code, JObject dict)
         {
-            string json = JsonSerializer.Serialize(dict);
+            string json = JsonConvert.SerializeObject(dict);
             return BuildMessage(code, json);
         }
 
@@ -105,7 +106,7 @@ namespace TriviaClientApp
         /// </summary>
         /// <param name="bytes">message bytes</param>
         /// <returns>message dict</returns>
-        public Dictionary<string, object> ParseMessage(List<byte> bytes)
+        public JObject ParseMessage(List<byte> bytes)
         {
             byte code = bytes[0];
             List<byte> lengthBytes = bytes.GetRange(1, 4);
@@ -113,7 +114,7 @@ namespace TriviaClientApp
             int length = BitConverter.ToInt32(lengthBytes.ToArray());
             List<byte> messageBytes = bytes.GetRange(5, length);
             string message = Encoding.ASCII.GetString(messageBytes.ToArray());
-            Dictionary<string, object> dict = new Dictionary<string, object>
+            JObject dict = new JObject
             {
                 {"code", code},
                 {"length", length},
@@ -127,10 +128,10 @@ namespace TriviaClientApp
         /// </summary>
         /// <param name="bytes">message bytes</param>
         /// <returns>message dict</returns>
-        public Dictionary<string, object> ParseMessageToDict(List<byte> bytes)
+        public JObject ParseMessageToDict(List<byte> bytes)
         {
             var dict = ParseMessage(bytes);
-            dict["message"] = JsonSerializer.Deserialize<Dictionary<string, object>>((string)dict["message"]);
+            dict["message"] = JsonConvert.DeserializeObject<JObject>((string)dict["message"]);
             return dict;
         }
 
@@ -181,7 +182,7 @@ namespace TriviaClientApp
         /// <param name="code">request code</param>
         /// <param name="message">the message</param>
         /// <returns></returns>
-        public Dictionary<string, object> SendRequest(byte code, string message = "")
+        public JObject SendRequest(byte code, string message = "")
         {
             return ParseMessage(SendRequestBytes(BuildMessage(code, message)));
         }
@@ -192,7 +193,7 @@ namespace TriviaClientApp
         /// <param name="code">request code</param>
         /// <param name="dict">request data</param>
         /// <returns>response</returns>
-        public Dictionary<string, object> SendRequestDict(byte code, Dictionary<string, object> dict)
+        public JObject SendRequestDict(byte code, JObject dict)
         {
             return ParseMessageToDict(SendRequestBytes(BuildMessageFromDict(code, dict)));
         }
@@ -203,9 +204,9 @@ namespace TriviaClientApp
         /// <param name="username">username</param>
         /// <param name="password">password</param>
         /// <returns>response</returns>
-        public Dictionary<string, object> Login(string username, string password)
+        public JObject Login(string username, string password)
         {
-            Dictionary<string, object> data = new Dictionary<string, object>() { { "username", username }, { "password", password } };
+            JObject data = new JObject() { { "username", username }, { "password", password } };
             return SendRequestDict((byte)RequestCodes.LOGIN_CODE, data);
         }
 
@@ -216,9 +217,9 @@ namespace TriviaClientApp
         /// <param name="password">password</param>
         /// <param name="email">email</param>
         /// <returns>response</returns>
-        public Dictionary<string, object> Signup(string username, string password, string email)
+        public JObject Signup(string username, string password, string email)
         {
-            Dictionary<string, object> data = new Dictionary<string, object>() { { "username", username }, { "password", password }, { "email", email } };
+            JObject data = new JObject() { { "username", username }, { "password", password }, { "email", email } };
             return SendRequestDict((byte)RequestCodes.SIGNUP_CODE, data);
         }
 
@@ -226,7 +227,7 @@ namespace TriviaClientApp
         /// Logout from the server.
         /// </summary>
         /// <returns>response</returns>
-        public Dictionary<string, object> Logout()
+        public JObject Logout()
         {
             return SendRequest((byte)RequestCodes.LOGOUT_CODE);
         }
@@ -235,7 +236,7 @@ namespace TriviaClientApp
         /// Get the room list.
         /// </summary>
         /// <returns>response</returns>
-        public Dictionary<string, object> GetRoomsList()
+        public JObject GetRoomsList()
         {
             return SendRequest((byte)RequestCodes.ROOMS_LIST_CODE);
         }
@@ -245,7 +246,7 @@ namespace TriviaClientApp
         /// </summary>
         /// <param name="roomId">room id</param>
         /// <returns>response</returns>
-        public Dictionary<string, object> GetPlayersInRoom(int roomId)
+        public JObject GetPlayersInRoom(int roomId)
         {
             return SendRequest((byte)RequestCodes.PLAYERS_IN_ROOM_CODE, roomId.ToString());
         }
@@ -254,7 +255,7 @@ namespace TriviaClientApp
         /// Get the high scores.
         /// </summary>
         /// <returns>response</returns>
-        public Dictionary<string, object> GetHighScores()
+        public JObject GetHighScores()
         {
             return SendRequest((byte)RequestCodes.HIGH_SCORES_CODE);
         }
@@ -263,7 +264,7 @@ namespace TriviaClientApp
         /// Get the personal stats.
         /// </summary>
         /// <returns>response</returns>
-        public Dictionary<string, object> GetPersonalStats()
+        public JObject GetPersonalStats()
         {
             return SendRequest((byte)RequestCodes.PERSONAL_STATS_CODE);
         }
@@ -273,9 +274,9 @@ namespace TriviaClientApp
         /// </summary>
         /// <param name="roomId">room id</param>
         /// <returns>response</returns>
-        public Dictionary<string, object> JoinRoom(int roomId)
+        public JObject JoinRoom(int roomId)
         {
-            Dictionary<string, object> data = new Dictionary<string, object>() { { "roomId", roomId } };
+            JObject data = new JObject() { { "roomId", roomId } };
             return SendRequestDict((byte)RequestCodes.JOIN_ROOM_CODE, data);
         }
 
@@ -287,9 +288,9 @@ namespace TriviaClientApp
         /// <param name="questionCount">question count</param>
         /// <param name="answerTimeout">answer timeout</param>
         /// <returns>response</returns>
-        public Dictionary<string, object> CreateRoom(string roomName, int maxUsers, int questionCount, int answerTimeout)
+        public JObject CreateRoom(string roomName, int maxUsers, int questionCount, int answerTimeout)
         {
-            Dictionary<string, object> data = new Dictionary<string, object>() { { "roomName", roomName }, { "maxUsers", maxUsers }, { "questionCount", questionCount }, { "answerTimeout", answerTimeout } };
+            JObject data = new JObject() { { "roomName", roomName }, { "maxUsers", maxUsers }, { "questionCount", questionCount }, { "answerTimeout", answerTimeout } };
             return SendRequestDict((byte)RequestCodes.CREATE_ROOM_CODE, data);
         }
     }

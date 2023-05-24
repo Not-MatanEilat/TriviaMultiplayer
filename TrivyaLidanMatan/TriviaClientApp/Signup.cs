@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
@@ -164,13 +165,11 @@ namespace TriviaClientApp
 
             TriviaClient client = TriviaClient.GetClient();
 
-            Dictionary<string, object> result = client.Signup(username, password, email);
+            JObject result = client.Signup(username, password, email);
 
-            Dictionary<string, object> message = result["message"] as Dictionary<string, object>;
-            if (message != null)
+            if (result != null)
             {
-                JsonElement element = (JsonElement)message["status"];
-                int status = element.GetInt32();
+                int status = (int) result["message"]["status"];
                 if (status == TriviaClient.SUCCESS_CODE)
                 {
                     MessageBox.Show("Signup Successful!");

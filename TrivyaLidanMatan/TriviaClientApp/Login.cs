@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text.Json;
+using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
@@ -18,13 +19,12 @@ namespace TriviaClientApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Dictionary<string, object> res = client.Login(usernameBox.Text, passwordBox.Text);
+            JObject res = client.Login(usernameBox.Text, passwordBox.Text);
 
-            Dictionary<string, object> message = res["message"] as Dictionary<string, object>;
-            if (message != null)
+            if (res != null)
             {
-                JsonElement element = (JsonElement)message["status"];
-                int status = element.GetInt32();
+                
+                int status = (int) res["message"]["status"];
                 if (status == TriviaClient.SUCCESS_CODE)
                 {
                     MessageBox.Show("Login Successful!");
