@@ -42,5 +42,13 @@ namespace TriviaClientApp
             createRoom.Show();
             Close();
         }
+
+        private void JoinRoomButton_Click(object sender, EventArgs e)
+        {
+            JoinRoom joinRoom = new JoinRoom();
+            joinRoom.Show();
+            Close();
+
+        }
     }
 }

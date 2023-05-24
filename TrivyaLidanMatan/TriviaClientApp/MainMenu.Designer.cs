@@ -30,7 +30,7 @@
         {
             label1 = new Label();
             CreateRoomButton = new Button();
-            button2 = new Button();
+            JoinRoomButton = new Button();
             button3 = new Button();
             button4 = new Button();
             userConnected = new Label();
@@ -56,14 +56,15 @@
             CreateRoomButton.UseVisualStyleBackColor = true;
             CreateRoomButton.Click += CreateRoomButton_Click;
             // 
-            // button2
+            // JoinRoomButton
             // 
-            button2.Location = new Point(344, 167);
-            button2.Name = "button2";
-            button2.Size = new Size(107, 30);
-            button2.TabIndex = 1;
-            button2.Text = "Join Room";
-            button2.UseVisualStyleBackColor = true;
+            JoinRoomButton.Location = new Point(344, 167);
+            JoinRoomButton.Name = "JoinRoomButton";
+            JoinRoomButton.Size = new Size(107, 30);
+            JoinRoomButton.TabIndex = 1;
+            JoinRoomButton.Text = "Join Room";
+            JoinRoomButton.UseVisualStyleBackColor = true;
+            JoinRoomButton.Click += JoinRoomButton_Click;
             // 
             // button3
             // 
@@ -101,7 +102,7 @@
             Controls.Add(userConnected);
             Controls.Add(button4);
             Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(JoinRoomButton);
             Controls.Add(CreateRoomButton);
             Controls.Add(label1);
             Name = "MainMenu";
@@ -119,5 +120,6 @@
         private Button button3;
         private Button button4;
         private Label userConnected;
+        private Button JoinRoomButton;
     }
 }

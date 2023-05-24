@@ -107,5 +107,12 @@ namespace TriviaClientApp
         {
 
         }
+
+        private void BackButtonPress_Click(object sender, EventArgs e)
+        {
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
+            Close();
+        }
     }
 }

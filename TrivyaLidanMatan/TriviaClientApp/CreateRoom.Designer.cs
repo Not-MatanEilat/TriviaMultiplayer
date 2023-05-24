@@ -38,6 +38,7 @@
             button1 = new Button();
             questionsAmountTextBox = new TextBox();
             label5 = new Label();
+            BackButtonPress = new Button();
             SuspendLayout();
             // 
             // label1
@@ -130,12 +131,23 @@
             label5.Text = "Questions Amount";
             label5.Click += label3_Click;
             // 
+            // BackButtonPress
+            // 
+            BackButtonPress.Location = new Point(12, 404);
+            BackButtonPress.Name = "BackButtonPress";
+            BackButtonPress.Size = new Size(75, 23);
+            BackButtonPress.TabIndex = 4;
+            BackButtonPress.Text = "Back";
+            BackButtonPress.UseVisualStyleBackColor = true;
+            BackButtonPress.Click += BackButtonPress_Click;
+            // 
             // CreateRoom
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Green;
             ClientSize = new Size(800, 450);
+            Controls.Add(BackButtonPress);
             Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -164,5 +176,6 @@
         private Button button1;
         private TextBox questionsAmountTextBox;
         private Label label5;
+        private Button BackButtonPress;
     }
 }
