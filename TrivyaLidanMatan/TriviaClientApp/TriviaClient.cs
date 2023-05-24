@@ -15,7 +15,6 @@ namespace TriviaClientApp
         public const int SERVER_PORT = 8826;
         public const int BYTE_SIZE = 1024;
 
-
         public const int ERROR_CODE = 0;
         public const int SUCCESS_CODE = 1;
 
@@ -32,12 +31,29 @@ namespace TriviaClientApp
             CREATE_ROOM_CODE = 9
         }
 
+        private static TriviaClient? instance = null;
+
+        /// <summary>
+        /// Get the Client
+        /// If the client is not connected it will connect it
+        /// </summary>
+        /// <returns>The Client</returns>
+        public static TriviaClient GetClient()
+        {
+            if (instance == null)
+            {
+                instance = new TriviaClient();
+                instance.Connect();
+            }
+
+            return instance;
+        }
+
         private Socket socket;
 
         public TriviaClient()
         {
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            
         }
 
         /// <summary>
@@ -115,8 +131,8 @@ namespace TriviaClientApp
             catch (Exception e)
             {
                 Debug.WriteLine(e);
-                MessageBox.Show("Failed to connect to server.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
+                MessageBox.Show("Failed to connect to server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(1);
             }
             Span<byte> buffer = new byte[BYTE_SIZE];
             socket.Receive(buffer);
