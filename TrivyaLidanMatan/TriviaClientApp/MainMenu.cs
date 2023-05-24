@@ -35,5 +35,12 @@ namespace TriviaClientApp
             string username = TriviaClient.GetClient().Username;
             userConnected.Text = "Connected as: " + username;
         }
+
+        private void CreateRoomButton_Click(object sender, EventArgs e)
+        {
+            CreateRoom createRoom = new CreateRoom();
+            createRoom.Show();
+            Close();
+        }
     }
 }
