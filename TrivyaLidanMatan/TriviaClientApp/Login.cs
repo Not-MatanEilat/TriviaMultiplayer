@@ -34,8 +34,10 @@ namespace TriviaClientApp
                     MessageBox.Show("Login Failed!");
                 }
             }
-
-            
+            else
+            {
+                MessageBox.Show("Login Really Failed!");
+            }
         }
     }
 }
