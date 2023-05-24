@@ -24,5 +24,9 @@
         private Label label1;
         private TextBox passwordTextBox;
         private TextBox emailTextBox;
+        private Button signupButton;
+        private Label label2;
+        private Label label3;
+        private Label label4;
     }
 }
