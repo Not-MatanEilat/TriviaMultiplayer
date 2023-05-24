@@ -16,7 +16,7 @@ namespace TriviaClientApp
             ApplicationConfiguration.Initialize();
             var mainForm = new Login();
             mainForm.Show();
-            Thread thread = new Thread(new ThreadStart(() =>
+            Thread thread = new Thread(() =>
             {
                 Thread.Sleep(1000);
                 while (Application.OpenForms.Count != 0)
@@ -24,7 +24,7 @@ namespace TriviaClientApp
                     Thread.Sleep(1000);
                 }
                 Application.Exit();
-            }));
+            });
             thread.Start();
             Application.Run();
         }

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
@@ -18,6 +19,7 @@ namespace TriviaClientApp
         public const int GROUP_BOX_WIDTH = 300;
         public const int GROUP_BOX_HEIGHT = 154;
         public const int GROUP_BOX_MARGIN = 160;
+        private Mutex mutex = new();
 
         public JoinRoom()
         {
@@ -32,7 +34,8 @@ namespace TriviaClientApp
 
         public void loadAllRooms()
         {
-            roomsListFlow.Controls.Clear();
+            mutex.WaitOne();
+            Invoke(() => roomsListFlow.Controls.Clear());
             TriviaClient client = TriviaClient.GetClient();
             JObject result = client.GetRoomsList();
             JToken rooms = result["message"]["rooms"];
@@ -83,6 +86,7 @@ namespace TriviaClientApp
                     // set the properties to the join room groupbox button
                     joinRoomButton.Text = "Join Room";
                     joinRoomButton.Click += JoinRoom_Click;
+                    joinRoomButton.TabIndex = 1 + i;
 
 
                     groupBox.Location = new Point(10, 100 + i * GROUP_BOX_MARGIN);
@@ -95,16 +99,12 @@ namespace TriviaClientApp
                         Debug.WriteLine(e.Message);
                         return;
                     }
-                    
+
 
                     i++;
                 }
             }
-        }
-
-        private void JoinRoomButton_Click(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
+            mutex.ReleaseMutex();
         }
 
         private void BackButtonPress_Click(object sender, EventArgs e)
@@ -123,7 +123,7 @@ namespace TriviaClientApp
             TriviaClient client = TriviaClient.GetClient();
             JObject result = client.JoinRoom(roomId);
             // this for now until room form
-            if ((int) result["code"] == TriviaClient.ERROR_CODE)
+            if ((int)result["code"] == TriviaClient.ERROR_CODE)
             {
                 MessageBox.Show(result["message"]["message"].ToString(), "Room ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -131,6 +131,12 @@ namespace TriviaClientApp
             {
                 MessageBox.Show("Joined room successfully!");
             }
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            Thread loader = new Thread(loadAllRooms);
+            loader.Start();
         }
     }
 

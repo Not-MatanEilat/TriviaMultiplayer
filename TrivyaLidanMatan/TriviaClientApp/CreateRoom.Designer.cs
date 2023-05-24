@@ -73,7 +73,7 @@
             amountQuestionsTextBox.Location = new Point(367, 147);
             amountQuestionsTextBox.Name = "amountQuestionsTextBox";
             amountQuestionsTextBox.Size = new Size(100, 23);
-            amountQuestionsTextBox.TabIndex = 1;
+            amountQuestionsTextBox.TabIndex = 2;
             // 
             // label3
             // 
@@ -90,7 +90,7 @@
             maxPlayersTextBox.Location = new Point(367, 187);
             maxPlayersTextBox.Name = "maxPlayersTextBox";
             maxPlayersTextBox.Size = new Size(100, 23);
-            maxPlayersTextBox.TabIndex = 1;
+            maxPlayersTextBox.TabIndex = 3;
             maxPlayersTextBox.TextChanged += maxPlayersTextBox_TextChanged;
             // 
             // label4
@@ -108,7 +108,7 @@
             button1.Location = new Point(379, 266);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
-            button1.TabIndex = 3;
+            button1.TabIndex = 5;
             button1.Text = "Create";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -118,7 +118,7 @@
             questionsAmountTextBox.Location = new Point(367, 227);
             questionsAmountTextBox.Name = "questionsAmountTextBox";
             questionsAmountTextBox.Size = new Size(100, 23);
-            questionsAmountTextBox.TabIndex = 1;
+            questionsAmountTextBox.TabIndex = 4;
             questionsAmountTextBox.TextChanged += maxPlayersTextBox_TextChanged;
             // 
             // label5
@@ -136,7 +136,7 @@
             BackButtonPress.Location = new Point(12, 404);
             BackButtonPress.Name = "BackButtonPress";
             BackButtonPress.Size = new Size(75, 23);
-            BackButtonPress.TabIndex = 4;
+            BackButtonPress.TabIndex = 6;
             BackButtonPress.Text = "Back";
             BackButtonPress.UseVisualStyleBackColor = true;
             BackButtonPress.Click += BackButtonPress_Click;
@@ -158,6 +158,8 @@
             Controls.Add(amountQuestionsTextBox);
             Controls.Add(nameRoomTextBox);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "CreateRoom";
             Text = "CreateRoom";
             ResumeLayout(false);

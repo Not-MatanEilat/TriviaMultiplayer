@@ -31,6 +31,7 @@
             label1 = new Label();
             BackButtonPress = new Button();
             roomsListFlow = new FlowLayoutPanel();
+            refreshButton = new Button();
             SuspendLayout();
             // 
             // label1
@@ -63,15 +64,29 @@
             roomsListFlow.TabIndex = 6;
             roomsListFlow.WrapContents = false;
             // 
+            // refreshButton
+            // 
+            refreshButton.Location = new Point(406, 12);
+            refreshButton.Name = "refreshButton";
+            refreshButton.Size = new Size(23, 23);
+            refreshButton.TabIndex = 7;
+            refreshButton.TabStop = false;
+            refreshButton.Text = "↻";
+            refreshButton.UseVisualStyleBackColor = true;
+            refreshButton.Click += refreshButton_Click;
+            // 
             // JoinRoom
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 64, 0);
             ClientSize = new Size(800, 450);
+            Controls.Add(refreshButton);
             Controls.Add(roomsListFlow);
             Controls.Add(BackButtonPress);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "JoinRoom";
             ShowInTaskbar = false;
             Text = "JoinRoom";
@@ -85,5 +100,6 @@
         private Label label1;
         private Button BackButtonPress;
         private FlowLayoutPanel roomsListFlow;
+        private Button refreshButton;
     }
 }

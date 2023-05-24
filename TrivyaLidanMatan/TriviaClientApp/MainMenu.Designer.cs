@@ -52,7 +52,7 @@
             CreateRoomButton.Location = new Point(344, 203);
             CreateRoomButton.Name = "CreateRoomButton";
             CreateRoomButton.Size = new Size(107, 30);
-            CreateRoomButton.TabIndex = 1;
+            CreateRoomButton.TabIndex = 2;
             CreateRoomButton.Text = "Create Room";
             CreateRoomButton.UseVisualStyleBackColor = true;
             CreateRoomButton.Click += CreateRoomButton_Click;
@@ -72,7 +72,7 @@
             button3.Location = new Point(344, 239);
             button3.Name = "button3";
             button3.Size = new Size(107, 30);
-            button3.TabIndex = 1;
+            button3.TabIndex = 3;
             button3.Text = "Stats";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
@@ -82,7 +82,7 @@
             button4.Location = new Point(344, 275);
             button4.Name = "button4";
             button4.Size = new Size(107, 30);
-            button4.TabIndex = 1;
+            button4.TabIndex = 4;
             button4.Text = "Exit";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
@@ -91,7 +91,7 @@
             // 
             userConnected.AutoSize = true;
             userConnected.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            userConnected.Location = new Point(93, 12);
+            userConnected.Location = new Point(328, 127);
             userConnected.Name = "userConnected";
             userConnected.Size = new Size(145, 21);
             userConnected.TabIndex = 2;
@@ -99,10 +99,10 @@
             // 
             // logoutButton
             // 
-            logoutButton.Location = new Point(12, 12);
+            logoutButton.Location = new Point(12, 415);
             logoutButton.Name = "logoutButton";
             logoutButton.Size = new Size(75, 23);
-            logoutButton.TabIndex = 3;
+            logoutButton.TabIndex = 5;
             logoutButton.Text = "Logout";
             logoutButton.UseVisualStyleBackColor = true;
             logoutButton.Click += logoutButton_Click;
@@ -120,6 +120,8 @@
             Controls.Add(JoinRoomButton);
             Controls.Add(CreateRoomButton);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "MainMenu";
             Text = "MainMenu";
             Load += MainMenu_Load;

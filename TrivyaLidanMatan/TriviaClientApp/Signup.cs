@@ -32,16 +32,16 @@ namespace TriviaClientApp
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            button1 = new Button();
+            BackButtonPress = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(398, 50);
+            label1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(389, 60);
             label1.Name = "label1";
-            label1.Size = new Size(100, 37);
+            label1.Size = new Size(119, 45);
             label1.TabIndex = 0;
             label1.Text = "Signup";
             label1.Click += label1_Click;
@@ -59,9 +59,9 @@ namespace TriviaClientApp
             // 
             passwordTextBox.Location = new Point(398, 186);
             passwordTextBox.Name = "passwordTextBox";
-            passwordTextBox.PasswordChar = '*';
             passwordTextBox.Size = new Size(100, 23);
             passwordTextBox.TabIndex = 2;
+            passwordTextBox.UseSystemPasswordChar = true;
             passwordTextBox.TextChanged += passwordTextBox_TextChanged;
             // 
             // emailTextBox
@@ -69,7 +69,7 @@ namespace TriviaClientApp
             emailTextBox.Location = new Point(398, 228);
             emailTextBox.Name = "emailTextBox";
             emailTextBox.Size = new Size(100, 23);
-            emailTextBox.TabIndex = 2;
+            emailTextBox.TabIndex = 3;
             emailTextBox.TextChanged += passwordTextBox_TextChanged;
             // 
             // signupButton
@@ -77,7 +77,7 @@ namespace TriviaClientApp
             signupButton.Location = new Point(398, 271);
             signupButton.Name = "signupButton";
             signupButton.Size = new Size(100, 27);
-            signupButton.TabIndex = 3;
+            signupButton.TabIndex = 4;
             signupButton.Text = "Signup";
             signupButton.UseVisualStyleBackColor = true;
             signupButton.Click += signupButton_Click;
@@ -90,7 +90,6 @@ namespace TriviaClientApp
             label2.Size = new Size(60, 15);
             label2.TabIndex = 4;
             label2.Text = "Username";
-            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -100,7 +99,6 @@ namespace TriviaClientApp
             label3.Size = new Size(57, 15);
             label3.TabIndex = 4;
             label3.Text = "Password";
-            label3.Click += label2_Click;
             // 
             // label4
             // 
@@ -110,23 +108,23 @@ namespace TriviaClientApp
             label4.Size = new Size(36, 15);
             label4.TabIndex = 4;
             label4.Text = "Email";
-            label4.Click += label2_Click;
             // 
-            // button1
+            // BackButtonPress
             // 
-            button1.Location = new Point(12, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 5;
-            button1.Text = "Login";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            BackButtonPress.Location = new Point(12, 400);
+            BackButtonPress.Name = "BackButtonPress";
+            BackButtonPress.Size = new Size(75, 23);
+            BackButtonPress.TabIndex = 7;
+            BackButtonPress.Text = "Back";
+            BackButtonPress.UseVisualStyleBackColor = true;
+            BackButtonPress.Click += BackButtonPress_Click;
             // 
             // Signup
             // 
+            AcceptButton = signupButton;
             BackColor = Color.SteelBlue;
             ClientSize = new Size(920, 435);
-            Controls.Add(button1);
+            Controls.Add(BackButtonPress);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -189,12 +187,7 @@ namespace TriviaClientApp
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void BackButtonPress_Click(object sender, EventArgs e)
         {
             Login login = new Login();
             login.Show();

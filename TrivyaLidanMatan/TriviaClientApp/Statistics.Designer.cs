@@ -73,6 +73,8 @@
             Controls.Add(button1);
             Controls.Add(BackButtonPress);
             Controls.Add(myStats);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Statistics";
             Text = "Statistics";
             Load += Statistics_Load;

@@ -28,6 +28,6 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private Button button1;
+        private Button BackButtonPress;
     }
 }
