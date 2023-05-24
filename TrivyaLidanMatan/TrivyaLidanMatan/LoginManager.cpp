@@ -16,6 +16,11 @@ LoginManager::LoginManager(IDataBase* database) : m_database(database)
  */
 void LoginManager::signUp(const string& username, const string& password, const string& email)
 {
+	// checks if an empty field was given to us
+	if (username.empty() || password.empty() || email.empty())
+	{
+		throw std::exception("One of the fields is empty");
+	}
 	// check if user exits already
 	if (m_database->doesUserExist(username))
 	{
