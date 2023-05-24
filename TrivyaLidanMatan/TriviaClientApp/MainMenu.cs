@@ -30,8 +30,7 @@ namespace TriviaClientApp
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            // since class op has no saved username for now you are always Lidan
-            string username = "Lidan";
+            string username = TriviaClient.GetClient().Username;
             userConnected.Text = "Connected as: " + username;
         }
     }
