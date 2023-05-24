@@ -87,7 +87,7 @@ RequestResult MenuRequestHandler::logout(RequestInfo const& info)
 	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
 	response.status = SUCCESS;
 
-	result.newHandler = this;
+	result.newHandler = m_handlerFactory.createLoginRequestHandler();
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
