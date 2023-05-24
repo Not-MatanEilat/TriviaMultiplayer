@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
@@ -69,7 +70,9 @@ namespace TriviaClientApp
                     // set all of the properties to the buttons/labels
                     int roomIdInt = (int)room["id"];
                     roomName.Text = room["name"].ToString();
-                    roomPlayersAmount.Text = "Players: " + client.GetPlayersInRoom(roomIdInt).Count;
+                    JObject getPlayers = client.GetPlayersInRoom(roomIdInt);
+                    JToken players = getPlayers["message"]["players"];
+                    roomPlayersAmount.Text = "Players: " + players.Count();
                     roomMaxPlayers.Text = "Max Players: " + room["maxPlayers"];
                     roomQuestions.Text = "Questions Amount: " + room["numOfQuestionsInGame"];
                     roomId.Text = room["id"].ToString();
