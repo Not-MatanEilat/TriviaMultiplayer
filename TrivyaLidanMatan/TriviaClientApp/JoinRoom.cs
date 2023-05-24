@@ -18,8 +18,6 @@ namespace TriviaClientApp
         public const int GROUP_BOX_HEIGHT = 154;
         public const int GROUP_BOX_MARGIN = 160;
 
-
-        List<GroupBox> roomsList = new List<GroupBox>();
         public JoinRoom()
         {
             InitializeComponent();
@@ -32,10 +30,7 @@ namespace TriviaClientApp
 
         public void loadAllRooms()
         {
-            foreach (GroupBox room in roomsList)
-            {
-                Controls.Remove(room);
-            }
+            roomsListFlow.Controls.Clear();
 
             TriviaClient client = TriviaClient.GetClient();
             JObject rooms = client.GetRoomsList();
@@ -86,11 +81,10 @@ namespace TriviaClientApp
                 joinRoomButton.Click += JoinRoom_Click;
 
 
-                groupBox.Location = new Point(466, 100 + i * GROUP_BOX_MARGIN);
+                groupBox.Location = new Point(10, 100 + i * GROUP_BOX_MARGIN);
 
 
-                Controls.Add(groupBox);
-                roomsList.Add(groupBox);
+                roomsListFlow.Controls.Add(groupBox);
 
                 i++;
             }
@@ -116,9 +110,16 @@ namespace TriviaClientApp
             GroupBox groupBox = (GroupBox)button.Parent;
             int roomId = int.Parse(groupBox.Controls[0].Text);
             TriviaClient client = TriviaClient.GetClient();
-            client.JoinRoom(roomId);
+            JObject result = client.JoinRoom(roomId);
             // this for now until room form
-            MessageBox.Show("Joined room successfully!");
+            if ((int) result["code"] == TriviaClient.ERROR_CODE)
+            {
+                MessageBox.Show(result["message"]["message"].ToString(), "Room ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Joined room successfully!");
+            }
         }
     }
 

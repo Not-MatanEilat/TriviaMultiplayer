@@ -30,6 +30,7 @@
         {
             label1 = new Label();
             BackButtonPress = new Button();
+            roomsListFlow = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // label1
@@ -52,12 +53,23 @@
             BackButtonPress.UseVisualStyleBackColor = true;
             BackButtonPress.Click += BackButtonPress_Click;
             // 
+            // roomsListFlow
+            // 
+            roomsListFlow.AutoScroll = true;
+            roomsListFlow.FlowDirection = FlowDirection.TopDown;
+            roomsListFlow.Location = new Point(435, 12);
+            roomsListFlow.Name = "roomsListFlow";
+            roomsListFlow.Size = new Size(353, 426);
+            roomsListFlow.TabIndex = 6;
+            roomsListFlow.WrapContents = false;
+            // 
             // JoinRoom
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 64, 0);
             ClientSize = new Size(800, 450);
+            Controls.Add(roomsListFlow);
             Controls.Add(BackButtonPress);
             Controls.Add(label1);
             Name = "JoinRoom";
@@ -72,5 +84,6 @@
 
         private Label label1;
         private Button BackButtonPress;
+        private FlowLayoutPanel roomsListFlow;
     }
 }
