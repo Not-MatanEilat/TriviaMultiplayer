@@ -32,5 +32,12 @@ namespace TriviaClientApp
             mainMenu.Show();
             Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            HighScore menu = new HighScore();
+            menu.Show();
+            Close();
+        }
     }
 }
