@@ -15,6 +15,7 @@ namespace TriviaClientApp
         public const string SERVER_IP = "localhost";
         public const int SERVER_PORT = 8826;
         public const int BYTE_SIZE = 1024;
+        public const int TIMEOUT = 5000;
 
         public const int ERROR_CODE = 0;
         public const int SUCCESS_CODE = 1;
@@ -57,6 +58,8 @@ namespace TriviaClientApp
         public TriviaClient()
         {
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket.ReceiveTimeout = TIMEOUT;
+            socket.SendTimeout = TIMEOUT;
             this.Username = "";
         }
 
@@ -131,6 +134,8 @@ namespace TriviaClientApp
             try
             {
                 socket.Connect(SERVER_IP, SERVER_PORT);
+                Span<byte> buffer = new byte[BYTE_SIZE];
+                socket.Receive(buffer);
             }
             catch (Exception e)
             {
@@ -138,8 +143,6 @@ namespace TriviaClientApp
                 MessageBox.Show("Failed to connect to server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(1);
             }
-            Span<byte> buffer = new byte[BYTE_SIZE];
-            socket.Receive(buffer);
         }
 
         /// <summary>
@@ -149,7 +152,17 @@ namespace TriviaClientApp
         /// <returns>response</returns>
         private List<byte> SendRequestBytes(List<byte> message)
         {
-            socket.Send(message.ToArray());
+            try
+            {
+                socket.Send(message.ToArray());
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                MessageBox.Show("Failed to send to server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(1);
+            }
+
             return ReceiveResponseBytes();
         }
 
@@ -160,7 +173,16 @@ namespace TriviaClientApp
         private List<byte> ReceiveResponseBytes()
         {
             byte[] buffer = new byte[BYTE_SIZE];
-            socket.Receive(buffer);
+            try
+            {
+                socket.Receive(buffer);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                MessageBox.Show("Failed to receive from server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(1);
+            }
             return new List<byte>(buffer);
         }
 
@@ -170,7 +192,7 @@ namespace TriviaClientApp
         /// <param name="code">request code</param>
         /// <param name="message">the message</param>
         /// <returns></returns>
-        public JObject SendRequest(byte code, string message = "")
+        private JObject SendRequest(byte code, string message = "")
         {
             return ParseMessage(SendRequestBytes(BuildMessage(code, message)));
         }
@@ -181,8 +203,12 @@ namespace TriviaClientApp
         /// <param name="code">request code</param>
         /// <param name="dict">request data</param>
         /// <returns>response</returns>
-        public JObject SendRequestDict(byte code, JObject dict)
+        public JObject SendRequestDict(byte code, JObject dict = null)
         {
+            if (dict == null)
+            {
+                dict = new JObject();
+            }
             return ParseMessageToDict(SendRequestBytes(BuildMessageFromDict(code, dict)));
         }
 
@@ -227,7 +253,7 @@ namespace TriviaClientApp
         /// <returns>response</returns>
         public JObject Logout()
         {
-            return SendRequest((byte)RequestCodes.LOGOUT_CODE);
+            return SendRequestDict((byte)RequestCodes.LOGOUT_CODE);
         }
 
         /// <summary>
@@ -236,7 +262,7 @@ namespace TriviaClientApp
         /// <returns>response</returns>
         public JObject GetRoomsList()
         {
-            return SendRequest((byte)RequestCodes.ROOMS_LIST_CODE);
+            return SendRequestDict((byte)RequestCodes.ROOMS_LIST_CODE);
         }
 
         /// <summary>
@@ -246,7 +272,9 @@ namespace TriviaClientApp
         /// <returns>response</returns>
         public JObject GetPlayersInRoom(int roomId)
         {
-            return SendRequest((byte)RequestCodes.PLAYERS_IN_ROOM_CODE, roomId.ToString());
+            JObject data = new JObject();
+            data["roomId"] = roomId;
+            return SendRequestDict((byte)RequestCodes.PLAYERS_IN_ROOM_CODE, data);
         }
 
         /// <summary>
@@ -255,7 +283,7 @@ namespace TriviaClientApp
         /// <returns>response</returns>
         public JObject GetHighScores()
         {
-            return SendRequest((byte)RequestCodes.HIGH_SCORES_CODE);
+            return SendRequestDict((byte)RequestCodes.HIGH_SCORES_CODE);
         }
 
         /// <summary>
@@ -264,7 +292,7 @@ namespace TriviaClientApp
         /// <returns>response</returns>
         public JObject GetPersonalStats()
         {
-            return SendRequest((byte)RequestCodes.PERSONAL_STATS_CODE);
+            return SendRequestDict((byte)RequestCodes.PERSONAL_STATS_CODE);
         }
 
         /// <summary>
