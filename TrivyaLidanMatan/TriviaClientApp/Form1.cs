@@ -4,6 +4,8 @@ namespace TriviaClientApp
 {
     public partial class Form1 : Form
     {
+        private TriviaClient client;
+
         public Form1()
         {
             InitializeComponent();
@@ -11,14 +13,15 @@ namespace TriviaClientApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            TriviaClient client = new TriviaClient();
-            Dictionary<string, object> dict = new Dictionary<string, object>
+            client = new TriviaClient();
+            client.Connect();
+            var res = client.Login("lidan", "error12#$");
+            Dictionary<string, object> msg = res["message"] as Dictionary<string, object>;
+            if (msg != null)
             {
-                {"username", "david"},
-                {"password", "123456"}
-            };
-            List<byte> msg = client.BuildMessageList(1, "Hello");
-            Debug.WriteLine(msg.ToString());
+                Debug.WriteLine(msg["status"]);
+            }
+            
         }
     }
 }
