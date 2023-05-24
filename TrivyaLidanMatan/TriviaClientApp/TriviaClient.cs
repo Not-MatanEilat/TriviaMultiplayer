@@ -192,7 +192,7 @@ namespace TriviaClientApp
         /// <param name="code">request code</param>
         /// <param name="message">the message</param>
         /// <returns></returns>
-        public JObject SendRequest(byte code, string message = "")
+        private JObject SendRequest(byte code, string message = "")
         {
             return ParseMessage(SendRequestBytes(BuildMessage(code, message)));
         }
@@ -203,8 +203,12 @@ namespace TriviaClientApp
         /// <param name="code">request code</param>
         /// <param name="dict">request data</param>
         /// <returns>response</returns>
-        public JObject SendRequestDict(byte code, JObject dict)
+        public JObject SendRequestDict(byte code, JObject dict = null)
         {
+            if (dict == null)
+            {
+                dict = new JObject();
+            }
             return ParseMessageToDict(SendRequestBytes(BuildMessageFromDict(code, dict)));
         }
 
@@ -249,7 +253,7 @@ namespace TriviaClientApp
         /// <returns>response</returns>
         public JObject Logout()
         {
-            return SendRequest((byte)RequestCodes.LOGOUT_CODE);
+            return SendRequestDict((byte)RequestCodes.LOGOUT_CODE);
         }
 
         /// <summary>
@@ -258,7 +262,7 @@ namespace TriviaClientApp
         /// <returns>response</returns>
         public JObject GetRoomsList()
         {
-            return SendRequest((byte)RequestCodes.ROOMS_LIST_CODE);
+            return SendRequestDict((byte)RequestCodes.ROOMS_LIST_CODE);
         }
 
         /// <summary>
@@ -268,7 +272,9 @@ namespace TriviaClientApp
         /// <returns>response</returns>
         public JObject GetPlayersInRoom(int roomId)
         {
-            return SendRequest((byte)RequestCodes.PLAYERS_IN_ROOM_CODE, roomId.ToString());
+            JObject data = new JObject();
+            data["roomId"] = roomId;
+            return SendRequestDict((byte)RequestCodes.PLAYERS_IN_ROOM_CODE, data);
         }
 
         /// <summary>
@@ -277,7 +283,7 @@ namespace TriviaClientApp
         /// <returns>response</returns>
         public JObject GetHighScores()
         {
-            return SendRequest((byte)RequestCodes.HIGH_SCORES_CODE);
+            return SendRequestDict((byte)RequestCodes.HIGH_SCORES_CODE);
         }
 
         /// <summary>
@@ -286,7 +292,7 @@ namespace TriviaClientApp
         /// <returns>response</returns>
         public JObject GetPersonalStats()
         {
-            return SendRequest((byte)RequestCodes.PERSONAL_STATS_CODE);
+            return SendRequestDict((byte)RequestCodes.PERSONAL_STATS_CODE);
         }
 
         /// <summary>

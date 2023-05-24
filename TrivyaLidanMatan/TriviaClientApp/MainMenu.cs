@@ -20,7 +20,9 @@ namespace TriviaClientApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            var form = new Statistics();
+            form.Show();
+            Close();
         }
 
         private void label2_Click(object sender, EventArgs e)
