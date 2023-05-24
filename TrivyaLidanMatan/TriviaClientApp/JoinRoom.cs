@@ -37,6 +37,7 @@ namespace TriviaClientApp
                 Controls.Remove(room);
             }
 
+            roomsList.Clear();
             TriviaClient client = TriviaClient.GetClient();
             JObject rooms = client.GetRoomsList();
             int i = 0;
