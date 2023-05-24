@@ -9,6 +9,21 @@ using System.Text.Json;
 
 namespace TriviaClientApp
 {
+
+    public class Response
+    {
+        public Response(int code, int length, Dictionary<string, object> data)
+        {
+            this.code = code;
+            this.length = length;
+            this.data = data;
+        }
+
+        public int code { get; set; }
+        public int length { get; set; }
+        public Dictionary<string, object> data { get; set; }
+    }
+
     public class TriviaClient
     {
         public const string SERVER_IP = "localhost";

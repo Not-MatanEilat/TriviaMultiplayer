@@ -1,3 +1,5 @@
+using System.Text.Json.Nodes;
+
 namespace TriviaClientApp
 {
     internal static class Program
@@ -11,7 +13,19 @@ namespace TriviaClientApp
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Signup());
+            var mainForm = new Login();
+            mainForm.Show();
+            Thread thread = new Thread(new ThreadStart(() =>
+            {
+                Thread.Sleep(1000);
+                while (Application.OpenForms.Count != 0)
+                {
+                    Thread.Sleep(1000);
+                }
+                Application.Exit();
+            }));
+            thread.Start();
+            Application.Run();
         }
     }
 }

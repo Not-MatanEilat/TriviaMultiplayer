@@ -98,6 +98,7 @@
             signupButton.TabIndex = 6;
             signupButton.Text = "No Account?";
             signupButton.UseVisualStyleBackColor = true;
+            signupButton.Click += signupButton_Click;
             // 
             // Login
             // 

@@ -29,8 +29,9 @@ namespace TriviaClientApp
             emailTextBox = new TextBox();
             signupButton = new Button();
             label2 = new Label();
-            this.label3 = new Label();
-            this.label4 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -92,29 +93,40 @@ namespace TriviaClientApp
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new Point(332, 239);
-            this.label3.Name = "label3";
-            this.label3.Size = new Size(57, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Password";
-            this.label3.Click += this.label2_Click;
+            label3.AutoSize = true;
+            label3.Location = new Point(332, 239);
+            label3.Name = "label3";
+            label3.Size = new Size(57, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Password";
+            label3.Click += label2_Click;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new Point(342, 286);
-            this.label4.Name = "label4";
-            this.label4.Size = new Size(36, 15);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Email";
-            this.label4.Click += this.label2_Click;
+            label4.AutoSize = true;
+            label4.Location = new Point(342, 286);
+            label4.Name = "label4";
+            label4.Size = new Size(36, 15);
+            label4.TabIndex = 4;
+            label4.Text = "Email";
+            label4.Click += label2_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(12, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 5;
+            button1.Text = "Login";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // Signup
             // 
             ClientSize = new Size(920, 435);
-            Controls.Add(this.label4);
-            Controls.Add(this.label3);
+            Controls.Add(button1);
+            Controls.Add(label4);
+            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(signupButton);
             Controls.Add(emailTextBox);
@@ -124,6 +136,7 @@ namespace TriviaClientApp
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "Signup";
+            Text = "Signup";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -177,6 +190,13 @@ namespace TriviaClientApp
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            Close();
         }
     }
 }

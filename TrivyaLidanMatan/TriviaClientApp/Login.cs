@@ -39,5 +39,12 @@ namespace TriviaClientApp
                 MessageBox.Show("Login Really Failed!");
             }
         }
+
+        private void signupButton_Click(object sender, EventArgs e)
+        {
+            Signup signup = new Signup();
+            signup.Show();
+            Close();
+        }
     }
 }
