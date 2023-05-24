@@ -74,6 +74,7 @@
             button3.TabIndex = 1;
             button3.Text = "Stats";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -83,6 +84,7 @@
             button4.TabIndex = 1;
             button4.Text = "Exit";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // userConnected
             // 

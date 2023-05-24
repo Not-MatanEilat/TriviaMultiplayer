@@ -50,5 +50,17 @@ namespace TriviaClientApp
             Close();
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Statistics statistics = new Statistics();
+            statistics.Show();
+            Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

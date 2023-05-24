@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             myStats = new Label();
+            BackButtonPress = new Button();
             SuspendLayout();
             // 
             // myStats
@@ -41,12 +42,23 @@
             myStats.TabIndex = 0;
             myStats.Text = "MY STATS";
             // 
+            // BackButtonPress
+            // 
+            BackButtonPress.Location = new Point(12, 415);
+            BackButtonPress.Name = "BackButtonPress";
+            BackButtonPress.Size = new Size(75, 23);
+            BackButtonPress.TabIndex = 6;
+            BackButtonPress.Text = "Back";
+            BackButtonPress.UseVisualStyleBackColor = true;
+            BackButtonPress.Click += BackButtonPress_Click;
+            // 
             // Statistics
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
             ClientSize = new Size(800, 450);
+            Controls.Add(BackButtonPress);
             Controls.Add(myStats);
             Name = "Statistics";
             Text = "Statistics";
@@ -58,5 +70,6 @@
         #endregion
 
         private Label myStats;
+        private Button BackButtonPress;
     }
 }

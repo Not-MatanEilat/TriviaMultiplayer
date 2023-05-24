@@ -25,5 +25,12 @@ namespace TriviaClientApp
             string statsStr = String.Join("\n", stats);
             myStats.Text = statsStr;
         }
+
+        private void BackButtonPress_Click(object sender, EventArgs e)
+        {
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
+            Close();
+        }
     }
 }
