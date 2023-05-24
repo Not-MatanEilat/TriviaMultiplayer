@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            button1 = new Button();
+            CreateRoomButton = new Button();
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
@@ -46,15 +46,15 @@
             label1.TabIndex = 0;
             label1.Text = "Trivia";
             // 
-            // button1
+            // CreateRoomButton
             // 
-            button1.Location = new Point(344, 203);
-            button1.Name = "button1";
-            button1.Size = new Size(107, 30);
-            button1.TabIndex = 1;
-            button1.Text = "Create Room";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            CreateRoomButton.Location = new Point(344, 203);
+            CreateRoomButton.Name = "CreateRoomButton";
+            CreateRoomButton.Size = new Size(107, 30);
+            CreateRoomButton.TabIndex = 1;
+            CreateRoomButton.Text = "Create Room";
+            CreateRoomButton.UseVisualStyleBackColor = true;
+            CreateRoomButton.Click += CreateRoomButton_Click;
             // 
             // button2
             // 
@@ -64,7 +64,6 @@
             button2.TabIndex = 1;
             button2.Text = "Join Room";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button1_Click;
             // 
             // button3
             // 
@@ -74,7 +73,6 @@
             button3.TabIndex = 1;
             button3.Text = "Stats";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button1_Click;
             // 
             // button4
             // 
@@ -84,7 +82,6 @@
             button4.TabIndex = 1;
             button4.Text = "Exit";
             button4.UseVisualStyleBackColor = true;
-            button4.Click += button1_Click;
             // 
             // userConnected
             // 
@@ -94,7 +91,6 @@
             userConnected.Size = new Size(110, 15);
             userConnected.TabIndex = 2;
             userConnected.Text = "Connected as: error";
-            userConnected.Click += label2_Click;
             // 
             // MainMenu
             // 
@@ -106,7 +102,7 @@
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(CreateRoomButton);
             Controls.Add(label1);
             Name = "MainMenu";
             Text = "MainMenu";
@@ -118,7 +114,7 @@
         #endregion
 
         private Label label1;
-        private Button button1;
+        private Button CreateRoomButton;
         private Button button2;
         private Button button3;
         private Button button4;

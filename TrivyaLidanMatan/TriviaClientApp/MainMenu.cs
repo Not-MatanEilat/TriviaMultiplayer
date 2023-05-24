@@ -18,20 +18,17 @@ namespace TriviaClientApp
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void MainMenu_Load(object sender, EventArgs e)
         {
             string username = TriviaClient.GetClient().Username;
             userConnected.Text = "Connected as: " + username;
+        }
+
+        private void CreateRoomButton_Click(object sender, EventArgs e)
+        {
+            CreateRoom createRoom = new CreateRoom();
+            createRoom.Show();
+            Close();
         }
     }
 }
