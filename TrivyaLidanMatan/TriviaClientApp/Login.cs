@@ -19,12 +19,11 @@ namespace TriviaClientApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            JObject res = client.Login(usernameBox.Text, passwordBox.Text);
+            JObject result = client.Login(usernameBox.Text, passwordBox.Text);
 
-            if (res != null)
+            if (result["message"] != null)
             {
-                
-                int status = (int) res["message"]["status"];
+                int status = (int)result["message"]["status"];
                 if (status == TriviaClient.SUCCESS_CODE)
                 {
                     MessageBox.Show("Login Successful!");

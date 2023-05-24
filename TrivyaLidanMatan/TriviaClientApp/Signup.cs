@@ -167,7 +167,7 @@ namespace TriviaClientApp
 
             JObject result = client.Signup(username, password, email);
 
-            if (result != null)
+            if (result["message"] != null)
             {
                 int status = (int) result["message"]["status"];
                 if (status == TriviaClient.SUCCESS_CODE)
