@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            groupBox1 = new GroupBox();
             BackButtonPress = new Button();
+            roomsListFlow = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // label1
@@ -43,15 +43,6 @@
             label1.TabIndex = 0;
             label1.Text = "Join Rooms";
             // 
-            // groupBox1
-            // 
-            groupBox1.Location = new Point(466, 46);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(200, 100);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "RoomName";
-            // 
             // BackButtonPress
             // 
             BackButtonPress.Location = new Point(12, 415);
@@ -62,14 +53,24 @@
             BackButtonPress.UseVisualStyleBackColor = true;
             BackButtonPress.Click += BackButtonPress_Click;
             // 
+            // roomsListFlow
+            // 
+            roomsListFlow.AutoScroll = true;
+            roomsListFlow.FlowDirection = FlowDirection.TopDown;
+            roomsListFlow.Location = new Point(435, 12);
+            roomsListFlow.Name = "roomsListFlow";
+            roomsListFlow.Size = new Size(353, 426);
+            roomsListFlow.TabIndex = 6;
+            roomsListFlow.WrapContents = false;
+            // 
             // JoinRoom
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 64, 0);
             ClientSize = new Size(800, 450);
+            Controls.Add(roomsListFlow);
             Controls.Add(BackButtonPress);
-            Controls.Add(groupBox1);
             Controls.Add(label1);
             Name = "JoinRoom";
             ShowInTaskbar = false;
@@ -82,7 +83,7 @@
         #endregion
 
         private Label label1;
-        private GroupBox groupBox1;
         private Button BackButtonPress;
+        private FlowLayoutPanel roomsListFlow;
     }
 }

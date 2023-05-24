@@ -173,9 +173,16 @@ namespace TriviaClientApp
         private List<byte> ReceiveResponseBytes()
         {
             byte[] buffer = new byte[BYTE_SIZE];
+            List<byte> receivedData = new List<byte>();
             try
             {
-                socket.Receive(buffer);
+                int bytesRead = 0;
+
+                do
+                {
+                    bytesRead = socket.Receive(buffer);
+                    receivedData.AddRange(buffer.Take(bytesRead));
+                } while (bytesRead >= BYTE_SIZE);
             }
             catch (Exception e)
             {
@@ -183,7 +190,7 @@ namespace TriviaClientApp
                 MessageBox.Show("Failed to receive from server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(1);
             }
-            return new List<byte>(buffer);
+            return receivedData;
         }
 
         /// <summary>
