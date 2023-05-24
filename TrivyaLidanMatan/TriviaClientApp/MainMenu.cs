@@ -62,5 +62,13 @@ namespace TriviaClientApp
         {
             Close();
         }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            TriviaClient.GetClient().Logout();
+            Login login = new Login();
+            login.Show();
+            Close();
+        }
     }
 }

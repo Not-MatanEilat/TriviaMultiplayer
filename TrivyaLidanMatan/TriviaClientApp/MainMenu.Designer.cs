@@ -34,6 +34,7 @@
             button3 = new Button();
             button4 = new Button();
             userConnected = new Label();
+            logoutButton = new Button();
             SuspendLayout();
             // 
             // label1
@@ -89,11 +90,22 @@
             // userConnected
             // 
             userConnected.AutoSize = true;
-            userConnected.Location = new Point(563, 88);
+            userConnected.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            userConnected.Location = new Point(93, 12);
             userConnected.Name = "userConnected";
-            userConnected.Size = new Size(110, 15);
+            userConnected.Size = new Size(145, 21);
             userConnected.TabIndex = 2;
             userConnected.Text = "Connected as: error";
+            // 
+            // logoutButton
+            // 
+            logoutButton.Location = new Point(12, 12);
+            logoutButton.Name = "logoutButton";
+            logoutButton.Size = new Size(75, 23);
+            logoutButton.TabIndex = 3;
+            logoutButton.Text = "Logout";
+            logoutButton.UseVisualStyleBackColor = true;
+            logoutButton.Click += logoutButton_Click;
             // 
             // MainMenu
             // 
@@ -101,6 +113,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.MenuHighlight;
             ClientSize = new Size(800, 450);
+            Controls.Add(logoutButton);
             Controls.Add(userConnected);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -123,5 +136,6 @@
         private Button button4;
         private Label userConnected;
         private Button JoinRoomButton;
+        private Button logoutButton;
     }
 }

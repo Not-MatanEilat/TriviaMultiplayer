@@ -39,7 +39,7 @@ namespace TriviaClientApp
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(398, 109);
+            label1.Location = new Point(398, 50);
             label1.Name = "label1";
             label1.Size = new Size(100, 37);
             label1.TabIndex = 0;
@@ -49,7 +49,7 @@ namespace TriviaClientApp
             // usernameTextBox
             // 
             usernameTextBox.Cursor = Cursors.IBeam;
-            usernameTextBox.Location = new Point(398, 194);
+            usernameTextBox.Location = new Point(398, 144);
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(100, 23);
             usernameTextBox.TabIndex = 1;
@@ -57,7 +57,7 @@ namespace TriviaClientApp
             // 
             // passwordTextBox
             // 
-            passwordTextBox.Location = new Point(398, 236);
+            passwordTextBox.Location = new Point(398, 186);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.PasswordChar = '*';
             passwordTextBox.Size = new Size(100, 23);
@@ -66,7 +66,7 @@ namespace TriviaClientApp
             // 
             // emailTextBox
             // 
-            emailTextBox.Location = new Point(398, 278);
+            emailTextBox.Location = new Point(398, 228);
             emailTextBox.Name = "emailTextBox";
             emailTextBox.Size = new Size(100, 23);
             emailTextBox.TabIndex = 2;
@@ -74,9 +74,9 @@ namespace TriviaClientApp
             // 
             // signupButton
             // 
-            signupButton.Location = new Point(410, 334);
+            signupButton.Location = new Point(398, 271);
             signupButton.Name = "signupButton";
-            signupButton.Size = new Size(75, 24);
+            signupButton.Size = new Size(100, 27);
             signupButton.TabIndex = 3;
             signupButton.Text = "Signup";
             signupButton.UseVisualStyleBackColor = true;
@@ -85,7 +85,7 @@ namespace TriviaClientApp
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(332, 197);
+            label2.Location = new Point(332, 147);
             label2.Name = "label2";
             label2.Size = new Size(60, 15);
             label2.TabIndex = 4;
@@ -95,7 +95,7 @@ namespace TriviaClientApp
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(332, 239);
+            label3.Location = new Point(332, 189);
             label3.Name = "label3";
             label3.Size = new Size(57, 15);
             label3.TabIndex = 4;
@@ -105,7 +105,7 @@ namespace TriviaClientApp
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(342, 286);
+            label4.Location = new Point(342, 236);
             label4.Name = "label4";
             label4.Size = new Size(36, 15);
             label4.TabIndex = 4;
@@ -124,6 +124,7 @@ namespace TriviaClientApp
             // 
             // Signup
             // 
+            BackColor = Color.SteelBlue;
             ClientSize = new Size(920, 435);
             Controls.Add(button1);
             Controls.Add(label4);
@@ -169,10 +170,12 @@ namespace TriviaClientApp
 
             if (result["message"] != null)
             {
-                int status = (int) result["message"]["status"];
+                int status = (int)result["message"]["status"];
                 if (status == TriviaClient.SUCCESS_CODE)
                 {
-                    MessageBox.Show("Signup Successful!");
+                    MainMenu menu = new MainMenu();
+                    menu.Show();
+                    Close();
                 }
                 else
                 {

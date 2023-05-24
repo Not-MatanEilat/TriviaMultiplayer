@@ -22,6 +22,7 @@ namespace TriviaClientApp
         {
             JObject result = TriviaClient.GetClient().GetPersonalStats();
             JArray stats = (JArray)result["message"]["statistics"];
+            stats.Insert(0, "Your Statistics:");
             string statsStr = String.Join("\n", stats);
             myStats.Text = statsStr;
         }

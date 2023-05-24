@@ -260,6 +260,7 @@ namespace TriviaClientApp
         /// <returns>response</returns>
         public JObject Logout()
         {
+            Username = "";
             return SendRequestDict((byte)RequestCodes.LOGOUT_CODE);
         }
 
