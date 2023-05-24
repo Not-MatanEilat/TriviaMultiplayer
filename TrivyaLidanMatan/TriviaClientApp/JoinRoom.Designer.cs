@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            groupBox1 = new GroupBox();
             BackButtonPress = new Button();
             SuspendLayout();
             // 
@@ -42,15 +41,6 @@
             label1.Size = new Size(210, 50);
             label1.TabIndex = 0;
             label1.Text = "Join Rooms";
-            // 
-            // groupBox1
-            // 
-            groupBox1.Location = new Point(466, 46);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(200, 100);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "RoomName";
             // 
             // BackButtonPress
             // 
@@ -69,7 +59,6 @@
             BackColor = Color.FromArgb(192, 64, 0);
             ClientSize = new Size(800, 450);
             Controls.Add(BackButtonPress);
-            Controls.Add(groupBox1);
             Controls.Add(label1);
             Name = "JoinRoom";
             ShowInTaskbar = false;
@@ -82,7 +71,6 @@
         #endregion
 
         private Label label1;
-        private GroupBox groupBox1;
         private Button BackButtonPress;
     }
 }
