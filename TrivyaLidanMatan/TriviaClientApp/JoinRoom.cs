@@ -98,7 +98,7 @@ namespace TriviaClientApp
                     // set the properties to the join room groupbox button
                     joinRoomButton.Text = "Join Room";
                     joinRoomButton.Click += JoinRoom_Click;
-                    joinRoomButton.TabIndex = 1 + i;
+                    joinRoomButton.TabIndex = 4 + i;
 
 
                     groupBox.Location = new Point(10, 100 + i * GROUP_BOX_MARGIN);
@@ -141,12 +141,18 @@ namespace TriviaClientApp
             Button button = (Button)sender;
             GroupBox groupBox = (GroupBox)button.Parent;
             int roomId = int.Parse(groupBox.Controls[0].Text);
+            JoinRoomById(roomId);
+        }
+
+        public void JoinRoomById(int roomId)
+        {
             TriviaClient client = TriviaClient.GetClient();
             JObject result = client.JoinRoom(roomId);
             // this for now until room form
             if ((int)result["code"] == TriviaClient.ERROR_CODE)
             {
-                MessageBox.Show(result["message"]["message"].ToString(), "Room ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(result["message"]["message"].ToString(), "Room ERROR", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             else
             {
@@ -158,6 +164,11 @@ namespace TriviaClientApp
         {
             Thread loader = new Thread(loadAllRooms);
             loader.Start();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            JoinRoomById((int) roomIdBox.Value);
         }
     }
 
