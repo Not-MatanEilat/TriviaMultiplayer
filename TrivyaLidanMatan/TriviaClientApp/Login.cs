@@ -26,7 +26,9 @@ namespace TriviaClientApp
                 int status = (int)result["message"]["status"];
                 if (status == TriviaClient.SUCCESS_CODE)
                 {
-                    MessageBox.Show("Login Successful!");
+                    MainMenu mainMenu = new MainMenu();
+                    mainMenu.Show();
+                    Close();
                 }
                 else
                 {
