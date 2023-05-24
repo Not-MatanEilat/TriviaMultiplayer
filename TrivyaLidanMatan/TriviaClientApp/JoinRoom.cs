@@ -32,6 +32,7 @@ namespace TriviaClientApp
         {
             roomsListFlow.Controls.Clear();
 
+            roomsList.Clear();
             TriviaClient client = TriviaClient.GetClient();
             JObject rooms = client.GetRoomsList();
             int i = 0;
