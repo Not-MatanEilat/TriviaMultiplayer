@@ -34,8 +34,17 @@ namespace TriviaClientApp
 
         public void loadAllRooms()
         {
-            mutex.WaitOne();
-            Invoke(() => roomsListFlow.Controls.Clear());
+            try
+            {
+                mutex.WaitOne();
+                Invoke(() => roomsListFlow.Controls.Clear());
+                Invoke(() => refreshButton.Enabled = false);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return;
+            }
             TriviaClient client = TriviaClient.GetClient();
             JObject result = client.GetRoomsList();
             JToken rooms = result["message"]["rooms"];
@@ -104,7 +113,16 @@ namespace TriviaClientApp
                     i++;
                 }
             }
-            mutex.ReleaseMutex();
+            try
+            {
+                mutex.ReleaseMutex();
+                Invoke(() => refreshButton.Enabled = true);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return;
+            }
         }
 
         private void BackButtonPress_Click(object sender, EventArgs e)
