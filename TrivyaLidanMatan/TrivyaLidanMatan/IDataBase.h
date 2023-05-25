@@ -40,6 +40,7 @@ public:
 
 	static bool isValidPassword(const string& username);
 	static bool isValidEmail(const string& email);
+	static bool isValidUsername(const string& username);
 
 };
 

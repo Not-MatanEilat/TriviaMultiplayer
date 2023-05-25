@@ -35,6 +35,7 @@ namespace TriviaClientApp
 
         public void loadAllRooms()
         {
+
             try
             {
                 mutex.WaitOne();
@@ -46,6 +47,7 @@ namespace TriviaClientApp
                 Debug.WriteLine(e.Message);
                 return;
             }
+
             TriviaClient client = TriviaClient.GetClient();
             JObject result = client.GetRoomsList();
             JToken rooms = result["message"]["rooms"];

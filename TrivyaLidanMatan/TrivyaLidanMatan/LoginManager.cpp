@@ -16,6 +16,10 @@ LoginManager::LoginManager(IDataBase* database) : m_database(database)
  */
 void LoginManager::signUp(const string& username, const string& password, const string& email)
 {
+	if (!m_database->isValidUsername(username))
+	{
+		throw std::exception("Username must have only English letters, numbers or _");
+	}
 	// checks if an empty field was given to us
 	if (username.empty() || password.empty() || email.empty())
 	{
