@@ -67,10 +67,10 @@ RequestResult LoginRequestHandler::login(RequestInfo const &info)
 	}
 	catch (std::exception const &e)
 	{
-		response.status = FAILED;
-		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
+		ErrorResponse error;
+		error.message = "Something went wrong: " + std::string(e.what());
+		result.response = JsonResponsePacketSerializer::serializeResponse(error);
 		result.newHandler = this;
-		result.response = buffer;
 		TRACE("Login failed " << e.what());
 	}
 
@@ -101,10 +101,10 @@ RequestResult LoginRequestHandler::signup(RequestInfo const &info)
 	}
 	catch (std::exception const& e)
 	{
-		response.status = FAILED;
-		Buffer const buffer = JsonResponsePacketSerializer::serializeResponse(response);
+		ErrorResponse error;
+		error.message = "Something went wrong: " + std::string(e.what());
+		result.response = JsonResponsePacketSerializer::serializeResponse(error);
 		result.newHandler = this;
-		result.response = buffer;
 		TRACE("Signup failed " << e.what());
 	}
 

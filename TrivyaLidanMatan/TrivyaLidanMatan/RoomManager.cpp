@@ -1,5 +1,7 @@
 #include "RoomManager.h"
 
+#include "Helper.h"
+
 /**
  * \brief Constructor for the RoomManager
  */
@@ -25,17 +27,63 @@ void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 	}
 
 	Room room(roomData);
-	room.addUser(user);
+
 
 	std::pair<int, Room> pair(roomData.id, room);
 	m_rooms.insert(pair);
 
+	TRACE("\nRoom created, Creator of the room: " + user.getUsername() + ", Room Data:\n"
+		"Id: " + std::to_string(roomData.id) + "\n"
+		"Room Name: " + roomData.name + "\n"
+		"Is Active: " + std::to_string(roomData.isActive) + "\n"
+		"Number of Questions: " + std::to_string(roomData.numOfQuestionsInGame) + "\n"
+		"Max Players: " + std::to_string(roomData.maxPlayers) + "\n"
+		"Time Per a Question: " + std::to_string(roomData.timePerQuestion) + "\n");
+
+
+	joinRoom(user, room.getRoomData().id);
 }
 
+/**
+ * \brief Will let the user join the room he wants, if user already in a room, we throw an exception,
+ * if room doesn't exsit we throw an exception
+ * \param user the user that joins
+ * \param id id of room joining
+ */
 void RoomManager::joinRoom(const LoggedUser& user, unsigned id)
 {
+	// check if user is already in any room
+	for (const auto& room : m_rooms)
+	{
+		for (const auto& loggedUser : m_rooms.at(room.first).getAllUsers())
+		{
+			if (loggedUser.getUsername() == user.getUsername())
+			{
+				throw std::exception("User already in a room");
+			}
+		}
+	}
+
+	bool foundRoom = false;
+
+	// checks if room exists
+	for (const auto& room : m_rooms)
+	{
+		if (room.first == id)
+		{
+			foundRoom = true;
+		}
+	}
+
+	if (!foundRoom)
+	{
+		throw std::exception("Room was not found");
+	}
+
 	Room& room = getRoom(id);
 	room.addUser(user);
+
+	TRACE("Room Joined, User that has joined: " + user.getUsername() + ", Room that got joined: " + std::to_string(id));
 }
 
 /**

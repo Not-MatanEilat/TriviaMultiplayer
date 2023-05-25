@@ -122,6 +122,10 @@ std::vector<string> SqliteDataBase::getHighScores()
 {
 	std::vector<string> users = getUsers();
 	std::sort(users.begin(), users.end(), [&](string a, string b) {return getPlayerScore(a) > getPlayerScore(b); });
+	for (auto& user : users)
+	{
+		user += " - " + std::to_string(getPlayerScore(user));
+	}
 	return users;
 }
 

@@ -45,3 +45,15 @@ bool IDataBase::isValidEmail(const string& email)
 	return true;
 }
 
+
+/**
+ * \brief Checks if the username given is valid, valid username is a username that has english letters, numbers , and the character '_'
+ * \param username the username to check if it is valid already
+ * \return True Or False
+ */
+bool IDataBase::isValidUsername(const string& username)
+{
+	return regex_search(username, regex("^[a-zA-Z0-9_]"));
+}
+
+

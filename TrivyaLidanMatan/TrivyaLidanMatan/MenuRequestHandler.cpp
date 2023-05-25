@@ -87,7 +87,7 @@ RequestResult MenuRequestHandler::logout(RequestInfo const& info)
 	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
 	response.status = SUCCESS;
 
-	result.newHandler = this;
+	result.newHandler = m_handlerFactory.createLoginRequestHandler();
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
@@ -217,6 +217,7 @@ RequestResult MenuRequestHandler::createRoom(RequestInfo const& info)
 	roomData.name = request.roomName;
 	roomData.timePerQuestion = request.answerTimeout;
 	roomData.numOfQuestionsInGame = request.questionCount;
+	roomData.currentPlayersAmount = 0;
 
 	int id = 0;
 	for (RoomData data : m_roomManager.getRooms())
