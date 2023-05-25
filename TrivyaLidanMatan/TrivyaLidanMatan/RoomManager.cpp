@@ -32,8 +32,42 @@ void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 
 }
 
+/**
+ * \brief Will let the user join the room he wants, if user already in a room, we throw an exception,
+ * if room doesn't exsit we throw an exception
+ * \param user the user that joins
+ * \param id id of room joining
+ */
 void RoomManager::joinRoom(const LoggedUser& user, unsigned id)
 {
+	// check if user is already in any room
+	for (const auto& room : m_rooms)
+	{
+		for (const auto& loggedUser : m_rooms[room.first])
+		{
+			if (loggedUser.getUsername() == user.getUsername())
+			{
+				throw std::exception("User already in room");
+			}
+		}
+	}
+
+	bool foundRoom = false;
+
+	// checks if room exists
+	for (const auto& room : m_rooms)
+	{
+		if (room.first == id)
+		{
+			foundRoom = true;
+		}
+	}
+
+	if (!foundRoom)
+	{
+		throw std::exception("Room was not found");
+	}
+
 	Room& room = getRoom(id);
 	room.addUser(user);
 }
