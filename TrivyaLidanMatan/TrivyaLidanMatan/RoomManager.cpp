@@ -1,5 +1,7 @@
 #include "RoomManager.h"
 
+#include "Helper.h"
+
 /**
  * \brief Constructor for the RoomManager
  */
@@ -30,8 +32,16 @@ void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 	std::pair<int, Room> pair(roomData.id, room);
 	m_rooms.insert(pair);
 
-	joinRoom(user, room.getRoomData().id);
+	TRACE("\nRoom created, Creator of the room: " + user.getUsername() + ", Room Data:\n"
+		"Id: " + std::to_string(roomData.id) + "\n"
+		"Room Name: " + roomData.name + "\n"
+		"Is Active: " + std::to_string(roomData.isActive) + "\n"
+		"Number of Questions: " + std::to_string(roomData.numOfQuestionsInGame) + "\n"
+		"Max Players: " + std::to_string(roomData.maxPlayers) + "\n"
+		"Time Per a Question: " + std::to_string(roomData.timePerQuestion) + "\n");
 
+
+	joinRoom(user, room.getRoomData().id);
 }
 
 /**
@@ -72,6 +82,8 @@ void RoomManager::joinRoom(const LoggedUser& user, unsigned id)
 
 	Room& room = getRoom(id);
 	room.addUser(user);
+
+	TRACE("Room Joined, User that has joined: " + user.getUsername() + ", Room that got joined: " + std::to_string(id));
 }
 
 /**
