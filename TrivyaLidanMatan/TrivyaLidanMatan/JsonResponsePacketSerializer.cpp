@@ -100,6 +100,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const GetRoomsResponse& g
 		roomJson["numOfQuestionsInGame"] = roomData.numOfQuestionsInGame;
 		roomJson["timePerQuestion"] = roomData.timePerQuestion;
 		roomJson["id"] = roomData.id;
+		roomJson["currentPlayersAmount"] = roomData.currentPlayersAmount;
 
 		j["rooms"].push_back(roomJson);
 	}

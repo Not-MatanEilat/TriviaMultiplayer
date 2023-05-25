@@ -217,6 +217,7 @@ RequestResult MenuRequestHandler::createRoom(RequestInfo const& info)
 	roomData.name = request.roomName;
 	roomData.timePerQuestion = request.answerTimeout;
 	roomData.numOfQuestionsInGame = request.questionCount;
+	roomData.currentPlayersAmount = 0;
 
 	int id = 0;
 	for (RoomData data : m_roomManager.getRooms())

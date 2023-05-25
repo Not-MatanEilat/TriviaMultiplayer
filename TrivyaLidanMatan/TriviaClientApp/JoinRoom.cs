@@ -70,9 +70,8 @@ namespace TriviaClientApp
                     // set all of the properties to the buttons/labels
                     int roomIdInt = (int)room["id"];
                     roomName.Text = room["name"].ToString();
-                    JObject getPlayers = client.GetPlayersInRoom(roomIdInt);
-                    JToken players = getPlayers["message"]["players"];
-                    roomPlayersAmount.Text = "Players: " + players.Count();
+                    int players = (int)room["currentPlayersAmount"];
+                    roomPlayersAmount.Text = "Players: " + players;
                     roomMaxPlayers.Text = "Max Players: " + room["maxPlayers"];
                     roomQuestions.Text = "Questions Amount: " + room["numOfQuestionsInGame"];
                     roomId.Text = room["id"].ToString();

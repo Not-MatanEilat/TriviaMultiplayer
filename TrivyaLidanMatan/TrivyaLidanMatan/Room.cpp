@@ -23,7 +23,9 @@ void Room::addUser(const LoggedUser& user)
 		}
 	}
 	m_users.push_back(user);
+	m_roomData.currentPlayersAmount++;
 }
+
 
 /**
  * \brief Function will remove a user from the current room
@@ -47,6 +49,8 @@ void Room::removeUser(const LoggedUser& user)
 	{
 		throw std::exception("User not found");
 	}
+
+	m_roomData.currentPlayersAmount--;
 
 	
 
