@@ -23,8 +23,8 @@ namespace TriviaClientApp
 
             if (result["message"] != null)
             {
-                int status = (int)result["message"]["status"];
-                if (status == TriviaClient.SUCCESS_CODE)
+                int status = (int)result["code"];
+                if (status != TriviaClient.ERROR_CODE)
                 {
                     MainMenu mainMenu = new MainMenu();
                     mainMenu.Show();
@@ -32,7 +32,8 @@ namespace TriviaClientApp
                 }
                 else
                 {
-                    MessageBox.Show("Login Failed!");
+                     MessageBox.Show(result["message"]["message"].ToString(), "Login ERROR", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
             else

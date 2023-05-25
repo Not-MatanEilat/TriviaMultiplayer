@@ -168,8 +168,8 @@ namespace TriviaClientApp
 
             if (result["message"] != null)
             {
-                int status = (int)result["message"]["status"];
-                if (status == TriviaClient.SUCCESS_CODE)
+                int status = (int)result["code"];
+                if (status != TriviaClient.ERROR_CODE)
                 {
                     MainMenu menu = new MainMenu();
                     menu.Show();
@@ -177,7 +177,8 @@ namespace TriviaClientApp
                 }
                 else
                 {
-                    MessageBox.Show("Signup Failed!");
+                     MessageBox.Show(result["message"]["message"].ToString(), "Signup ERROR", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
             else

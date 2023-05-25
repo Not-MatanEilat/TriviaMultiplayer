@@ -53,12 +53,7 @@ bool IDataBase::isValidEmail(const string& email)
  */
 bool IDataBase::isValidUsername(const string& username)
 {
-
-	if (!regex_search(username, regex("^[a-zA-Z0-9_]")))
-	{
-		return false;
-	}
-	return true;
+	return regex_search(username, regex("^[a-zA-Z0-9_]"));
 }
 
 
