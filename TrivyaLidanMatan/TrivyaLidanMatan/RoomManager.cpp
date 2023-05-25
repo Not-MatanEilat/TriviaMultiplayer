@@ -25,10 +25,12 @@ void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 	}
 
 	Room room(roomData);
-	room.addUser(user);
+
 
 	std::pair<int, Room> pair(roomData.id, room);
 	m_rooms.insert(pair);
+
+	joinRoom(user, room.getRoomData().id);
 
 }
 
@@ -43,11 +45,11 @@ void RoomManager::joinRoom(const LoggedUser& user, unsigned id)
 	// check if user is already in any room
 	for (const auto& room : m_rooms)
 	{
-		for (const auto& loggedUser : m_rooms[room.first])
+		for (const auto& loggedUser : m_rooms.at(room.first).getAllUsers())
 		{
 			if (loggedUser.getUsername() == user.getUsername())
 			{
-				throw std::exception("User already in room");
+				throw std::exception("User already in a room");
 			}
 		}
 	}

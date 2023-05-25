@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
@@ -31,13 +32,21 @@ namespace TriviaClientApp
                 int questionTime = int.Parse(amountQuestionsTextBox.Text);
                 int maxPlayers = int.Parse(maxPlayersTextBox.Text);
 
-
-
-                // msg for now, later will be form
-                MessageBox.Show("Room created successfully");
-
                 TriviaClient client = TriviaClient.GetClient();
-                client.CreateRoom(roomName, maxPlayers, questionsAmount, questionTime);
+                JObject result = client.CreateRoom(roomName, maxPlayers, questionsAmount, questionTime);
+
+                if ((int)result["code"] == TriviaClient.ERROR_CODE)
+                {
+                    MessageBox.Show(result["message"]["message"].ToString(), "Room ERROR", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    // msg for now, later will be form
+                    MessageBox.Show("Room created successfully");
+                }
+
+
             }
         }
 
