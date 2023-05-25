@@ -168,7 +168,12 @@ namespace TriviaClientApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            JoinRoomById((int) roomIdBox.Value);
+            JoinRoomById((int)roomIdBox.Value);
+        }
+
+        private void roomsListFlow_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 
