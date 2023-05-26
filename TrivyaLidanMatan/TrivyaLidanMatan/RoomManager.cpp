@@ -97,8 +97,7 @@ void RoomManager::deleteRoom(unsigned int id)
 unsigned int RoomManager::getRoomState(int id)
  {
 
-	// check if room exists even
-	if (m_rooms.find(id) == m_rooms.end())
+	if (doesRoomExist(id))
 	{
 		throw std::exception("Room was not found");
 	}
