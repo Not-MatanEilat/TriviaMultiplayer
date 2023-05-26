@@ -36,6 +36,7 @@ public:
 	void removeUser(const LoggedUser& user);
 	std::vector<LoggedUser> getAllUsers();
 	RoomData getRoomData() const;
+	bool isUserInRoom(const string& username);
 
 private:
 	vector<LoggedUser> m_users;
