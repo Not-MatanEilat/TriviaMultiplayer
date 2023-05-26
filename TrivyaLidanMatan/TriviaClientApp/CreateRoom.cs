@@ -55,6 +55,10 @@ namespace TriviaClientApp
 
         }
 
+        /// <summary>
+        /// Checks if the inputs are valid
+        /// </summary>
+        /// <returns>true if the inputs are valid</returns>
         private bool AreInputsValid()
         {
             string roomName = nameRoomTextBox.Text;
