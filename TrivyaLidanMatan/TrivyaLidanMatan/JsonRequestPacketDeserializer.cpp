@@ -56,9 +56,9 @@ GetPlayersInRoomRequest JsonRequestPacketDeserializer::deserializeGetPlayersInRo
 }
 
 /**
- * \brief dererialize CreateRoomRequest
+ * \brief dererialize JoinRoomRequest
  * \param buffer buffer of json data
- * \return deserialized CreateRoomRequest
+ * \return deserialized JoinRoomRequest
  */
 JoinRoomRequest JsonRequestPacketDeserializer::deserializeJoinRoomRequest(const Buffer& buffer)
 {
@@ -72,7 +72,11 @@ JoinRoomRequest JsonRequestPacketDeserializer::deserializeJoinRoomRequest(const 
 }
 
 
-
+/**
+ * \brief deserialize CreateRoomRequest
+ * \param  buffer buffer of json data
+ * \return deserialized CreateRoomRequest
+ */
 CreateRoomRequest JsonRequestPacketDeserializer::deserializeCreateRoomRequest(const Buffer& buffer)
 {
 	string bufferStr = Helper::getStringFromBuffer(buffer);
