@@ -20,6 +20,8 @@ namespace TriviaClientApp
         public const int GROUP_BOX_WIDTH = 300;
         public const int GROUP_BOX_HEIGHT = 154;
         public const int GROUP_BOX_MARGIN = 160;
+        public const int GROUP_BOX_BASE_X = 10;
+        public const int GROUP_BOX_BASE_Y = 100;
         private Mutex mutex = new();
 
         public JoinRoom()
@@ -102,7 +104,7 @@ namespace TriviaClientApp
                     joinRoomButton.TabIndex = 4 + i;
 
 
-                    groupBox.Location = new Point(10, 100 + i * GROUP_BOX_MARGIN);
+                    groupBox.Location = new Point(GROUP_BOX_BASE_X, GROUP_BOX_BASE_Y + i * GROUP_BOX_MARGIN);
                     try
                     {
                         Invoke(() => roomsListFlow.Controls.Add(groupBox));
