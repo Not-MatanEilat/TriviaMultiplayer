@@ -66,6 +66,7 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 	{
 		ErrorResponse error;
 		error.message = "Something went wrong: " + std::string(e.what());
+		TRACE("MenuHandler " << m_user.getUsername() << ": " << error.message)
 		result.response = JsonResponsePacketSerializer::serializeResponse(error);
 		result.newHandler = this;
 	}
