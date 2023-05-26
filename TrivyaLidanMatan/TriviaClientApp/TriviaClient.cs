@@ -229,7 +229,7 @@ namespace TriviaClientApp
         {
             JObject data = new JObject() { { "username", username }, { "password", password } };
             JObject result = SendRequestDict((byte)RequestCodes.LOGIN_CODE, data);
-            if ((int) result["code"] == SUCCESS_CODE)
+            if ((int) result["code"] != ERROR_CODE)
             {
                 this.Username = username;
             }
@@ -247,7 +247,7 @@ namespace TriviaClientApp
         {
             JObject data = new JObject() { { "username", username }, { "password", password }, { "email", email } };
             JObject result = SendRequestDict((byte)RequestCodes.SIGNUP_CODE, data);
-            if ((int)result["code"] == SUCCESS_CODE)
+            if ((int)result["code"] != ERROR_CODE)
             {
                 this.Username = username;
             }
