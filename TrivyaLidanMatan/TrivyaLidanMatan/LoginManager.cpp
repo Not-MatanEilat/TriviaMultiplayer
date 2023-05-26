@@ -14,8 +14,17 @@ LoginManager::LoginManager(IDataBase* database) : m_database(database)
  * \param password the password to signUp
  * \param email the email to signUp	
  */
-void LoginManager::signUp(const string& username, const string& password, const string& email) const
+void LoginManager::signUp(const string& username, const string& password, const string& email)
 {
+	if (!m_database->isValidUsername(username))
+	{
+		throw std::exception("Username must have only English letters, numbers or _");
+	}
+	// checks if an empty field was given to us
+	if (username.empty() || password.empty() || email.empty())
+	{
+		throw std::exception("One of the fields is empty");
+	}
 	// check if user exits already
 	if (m_database->doesUserExist(username))
 	{
@@ -31,6 +40,7 @@ void LoginManager::signUp(const string& username, const string& password, const 
 		throw std::exception("Email is invalid");
 	}
 	m_database->addNewUser(username, password, email);
+	login(username, password);
 }
 
 /**
@@ -50,6 +60,14 @@ void LoginManager::login(const string& username, const string& password)
 	{
 		throw std::exception("Password is incorrect");
 
+	}
+
+	for (const auto& loggedUser : m_loggedUsers)
+	{
+		if (loggedUser.getUsername() == username)
+		{
+			throw std::exception("User already logged in");
+		}
 	}
 
 	// add the user to the logged users
@@ -79,6 +97,24 @@ void LoginManager::logout(const string& username)
 		throw std::exception("User isn't logged in");
 	}
 }
+
+/**
+ * \brief Function returns the logged user that was needed
+ * \param username the username to get logged user of
+ * \return Loggeduser of the given username string
+ */
+LoggedUser LoginManager::getLoggedUser(const string& username) const
+{
+	for (int i = 0; i < m_loggedUsers.size(); i++)
+	{
+		if (m_loggedUsers[i].getUsername() == username)
+		{
+			return m_loggedUsers[i];
+		}
+	}
+	throw std::exception("User isn't logged in");
+}
+
 
 
 
