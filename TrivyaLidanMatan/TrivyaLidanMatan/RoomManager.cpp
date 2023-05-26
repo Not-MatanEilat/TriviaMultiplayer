@@ -97,7 +97,7 @@ void RoomManager::deleteRoom(unsigned int id)
 unsigned int RoomManager::getRoomState(int id)
  {
 
-	if (doesRoomExist(id))
+	if (!doesRoomExist(id))
 	{
 		throw std::exception("Room was not found");
 	}
@@ -136,7 +136,7 @@ vector<RoomData> RoomManager::getRooms() const
 Room& RoomManager::getRoom(int id)
 {
 	// check if room exists, if not, then throw an exception
-	if (m_rooms.find(id) == m_rooms.end())
+	if (!doesRoomExist(id))
 	{
 		throw std::exception("Room was not found");
 	}
