@@ -75,7 +75,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const SignupResponse& sig
  */
 Buffer JsonResponsePacketSerializer::serializeResponse(const LogoutResponse& logoutResponse)
 {
-		json j;
+	json j;
 	j["status"] = logoutResponse.status;
 	Buffer vec = serializeResponseFromJson(LOGOUT_CODE, j);
 	return vec;
