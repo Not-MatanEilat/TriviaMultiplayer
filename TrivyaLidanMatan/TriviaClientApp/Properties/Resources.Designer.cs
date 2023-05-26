@@ -59,15 +59,5 @@ namespace TriviaClientApp.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RobloxScreenShot20201005_180640054 {
-            get {
-                object obj = ResourceManager.GetObject("RobloxScreenShot20201005_180640054", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
