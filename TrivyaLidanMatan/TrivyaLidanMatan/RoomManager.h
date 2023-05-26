@@ -21,6 +21,7 @@ public:
 	vector<RoomData> getRooms() const;
 	Room& getRoom(int id);
 	bool isUserInAnyRoom(const string& username);
+	bool doesRoomExist(unsigned int id);
 
 private:
 	map<unsigned int,Room> m_rooms;

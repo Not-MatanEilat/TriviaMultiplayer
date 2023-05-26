@@ -54,18 +54,7 @@ void RoomManager::joinRoom(const LoggedUser& user, unsigned id)
 {
 	isUserInAnyRoom(user.getUsername());
 
-	bool foundRoom = false;
-
-	// checks if room exists
-	for (const auto& room : m_rooms)
-	{
-		if (room.first == id)
-		{
-			foundRoom = true;
-		}
-	}
-
-	if (!foundRoom)
+	if (!doesRoomExist(id))
 	{
 		throw std::exception("Room was not found");
 	}
@@ -82,21 +71,21 @@ void RoomManager::joinRoom(const LoggedUser& user, unsigned id)
  */
 void RoomManager::deleteRoom(unsigned int id)
 {
-	bool isRoomFound = false;
+	if (!doesRoomExist(id))
+	{
+		throw std::exception("Room was not found");
+	}
+
 	for (const auto& room : m_rooms)
 	{
 		if (room.first == id)
 		{
 			m_rooms.erase(id);
-			isRoomFound = true;
 			break;
 		}
 	}
 
-	if (!isRoomFound)
-	{
-		throw std::exception("Room was not found");
-	}
+	
 }
 
 /**
@@ -174,6 +163,17 @@ bool RoomManager::isUserInAnyRoom(const string& username)
 		}
 	}
 }
+
+/**
+ * \brief Checks if there is a room that exists with the given id there
+ * \param id the id to check if any room exists with it
+ * \return True or False
+ */
+bool RoomManager::doesRoomExist(unsigned id)
+{
+	return m_rooms.find(id) != m_rooms.end();
+}
+
 
 
 
