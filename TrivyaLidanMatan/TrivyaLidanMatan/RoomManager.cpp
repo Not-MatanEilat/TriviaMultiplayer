@@ -52,17 +52,7 @@ void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
  */
 void RoomManager::joinRoom(const LoggedUser& user, unsigned id)
 {
-	// check if user is already in any room
-	for (const auto& room : m_rooms)
-	{
-		for (const auto& loggedUser : m_rooms.at(room.first).getAllUsers())
-		{
-			if (loggedUser.getUsername() == user.getUsername())
-			{
-				throw std::exception("User already in a room");
-			}
-		}
-	}
+	isUserInAnyRoom(user.getUsername());
 
 	bool foundRoom = false;
 
@@ -165,6 +155,26 @@ Room& RoomManager::getRoom(int id)
 
 	return m_rooms.at(id);
 }
+
+/**
+ * \brief check if user is already in any room
+ * \param username the username to check
+ * \return True or False
+ */
+bool RoomManager::isUserInAnyRoom(const string& username)
+{
+	for (const auto& room : m_rooms)
+	{
+		for (const auto& loggedUser : m_rooms.at(room.first).getAllUsers())
+		{
+			if (loggedUser.getUsername() == username)
+			{
+				throw std::exception("User already in a room");
+			}
+		}
+	}
+}
+
 
 
 
