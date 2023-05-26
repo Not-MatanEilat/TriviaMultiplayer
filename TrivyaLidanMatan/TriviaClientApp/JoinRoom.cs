@@ -146,7 +146,10 @@ namespace TriviaClientApp
             int roomId = int.Parse(groupBox.Controls[0].Text);
             JoinRoomById(roomId);
         }
-
+        /// <summary>
+        /// Join a room by id
+        /// </summary>
+        /// <param name="roomId">the room id</param>
         public void JoinRoomById(int roomId)
         {
             TriviaClient client = TriviaClient.GetClient();
@@ -172,11 +175,6 @@ namespace TriviaClientApp
         private void button1_Click(object sender, EventArgs e)
         {
             JoinRoomById((int)roomIdBox.Value);
-        }
-
-        private void roomsListFlow_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 

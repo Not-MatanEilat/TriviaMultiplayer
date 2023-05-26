@@ -67,7 +67,6 @@
             roomsListFlow.Size = new Size(353, 426);
             roomsListFlow.TabIndex = 6;
             roomsListFlow.WrapContents = false;
-            roomsListFlow.Paint += roomsListFlow_Paint;
             // 
             // refreshButton
             // 
