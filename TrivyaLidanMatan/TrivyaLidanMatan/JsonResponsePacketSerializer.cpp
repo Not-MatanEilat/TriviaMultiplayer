@@ -192,6 +192,24 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const CloseRoomResponse& 
 	return vec;
 }
 
+/**
+ * \brief The function will take a startGame response and serialize it to a buffer ("status" : status)
+ * \param startGameResponse the startGame response to serialize
+ * \return startGame response to serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(const StartGameResponse& startGameResponse)
+{
+	
+	json j;
+	j["status"] = startGameResponse.status;
+	Buffer vec = serializeResponseFromJson(START_GAME_CODE, j);
+	return vec;
+
+}
+
+
+
+
 
 
 

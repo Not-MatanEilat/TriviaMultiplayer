@@ -110,5 +110,6 @@ public:
 	static Buffer serializeResponse(const CreateRoomResponse& createRoomResponse);
 
 	static Buffer serializeResponse(const CloseRoomResponse& closeRoomResponse);
+	static Buffer serializeResponse(const StartGameResponse& startGameResponse);
 };
 
