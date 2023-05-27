@@ -67,3 +67,14 @@ RoomAdminRequestHandler* RequestHandlerFactory::createRoomAdminRequestHandler(co
 	return new RoomAdminRequestHandler(*this, loggedUser, room);
 }
 
+/**
+ * \brief Creates a new Room handler a returns it with the current handler
+ * \param loggedUser the user that is logged in to the room now
+ * \param room room the room the user is in now
+ * \return The new RoomMemberRequestHandler created
+ */
+RoomMemberRequestHandler* RequestHandlerFactory::createRoomMemberRequestHandler(const LoggedUser& loggedUser, const Room& room)
+{
+	return new RoomMemberRequestHandler(*this, loggedUser, room);
+}
+

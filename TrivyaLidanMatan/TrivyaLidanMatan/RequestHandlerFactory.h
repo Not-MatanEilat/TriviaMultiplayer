@@ -18,12 +18,12 @@ public:
 	RequestHandlerFactory(IDataBase* mDatabase);
 
 	LoginRequestHandler* createLoginRequestHandler();
-	MenuRequestHandler* createMenuRequestHandler(LoggedUser loggedUser);
+	MenuRequestHandler* createMenuRequestHandler(const LoggedUser& loggedUser);
 	LoginManager& getLoginManager();
 	RoomManager& getRoomManager();
 	StatisticsManager& getStatisticsManager();
-	CreateRoomAdminRequestHandler* createRoomAdminRequestHandler(LoggedUser loggedUser);
-
+	RoomAdminRequestHandler* createRoomAdminRequestHandler(const LoggedUser& loggedUser, const Room& room);
+	RoomMemberRequestHandler* createRoomMemberRequestHandler(const LoggedUser& loggedUser, const Room& room);
 
 
 private:
