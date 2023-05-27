@@ -207,6 +207,25 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const StartGameResponse& 
 
 }
 
+/**
+ * \brief The function will take a startGame response and serialize it to a buffer
+ * ("status" : status, "hasGameBegun" : hasGameBegun, "players" : players, "questionCount" : questionCount, "answerTimeout" : answerTimeout)
+ * \param getRoomStateResponse 
+ * \return 
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(const GetRoomStateResponse& getRoomStateResponse)
+{
+	json j;
+	j["status"] = getRoomStateResponse.status;
+	j["hasGameBegun"] = getRoomStateResponse.hasGameBegun;
+	j["players"] = getRoomStateResponse.players;
+	j["questionCount"] = getRoomStateResponse.questionCount;
+	j["answerTimeout"] = getRoomStateResponse.answerTimeout;
+	Buffer vec = serializeResponseFromJson(ROOM_STATE_CODE, j);
+	return vec;
+}
+
+
 
 
 
