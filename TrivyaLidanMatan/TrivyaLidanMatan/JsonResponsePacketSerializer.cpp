@@ -179,6 +179,19 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const CreateRoomResponse&
 	return vec;
 }
 
+/**
+ * \brief The function will take a closeRoom response and serialize it to a buffer ("status" : status)
+ * \param closeRoomResponse the closeRoom response to serialize
+ * \return closeRoom response serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(const CloseRoomResponse& closeRoomResponse)
+{
+	json j;
+	j["status"] = closeRoomResponse.status;
+	Buffer vec = serializeResponseFromJson(CLOSE_ROOM_CODE, j);
+	return vec;
+}
+
 
 
 

@@ -108,5 +108,7 @@ public:
 	static Buffer serializeResponse(const GetPersonalStatsResponse& getPersonalStatsResponse);
 	static Buffer serializeResponse(const JoinRoomResponse& joinRoomResponse);
 	static Buffer serializeResponse(const CreateRoomResponse& createRoomResponse);
+
+	static Buffer serializeResponse(const CloseRoomResponse& closeRoomResponse);
 };
 
