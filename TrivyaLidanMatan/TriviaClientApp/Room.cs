@@ -54,10 +54,10 @@ namespace TriviaClientApp
             if (players != null)
             {
                 int i = 0;
-                foreach (JObject player in players)
+                foreach (string player in players)
                 {
                     Label playerLabel = new Label();
-                    playerLabel.Text = player["username"].ToString();
+                    playerLabel.Text = player;
                     // change to consts later
                     playerLabel.Location = new Point(10, 20 + i * 20);
 
