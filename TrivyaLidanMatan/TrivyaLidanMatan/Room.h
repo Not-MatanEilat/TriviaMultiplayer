@@ -37,6 +37,7 @@ public:
 	std::vector<LoggedUser> getAllUsers();
 	RoomData getRoomData() const;
 	bool isUserInRoom(const string& username);
+	void startGame();
 
 private:
 	vector<LoggedUser> m_users;

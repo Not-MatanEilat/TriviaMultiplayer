@@ -88,6 +88,19 @@ bool Room::isUserInRoom(const string& username)
 	return false;
 }
 
+/**
+ * \brief Starts the game, if game has already started then throw an exception
+ */
+void Room::startGame()
+{
+	if (m_roomData.isActive)
+	{
+		throw std::exception("Game already started");
+	}
+
+	m_roomData.isActive = true;
+}
+
 
 
 

@@ -120,6 +120,40 @@ RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo info)
 }
 
 
+/**
+ * \brief The function will start the game, if an error happend during that time, will return an error response then
+ * \param info the info for request
+ * \return the response of request
+ */
+RequestResult RoomAdminRequestHandler::startGame(RequestInfo info)
+{
+	RequestResult result;
+
+	try
+	{
+		m_room.startGame();
+
+		StartGameResponse response;
+		response.status = SUCCESS;
+
+		// stays this for now, soon will change to be the start game handler
+		result.newHandler = this;
+		result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	}
+	catch (const std::exception& e)
+	{
+		ErrorResponse error;
+		error.message = "Something went wrong: " + std::string(e.what());
+		TRACE("RoomAdminHandler " << m_user.getUsername() << ": " << error.message);
+		result.newHandler = this;
+		result.response = JsonResponsePacketSerializer::serializeResponse(error);
+	}
+
+	return result;
+}
+
+
+
 
 
 
