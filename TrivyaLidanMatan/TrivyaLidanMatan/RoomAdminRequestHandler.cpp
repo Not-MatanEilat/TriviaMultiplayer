@@ -4,6 +4,19 @@
 #include "JsonResponsePacketSerializer.h"
 
 /**
+ * \brief The constructor for RoomAdminRequestHandler
+ * \param handlerFactory The factory handler
+ * \param user the user that has created the room that is in
+ * \param room the room the user has already created
+ */
+RoomAdminRequestHandler::RoomAdminRequestHandler(RequestHandlerFactory& handlerFactory, LoggedUser user, Room room) : m_handlerFactory(handlerFactory), m_user(user), m_room(room), m_roomManager(m_handlerFactory.getRoomManager())
+{
+
+}
+
+
+
+/**
  * \brief Checks if the given request is relevant to the handler
  * \param info the request info given
  * \return True or False
@@ -123,7 +136,7 @@ RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo info)
 /**
  * \brief The function will start the game, if an error happend during that time, will return an error response then
  * \param info the info for request
- * \return the response of request
+ * \return the response of request, if gotten an error then will return an error response
  */
 RequestResult RoomAdminRequestHandler::startGame(RequestInfo info)
 {
