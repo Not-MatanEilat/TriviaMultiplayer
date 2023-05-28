@@ -68,6 +68,14 @@ void RoomManager::joinRoom(const LoggedUser& user, unsigned id)
 	TRACE("Room Joined, User that has joined: " + user.getUsername() + ", Room that got joined: " + std::to_string(id));
 }
 
+void RoomManager::leaveRoom(const LoggedUser& user)
+{
+	Room& room = getRoomOfUser(user.getUsername());
+	room.removeUser(user);
+
+	TRACE("Room Left, User that has left: " + user.getUsername() + ", Room that got joined: " + std::to_string(room.getRoomData().id));
+}
+
 /**
  * \brief The function deletes a room from the vector by the id, if the room doesn't exist, we throw an exception
  * \param id the id of the room to there delete
