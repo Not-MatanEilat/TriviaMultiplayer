@@ -197,7 +197,7 @@ RequestResult MenuRequestHandler::joinRoom(RequestInfo const& info)
 
 	response.status = SUCCESS;
 
-	result.newHandler = this;
+	result.newHandler = m_handlerFactory.createRoomMemberRequestHandler(m_user, m_handlerFactory.getRoomManager().getRoom(request.roomId));
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
