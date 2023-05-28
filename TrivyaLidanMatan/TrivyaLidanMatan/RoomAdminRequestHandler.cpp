@@ -72,7 +72,7 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo info)
 	{
 		ErrorResponse error;
 		error.message = "Something went wrong: " + std::string(e.what());
-		TRACE("RoomAdminHandler " << m_user.getUsername() << ": " << error.message)
+		TRACE("RoomAdminHandler " << m_user.getUsername() << ": " << error.message);
 		result.response = JsonResponsePacketSerializer::serializeResponse(error);
 		result.newHandler = this;
 	}
@@ -80,6 +80,45 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo info)
 	return result;
 
 }
+
+/**
+ * \brief The function will return the result with the current state of the room
+ * \param info the info of request
+ * \return the response of request, if gotten an error then will return an error response
+ */
+RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo info)
+{
+	RequestResult result;
+
+	try
+	{
+		GetRoomStateResponse response;
+		response.status = SUCCESS;
+		response.answerTimeout = m_room.getRoomData().timePerQuestion;
+		response.hasGameBegun = m_room.getRoomData().isActive;
+
+		for (auto& player : m_room.getAllUsers())
+		{
+			response.players.push_back(player.getUsername());
+		}
+
+		response.questionCount = m_room.getRoomData().numOfQuestionsInGame;
+
+		result.newHandler = this;
+		result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	}
+	catch (const std::exception& e)
+	{
+		ErrorResponse error;
+		error.message = "Something went wrong: " + std::string(e.what());
+		TRACE("RoomAdminHandler " << m_user.getUsername() << ": " << error.message);
+		result.newHandler = this;
+		result.response = JsonResponsePacketSerializer::serializeResponse(error);
+	}
+
+	return result;
+}
+
 
 
 
