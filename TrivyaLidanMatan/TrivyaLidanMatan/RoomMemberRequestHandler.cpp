@@ -41,7 +41,16 @@ RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo info)
 
 RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo info)
 {
+	RequestResult result;
 
+	LogoutResponse response;
+
+	m_roomManager.leaveRoom(m_user);
+	response.status = SUCCESS;
+
+	result.newHandler = m_handlerFactory.createLoginRequestHandler();
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	return result;
 }
 
 RequestResult RoomMemberRequestHandler::getRoomState(RequestInfo info)

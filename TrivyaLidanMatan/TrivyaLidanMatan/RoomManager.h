@@ -20,6 +20,7 @@ public:
 	unsigned int getRoomState(int id);
 	vector<RoomData> getRooms() const;
 	Room& getRoom(int id);
+	Room& getRoomOfUser(const string& username);
 	bool isUserInAnyRoom(const string& username);
 	bool doesRoomExist(unsigned int id);
 
