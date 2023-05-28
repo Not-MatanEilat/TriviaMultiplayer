@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Room.h"
+#include "LoggedUser.h"
+#include "RequestHandlerFactory.h"
 
 #include "IRequestHandler.h"
 
