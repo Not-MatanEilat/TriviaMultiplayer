@@ -48,11 +48,24 @@ RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo info)
 	m_roomManager.leaveRoom(m_user);
 	response.status = SUCCESS;
 
-	result.newHandler = m_handlerFactory.createLoginRequestHandler();
+	result.newHandler = m_handlerFactory.createMenuRequestHandler(m_user);
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
 
 RequestResult RoomMemberRequestHandler::getRoomState(RequestInfo info)
 {
+	RequestResult result;
+
+	GetRoomStateResponse response;
+
+	response.answerTimeout = m_room.getRoomData().timePerQuestion;
+	response.hasGameBegun = m_room.getRoomData().isActive;
+	response.players = m_room.getAllUsernames();
+	response.questionCount = m_room.getRoomData().numOfQuestionsInGame;
+	response.status = SUCCESS;
+
+	result.newHandler = this;
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	return result;
 }

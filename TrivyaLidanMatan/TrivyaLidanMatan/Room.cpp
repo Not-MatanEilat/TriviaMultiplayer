@@ -61,6 +61,16 @@ std::vector<LoggedUser> Room::getAllUsers()
 	return m_users;
 }
 
+std::vector<string> Room::getAllUsernames() const
+{
+	std::vector<string> usernames;
+	for (const auto& user : m_users)
+	{
+		usernames.push_back(user.getUsername());
+	}
+	return usernames;
+}
+
 /**
  * \brief Returns the current RoomData
  * \return The roomdata
