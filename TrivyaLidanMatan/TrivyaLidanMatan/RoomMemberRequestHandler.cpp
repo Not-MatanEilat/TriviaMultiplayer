@@ -43,7 +43,7 @@ RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo info)
 {
 	RequestResult result;
 
-	LogoutResponse response;
+	LeaveRoomResponse response;
 
 	m_roomManager.leaveRoom(m_user);
 	response.status = SUCCESS;
