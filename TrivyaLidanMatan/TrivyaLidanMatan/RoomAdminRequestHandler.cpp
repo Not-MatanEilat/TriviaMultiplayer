@@ -42,13 +42,45 @@ RequestResult RoomAdminRequestHandler::handleRequest(RequestInfo info)
 	{
 		ErrorResponse error;
 	 	error.message = "Something went wrong: " + std::string(e.what());
-	 	TRACE("MenuHandler " << m_user.getUsername() << ": " << error.message)
+	 	TRACE("RoomAdminHandler " << m_user.getUsername() << ": " << error.message)
 	 	result.response = JsonResponsePacketSerializer::serializeResponse(error);
 	 	result.newHandler = this;
 	}
 
 	return result;
  }
+
+/**
+ * \brief The function will close the room by deleting it
+ * \param info the info of request
+ * \return the result for request, error if thre was an error in process
+ */
+RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo info)
+{
+	RequestResult result;
+	try
+	{
+		m_roomManager.deleteRoom(m_room.getRoomData().id);
+
+		CloseRoomResponse response;
+		response.status = SUCCESS;
+
+		result.newHandler = m_handlerFactory.createMenuRequestHandler(m_user);
+		result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	}
+	catch (const std::exception& e)
+	{
+		ErrorResponse error;
+		error.message = "Something went wrong: " + std::string(e.what());
+		TRACE("RoomAdminHandler " << m_user.getUsername() << ": " << error.message)
+		result.response = JsonResponsePacketSerializer::serializeResponse(error);
+		result.newHandler = this;
+	}
+
+	return result;
+
+}
+
 
 
 
