@@ -45,6 +45,7 @@
             // 
             // namesListFlow
             // 
+            namesListFlow.FlowDirection = FlowDirection.TopDown;
             namesListFlow.Location = new Point(33, 84);
             namesListFlow.Name = "namesListFlow";
             namesListFlow.Size = new Size(220, 320);

@@ -15,8 +15,8 @@ namespace TriviaClientApp
 {
     public partial class Room : Form
     {
-
         private Mutex mutex = new();
+        private List<string> players = new();
         public Room()
         {
             InitializeComponent();
@@ -31,6 +31,8 @@ namespace TriviaClientApp
         {
             Thread loader = new Thread(loadAllNames);
             loader.Start();
+
+            JObject result = TriviaClient.GetClient().GetRoomState();
         }
 
         private void loadAllNames()
@@ -49,12 +51,13 @@ namespace TriviaClientApp
             TriviaClient client = TriviaClient.GetClient();
             JObject result = client.GetRoomState();
 
-            JToken players = result["message"]["players"];
+            JToken playersJson = result["message"]["players"];
+            players.Clear();
 
-            if (players != null)
+            if (playersJson != null)
             {
                 int i = 0;
-                foreach (string player in players)
+                foreach (string player in playersJson)
                 {
                     Label playerLabel = new Label();
                     playerLabel.Text = player;
@@ -72,7 +75,7 @@ namespace TriviaClientApp
                     }
 
                     i++;
-
+                    players.Add(player);
                 }
             }
         }
@@ -86,20 +89,38 @@ namespace TriviaClientApp
         {
             TriviaClient client = TriviaClient.GetClient();
 
-            JObject result = client.LeaveRoom();
+            JObject result;
 
-            if ((int)result["code"] == TriviaClient.ERROR_CODE)
+            if (players.Count == 0)
             {
-                MessageBox.Show(result["message"]["message"].ToString(), "Room ERROR", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show("Something went wrong", "Room ERROR", MessageBoxButtons.OK,
+                                       MessageBoxIcon.Error);
             }
             else
             {
-                MainMenu mainMenu = new MainMenu();
-                mainMenu.Show();
-                Close();
+                if (client.Username == players[0])
+                {
+                    result = client.CloseRoom();
+                }
+                else
+                {
+                    result = client.LeaveRoom();
+                }
+
+                if ((int)result["code"] == TriviaClient.ERROR_CODE)
+                {
+                    MessageBox.Show(result["message"]["message"].ToString(), "Room ERROR", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MainMenu mainMenu = new MainMenu();
+                    mainMenu.Show();
+                    Close();
+                }
             }
-            
+
+
         }
     }
 }

@@ -333,13 +333,30 @@ namespace TriviaClientApp
             return SendRequestDict((byte)RequestCodes.CREATE_ROOM_CODE, data);
         }
 
+        /// <summary>
+        /// Will get room state
+        /// </summary>
+        /// <returns>response</returns>
         public JObject GetRoomState()
         {
             return SendRequestDict((byte)RequestCodes.ROOM_STATE_CODE);
         }
 
+        /// <summary>
+        /// Will leave the room
+        /// </summary>
+        /// <returns>response</returns>
         public JObject LeaveRoom(){
             return SendRequestDict((byte)RequestCodes.LEAVE_ROOM_CODE);
+        }
+
+        /// <summary>
+        /// Will close the room
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject CloseRoom()
+        {
+            return SendRequestDict((byte)RequestCodes.CLOSE_ROOM_CODE);
         }
     }
 }
