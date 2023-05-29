@@ -63,6 +63,13 @@ RequestResult RoomAdminRequestHandler::handleRequest(RequestInfo info)
 	return result;
  }
 
+void RoomAdminRequestHandler::handleDisconnect()
+{
+	TRACE("RoomAdminHandler " << m_user.getUsername() << ": disconnected")
+	m_roomManager.deleteRoom(m_room.getRoomData().id);
+	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
+}
+
 /**
  * \brief The function will close the room by deleting it
  * \param info the info of request

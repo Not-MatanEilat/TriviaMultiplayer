@@ -42,6 +42,10 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo info)
 	return result;
 }
 
+void LoginRequestHandler::handleDisconnect()
+{
+}
+
 
 /**
  * \brief The function will take a login request and deserialize it to a login request object
