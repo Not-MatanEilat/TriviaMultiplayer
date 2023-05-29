@@ -48,7 +48,6 @@
             label1.Size = new Size(86, 30);
             label1.TabIndex = 0;
             label1.Text = "Players:";
-            label1.Click += label1_Click_1;
             // 
             // namesListFlow
             // 

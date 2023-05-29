@@ -34,7 +34,7 @@ RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo info)
 		error.message = "Something went wrong: " + std::string(e.what());
 		TRACE("MenuHandler " << m_user.getUsername() << ": " << error.message)
 			result.response = JsonResponsePacketSerializer::serializeResponse(error);
-		result.newHandler = m_handlerFactory.createMenuRequestHandler(m_user);
+		result.newHandler = this;
 
 
 	}
