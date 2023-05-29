@@ -52,6 +52,10 @@ RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo info)
 
 	result.newHandler = m_handlerFactory.createMenuRequestHandler(m_user);
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+
+
+	TRACE("User: " + m_user.getUsername() + " has left the room: " + std::to_string(m_room.getRoomData().id));
+
 	return result;
 }
 
@@ -69,5 +73,19 @@ RequestResult RoomMemberRequestHandler::getRoomState(RequestInfo info)
 
 	result.newHandler = this;
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+
+	string playersStr = "";
+	for (const auto& player : response.players)
+	{
+		playersStr += player + " ";
+	}
+	TRACE("\nGetting room state by user: " + m_user.getUsername() + "\n"
+		"AnswerTimeout: " + std::to_string(response.answerTimeout) + "\n"
+		+ "HasGameBegun: " + std::to_string(response.hasGameBegun) + "\n"
+		+ "Players: " + std::to_string(response.players.size()) + "\n"
+		+ "QuestionCount: " + std::to_string(response.questionCount) + "\n"
+		+ "Players: " + playersStr + " \n");
+
 	return result;
+
 }
