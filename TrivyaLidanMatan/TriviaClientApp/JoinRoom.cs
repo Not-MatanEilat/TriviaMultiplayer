@@ -156,12 +156,7 @@ namespace TriviaClientApp
             TriviaClient client = TriviaClient.GetClient();
             JObject result = client.JoinRoom(roomId);
             // this for now until room form
-            if ((int)result["code"] == TriviaClient.ERROR_CODE)
-            {
-                MessageBox.Show(result["message"]["message"].ToString(), "Room ERROR", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-            else
+            if (TriviaClient.IsSuccessResponse(result))
             {
                 Room room = new Room(roomId, roomName, roomCreatorName);
                 room.Show();
