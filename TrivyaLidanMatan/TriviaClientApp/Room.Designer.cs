@@ -33,6 +33,8 @@
             BackButtonPress = new Button();
             roomNameLabel = new Label();
             roomCreatorNameLabel = new Label();
+            label2 = new Label();
+            roomIdLabel = new Label();
             SuspendLayout();
             // 
             // label1
@@ -86,12 +88,34 @@
             roomCreatorNameLabel.TextAlign = ContentAlignment.MiddleCenter;
             roomCreatorNameLabel.Click += roomCreatorNameLabel_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(651, 84);
+            label2.Name = "label2";
+            label2.Size = new Size(88, 28);
+            label2.TabIndex = 9;
+            label2.Text = "Room ID";
+            // 
+            // roomIdLabel
+            // 
+            roomIdLabel.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            roomIdLabel.Location = new Point(620, 112);
+            roomIdLabel.Name = "roomIdLabel";
+            roomIdLabel.Size = new Size(145, 23);
+            roomIdLabel.TabIndex = 10;
+            roomIdLabel.Text = "999999";
+            roomIdLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Room
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(800, 450);
+            Controls.Add(roomIdLabel);
+            Controls.Add(label2);
             Controls.Add(roomCreatorNameLabel);
             Controls.Add(roomNameLabel);
             Controls.Add(BackButtonPress);
@@ -111,5 +135,7 @@
         private Button BackButtonPress;
         private Label roomNameLabel;
         private Label roomCreatorNameLabel;
+        private Label label2;
+        private Label roomIdLabel;
     }
 }

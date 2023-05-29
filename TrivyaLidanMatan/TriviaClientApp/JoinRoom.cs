@@ -164,7 +164,7 @@ namespace TriviaClientApp
             }
             else
             {
-                Room room = new Room(roomName, roomCreatorName);
+                Room room = new Room(roomId, roomName, roomCreatorName);
                 room.Show();
                 Close();
             }
@@ -218,7 +218,7 @@ namespace TriviaClientApp
             // if we'd have 0 players (somehow) we'd get an exception
             if (playersInRoom.Count != 0)
             {
-                roomCreatorName = playersInRoom["message"]["players"][0]["username"].ToString();
+                roomCreatorName = playersInRoom["message"]["players"][0].ToString();
             }
 
             return roomCreatorName;

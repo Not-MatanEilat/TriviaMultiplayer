@@ -19,11 +19,13 @@ namespace TriviaClientApp
         private Mutex mutex = new();
         private List<string> players = new();
         private string roomCreatorName;
-        public Room(string roomName, string roomCreatorName)
+        private int roomId;
+        public Room(int roomId, string roomName, string roomCreatorName)
         {
             InitializeComponent();
             this.roomName = roomName;
             this.roomCreatorName = roomCreatorName;
+            this.roomId = roomId;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -43,6 +45,9 @@ namespace TriviaClientApp
             roomNameLabel.Text = roomName;
 
             roomCreatorNameLabel.Text = roomCreatorName + "' Room";
+
+            roomIdLabel.Text = roomId.ToString();
+
         }
 
         private void loadAllNames()

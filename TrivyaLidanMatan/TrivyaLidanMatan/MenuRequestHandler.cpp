@@ -236,6 +236,7 @@ RequestResult MenuRequestHandler::createRoom(RequestInfo const& info)
 
 	CreateRoomResponse response;
 	response.status = SUCCESS;
+	response.roomId = roomData.id;
 
 	result.newHandler = m_handlerFactory.createRoomAdminRequestHandler(m_user, m_handlerFactory.getRoomManager().getRoom(roomData.id));;
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);

@@ -175,6 +175,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const CreateRoomResponse&
 {
 	json j;
 	j["status"] = createRoomResponse.status;
+	j["roomId"] = createRoomResponse.roomId;
 	Buffer vec = serializeResponseFromJson(CREATE_ROOM_CODE, j);
 	return vec;
 }
