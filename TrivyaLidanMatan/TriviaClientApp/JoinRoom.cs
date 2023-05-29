@@ -145,13 +145,14 @@ namespace TriviaClientApp
             Button button = (Button)sender;
             GroupBox groupBox = (GroupBox)button.Parent;
             int roomId = int.Parse(groupBox.Controls[0].Text);
-            JoinRoomById(roomId);
+            string roomName = groupBox.Controls[1].Text;
+            JoinRoomById(roomId, roomName, getRoomCreatorName(roomId));
         }
         /// <summary>
         /// Join a room by id
         /// </summary>
         /// <param name="roomId">the room id</param>
-        public void JoinRoomById(int roomId)
+        public void JoinRoomById(int roomId, string roomName, string roomCreatorName)
         {
             TriviaClient client = TriviaClient.GetClient();
             JObject result = client.JoinRoom(roomId);
@@ -163,7 +164,7 @@ namespace TriviaClientApp
             }
             else
             {
-                Room room = new Room();
+                Room room = new Room(roomId, roomName, roomCreatorName);
                 room.Show();
                 Close();
             }
@@ -177,7 +178,50 @@ namespace TriviaClientApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            JoinRoomById((int)roomIdBox.Value);
+            int roomId = (int)roomIdBox.Value;
+            JoinRoomById(roomId, getRoomNameById(roomId), getRoomCreatorName(roomId));
+        }
+
+        /// <summary>
+        /// Function will get the name of the room by the given id
+        /// </summary>
+        /// <param name="roomId">rooms id</param>
+        /// <returns>string</returns>
+        public string getRoomNameById(int roomId)
+        {
+            TriviaClient client = TriviaClient.GetClient();
+            JObject result = client.GetRoomsList();
+            JToken rooms = result["message"]["rooms"];
+            if (rooms != null)
+            {
+                foreach (JObject room in rooms)
+                {
+                    if ((int)room["id"] == roomId)
+                    {
+                        return room["name"].ToString();
+                    }
+                }
+            }
+            return "";
+        }
+
+        /// <summary>
+        /// Function will return the name of the creator of the room we are tryina join
+        /// </summary>
+        /// <param name="roomId">the id of the room</param>
+        /// <returns>string</returns>
+        public string getRoomCreatorName(int roomId)
+        {
+            TriviaClient client = TriviaClient.GetClient();
+            JObject playersInRoom = client.GetPlayersInRoom(roomId);
+            string roomCreatorName = "";
+            // if we'd have 0 players (somehow) we'd get an exception
+            if (playersInRoom.Count != 0)
+            {
+                roomCreatorName = playersInRoom["message"]["players"][0].ToString();
+            }
+
+            return roomCreatorName;
         }
     }
 

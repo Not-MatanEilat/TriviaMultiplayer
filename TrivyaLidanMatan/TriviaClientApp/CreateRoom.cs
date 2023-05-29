@@ -42,8 +42,12 @@ namespace TriviaClientApp
                 }
                 else
                 {
-                    // msg for now, later will be form
-                    Room room = new Room();
+
+                    
+
+
+                    int roomId = (int)result["message"]["roomId"];
+                    Room room = new Room(roomId,roomName, client.Username);
                     room.Show();
                     Close();
                 }

@@ -65,6 +65,7 @@ typedef struct JoinRoomResponse
 typedef struct CreateRoomResponse
 {
 	unsigned int status;
+	unsigned int roomId;
 } CreateRoomResponse;
 
 typedef struct CloseRoomResponse
