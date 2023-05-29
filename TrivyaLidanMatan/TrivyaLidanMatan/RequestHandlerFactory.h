@@ -24,8 +24,8 @@ public:
 	LoginManager& getLoginManager();
 	RoomManager& getRoomManager();
 	StatisticsManager& getStatisticsManager();
-	RoomAdminRequestHandler* createRoomAdminRequestHandler(const LoggedUser& loggedUser, const Room& room);
-	RoomMemberRequestHandler* createRoomMemberRequestHandler(const LoggedUser& loggedUser, const Room& room);
+	RoomAdminRequestHandler* createRoomAdminRequestHandler(const LoggedUser& loggedUser, Room& room);
+	RoomMemberRequestHandler* createRoomMemberRequestHandler(const LoggedUser& loggedUser, Room& room);
 
 
 private:
