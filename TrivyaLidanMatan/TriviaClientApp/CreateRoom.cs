@@ -43,7 +43,9 @@ namespace TriviaClientApp
                 else
                 {
                     // msg for now, later will be form
-                    MessageBox.Show("Room created successfully");
+                    Room room = new Room();
+                    room.Show();
+                    Close();
                 }
 
 

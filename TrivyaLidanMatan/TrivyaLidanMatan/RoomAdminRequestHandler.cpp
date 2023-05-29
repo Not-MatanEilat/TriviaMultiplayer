@@ -9,7 +9,7 @@
  * \param user the user that has created the room that is in
  * \param room the room the user has already created
  */
-RoomAdminRequestHandler::RoomAdminRequestHandler(RequestHandlerFactory& handlerFactory, LoggedUser user, Room room) : m_handlerFactory(handlerFactory), m_user(user), m_room(room), m_roomManager(m_handlerFactory.getRoomManager())
+RoomAdminRequestHandler::RoomAdminRequestHandler(RequestHandlerFactory& handlerFactory, LoggedUser user, Room room) : m_handlerFactory(handlerFactory), m_user(user), m_room(room), m_roomManager(handlerFactory.getRoomManager())
 {
 
 }

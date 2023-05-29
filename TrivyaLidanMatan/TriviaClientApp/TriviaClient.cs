@@ -22,6 +22,7 @@ namespace TriviaClientApp
 
         public enum RequestCodes
         {
+            ERROR_CODE = 0,
             LOGIN_CODE = 1,
             SIGNUP_CODE = 2,
             LOGOUT_CODE = 3,
@@ -30,7 +31,11 @@ namespace TriviaClientApp
             HIGH_SCORES_CODE = 6,
             PERSONAL_STATS_CODE = 7,
             JOIN_ROOM_CODE = 8,
-            CREATE_ROOM_CODE = 9
+            CREATE_ROOM_CODE = 9,
+            CLOSE_ROOM_CODE = 10,
+            START_GAME_CODE = 11,
+            ROOM_STATE_CODE = 12,
+            LEAVE_ROOM_CODE = 13
         }
 
         private static TriviaClient? instance = null;
@@ -326,6 +331,32 @@ namespace TriviaClientApp
         {
             JObject data = new JObject() { { "roomName", roomName }, { "maxUsers", maxUsers }, { "questionCount", questionCount }, { "answerTimeout", answerTimeout } };
             return SendRequestDict((byte)RequestCodes.CREATE_ROOM_CODE, data);
+        }
+
+        /// <summary>
+        /// Will get room state
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject GetRoomState()
+        {
+            return SendRequestDict((byte)RequestCodes.ROOM_STATE_CODE);
+        }
+
+        /// <summary>
+        /// Will leave the room
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject LeaveRoom(){
+            return SendRequestDict((byte)RequestCodes.LEAVE_ROOM_CODE);
+        }
+
+        /// <summary>
+        /// Will close the room
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject CloseRoom()
+        {
+            return SendRequestDict((byte)RequestCodes.CLOSE_ROOM_CODE);
         }
     }
 }

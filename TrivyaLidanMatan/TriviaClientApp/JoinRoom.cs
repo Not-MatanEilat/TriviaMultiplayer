@@ -119,10 +119,11 @@ namespace TriviaClientApp
                     i++;
                 }
             }
+
+
             try
             {
                 mutex.ReleaseMutex();
-                Invoke(() => refreshButton.Enabled = true);
             }
             catch (Exception e)
             {
@@ -162,7 +163,9 @@ namespace TriviaClientApp
             }
             else
             {
-                MessageBox.Show("Joined room successfully!");
+                Room room = new Room();
+                room.Show();
+                Close();
             }
         }
 
