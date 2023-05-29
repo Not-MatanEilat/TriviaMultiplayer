@@ -43,7 +43,7 @@ namespace TriviaClientApp
                 else
                 {
                     // msg for now, later will be form
-                    Room room = new Room();
+                    Room room = new Room(roomName, client.Username);
                     room.Show();
                     Close();
                 }

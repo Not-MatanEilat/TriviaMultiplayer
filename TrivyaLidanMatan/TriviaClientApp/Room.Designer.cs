@@ -31,13 +31,15 @@
             label1 = new Label();
             namesListFlow = new FlowLayoutPanel();
             BackButtonPress = new Button();
+            roomNameLabel = new Label();
+            roomCreatorNameLabel = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(33, 37);
+            label1.Location = new Point(33, 51);
             label1.Name = "label1";
             label1.Size = new Size(86, 30);
             label1.TabIndex = 0;
@@ -62,12 +64,36 @@
             BackButtonPress.UseVisualStyleBackColor = true;
             BackButtonPress.Click += BackButtonPress_Click;
             // 
+            // roomNameLabel
+            // 
+            roomNameLabel.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            roomNameLabel.Location = new Point(231, 0);
+            roomNameLabel.Name = "roomNameLabel";
+            roomNameLabel.Size = new Size(355, 45);
+            roomNameLabel.TabIndex = 7;
+            roomNameLabel.Text = "ErrorNameRoom";
+            roomNameLabel.TextAlign = ContentAlignment.MiddleCenter;
+            roomNameLabel.Click += label2_Click;
+            // 
+            // roomCreatorNameLabel
+            // 
+            roomCreatorNameLabel.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            roomCreatorNameLabel.Location = new Point(249, 45);
+            roomCreatorNameLabel.Name = "roomCreatorNameLabel";
+            roomCreatorNameLabel.Size = new Size(314, 36);
+            roomCreatorNameLabel.TabIndex = 8;
+            roomCreatorNameLabel.Text = "ErrorRoomCreator'sName";
+            roomCreatorNameLabel.TextAlign = ContentAlignment.MiddleCenter;
+            roomCreatorNameLabel.Click += roomCreatorNameLabel_Click;
+            // 
             // Room
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(800, 450);
+            Controls.Add(roomCreatorNameLabel);
+            Controls.Add(roomNameLabel);
             Controls.Add(BackButtonPress);
             Controls.Add(namesListFlow);
             Controls.Add(label1);
@@ -83,5 +109,7 @@
         private Label label1;
         private FlowLayoutPanel namesListFlow;
         private Button BackButtonPress;
+        private Label roomNameLabel;
+        private Label roomCreatorNameLabel;
     }
 }

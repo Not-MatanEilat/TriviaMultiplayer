@@ -15,11 +15,15 @@ namespace TriviaClientApp
 {
     public partial class Room : Form
     {
+        private string roomName;
         private Mutex mutex = new();
         private List<string> players = new();
-        public Room()
+        private string roomCreatorName;
+        public Room(string roomName, string roomCreatorName)
         {
             InitializeComponent();
+            this.roomName = roomName;
+            this.roomCreatorName = roomCreatorName;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -29,10 +33,16 @@ namespace TriviaClientApp
 
         private void Room_Load(object sender, EventArgs e)
         {
+            TriviaClient client = TriviaClient.GetClient();
+
             Thread loader = new Thread(loadAllNames);
             loader.Start();
 
             JObject result = TriviaClient.GetClient().GetRoomState();
+
+            roomNameLabel.Text = roomName;
+
+            roomCreatorNameLabel.Text = roomCreatorName + "' Room";
         }
 
         private void loadAllNames()
@@ -59,6 +69,10 @@ namespace TriviaClientApp
                 int i = 0;
                 foreach (string player in playersJson)
                 {
+                    if (i == 0)
+                    {
+                        roomCreatorName = player;
+                    }
                     Label playerLabel = new Label();
                     playerLabel.Text = player;
                     // change to consts later
@@ -120,6 +134,16 @@ namespace TriviaClientApp
                 }
             }
 
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void roomCreatorNameLabel_Click(object sender, EventArgs e)
+        {
 
         }
     }
