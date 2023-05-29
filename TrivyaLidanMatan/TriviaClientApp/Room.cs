@@ -35,12 +35,8 @@ namespace TriviaClientApp
 
         private void Room_Load(object sender, EventArgs e)
         {
-            TriviaClient client = TriviaClient.GetClient();
-
             Thread loader = new Thread(loadAllNames);
             loader.Start();
-
-            JObject result = TriviaClient.GetClient().GetRoomState();
 
             roomNameLabel.Text = roomName;
 
@@ -55,7 +51,6 @@ namespace TriviaClientApp
             try
             {
                 mutex.WaitOne();
-                Invoke(() => namesListFlow.Controls.Clear());
             }
             catch (Exception e)
             {
@@ -68,6 +63,7 @@ namespace TriviaClientApp
 
             JToken playersJson = result["message"]["players"];
             players.Clear();
+            List<Control> controls = new();
 
             if (playersJson != null)
             {
@@ -83,19 +79,28 @@ namespace TriviaClientApp
                     // change to consts later
                     playerLabel.Location = new Point(10, 20 + i * 20);
 
-                    try
-                    {
-                        Invoke(() => namesListFlow.Controls.Add(playerLabel));
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.WriteLine(e.Message);
-                        return;
-                    }
+                    controls.Add(playerLabel);
 
                     i++;
                     players.Add(player);
                 }
+            }
+
+            try
+            {
+                Invoke(() =>
+                {
+                    DoubleBuffered = false;
+                    namesListFlow.Controls.Clear();
+                    namesListFlow.Controls.AddRange(controls.ToArray());
+                });
+
+                mutex.ReleaseMutex();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return;
             }
         }
 
@@ -152,9 +157,10 @@ namespace TriviaClientApp
 
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void autoRefresh_Tick(object sender, EventArgs e)
         {
-
+            Thread loader = new Thread(loadAllNames);
+            loader.Start();
         }
     }
 }

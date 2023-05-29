@@ -50,6 +50,7 @@ namespace TriviaClientApp
                 return;
             }
 
+            List<Control> controls = new();
             TriviaClient client = TriviaClient.GetClient();
             JObject result = client.GetRoomsList();
             JToken rooms = result["message"]["rooms"];
@@ -105,15 +106,7 @@ namespace TriviaClientApp
 
 
                     groupBox.Location = new Point(GROUP_BOX_BASE_X, GROUP_BOX_BASE_Y + i * GROUP_BOX_MARGIN);
-                    try
-                    {
-                        Invoke(() => roomsListFlow.Controls.Add(groupBox));
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.WriteLine(e.Message);
-                        return;
-                    }
+                    controls.Add(groupBox);
 
 
                     i++;
@@ -123,6 +116,12 @@ namespace TriviaClientApp
 
             try
             {
+                Invoke(() =>
+                {
+                    DoubleBuffered = false;
+                    roomsListFlow.Controls.AddRange(controls.ToArray());
+                    refreshButton.Enabled = true;
+                });
                 mutex.ReleaseMutex();
             }
             catch (Exception e)
@@ -217,6 +216,12 @@ namespace TriviaClientApp
             }
 
             return roomCreatorName;
+        }
+
+        private void AutoRefresh_Tick(object sender, EventArgs e)
+        {
+            Thread loader = new Thread(loadAllRooms);
+            loader.Start();
         }
     }
 

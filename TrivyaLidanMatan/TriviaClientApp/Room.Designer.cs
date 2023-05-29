@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             namesListFlow = new FlowLayoutPanel();
             BackButtonPress = new Button();
@@ -35,6 +36,7 @@
             roomCreatorNameLabel = new Label();
             label2 = new Label();
             roomIdLabel = new Label();
+            autoRefresh = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // label1
@@ -109,6 +111,12 @@
             roomIdLabel.Text = "999999";
             roomIdLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // autoRefresh
+            // 
+            autoRefresh.Enabled = true;
+            autoRefresh.Interval = 3000;
+            autoRefresh.Tick += autoRefresh_Tick;
+            // 
             // Room
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -138,5 +146,6 @@
         private Label roomCreatorNameLabel;
         private Label label2;
         private Label roomIdLabel;
+        private System.Windows.Forms.Timer autoRefresh;
     }
 }
