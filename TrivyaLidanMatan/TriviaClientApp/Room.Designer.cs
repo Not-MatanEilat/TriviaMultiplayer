@@ -48,7 +48,6 @@
             label1.Size = new Size(86, 30);
             label1.TabIndex = 0;
             label1.Text = "Players:";
-            label1.Click += label1_Click_1;
             // 
             // namesListFlow
             // 
@@ -130,6 +129,8 @@
             Controls.Add(BackButtonPress);
             Controls.Add(namesListFlow);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Room";
             Text = "Room";
             Load += Room_Load;
