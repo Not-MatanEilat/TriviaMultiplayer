@@ -32,13 +32,20 @@ RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo info)
 	{
 		ErrorResponse error;
 		error.message = "Something went wrong: " + std::string(e.what());
-		TRACE("MenuHandler " << m_user.getUsername() << ": " << error.message)
+		TRACE("RoomMemberHandler " << m_user.getUsername() << ": " << error.message)
 			result.response = JsonResponsePacketSerializer::serializeResponse(error);
 		result.newHandler = m_handlerFactory.createMenuRequestHandler(m_user);
 
 
 	}
 	return result;
+}
+
+void RoomMemberRequestHandler::handleDisconnect()
+{
+	TRACE("RoomMemberHandler " << m_user.getUsername() << ": disconnected")
+	m_roomManager.leaveRoom(m_user);
+	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
 }
 
 RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo info)

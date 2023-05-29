@@ -13,6 +13,7 @@ public:
 
 	bool isRequestRelevant(RequestInfo info) override;
 	RequestResult handleRequest(RequestInfo info) override;
+	void handleDisconnect() override;
 
 private:
 

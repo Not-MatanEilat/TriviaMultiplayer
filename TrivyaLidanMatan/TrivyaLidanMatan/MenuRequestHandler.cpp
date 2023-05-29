@@ -74,6 +74,11 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 	return result;
 }
 
+void MenuRequestHandler::handleDisconnect()
+{
+	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
+}
+
 /**
  * \brief get the rooms
  * \param info the info of the request
