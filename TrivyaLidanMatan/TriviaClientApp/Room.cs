@@ -60,6 +60,26 @@ namespace TriviaClientApp
 
             TriviaClient client = TriviaClient.GetClient();
             JObject result = client.GetRoomState();
+            if (!TriviaClient.IsSuccessResponse(result, false))
+            {
+                try
+                {
+                    Invoke(() =>
+                    {
+                        MainMenu mainMenu = new MainMenu();
+                        mainMenu.Show();
+                        Close();
+                    });
+
+                    mutex.ReleaseMutex();
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                }
+                
+                return;
+            }
 
             JToken playersJson = result["message"]["players"];
             players.Clear();
@@ -136,12 +156,9 @@ namespace TriviaClientApp
                     MessageBox.Show(result["message"]["message"].ToString(), "Room ERROR", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
-                else
-                {
-                    MainMenu mainMenu = new MainMenu();
-                    mainMenu.Show();
-                    Close();
-                }
+                MainMenu mainMenu = new MainMenu();
+                mainMenu.Show();
+                Close();
             }
 
 
