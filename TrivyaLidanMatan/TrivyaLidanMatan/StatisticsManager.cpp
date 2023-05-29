@@ -15,7 +15,7 @@ StatisticsManager::StatisticsManager(IDataBase* mDatabase): m_database(mDatabase
 std::vector<string> StatisticsManager::getHighScore()
 {
 	vector<string> scores = m_database->getHighScores();
-
+	vector<string> limitedScores;
 	int count = 0;
 
 	for (auto& score : scores)
@@ -25,11 +25,11 @@ std::vector<string> StatisticsManager::getHighScore()
 		{
 			break;
 		}
-
+		limitedScores.push_back(score);
 		count++;
 	}
 
-	return m_database->getHighScores();
+	return limitedScores;
 }
 
 /**

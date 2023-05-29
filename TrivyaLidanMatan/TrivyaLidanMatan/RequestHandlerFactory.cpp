@@ -24,7 +24,7 @@ LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
  * \brief Creates a new Menu handler a returns it with the current handler
  * \return 
  */
-MenuRequestHandler* RequestHandlerFactory::createMenuRequestHandler(LoggedUser loggedUser)
+MenuRequestHandler* RequestHandlerFactory::createMenuRequestHandler(const LoggedUser& loggedUser)
 {
 	return new MenuRequestHandler(*this, loggedUser);
 }
@@ -55,3 +55,26 @@ StatisticsManager& RequestHandlerFactory::getStatisticsManager()
 {
 	return m_statisticsManager;
 }
+
+/**
+ * \brief Creates a new Room handler a returns it with the current handler
+ * \param loggedUser the user that is logged in to the room now
+ * \param room the room the user is in now
+ * \return The new RoomAdminRequestHandler created
+ */
+RoomAdminRequestHandler* RequestHandlerFactory::createRoomAdminRequestHandler(const LoggedUser& loggedUser, Room& room)
+{
+	return new RoomAdminRequestHandler(*this, loggedUser, room);
+}
+
+/**
+ * \brief Creates a new Room handler a returns it with the current handler
+ * \param loggedUser the user that is logged in to the room now
+ * \param room room the room the user is in now
+ * \return The new RoomMemberRequestHandler created
+ */
+RoomMemberRequestHandler* RequestHandlerFactory::createRoomMemberRequestHandler(const LoggedUser& loggedUser, Room& room)
+{
+	return new RoomMemberRequestHandler(*this, loggedUser, room);
+}
+
