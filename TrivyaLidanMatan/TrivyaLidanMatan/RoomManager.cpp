@@ -62,6 +62,11 @@ void RoomManager::joinRoom(const LoggedUser& user, unsigned id)
 		throw std::exception("Room was not found");
 	}
 
+	if (getRoom(id).getRoomData().currentPlayersAmount >= getRoom(id).getRoomData().maxPlayers)
+	{
+		throw std::exception("Room is full");
+	}
+
 	Room& room = getRoom(id);
 	room.addUser(user);
 
