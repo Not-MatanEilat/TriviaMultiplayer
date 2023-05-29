@@ -90,6 +90,7 @@ namespace TriviaClientApp
             {
                 Invoke(() =>
                 {
+                    DoubleBuffered = false;
                     namesListFlow.Controls.Clear();
                     namesListFlow.Controls.AddRange(controls.ToArray());
                 });
