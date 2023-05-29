@@ -9,7 +9,7 @@
  * \param user the user that has created the room that is in
  * \param room the room the user has already created
  */
-RoomAdminRequestHandler::RoomAdminRequestHandler(RequestHandlerFactory& handlerFactory, LoggedUser user, Room room) : m_handlerFactory(handlerFactory), m_user(user), m_room(room), m_roomManager(handlerFactory.getRoomManager())
+RoomAdminRequestHandler::RoomAdminRequestHandler(RequestHandlerFactory& handlerFactory, LoggedUser user, Room& room) : m_handlerFactory(handlerFactory), m_user(user), m_room(room), m_roomManager(handlerFactory.getRoomManager())
 {
 
 }
@@ -106,16 +106,12 @@ RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo info)
 	try
 	{
 		GetRoomStateResponse response;
-		response.status = SUCCESS;
+
 		response.answerTimeout = m_room.getRoomData().timePerQuestion;
 		response.hasGameBegun = m_room.getRoomData().isActive;
-
-		for (auto& player : m_room.getAllUsers())
-		{
-			response.players.push_back(player.getUsername());
-		}
-
+		response.players = m_room.getAllUsernames();
 		response.questionCount = m_room.getRoomData().numOfQuestionsInGame;
+		response.status = SUCCESS;
 
 		result.newHandler = this;
 		result.response = JsonResponsePacketSerializer::serializeResponse(response);
