@@ -166,24 +166,11 @@ namespace TriviaClientApp
 
             JObject result = client.Signup(username, password, email);
 
-            if (result["message"] != null)
+            if (TriviaClient.IsSuccessResponse(result))
             {
-                int status = (int)result["code"];
-                if (status != TriviaClient.ERROR_CODE)
-                {
-                    MainMenu menu = new MainMenu();
-                    menu.Show();
-                    Close();
-                }
-                else
-                {
-                     MessageBox.Show(result["message"]["message"].ToString(), "Signup ERROR", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("An error has occured");
+                MainMenu menu = new MainMenu();
+                menu.Show();
+                Close();
             }
 
         }

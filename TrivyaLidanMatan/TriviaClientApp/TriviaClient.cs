@@ -358,5 +358,38 @@ namespace TriviaClientApp
         {
             return SendRequestDict((byte)RequestCodes.CLOSE_ROOM_CODE);
         }
+
+        /// <summary>
+        /// The function will return a boolean based no if the result given was a success or not.
+        /// You can set displayMessageBox to true to see the error in an error message.
+        /// In addition you can change customErrorMessage to display an error message of your choice.
+        /// </summary>
+        /// <param name="response">The response to check</param>
+        /// <param name="displayMessageBox">True if you want the error message to display in a message box</param>
+        /// <param name="customErrorMessage">a string for a custom error message if needs</param>
+        /// <returns>True or False</returns>
+        public static bool IsSuccessResponse(JObject response, bool displayMessageBox=true, string customErrorMessage="")
+        {
+            if ((int)response["code"] == ERROR_CODE)
+            {
+                if (displayMessageBox)
+                {
+                    if (customErrorMessage == "")
+                    {
+                        MessageBox.Show(response["message"]["message"].ToString(), "ERROR", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(customErrorMessage, "ERROR", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+
+                return false;
+            }
+
+            return true;
+        }
     }
 }
