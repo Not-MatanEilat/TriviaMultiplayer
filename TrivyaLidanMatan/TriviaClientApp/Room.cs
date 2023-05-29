@@ -144,18 +144,13 @@ namespace TriviaClientApp
             {
                 if (client.Username == players[0])
                 {
-                    result = client.CloseRoom();
+                    client.CloseRoom();
                 }
                 else
                 {
-                    result = client.LeaveRoom();
+                    client.LeaveRoom();
                 }
 
-                if ((int)result["code"] == TriviaClient.ERROR_CODE)
-                {
-                    MessageBox.Show(result["message"]["message"].ToString(), "Room ERROR", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
                 MainMenu mainMenu = new MainMenu();
                 mainMenu.Show();
                 Close();

@@ -96,7 +96,7 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo info)
 		error.message = "Something went wrong: " + std::string(e.what());
 		TRACE("RoomAdminHandler " << m_user.getUsername() << ": " << error.message);
 		result.response = JsonResponsePacketSerializer::serializeResponse(error);
-		result.newHandler = this;
+		result.newHandler = m_handlerFactory.createMenuRequestHandler(m_user);
 	}
 
 	return result;
@@ -143,7 +143,7 @@ RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo info)
 		ErrorResponse error;
 		error.message = "Something went wrong: " + std::string(e.what());
 		TRACE("RoomAdminHandler " << m_user.getUsername() << ": " << error.message);
-		result.newHandler = this;
+		result.newHandler = m_handlerFactory.createMenuRequestHandler(m_user);
 		result.response = JsonResponsePacketSerializer::serializeResponse(error);
 	}
 
