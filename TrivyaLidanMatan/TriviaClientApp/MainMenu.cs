@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace TriviaClientApp
 {
-    public partial class MainMenu : UserControl
+    public partial class MainMenu : Page
     {
 
         public MainMenu()
@@ -32,13 +32,13 @@ namespace TriviaClientApp
         private void CreateRoomButton_Click(object sender, EventArgs e)
         {
             CreateRoom createRoom = new CreateRoom();
-            MainForm.ChangePage(createRoom);
+            main.ChangePage(createRoom);
         }
 
         private void JoinRoomButton_Click(object sender, EventArgs e)
         {
             JoinRoom joinRoom = new JoinRoom();
-            MainForm.ChangePage(joinRoom);
+            main.ChangePage(joinRoom);
 
 
         }
@@ -46,19 +46,19 @@ namespace TriviaClientApp
         private void button3_Click(object sender, EventArgs e)
         {
             Statistics statistics = new Statistics();
-            MainForm.ChangePage(statistics);
+            main.ChangePage(statistics);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            MainForm.GetMainForm().Close();
+            main.Close();
         }
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
             TriviaClient.GetClient().Logout();
             Login login = new Login();
-            MainForm.ChangePage(login);
+            main.ChangePage(login);
         }
     }
 }
