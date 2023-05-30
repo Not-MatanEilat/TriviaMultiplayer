@@ -105,7 +105,6 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
-            ClientSize = new Size(800, 450);
             Controls.Add(signupButton);
             Controls.Add(loginButton);
             Controls.Add(label3);
@@ -114,8 +113,15 @@
             Controls.Add(usernameBox);
             Controls.Add(label1);
             Name = "Login";
-            Text = "Login";
+            Size = new Size(800, 450);
             Load += Form1_Load;
+            Controls.SetChildIndex(label1, 0);
+            Controls.SetChildIndex(usernameBox, 0);
+            Controls.SetChildIndex(passwordBox, 0);
+            Controls.SetChildIndex(label2, 0);
+            Controls.SetChildIndex(label3, 0);
+            Controls.SetChildIndex(loginButton, 0);
+            Controls.SetChildIndex(signupButton, 0);
             ResumeLayout(false);
             PerformLayout();
         }

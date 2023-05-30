@@ -21,7 +21,7 @@ namespace TriviaClientApp
         private void loginButton_Click(object sender, EventArgs e)
         {
             JObject result = client.Login(usernameBox.Text, passwordBox.Text);
-            
+
             if (TriviaClient.IsSuccessResponse(result))
             {
                 MainMenu mainMenu = new MainMenu();

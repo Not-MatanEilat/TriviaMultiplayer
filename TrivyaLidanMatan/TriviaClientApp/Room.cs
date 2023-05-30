@@ -15,6 +15,10 @@ namespace TriviaClientApp
 {
     public partial class Room : Page
     {
+        private const int PLAYER_LABEL_BASE_X = 10;
+        private const int PLAYER_LABEL_BASE_Y = 20;
+        private const int PLAYER_LABEL_MARGIN = 20;
+
         private string roomName;
         private Mutex mutex = new();
         private List<string> players = new();
@@ -99,7 +103,7 @@ namespace TriviaClientApp
                     Label playerLabel = new Label();
                     playerLabel.Text = player;
                     // change to consts later
-                    playerLabel.Location = new Point(10, 20 + i * 20);
+                    playerLabel.Location = new Point(PLAYER_LABEL_BASE_X, PLAYER_LABEL_BASE_Y + i * PLAYER_LABEL_MARGIN);
 
                     controls.Add(playerLabel);
 
@@ -136,7 +140,7 @@ namespace TriviaClientApp
             TriviaClient client = TriviaClient.GetClient();
 
             JObject result;
-
+            
             if (players.Count == 0)
             {
                 MessageBox.Show("Something went wrong", "Room ERROR", MessageBoxButtons.OK,
@@ -144,6 +148,7 @@ namespace TriviaClientApp
             }
             else
             {
+                // this is for checking if the player is an admin, the admin is always the first player in the current room
                 if (client.Username == players[0])
                 {
                     client.CloseRoom();
