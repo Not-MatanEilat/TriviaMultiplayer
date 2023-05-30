@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
-    public partial class CreateRoom : Form
+    public partial class CreateRoom : UserControl
     {
         public CreateRoom()
         {
@@ -38,9 +38,8 @@ namespace TriviaClientApp
                 if (TriviaClient.IsSuccessResponse(result))
                 {
                     int roomId = (int)result["message"]["roomId"];
-                    Room room = new Room(roomId,roomName, client.Username);
-                    room.Show();
-                    Close();
+                    Room room = new Room(roomId, roomName, client.Username);
+                    MainForm.ChangePage(room);
                 }
 
 
@@ -121,8 +120,7 @@ namespace TriviaClientApp
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
             MainMenu mainMenu = new MainMenu();
-            mainMenu.Show();
-            Close();
+            MainForm.ChangePage(mainMenu);
         }
     }
 }

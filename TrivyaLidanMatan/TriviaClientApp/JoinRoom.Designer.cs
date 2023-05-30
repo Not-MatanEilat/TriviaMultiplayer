@@ -126,10 +126,7 @@
             Controls.Add(roomsListFlow);
             Controls.Add(BackButtonPress);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
             Name = "JoinRoom";
-            ShowInTaskbar = false;
             Text = "JoinRoom";
             Load += JoinRoom_Load;
             ((System.ComponentModel.ISupportInitialize)roomIdBox).EndInit();

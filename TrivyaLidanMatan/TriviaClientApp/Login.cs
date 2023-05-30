@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
-    public partial class Login : Form
+    public partial class Login : UserControl
     {
         private TriviaClient client;
         public Login()
@@ -17,23 +17,21 @@ namespace TriviaClientApp
             client = TriviaClient.GetClient();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void loginButton_Click(object sender, EventArgs e)
         {
             JObject result = client.Login(usernameBox.Text, passwordBox.Text);
             
             if (TriviaClient.IsSuccessResponse(result))
             {
                 MainMenu mainMenu = new MainMenu();
-                mainMenu.Show();
-                Close();
+                MainForm.ChangePage(mainMenu);
             }
         }
 
         private void signupButton_Click(object sender, EventArgs e)
         {
             Signup signup = new Signup();
-            signup.Show();
-            Close();
+            MainForm.ChangePage(signup);
         }
     }
 }

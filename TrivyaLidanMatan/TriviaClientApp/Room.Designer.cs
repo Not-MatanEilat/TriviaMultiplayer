@@ -129,8 +129,6 @@
             Controls.Add(BackButtonPress);
             Controls.Add(namesListFlow);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
             Name = "Room";
             Text = "Room";
             Load += Room_Load;
