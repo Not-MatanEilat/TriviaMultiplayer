@@ -88,7 +88,7 @@
             loginButton.TabIndex = 5;
             loginButton.Text = "Login";
             loginButton.UseVisualStyleBackColor = true;
-            loginButton.Click += button1_Click;
+            loginButton.Click += loginButton_Click;
             // 
             // signupButton
             // 
@@ -102,7 +102,6 @@
             // 
             // Login
             // 
-            AcceptButton = loginButton;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
@@ -114,8 +113,6 @@
             Controls.Add(passwordBox);
             Controls.Add(usernameBox);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
             Name = "Login";
             Text = "Login";
             Load += Form1_Load;
