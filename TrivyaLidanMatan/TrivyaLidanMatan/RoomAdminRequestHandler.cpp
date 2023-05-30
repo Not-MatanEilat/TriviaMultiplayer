@@ -63,6 +63,9 @@ RequestResult RoomAdminRequestHandler::handleRequest(RequestInfo info)
 	return result;
  }
 
+/**
+ * \brief handles client disconnecting
+ */
 void RoomAdminRequestHandler::handleDisconnect()
 {
 	TRACE("RoomAdminHandler " << m_user.getUsername() << ": disconnected")
