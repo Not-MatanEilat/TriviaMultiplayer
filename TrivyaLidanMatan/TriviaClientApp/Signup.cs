@@ -12,7 +12,7 @@ using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
-    public partial class Signup : Form
+    public partial class Signup : UserControl
     {
         private string username;
         private string password;
@@ -39,7 +39,7 @@ namespace TriviaClientApp
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(389, 60);
+            label1.Location = new Point(325, 67);
             label1.Name = "label1";
             label1.Size = new Size(119, 45);
             label1.TabIndex = 0;
@@ -49,7 +49,7 @@ namespace TriviaClientApp
             // usernameTextBox
             // 
             usernameTextBox.Cursor = Cursors.IBeam;
-            usernameTextBox.Location = new Point(398, 144);
+            usernameTextBox.Location = new Point(334, 151);
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(100, 23);
             usernameTextBox.TabIndex = 1;
@@ -57,7 +57,7 @@ namespace TriviaClientApp
             // 
             // passwordTextBox
             // 
-            passwordTextBox.Location = new Point(398, 186);
+            passwordTextBox.Location = new Point(334, 193);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.Size = new Size(100, 23);
             passwordTextBox.TabIndex = 2;
@@ -66,7 +66,7 @@ namespace TriviaClientApp
             // 
             // emailTextBox
             // 
-            emailTextBox.Location = new Point(398, 228);
+            emailTextBox.Location = new Point(334, 235);
             emailTextBox.Name = "emailTextBox";
             emailTextBox.Size = new Size(100, 23);
             emailTextBox.TabIndex = 3;
@@ -74,7 +74,7 @@ namespace TriviaClientApp
             // 
             // signupButton
             // 
-            signupButton.Location = new Point(398, 271);
+            signupButton.Location = new Point(334, 278);
             signupButton.Name = "signupButton";
             signupButton.Size = new Size(100, 27);
             signupButton.TabIndex = 4;
@@ -85,7 +85,7 @@ namespace TriviaClientApp
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(332, 147);
+            label2.Location = new Point(268, 154);
             label2.Name = "label2";
             label2.Size = new Size(60, 15);
             label2.TabIndex = 4;
@@ -94,7 +94,7 @@ namespace TriviaClientApp
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(332, 189);
+            label3.Location = new Point(268, 196);
             label3.Name = "label3";
             label3.Size = new Size(57, 15);
             label3.TabIndex = 4;
@@ -103,7 +103,7 @@ namespace TriviaClientApp
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(342, 236);
+            label4.Location = new Point(278, 243);
             label4.Name = "label4";
             label4.Size = new Size(36, 15);
             label4.TabIndex = 4;
@@ -111,7 +111,7 @@ namespace TriviaClientApp
             // 
             // BackButtonPress
             // 
-            BackButtonPress.Location = new Point(12, 400);
+            BackButtonPress.Location = new Point(13, 414);
             BackButtonPress.Name = "BackButtonPress";
             BackButtonPress.Size = new Size(75, 23);
             BackButtonPress.TabIndex = 7;
@@ -121,9 +121,7 @@ namespace TriviaClientApp
             // 
             // Signup
             // 
-            AcceptButton = signupButton;
             BackColor = Color.SteelBlue;
-            ClientSize = new Size(920, 435);
             Controls.Add(BackButtonPress);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -133,10 +131,8 @@ namespace TriviaClientApp
             Controls.Add(passwordTextBox);
             Controls.Add(usernameTextBox);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
             Name = "Signup";
-            Text = "Signup";
+            Size = new Size(800, 450);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -169,8 +165,7 @@ namespace TriviaClientApp
             if (TriviaClient.IsSuccessResponse(result))
             {
                 MainMenu menu = new MainMenu();
-                menu.Show();
-                Close();
+                MainForm.ChangePage(menu);
             }
 
         }
@@ -178,8 +173,7 @@ namespace TriviaClientApp
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            login.Show();
-            Close();
+            MainForm.ChangePage(login);
         }
     }
 }

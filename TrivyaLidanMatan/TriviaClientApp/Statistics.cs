@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
-    public partial class Statistics : Form
+    public partial class Statistics : UserControl
     {
         public Statistics()
         {
@@ -30,15 +30,13 @@ namespace TriviaClientApp
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
             MainMenu mainMenu = new MainMenu();
-            mainMenu.Show();
-            Close();
+            MainForm.ChangePage(mainMenu);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             HighScore menu = new HighScore();
-            menu.Show();
-            Close();
+            MainForm.ChangePage(menu);
         }
     }
 }

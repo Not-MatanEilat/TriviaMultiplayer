@@ -60,8 +60,6 @@
             ClientSize = new Size(800, 450);
             Controls.Add(highScores);
             Controls.Add(BackButtonPress);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
             Name = "HighScore";
             Text = "HighScore";
             Load += HighScore_Load;

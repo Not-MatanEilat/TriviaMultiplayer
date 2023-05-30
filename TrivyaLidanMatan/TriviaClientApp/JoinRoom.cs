@@ -14,7 +14,7 @@ using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
-    public partial class JoinRoom : Form
+    public partial class JoinRoom : UserControl
     {
 
         public const int GROUP_BOX_WIDTH = 300;
@@ -134,8 +134,7 @@ namespace TriviaClientApp
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
             MainMenu mainMenu = new MainMenu();
-            mainMenu.Show();
-            Close();
+            MainForm.ChangePage(mainMenu);
 
         }
 
@@ -159,8 +158,7 @@ namespace TriviaClientApp
             if (TriviaClient.IsSuccessResponse(result))
             {
                 Room room = new Room(roomId, roomName, roomCreatorName);
-                room.Show();
-                Close();
+                MainForm.ChangePage(room);
             }
         }
 
