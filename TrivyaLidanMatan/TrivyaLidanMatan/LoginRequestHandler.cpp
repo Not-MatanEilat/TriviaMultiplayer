@@ -42,6 +42,9 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo info)
 	return result;
 }
 
+/**
+ * \brief handles client disconnecting
+ */
 void LoginRequestHandler::handleDisconnect()
 {
 }

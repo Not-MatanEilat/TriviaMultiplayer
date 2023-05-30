@@ -61,6 +61,10 @@ std::vector<LoggedUser> Room::getAllUsers()
 	return m_users;
 }
 
+/**
+ * \brief Returns all of the current usernames in the room
+ * \return the usernames in room
+ */
 std::vector<string> Room::getAllUsernames() const
 {
 	std::vector<string> usernames;
@@ -110,9 +114,3 @@ void Room::startGame()
 
 	m_roomData.isActive = true;
 }
-
-
-
-
-
-
