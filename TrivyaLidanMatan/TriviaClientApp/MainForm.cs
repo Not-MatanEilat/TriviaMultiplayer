@@ -13,9 +13,12 @@ namespace TriviaClientApp
 {
     public partial class MainForm : Form
     {
-        private static Panel? _placeholder = null;
         private static MainForm? instance = null;
 
+        /// <summary>
+        /// get the main form
+        /// </summary>
+        /// <returns>the main form</returns>
         public static MainForm GetMainForm()
         {
             return instance;
@@ -29,14 +32,22 @@ namespace TriviaClientApp
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _placeholder = placeholder;
             Login login = new Login();
             placeholder.Controls.Add(login);
         }
-        public static void ChangePage(UserControl UC)
+        /// <summary>
+        /// Changes the page to the given page
+        /// </summary>
+        /// <param name="page">the page to change to</param>
+        public void ChangePage(Page page)
         {
-            _placeholder.Controls.Clear();
-            _placeholder.Controls.Add(UC);
+            foreach (Control control in placeholder.Controls)
+            {
+                placeholder.Controls.Remove(control);
+                control.Dispose();
+            }
+
+            placeholder.Controls.Add(page);
         }
     }
 }

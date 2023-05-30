@@ -4,12 +4,13 @@ using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
-    public partial class Login : UserControl
+    public partial class Login : Page
     {
         private TriviaClient client;
         public Login()
         {
             InitializeComponent();
+            main.AcceptButton = loginButton;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -24,14 +25,14 @@ namespace TriviaClientApp
             if (TriviaClient.IsSuccessResponse(result))
             {
                 MainMenu mainMenu = new MainMenu();
-                MainForm.ChangePage(mainMenu);
+                main.ChangePage(mainMenu);
             }
         }
 
         private void signupButton_Click(object sender, EventArgs e)
         {
             Signup signup = new Signup();
-            MainForm.ChangePage(signup);
+            main.ChangePage(signup);
         }
     }
 }

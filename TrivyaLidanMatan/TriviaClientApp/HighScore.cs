@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
-    public partial class HighScore : UserControl
+    public partial class HighScore : Page
     {
         public HighScore()
         {
@@ -32,7 +32,7 @@ namespace TriviaClientApp
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
             Statistics menu = new Statistics();
-            MainForm.ChangePage(menu);
+            main.ChangePage(menu);
         }
     }
 }

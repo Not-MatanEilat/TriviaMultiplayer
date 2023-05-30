@@ -13,7 +13,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace TriviaClientApp
 {
-    public partial class Room : UserControl
+    public partial class Room : Page
     {
         private string roomName;
         private Mutex mutex = new();
@@ -46,6 +46,9 @@ namespace TriviaClientApp
 
         }
 
+        /// <summary>
+        /// load all the names of the players in the room
+        /// </summary>
         private void loadAllNames()
         {
             try
@@ -67,7 +70,7 @@ namespace TriviaClientApp
                     Invoke(() =>
                     {
                         MainMenu mainMenu = new MainMenu();
-                        MainForm.ChangePage(mainMenu);
+                        main.ChangePage(mainMenu);
                     });
 
                     mutex.ReleaseMutex();
@@ -151,7 +154,7 @@ namespace TriviaClientApp
                 }
 
                 MainMenu mainMenu = new MainMenu();
-                MainForm.ChangePage(mainMenu);
+                main.ChangePage(mainMenu);
             }
 
 

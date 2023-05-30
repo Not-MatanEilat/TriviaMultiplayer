@@ -2,17 +2,33 @@
 
 #include "JsonResponsePacketSerializer.h"
 
+/**
+ * \brief The constructor for RoomMemberRequestHandler
+ * \param handlerFactory The factory handler
+ * \param user the user that has joined the room that is in
+ * \param room the room the user has already created
+ */
 RoomMemberRequestHandler::RoomMemberRequestHandler(RequestHandlerFactory& handlerFactory, const LoggedUser& user, Room& room) :
 	m_room(room), m_user(user), m_roomManager(handlerFactory.getRoomManager()), m_handlerFactory(handlerFactory)
 {
 }
 
+/**
+ * \brief Checks if the request is relevant to the handler
+ * \param info the request info
+ * \return true if the request is relevant, false otherwise
+ */
 bool RoomMemberRequestHandler::isRequestRelevant(RequestInfo info)
 {
 	int code = info.requestId;
 	return code == LEAVE_ROOM_CODE || code == ROOM_STATE_CODE;
 }
 
+/**
+ * \brief Handlers the request as the menu
+ * \param info the info of request
+ * \return The result for request
+ */
 RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo info)
 {
 	RequestResult result;
@@ -41,6 +57,9 @@ RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo info)
 	return result;
 }
 
+/**
+ * \brief handles client disconnecting
+ */
 void RoomMemberRequestHandler::handleDisconnect()
 {
 	TRACE("RoomMemberHandler " << m_user.getUsername() << ": disconnected")
@@ -48,6 +67,11 @@ void RoomMemberRequestHandler::handleDisconnect()
 	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
 }
 
+/**
+ * \brief leave the room
+ * \param info request info
+ * \return the leave room result
+ */
 RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo info)
 {
 	RequestResult result;
@@ -66,6 +90,11 @@ RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo info)
 	return result;
 }
 
+/**
+ * \brief get the room state
+ * \param info request info
+ * \return the room state result
+ */
 RequestResult RoomMemberRequestHandler::getRoomState(RequestInfo info)
 {
 	RequestResult result;

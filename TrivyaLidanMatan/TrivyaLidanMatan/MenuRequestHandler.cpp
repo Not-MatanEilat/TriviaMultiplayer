@@ -74,6 +74,9 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 	return result;
 }
 
+/**
+ * \brief handles client disconnecting
+ */
 void MenuRequestHandler::handleDisconnect()
 {
 	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
