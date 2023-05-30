@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             BackButtonPress = new Button();
             roomsListFlow = new FlowLayoutPanel();
@@ -35,6 +36,7 @@
             roomIdBox = new NumericUpDown();
             button1 = new Button();
             label2 = new Label();
+            AutoRefresh = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)roomIdBox).BeginInit();
             SuspendLayout();
             // 
@@ -105,6 +107,12 @@
             label2.TabIndex = 10;
             label2.Text = "Join Room By Id";
             // 
+            // AutoRefresh
+            // 
+            AutoRefresh.Enabled = true;
+            AutoRefresh.Interval = 3000;
+            AutoRefresh.Tick += AutoRefresh_Tick;
+            // 
             // JoinRoom
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -118,10 +126,7 @@
             Controls.Add(roomsListFlow);
             Controls.Add(BackButtonPress);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
             Name = "JoinRoom";
-            ShowInTaskbar = false;
             Text = "JoinRoom";
             Load += JoinRoom_Load;
             ((System.ComponentModel.ISupportInitialize)roomIdBox).EndInit();
@@ -138,5 +143,6 @@
         private NumericUpDown roomIdBox;
         private Button button1;
         private Label label2;
+        private System.Windows.Forms.Timer AutoRefresh;
     }
 }

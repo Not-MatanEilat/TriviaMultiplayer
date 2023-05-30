@@ -11,11 +11,12 @@ using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
-    public partial class CreateRoom : Form
+    public partial class CreateRoom : Page
     {
         public CreateRoom()
         {
             InitializeComponent();
+            main.AcceptButton = createRoomButton;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -35,15 +36,11 @@ namespace TriviaClientApp
                 TriviaClient client = TriviaClient.GetClient();
                 JObject result = client.CreateRoom(roomName, maxPlayers, questionsAmount, questionTime);
 
-                if ((int)result["code"] == TriviaClient.ERROR_CODE)
+                if (TriviaClient.IsSuccessResponse(result))
                 {
-                    MessageBox.Show(result["message"]["message"].ToString(), "Room ERROR", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-                else
-                {
-                    // msg for now, later will be form
-                    MessageBox.Show("Room created successfully");
+                    int roomId = (int)result["message"]["roomId"];
+                    Room room = new Room(roomId, roomName, client.Username);
+                    main.ChangePage(room);
                 }
 
 
@@ -124,8 +121,7 @@ namespace TriviaClientApp
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
             MainMenu mainMenu = new MainMenu();
-            mainMenu.Show();
-            Close();
+            main.ChangePage(mainMenu);
         }
     }
 }

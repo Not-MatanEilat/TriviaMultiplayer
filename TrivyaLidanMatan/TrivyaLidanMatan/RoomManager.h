@@ -16,10 +16,12 @@ public:
 
 	void createRoom(const LoggedUser& user, const RoomData& roomData);
 	void joinRoom(const LoggedUser& user, unsigned int id);
+	void leaveRoom(const LoggedUser& user);
 	void deleteRoom(unsigned int id);
 	unsigned int getRoomState(int id);
 	vector<RoomData> getRooms() const;
 	Room& getRoom(int id);
+	Room& getRoomOfUser(const string& username);
 	bool isUserInAnyRoom(const string& username);
 	bool doesRoomExist(unsigned int id);
 

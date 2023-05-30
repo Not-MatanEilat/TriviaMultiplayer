@@ -75,6 +75,14 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 }
 
 /**
+ * \brief handles client disconnecting
+ */
+void MenuRequestHandler::handleDisconnect()
+{
+	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
+}
+
+/**
  * \brief get the rooms
  * \param info the info of the request
  * \return the request rooms result
@@ -197,7 +205,7 @@ RequestResult MenuRequestHandler::joinRoom(RequestInfo const& info)
 
 	response.status = SUCCESS;
 
-	result.newHandler = this;
+	result.newHandler = m_handlerFactory.createRoomMemberRequestHandler(m_user, m_handlerFactory.getRoomManager().getRoom(request.roomId));
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
@@ -236,8 +244,9 @@ RequestResult MenuRequestHandler::createRoom(RequestInfo const& info)
 
 	CreateRoomResponse response;
 	response.status = SUCCESS;
+	response.roomId = roomData.id;
 
-	result.newHandler = this;
+	result.newHandler = m_handlerFactory.createRoomAdminRequestHandler(m_user, m_handlerFactory.getRoomManager().getRoom(roomData.id));;
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }

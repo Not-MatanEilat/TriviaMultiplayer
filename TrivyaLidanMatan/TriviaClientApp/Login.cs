@@ -4,12 +4,13 @@ using Newtonsoft.Json.Linq;
 
 namespace TriviaClientApp
 {
-    public partial class Login : Form
+    public partial class Login : Page
     {
         private TriviaClient client;
         public Login()
         {
             InitializeComponent();
+            main.AcceptButton = loginButton;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -17,36 +18,21 @@ namespace TriviaClientApp
             client = TriviaClient.GetClient();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void loginButton_Click(object sender, EventArgs e)
         {
             JObject result = client.Login(usernameBox.Text, passwordBox.Text);
 
-            if (result["message"] != null)
+            if (TriviaClient.IsSuccessResponse(result))
             {
-                int status = (int)result["code"];
-                if (status != TriviaClient.ERROR_CODE)
-                {
-                    MainMenu mainMenu = new MainMenu();
-                    mainMenu.Show();
-                    Close();
-                }
-                else
-                {
-                     MessageBox.Show(result["message"]["message"].ToString(), "Login ERROR", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Login Really Failed!");
+                MainMenu mainMenu = new MainMenu();
+                main.ChangePage(mainMenu);
             }
         }
 
         private void signupButton_Click(object sender, EventArgs e)
         {
             Signup signup = new Signup();
-            signup.Show();
-            Close();
+            main.ChangePage(signup);
         }
     }
 }

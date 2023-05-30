@@ -35,7 +35,7 @@
             label3 = new Label();
             maxPlayersTextBox = new TextBox();
             label4 = new Label();
-            button1 = new Button();
+            createRoomButton = new Button();
             questionsAmountTextBox = new TextBox();
             label5 = new Label();
             BackButtonPress = new Button();
@@ -103,15 +103,15 @@
             label4.Text = "Max Players";
             label4.Click += label3_Click;
             // 
-            // button1
+            // createRoomButton
             // 
-            button1.Location = new Point(379, 266);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 5;
-            button1.Text = "Create";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            createRoomButton.Location = new Point(379, 266);
+            createRoomButton.Name = "createRoomButton";
+            createRoomButton.Size = new Size(75, 23);
+            createRoomButton.TabIndex = 5;
+            createRoomButton.Text = "Create";
+            createRoomButton.UseVisualStyleBackColor = true;
+            createRoomButton.Click += button1_Click;
             // 
             // questionsAmountTextBox
             // 
@@ -148,7 +148,7 @@
             BackColor = Color.Green;
             ClientSize = new Size(800, 450);
             Controls.Add(BackButtonPress);
-            Controls.Add(button1);
+            Controls.Add(createRoomButton);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -158,8 +158,6 @@
             Controls.Add(amountQuestionsTextBox);
             Controls.Add(nameRoomTextBox);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
             Name = "CreateRoom";
             Text = "CreateRoom";
             ResumeLayout(false);
@@ -175,7 +173,7 @@
         private Label label3;
         private TextBox maxPlayersTextBox;
         private Label label4;
-        private Button button1;
+        private Button createRoomButton;
         private TextBox questionsAmountTextBox;
         private Label label5;
         private Button BackButtonPress;

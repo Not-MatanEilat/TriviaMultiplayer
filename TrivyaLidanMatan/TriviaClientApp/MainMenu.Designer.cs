@@ -120,8 +120,6 @@
             Controls.Add(JoinRoomButton);
             Controls.Add(CreateRoomButton);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
             Name = "MainMenu";
             Text = "MainMenu";
             Load += MainMenu_Load;
