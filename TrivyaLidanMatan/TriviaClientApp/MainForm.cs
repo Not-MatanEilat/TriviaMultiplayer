@@ -35,7 +35,12 @@ namespace TriviaClientApp
         }
         public static void ChangePage(UserControl UC)
         {
-            _placeholder.Controls.Clear();
+            foreach (Control control in _placeholder.Controls)
+            {
+                _placeholder.Controls.Remove(control);
+                control.Dispose();
+            }
+
             _placeholder.Controls.Add(UC);
         }
     }
