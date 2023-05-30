@@ -46,6 +46,9 @@ namespace TriviaClientApp
 
         }
 
+        /// <summary>
+        /// load all the names of the players in the room
+        /// </summary>
         private void loadAllNames()
         {
             try
