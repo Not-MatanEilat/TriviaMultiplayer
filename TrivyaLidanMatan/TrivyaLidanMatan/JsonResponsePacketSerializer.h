@@ -150,5 +150,6 @@ public:
 
 	static Buffer serializeResponse(const LeaveGameResponse& leaveGameResponse);
 	static Buffer serializeResponse(const SubmitAnswerResponse& submitAnswerResponse);
+	static Buffer serializeResponse(const GetGameResultsResponse& getGameResultsResponse);
 };
 
