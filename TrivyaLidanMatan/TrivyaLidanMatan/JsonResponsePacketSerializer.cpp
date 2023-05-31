@@ -239,6 +239,18 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const LeaveRoomResponse& 
 	return vec;
 }
 
+Buffer JsonResponsePacketSerializer::serializeResponse(const LeaveGameResponse& leaveGameResponse)
+{
+	json j;
+	j["status"] = leaveGameResponse.status;
+	Buffer vec = serializeResponseFromJson(GET_QUESTION_CODE, j);
+	return vec;
+}
+
+
+
+
+
 
 
 
