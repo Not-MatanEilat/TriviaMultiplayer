@@ -92,6 +92,39 @@ typedef struct LeaveRoomResponse
 	unsigned int status;
 } LeaveRoomResponse;
 
+typedef struct LeaveGameResponse
+{
+	unsigned int status;
+} LeaveGameResponse;
+
+typedef struct GetQuestionResponse
+{
+	unsigned int status;
+	string question;
+	map<unsigned int, string> answers;
+} GetQuestionResponse;
+
+typedef struct SubmitAnswerResponse
+{
+	unsigned int status;
+	bool correctAnswer;
+} SubmitAnswerResponse;
+
+typedef struct PlayerResults
+{
+	string username;
+	unsigned int correctAnswerCount;
+	unsigned int wrongAnswerCount;
+	unsigned int averageAnswerTime;
+} PlayerResults;
+
+
+typedef struct GetGameResultsResponse
+{
+	unsigned int status;
+	vector<PlayerResults> results;
+} GetGameResultsResponse;
+
 class JsonResponsePacketSerializer
 {
 
@@ -114,5 +147,10 @@ public:
 	static Buffer serializeResponse(const StartGameResponse& startGameResponse);
 	static Buffer serializeResponse(const GetRoomStateResponse& getRoomStateResponse);
 	static Buffer serializeResponse(const LeaveRoomResponse& leaveRoomResponse);
+
+	static Buffer serializeResponse(const LeaveGameResponse& leaveGameResponse);
+	static Buffer serializeResponse(const SubmitAnswerResponse& submitAnswerResponse);
+	static Buffer serializeResponse(const GetGameResultsResponse& getGameResultsResponse);
+	static Buffer serializeResponse(const GetQuestionResponse& getQuestionResponse);
 };
 

@@ -227,7 +227,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const GetRoomStateRespons
 }
 
 /**
- * \brief The function will take a startGame response and serialize it to a buffer {"status" : status}
+ * \brief The function will take a leaveRoom response and serialize it to a buffer {"status" : status}
  * \param leaveRoomResponse leaveRoom response response to serialize
  * \return leaveRoom response to serialized to a buffer
  */
@@ -238,6 +238,79 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const LeaveRoomResponse& 
 	Buffer vec = serializeResponseFromJson(LEAVE_ROOM_CODE, j);
 	return vec;
 }
+
+/**
+ * \brief The function will take a leaveGame response and serialize it to a buffer {"status" : status}
+ * \param leaveGameResponse leaveGame response response to serialize
+ * \return leaveGame response to serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(const LeaveGameResponse& leaveGameResponse)
+{
+	json j;
+	j["status"] = leaveGameResponse.status;
+	Buffer vec = serializeResponseFromJson(LEAVE_GAME_CODE, j);
+	return vec;
+}
+
+/**
+ * \brief The function will take a submitAnswer response and serialize it to a buffer {"status" : status, "correctAnswer" : correctAnswer}
+ * \param submitAnswerResponse submitAnswer response response to serialize
+ * \return submitAnswer response to serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(const SubmitAnswerResponse& submitAnswerResponse)
+{
+	json j;
+	j["status"] = submitAnswerResponse.status;
+	j["correctAnswer"] = submitAnswerResponse.correctAnswer;
+	Buffer vec = serializeResponseFromJson(GET_QUESTION_CODE, j);
+	return vec;
+}
+
+/**
+ * \brief The function will take a getGameResult response and serialize it to a buffer
+ * {"status" : status, "results" : {"username" : username, "correctAnswerCount" : correctAnswerCount", "wrongAnswerCount" : wrongAnswerCount, "AverageAnswerTime" : AverageAnswerTime}}
+ * \param getGameResultsResponse getGameResult response response to serialize
+ * \return getGameResult response to serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(const GetGameResultsResponse& getGameResultsResponse)
+{
+	json j;
+	j["status"] = getGameResultsResponse.status;
+
+	for (auto& result : getGameResultsResponse.results)
+	{
+		json jResult;
+		jResult["username"] = result.username;
+		jResult["correctAnswerCount"] = result.correctAnswerCount;
+		jResult["wrongAnswerCount"] = result.wrongAnswerCount;
+		jResult["averageAnswerTime"] = result.averageAnswerTime;
+		j["results"].push_back(jResult);
+	}
+
+	Buffer vec = serializeResponseFromJson(GET_GAME_RESULTS_CODE, j);
+	return vec;
+}
+
+/**
+ * \brief The function will take a getGameResult response and serialize it to a buffer
+ * {"status" : status, "question" : question, "answers" : [["answerNumber", "Question"], ["answerNumber", "Question"], ["answerNumber", "Question"], ["answerNumber", "Question"]]}
+ * \param getQuestionResponse getQuestion response response to serialize
+ * \return getQuestion response to serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(const GetQuestionResponse& getQuestionResponse)
+{
+	json j;
+	j["status"] = getQuestionResponse.status;
+	j["question"] = getQuestionResponse.question;
+	j["answers"] = getQuestionResponse.answers;
+
+	Buffer vec = serializeResponseFromJson(GET_QUESTION_CODE, j);
+	return vec;
+}
+
+
+
+
 
 
 
