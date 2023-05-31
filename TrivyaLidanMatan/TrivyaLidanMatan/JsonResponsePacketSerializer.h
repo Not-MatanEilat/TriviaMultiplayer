@@ -149,5 +149,6 @@ public:
 	static Buffer serializeResponse(const LeaveRoomResponse& leaveRoomResponse);
 
 	static Buffer serializeResponse(const LeaveGameResponse& leaveGameResponse);
+	static Buffer serializeResponse(const SubmitAnswerResponse& submitAnswerResponse);
 };
 
