@@ -46,6 +46,11 @@ typedef struct LogoutRequest
 	string username;
 } LogoutRequest;
 
+typedef struct SubmitAnswerRequest
+{
+	unsigned int answerId;
+} SubmitAnswerRequest;
+
 
 class JsonRequestPacketDeserializer
 {
@@ -56,5 +61,7 @@ public:
 	static GetPlayersInRoomRequest deserializeGetPlayersInRoomRequest(const Buffer& buffer);
 	static JoinRoomRequest deserializeJoinRoomRequest(const Buffer& buffer);
 	static CreateRoomRequest deserializeCreateRoomRequest(const Buffer& buffer);
+
+	static SubmitAnswerRequest deserializeSubmitAnswerRequest(const Buffer& buffer);
 };
 
