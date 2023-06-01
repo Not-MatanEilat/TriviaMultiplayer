@@ -10,3 +10,14 @@ GameRequestHandler::GameRequestHandler(RequestHandlerFactory& requestHandlerFact
 {
 
 }
+
+/**
+ * \brief Checks if the request given was relevant
+ * \param info the info of request
+ * \return true if relevant and false if not
+ */
+bool GameRequestHandler::isRequestRelevant(RequestInfo info)
+{
+	int code = info.requestId;
+	return code == LEAVE_GAME_CODE || code == GET_QUESTION_CODE || code == SUBMIT_ANSWER_CODE || code == GET_GAME_RESULTS_CODE;
+}

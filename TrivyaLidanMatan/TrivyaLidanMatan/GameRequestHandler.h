@@ -2,12 +2,13 @@
 
 #include "IRequestHandler.h"
 #include "RequestHandlerFactory.h"
+#include "Communicator.h""
 
 class GameRequestHandler : public IRequestHandler
 {
 public:
 
-	GameRequestHandler();
+	GameRequestHandler(RequestHandlerFactory& requestHandlerFactory, const LoggedUser& user, Game& game);
 
 	bool isRequestRelevant(RequestInfo info) override;
 	RequestResult handleRequest(RequestInfo info) override;
@@ -20,7 +21,10 @@ private:
 	RequestResult getGameResults(RequestInfo info);
 	RequestResult leaveGame(RequestInfo info);
 
-	Game 
+	Game& m_game;
+	LoggedUser m_user;
+	GameManager& m_gameManager;
+	RequestHandlerFactory& m_handlerFactory;
 		
 
 };
