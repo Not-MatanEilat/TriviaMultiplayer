@@ -28,6 +28,47 @@ bool GameRequestHandler::isRequestRelevant(RequestInfo info)
 }
 
 /**
+ * \brief Handlers the request as the game userr
+ * \param info the info of request
+ * \return The result for request
+ */
+RequestResult GameRequestHandler::handleRequest(RequestInfo info)
+{
+	int code = info.requestId;
+	RequestResult result;
+
+	try
+	{
+		if (code == LEAVE_GAME_CODE)
+		{
+			result = leaveGame(info);
+		}
+		else if (code == GET_QUESTION_CODE)
+		{
+			result = getQuestion(info);
+		}
+		else if (code == SUBMIT_ANSWER_CODE)
+		{
+			result = submitAnswer(info);
+		}
+		else if (code == GET_GAME_RESULTS_CODE)
+		{
+			result = getGameResults(info);
+		}
+	}
+	catch (const std::exception& e)
+	{
+		ErrorResponse error;
+		error.message = "Something went wrong: " + std::string(e.what());
+		TRACE("GameRequestHandler " << m_user.getUsername() << ": " << error.message)
+			result.response = JsonResponsePacketSerializer::serializeResponse(error);
+		result.newHandler = this;
+	}
+
+	return result;
+}
+
+/**
  * \brief Removes users from the current game
  * \param info the info of request
  * \return the result of the given request
@@ -130,7 +171,11 @@ RequestResult GameRequestHandler::getGameResults(RequestInfo info)
 
 }
 
-
+/**
+ * \brief Gets question for user with answers( order is just randomized)
+ * \param info info of the request
+ * \return the result of the given request
+ */
 RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 {
 	RequestResult result;
