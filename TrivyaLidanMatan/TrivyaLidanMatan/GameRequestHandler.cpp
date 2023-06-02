@@ -1,5 +1,6 @@
 #include "GameRequestHandler.h"
 
+#include "JsonRequestPacketDeserializer.h"
 #include "JsonResponsePacketSerializer.h"
 
 /**
@@ -46,4 +47,27 @@ RequestResult GameRequestHandler::leaveGame(RequestInfo info)
 
 	return result;
 }
+
+/**
+ * \brief Submits the answer user wanted
+ * \param info the infor of request
+ * \return the result of the given request
+ */
+RequestResult GameRequestHandler::submitAnswer(RequestInfo info)
+{
+	RequestResult result;
+
+	SubmitAnswerRequest request = JsonRequestPacketDeserializer::deserializeSubmitAnswerRequest(info.buffer);
+	SubmitAnswerResponse response;
+
+	response.status = SUCCESS;
+
+	m_game.submitAnswer(m_user.getUsername(), request.answerId);
+
+	result.newHandler = this;
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+
+	return result;
+}
+
 
