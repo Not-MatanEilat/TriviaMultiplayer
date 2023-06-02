@@ -121,6 +121,8 @@ RequestResult GameRequestHandler::submitAnswer(RequestInfo info)
 	result.newHandler = this;
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 
+	TRACE(" User: " + m_user.getUsername() + " has submitted an answer, the answer id is: " + std::to_string(request.answerId));
+
 	return result;
 }
 
