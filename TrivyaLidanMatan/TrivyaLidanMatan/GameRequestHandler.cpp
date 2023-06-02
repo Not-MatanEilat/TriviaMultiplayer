@@ -1,5 +1,7 @@
 #include "GameRequestHandler.h"
 
+#include <random>
+
 #include "JsonRequestPacketDeserializer.h"
 #include "JsonResponsePacketSerializer.h"
 
@@ -71,7 +73,7 @@ RequestResult GameRequestHandler::submitAnswer(RequestInfo info)
 }
 
 /**
- * \brief gets the results of current game
+ * \brief Gets the results of current game
  * \param info info of the request
  * \return the result of the given request
  */
@@ -127,6 +129,53 @@ RequestResult GameRequestHandler::getGameResults(RequestInfo info)
 	return result;
 
 }
+
+
+RequestResult GameRequestHandler::getQuestion(RequestInfo info)
+{
+	RequestResult result;
+
+	GetQuestionResponse response;
+
+	if (m_game.amountOfQuestionsLeft() == 0)
+	{
+		response.status = FAILED;
+		response.question = "";
+		response.answers = {};
+	}
+	else
+	{
+		response.status = SUCCESS;
+
+		Question question = m_game.getQuestionForUser(m_user.getUsername());
+
+		response.question = question.question;
+
+		// randomize the answers/correct answer order
+		vector<string> answers;
+		answers.push_back(question.correctAnswer);
+		answers.push_back(question.answer2);
+		answers.push_back(question.answer3);
+		answers.push_back(question.answer4);
+
+		std::shuffle(answers.begin(), answers.end(), std::random_device());
+
+		int i = 1;
+		for (auto answer : answers)
+		{
+			std::pair<int, string> answerPair;
+
+			answerPair.first = i;
+			answerPair.second = answer;
+			response.answers.insert(answerPair);
+			i += 1;
+		}
+	}
+
+	return result;
+}
+
+
 
 
 
