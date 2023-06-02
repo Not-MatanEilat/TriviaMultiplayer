@@ -29,6 +29,11 @@ public:
 	void removePlayer(const LoggedUser& loggedUser);
 	unsigned int getGameId() const;
 
+	// this is not in the UML, but, a check for if the is game over is needed, so for now, it is here
+	// I think the implementation should be something like questions.size() == 0
+	// but I'm Not sure
+	bool isGameOver();
+
 private:
 	vector<Question> questions;
 	map<LoggedUser, GameData> m_players;

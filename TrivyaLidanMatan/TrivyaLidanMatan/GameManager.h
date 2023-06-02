@@ -13,6 +13,8 @@ public:
 	Game createGame(const Room& room);
 	void deleteGame(unsigned int gameId);
 
+	vector<string> getGamesResults(unsigned int gameId);
+
 private:
 
 	IDataBase* m_dataBase;

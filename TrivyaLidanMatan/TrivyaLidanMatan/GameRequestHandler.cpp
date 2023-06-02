@@ -70,4 +70,64 @@ RequestResult GameRequestHandler::submitAnswer(RequestInfo info)
 	return result;
 }
 
+/**
+ * \brief gets the results of current game
+ * \param info info of the request
+ * \return the result of the given request
+ */
+RequestResult GameRequestHandler::getGameResults(RequestInfo info)
+{
+	RequestResult result;
+
+
+	if (!m_game.isGameOver())
+	{
+
+		GetGameResultsResponse response;
+
+		response.status = SUCCESS;
+
+		map<LoggedUser, GameData> playersList = m_game.getPlayers();
+
+		for (const auto& player : playersList)
+		{
+			PlayerResults playerResults;
+
+			LoggedUser loggedUser = player.first;
+			GameData gameData = player.second;
+
+
+			playerResults.username = loggedUser.getUsername();
+
+			playerResults.correctAnswerCount = gameData.correctAnswerCount;
+			playerResults.wrongAnswerCount = gameData.wrongAnswerCount;
+			playerResults.averageAnswerTime = gameData.averageAnswerTime;
+
+
+			response.results.push_back(playerResults);
+		}
+
+		result.newHandler = this;
+		result.response = JsonResponsePacketSerializer::serializeResponse(response);
+
+	}
+	else
+	{
+		GetGameResultsResponse response;
+
+		response.status = FAILED;
+		response.results = {};
+
+		result.newHandler = this;
+		result.response = JsonResponsePacketSerializer::serializeResponse(response);
+
+	}
+
+
+	return result;
+
+}
+
+
+
 
