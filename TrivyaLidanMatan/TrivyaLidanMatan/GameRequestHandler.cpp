@@ -200,6 +200,8 @@ RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 		response.status = FAILED;
 		response.question = "";
 		response.answers = {};
+
+		TRACE("\nUser: " + m_user.getUsername() + " has failed to get more questions, because there are no questions more left\n")
 	}
 	else
 	{
@@ -228,6 +230,13 @@ RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 			response.answers.insert(answerPair);
 			i += 1;
 		}
+
+		TRACE("\nUser: " + m_user.getUsername() + " has request a question: " + question.question
+		+ "\nAnswers are:"
+	    + "\nAnswer1: " + question.correctAnswer + " - Right Answer"
+	    + "\nAnswer2: " + question.answer2 + " - Wrong Answer"
+	    + "\nAnswer3: " + question.answer3 + " - Wrong Answer"
+	    + "\nAnswer4: " + question.answer4 + " - Wrong Answer");
 	}
 
 	return result;
