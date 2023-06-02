@@ -57,6 +57,15 @@ StatisticsManager& RequestHandlerFactory::getStatisticsManager()
 }
 
 /**
+ * \brief Returns a ref of the game manager
+ * \return GameManager
+ */
+GameManager& RequestHandlerFactory::getGameManager()
+{
+	return m_gameManager;
+}
+
+/**
  * \brief Creates a new Room handler a returns it with the current handler
  * \param loggedUser the user that is logged in to the room now
  * \param room the room the user is in now
@@ -77,4 +86,17 @@ RoomMemberRequestHandler* RequestHandlerFactory::createRoomMemberRequestHandler(
 {
 	return new RoomMemberRequestHandler(*this, loggedUser, room);
 }
+
+/**
+ * \brief Creates a new Game handler and returns it with the current handler
+ * \param loggedUser the user that is logged in to the game now
+ * \param game game the game  the user is in now
+ * \return the new GameRequestHandler created
+ */
+GameRequestHandler* RequestHandlerFactory::createGameRequestHandler(const LoggedUser& loggedUser, Game& game)
+{
+	return new GameRequestHandler(*this, loggedUser, game);
+}
+
+
 

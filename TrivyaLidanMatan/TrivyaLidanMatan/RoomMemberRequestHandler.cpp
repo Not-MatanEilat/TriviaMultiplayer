@@ -25,7 +25,7 @@ bool RoomMemberRequestHandler::isRequestRelevant(RequestInfo info)
 }
 
 /**
- * \brief Handlers the request as the menu
+ * \brief Handlers the request as the member
  * \param info the info of request
  * \return The result for request
  */
