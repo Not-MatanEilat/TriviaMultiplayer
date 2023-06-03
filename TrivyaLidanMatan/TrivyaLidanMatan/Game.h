@@ -33,6 +33,8 @@ public:
 	// I think the implementation should be something like questions.size() == 0
 	// but I'm Not sure
 	bool isGameOver();
+	map<LoggedUser, GameData> getPlayers() const;
+	int amountOfQuestionsLeft();
 
 private:
 	vector<Question> questions;
