@@ -31,6 +31,27 @@ Game GameManager::createGame(Room& room)
 	return game;
 }
 
+/**
+ * \brief delete a game by id
+ * \param gameId id of the game
+ */
+void GameManager::deleteGame(unsigned gameId)
+{
+	for (auto it = m_games.begin(); it != m_games.end(); it++)
+	{
+		if (it->getGameId() == gameId)
+		{
+			m_games.erase(it);
+			return;
+		}
+	}
+	throw std::exception("Game not found");
+}
+
+/**
+ * \brief returns the last id
+ * \return the last id
+ */
 int GameManager::getLastID()
 {
 	int max = 0;
@@ -42,4 +63,21 @@ int GameManager::getLastID()
 		}
 	}
 	return max;
+}
+
+/**
+ * \brief returns the game by id
+ * \param gameId id of the game
+ * \return the game with id
+ */
+Game& GameManager::getGame(unsigned gameId)
+{
+	for (Game& game : m_games)
+	{
+		if (game.getGameId() == gameId)
+		{
+			return game;
+		}
+	}
+	throw std::exception("Game not found");
 }

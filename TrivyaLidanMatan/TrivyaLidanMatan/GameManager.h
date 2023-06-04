@@ -21,5 +21,6 @@ private:
 	vector<Game> m_games;
 
 	int getLastID();
+	Game& getGame(unsigned int gameId);
 };
 
