@@ -143,17 +143,17 @@ RequestResult GameRequestHandler::getGameResults(RequestInfo info)
 
 		response.status = SUCCESS;
 
-		map<LoggedUser, GameData> playersList = m_game.getPlayers();
+		map<string, GameData> playersList = m_game.getPlayers();
 
 		for (const auto& player : playersList)
 		{
 			PlayerResults playerResults;
 
-			LoggedUser loggedUser = player.first;
+			string loggedUser = player.first;
 			GameData gameData = player.second;
 
 
-			playerResults.username = loggedUser.getUsername();
+			playerResults.username = loggedUser;
 
 			playerResults.correctAnswerCount = gameData.correctAnswerCount;
 			playerResults.wrongAnswerCount = gameData.wrongAnswerCount;
@@ -207,7 +207,8 @@ RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 	{
 		response.status = SUCCESS;
 
-		Question question = *(m_game.getQuestionForUser(m_user.getUsername()));
+		Question* questionP = (m_game.getQuestionForUser(m_user));
+		Question question = *(questionP);
 
 		response.question = question.getQuestion();
 
@@ -234,6 +235,7 @@ RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 	    + "\nAnswer3: " + question.getPossibleAnswers()[2] + " - Wrong Answer"
 	    + "\nAnswer4: " + question.getPossibleAnswers()[3] + " - Wrong Answer");
 	}
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 
 	return result;
 }

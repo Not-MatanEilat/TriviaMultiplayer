@@ -178,12 +178,13 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo info)
 		m_room.startGame();
 		GameManager& gameManager = m_handlerFactory.getGameManager();
 		Game game = gameManager.createGame(m_room);
+		gameManager.addGame(game);
 
 		StartGameResponse response;
 		response.status = SUCCESS;
 
 		// stays this for now, soon will change to be the start game handler
-		result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, game);
+		result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, gameManager.getGame(m_user));
 		result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	}
 	catch (const std::exception& e)

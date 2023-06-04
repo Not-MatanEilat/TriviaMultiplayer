@@ -14,17 +14,17 @@ using std::vector;
 
 typedef struct GameData
 {
-	Question* currentQuestion;
-	unsigned int correctAnswerCount;
-	unsigned int wrongAnswerCount;
-	float averageAnswerTime;
+	Question* currentQuestion = nullptr;
+	unsigned int correctAnswerCount = 0;
+	unsigned int wrongAnswerCount = 0;
+	float averageAnswerTime = 0;
 } GameData;
 
 
 class Game
 {
 public:
-	Game(const vector<Question>& questions, const map<LoggedUser, GameData>& players, unsigned gameId);
+	Game(vector<Question> questions, const map<string, GameData>& players, unsigned gameId);
 
 	Question* getQuestionForUser(const LoggedUser& loggedUser);
 	void submitAnswer(const LoggedUser& loggedUser, unsigned int answerId);
@@ -32,12 +32,12 @@ public:
 	unsigned int getGameId() const;
 
 	bool isGameOver(const LoggedUser& loggedUser);
-	map<LoggedUser, GameData> getPlayers() const;
+	map<string, GameData> getPlayers() const;
 	int amountOfQuestionsLeft(const LoggedUser& loggedUser);
 
 private:
 	vector<Question> m_questions;
-	map<LoggedUser, GameData> m_players;
+	map<string, GameData> m_players;
 	unsigned int m_gameId;
 };
 

@@ -16,18 +16,24 @@ GameManager::GameManager(IDataBase* dataBase): m_dataBase(dataBase)
 Game GameManager::createGame(Room& room)
 {
 	vector<LoggedUser> users = room.getAllUsers();
-	map<LoggedUser, GameData> players;
+	map<string, GameData> players;
 	for (LoggedUser user : users)
 	{
-		GameData emptyData;
-		emptyData.correctAnswerCount = 0;
-		emptyData.wrongAnswerCount = 0;
-		emptyData.averageAnswerTime = 0;
-		emptyData.currentQuestion = nullptr;
-		players.insert({ user, emptyData });
+		players.insert({ user.getUsername(), GameData()});
 	}
 	vector<Question> questions = m_dataBase->getQuestions(room.getRoomData().numOfQuestionsInGame);
 	Game game(questions, players, getLastID() + 1);
+	return game;
+}
+
+/**
+ * \brief add the game
+ * \param game the game
+ * \return the game ref
+ */
+Game& GameManager::addGame(Game& game)
+{
+	m_games.push_back(game);
 	return game;
 }
 
@@ -55,7 +61,7 @@ vector<string> GameManager::getGamesResults(unsigned gameId)
 	for (auto it = game.getPlayers().begin(); it != game.getPlayers().end(); it++)
 	{
 		std::stringstream ss;
-		ss << it->first.getUsername() << " " << it->second.correctAnswerCount << " " << it->second.wrongAnswerCount << " " << it->second.averageAnswerTime << "\n";
+		ss << it->first << " " << it->second.correctAnswerCount << " " << it->second.wrongAnswerCount << " " << it->second.averageAnswerTime << "\n";
 		results.push_back(ss.str());
 	}
 	return results;
@@ -99,7 +105,9 @@ Game& GameManager::getGame(LoggedUser user)
 {
 	for (Game& game : m_games)
 	{
-		if (game.getPlayers().find(user) != game.getPlayers().end())
+		auto iterator = game.getPlayers().find(user.getUsername());
+		auto end = game.getPlayers().end();
+		if (iterator != end)
 		{
 			return game;
 		}

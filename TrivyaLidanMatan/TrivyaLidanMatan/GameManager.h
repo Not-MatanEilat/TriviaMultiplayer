@@ -13,6 +13,7 @@ public:
 	GameManager(IDataBase* dataBase);
 
 	Game createGame(Room& room);
+	Game& addGame(Game& game);
 	void deleteGame(unsigned int gameId);
 
 	vector<string> getGamesResults(unsigned int gameId);
