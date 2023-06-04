@@ -195,51 +195,38 @@ RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 	RequestResult result;
 
 	GetQuestionResponse response;
+	
+	response.status = SUCCESS;
 
-	if (m_game.amountOfQuestionsLeft(m_user) == 0)
+	Question* questionP = (m_game.getQuestionForUser(m_user));
+	Question question = *(questionP);
+
+	response.question = question.getQuestion();
+
+	// randomize the answers/correct answer order
+	vector<string> answers = question.getPossibleAnswers();
+
+	// std::shuffle(answers.begin(), answers.end(), std::random_device());
+	// shuffle will be client side ONLY
+
+	int i = 1;
+	for (auto answer : answers)
 	{
-		response.status = FAILED;
-		response.question = "";
-		response.answers = {};
+		std::pair<int, string> answerPair;
 
-		TRACE("\nUser: " + m_user.getUsername() + " has failed to get more questions, because there are no questions more left\n")
+		answerPair.first = i;
+		answerPair.second = answer;
+		response.answers.insert(answerPair);
+		i += 1;
 	}
-	else
-	{
-		response.status = SUCCESS;
 
-		Question* questionP = (m_game.getQuestionForUser(m_user));
-		if (questionP == nullptr)
-		{
-			throw std::exception("no more questions for you");
-		}
-		Question question = *(questionP);
-
-		response.question = question.getQuestion();
-
-		// randomize the answers/correct answer order
-		vector<string> answers = question.getPossibleAnswers();
-
-		std::shuffle(answers.begin(), answers.end(), std::random_device());
-
-		int i = 1;
-		for (auto answer : answers)
-		{
-			std::pair<int, string> answerPair;
-
-			answerPair.first = i;
-			answerPair.second = answer;
-			response.answers.insert(answerPair);
-			i += 1;
-		}
-
-		TRACE("\nUser: " + m_user.getUsername() + " has request a question: " + question.getQuestion()
-		+ "\nAnswers are:"
-	    + "\nAnswer1: " + question.getPossibleAnswers()[0] + " - Right Answer"
-	    + "\nAnswer2: " + question.getPossibleAnswers()[1] + " - Wrong Answer"
-	    + "\nAnswer3: " + question.getPossibleAnswers()[2] + " - Wrong Answer"
-	    + "\nAnswer4: " + question.getPossibleAnswers()[3] + " - Wrong Answer");
-	}
+	TRACE("\nUser: " + m_user.getUsername() + " has request a question: " + question.getQuestion()
+	+ "\nAnswers are:"
+    + "\nAnswer1: " + question.getPossibleAnswers()[0] + " - Right Answer"
+    + "\nAnswer2: " + question.getPossibleAnswers()[1] + " - Wrong Answer"
+    + "\nAnswer3: " + question.getPossibleAnswers()[2] + " - Wrong Answer"
+    + "\nAnswer4: " + question.getPossibleAnswers()[3] + " - Wrong Answer");
+	
 	result.newHandler = this;
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 

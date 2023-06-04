@@ -21,7 +21,7 @@ Question* Game::getQuestionForUser(const LoggedUser& loggedUser)
 	int totalAnswerCount = gameData.correctAnswerCount + gameData.wrongAnswerCount;
 	if (isGameOver(loggedUser))
 	{
-		return nullptr;
+		throw std::exception("no more questions for you");
 	}
 	gameData.currentQuestion = &(m_questions[totalAnswerCount]);
 	return gameData.currentQuestion;
@@ -35,6 +35,12 @@ Question* Game::getQuestionForUser(const LoggedUser& loggedUser)
 bool Game::submitAnswer(const LoggedUser& loggedUser, unsigned answerId)
 {
 	GameData& gameData = m_players[loggedUser.getUsername()];
+
+	if (isGameOver(loggedUser))
+	{
+		throw std::exception("no more questions for you");
+	}
+
 	if (answerId == gameData.currentQuestion->getCorrectAnswerId())
 	{
 		gameData.correctAnswerCount++;
