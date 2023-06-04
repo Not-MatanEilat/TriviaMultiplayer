@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "IDataBase.h"
 #include "Room.h"
+#include <sstream>
 
 
 class GameManager

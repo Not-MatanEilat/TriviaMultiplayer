@@ -195,7 +195,7 @@ RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 
 	GetQuestionResponse response;
 
-	if (m_game.amountOfQuestionsLeft() == 0)
+	if (m_game.amountOfQuestionsLeft(m_user) == 0)
 	{
 		response.status = FAILED;
 		response.question = "";
@@ -207,7 +207,7 @@ RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 	{
 		response.status = SUCCESS;
 
-		Question question = m_game.getQuestionForUser(m_user.getUsername());
+		Question question = *(m_game.getQuestionForUser(m_user.getUsername()));
 
 		response.question = question.getQuestion();
 

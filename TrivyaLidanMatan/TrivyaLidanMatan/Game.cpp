@@ -29,7 +29,7 @@ Question* Game::getQuestionForUser(const LoggedUser& loggedUser)
 void Game::submitAnswer(const LoggedUser& loggedUser, unsigned answerId)
 {
 	GameData gameData = m_players[loggedUser];
-	if (answerId == gameData.currentQuestion.getCorrectAnswerId())
+	if (answerId == gameData.currentQuestion->getCorrectAnswerId())
 	{
 		gameData.correctAnswerCount++;
 	}

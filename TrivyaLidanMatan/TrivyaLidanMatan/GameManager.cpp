@@ -48,6 +48,19 @@ void GameManager::deleteGame(unsigned gameId)
 	throw std::exception("Game not found");
 }
 
+vector<string> GameManager::getGamesResults(unsigned gameId)
+{
+	Game& game = getGame(gameId);
+	vector<string> results;
+	for (auto it = game.getPlayers().begin(); it != game.getPlayers().end(); it++)
+	{
+		std::stringstream ss;
+		ss << it->first.getUsername() << " " << it->second.correctAnswerCount << " " << it->second.wrongAnswerCount << " " << it->second.averageAnswerTime << "\n";
+		results.push_back(ss.str());
+	}
+	return results;
+}
+
 /**
  * \brief returns the last id
  * \return the last id
