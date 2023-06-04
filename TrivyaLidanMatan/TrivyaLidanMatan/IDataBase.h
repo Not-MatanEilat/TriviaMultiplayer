@@ -3,6 +3,7 @@
 #define DB_PATH "Trivia.db"
 #include <string>
 #include <regex>
+#include "Question.h"
 
 
 using std::regex;
@@ -11,15 +12,7 @@ using std::regex_search;
 using std::string;
 using std::vector;
 
-typedef struct Question
-{
-	string question;
-	string correctAnswer;
-	string answer2;
-	string answer3;
-	string answer4;
-
-} Question;
+class Question;
 
 class IDataBase
 {

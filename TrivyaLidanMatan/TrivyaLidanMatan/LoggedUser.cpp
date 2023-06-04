@@ -19,3 +19,7 @@ string LoggedUser::getUsername() const
 }
 
 
+bool operator<(const LoggedUser& lhs, const LoggedUser& rhs)
+{
+	return lhs.m_username < rhs.m_username;
+}

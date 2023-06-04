@@ -1,12 +1,13 @@
 #include "RequestHandlerFactory.h"
 
+#include "GameRequestHandler.h"
 #include "MenuRequestHandler.h"
 
 /**
  * \brief Constructor to RequestHandler Factory
  * \param mDatabase the DB of the server
  */
-RequestHandlerFactory::RequestHandlerFactory(IDataBase* mDatabase): m_database(mDatabase), m_loginManager(mDatabase), m_roomManager(), m_statisticsManager(mDatabase)
+RequestHandlerFactory::RequestHandlerFactory(IDataBase* mDatabase) : m_database(mDatabase), m_loginManager(mDatabase), m_roomManager(), m_statisticsManager(mDatabase), m_gameManager(mDatabase)
 {
 }
 
