@@ -22,3 +22,12 @@ vector<string> Question::getPossibleAnswers() const
 {
 	return m_possibleAnswers;
 }
+
+/**
+ * \brief return the correct answer id
+ * \return the correct answer id
+ */
+int Question::getCorrectAnswerId() const
+{
+	return 0;
+}
