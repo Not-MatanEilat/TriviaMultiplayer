@@ -1,5 +1,9 @@
 #pragma once
-#include "IDataBase.h"
+#include <string>
+#include <vector>
+
+using std::string;
+using std::vector;
 
 
 class Question
