@@ -14,7 +14,7 @@ using std::vector;
 
 typedef struct GameData
 {
-	Question currentQuestion;
+	Question* currentQuestion;
 	unsigned int correctAnswerCount;
 	unsigned int wrongAnswerCount;
 	float averageAnswerTime;
@@ -26,7 +26,7 @@ class Game
 public:
 	Game(const vector<Question>& questions, const map<LoggedUser, GameData>& players, unsigned gameId);
 
-	Question getQuestionForUser(const LoggedUser& loggedUser);
+	Question* getQuestionForUser(const LoggedUser& loggedUser);
 	void submitAnswer(const LoggedUser& loggedUser, unsigned int answerId);
 	void removePlayer(const LoggedUser& loggedUser);
 	unsigned int getGameId() const;

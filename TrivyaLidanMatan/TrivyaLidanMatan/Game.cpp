@@ -15,7 +15,7 @@ Game::Game(const vector<Question>& questions, const map<LoggedUser, GameData>& p
  * \param loggedUser the user
  * \return the question
  */
-Question Game::getQuestionForUser(const LoggedUser& loggedUser)
+Question* Game::getQuestionForUser(const LoggedUser& loggedUser)
 {
 	GameData gameData = m_players[loggedUser];
 	return gameData.currentQuestion;
