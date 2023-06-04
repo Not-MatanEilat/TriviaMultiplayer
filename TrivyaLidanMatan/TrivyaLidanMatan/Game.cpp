@@ -17,8 +17,12 @@ Game::Game(vector<Question> questions, const map<string, GameData>& players, uns
  */
 Question* Game::getQuestionForUser(const LoggedUser& loggedUser)
 {
-	GameData gameData = m_players[loggedUser.getUsername()];
+	GameData& gameData = m_players[loggedUser.getUsername()];
 	int totalAnswerCount = gameData.correctAnswerCount + gameData.wrongAnswerCount;
+	if (isGameOver(loggedUser))
+	{
+		return nullptr;
+	}
 	gameData.currentQuestion = &(m_questions[totalAnswerCount]);
 	return gameData.currentQuestion;
 }
@@ -28,16 +32,18 @@ Question* Game::getQuestionForUser(const LoggedUser& loggedUser)
  * \param loggedUser user
  * \param answerId answer id
  */
-void Game::submitAnswer(const LoggedUser& loggedUser, unsigned answerId)
+bool Game::submitAnswer(const LoggedUser& loggedUser, unsigned answerId)
 {
-	GameData gameData = m_players[loggedUser.getUsername()];
+	GameData& gameData = m_players[loggedUser.getUsername()];
 	if (answerId == gameData.currentQuestion->getCorrectAnswerId())
 	{
 		gameData.correctAnswerCount++;
+		return true;
 	}
 	else
 	{
 		gameData.wrongAnswerCount++;
+		return false;
 	}
 	
 }
@@ -67,7 +73,7 @@ unsigned Game::getGameId() const
  */
 bool Game::isGameOver(const LoggedUser& loggedUser)
 {
-	if (amountOfQuestionsLeft(loggedUser) == 0)
+	if (amountOfQuestionsLeft(loggedUser) <= 0)
 	{
 		return true;
 	}
@@ -90,7 +96,7 @@ map<string, GameData> Game::getPlayers() const
  */
 int Game::amountOfQuestionsLeft(const LoggedUser& loggedUser)
 {
-	GameData gameData = m_players[loggedUser.getUsername()];
+	GameData& gameData = m_players[loggedUser.getUsername()];
 	int questionCount = m_questions.size();
 	int totalAnswerCount = gameData.correctAnswerCount + gameData.wrongAnswerCount;
 	return questionCount - totalAnswerCount;

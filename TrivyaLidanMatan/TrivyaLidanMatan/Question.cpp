@@ -29,5 +29,5 @@ vector<string> Question::getPossibleAnswers() const
  */
 int Question::getCorrectAnswerId() const
 {
-	return 0;
+	return 1;
 }

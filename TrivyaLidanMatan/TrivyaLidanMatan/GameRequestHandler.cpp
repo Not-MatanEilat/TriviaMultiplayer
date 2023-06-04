@@ -76,6 +76,7 @@ void GameRequestHandler::handleDisconnect()
 	TRACE("GameRequestHandler " << m_user.getUsername() << ": disconnected")
 		m_game.removePlayer(m_user);
 	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
+	m_gameManager.getGame(m_user).removePlayer(m_user);
 }
 
 
@@ -116,8 +117,8 @@ RequestResult GameRequestHandler::submitAnswer(RequestInfo info)
 
 	response.status = SUCCESS;
 
-	m_game.submitAnswer(m_user.getUsername(), request.answerId);
-
+	bool correct = m_game.submitAnswer(m_user.getUsername(), request.answerId);
+	response.correctAnswer = correct;
 	result.newHandler = this;
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 
@@ -208,6 +209,10 @@ RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 		response.status = SUCCESS;
 
 		Question* questionP = (m_game.getQuestionForUser(m_user));
+		if (questionP == nullptr)
+		{
+			throw std::exception("no more questions for you");
+		}
 		Question question = *(questionP);
 
 		response.question = question.getQuestion();
@@ -235,6 +240,7 @@ RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 	    + "\nAnswer3: " + question.getPossibleAnswers()[2] + " - Wrong Answer"
 	    + "\nAnswer4: " + question.getPossibleAnswers()[3] + " - Wrong Answer");
 	}
+	result.newHandler = this;
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 
 	return result;

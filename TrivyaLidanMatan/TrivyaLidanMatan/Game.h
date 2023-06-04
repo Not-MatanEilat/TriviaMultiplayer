@@ -27,7 +27,7 @@ public:
 	Game(vector<Question> questions, const map<string, GameData>& players, unsigned gameId);
 
 	Question* getQuestionForUser(const LoggedUser& loggedUser);
-	void submitAnswer(const LoggedUser& loggedUser, unsigned int answerId);
+	bool submitAnswer(const LoggedUser& loggedUser, unsigned int answerId);
 	void removePlayer(const LoggedUser& loggedUser);
 	unsigned int getGameId() const;
 
