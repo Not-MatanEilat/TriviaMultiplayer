@@ -1,6 +1,17 @@
 #include "Game.h"
 
 /**
+ * \brief returns the question for the user
+ * \param loggedUser the user
+ * \return the question
+ */
+Question Game::getQuestionForUser(const LoggedUser& loggedUser)
+{
+	GameData gameData = m_players[loggedUser];
+	return gameData.currentQuestion;
+}
+
+/**
  * \brief submits the answer of the user
  * \param loggedUser user
  * \param answerId answer id
