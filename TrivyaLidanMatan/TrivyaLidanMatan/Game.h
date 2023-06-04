@@ -14,7 +14,7 @@ using std::vector;
 
 typedef struct GameData
 {
-	Question correctQuestion;
+	Question currentQuestion;
 	unsigned int correctAnswerCount;
 	unsigned int wrongAnswerCount;
 	float averageAnswerTime;
@@ -32,7 +32,7 @@ public:
 	// this is not in the UML, but, a check for if the is game over is needed, so for now, it is here
 	// I think the implementation should be something like questions.size() == 0
 	// but I'm Not sure
-	bool isGameOver();
+	bool isGameOver(const LoggedUser& loggedUser);
 	map<LoggedUser, GameData> getPlayers() const;
 	int amountOfQuestionsLeft();
 

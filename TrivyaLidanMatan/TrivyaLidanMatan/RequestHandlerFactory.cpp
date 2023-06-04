@@ -1,5 +1,6 @@
 #include "RequestHandlerFactory.h"
 
+#include "GameRequestHandler.h"
 #include "MenuRequestHandler.h"
 
 /**

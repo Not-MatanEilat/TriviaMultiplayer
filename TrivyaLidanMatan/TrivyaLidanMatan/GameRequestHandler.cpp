@@ -136,7 +136,7 @@ RequestResult GameRequestHandler::getGameResults(RequestInfo info)
 	RequestResult result;
 
 
-	if (!m_game.isGameOver())
+	if (!m_game.isGameOver(m_user))
 	{
 
 		GetGameResultsResponse response;
@@ -209,14 +209,10 @@ RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 
 		Question question = m_game.getQuestionForUser(m_user.getUsername());
 
-		response.question = question.question;
+		response.question = question.getQuestion();
 
 		// randomize the answers/correct answer order
-		vector<string> answers;
-		answers.push_back(question.correctAnswer);
-		answers.push_back(question.answer2);
-		answers.push_back(question.answer3);
-		answers.push_back(question.answer4);
+		vector<string> answers = question.getPossibleAnswers();
 
 		std::shuffle(answers.begin(), answers.end(), std::random_device());
 
@@ -231,12 +227,12 @@ RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 			i += 1;
 		}
 
-		TRACE("\nUser: " + m_user.getUsername() + " has request a question: " + question.question
+		TRACE("\nUser: " + m_user.getUsername() + " has request a question: " + question.getQuestion()
 		+ "\nAnswers are:"
-	    + "\nAnswer1: " + question.correctAnswer + " - Right Answer"
-	    + "\nAnswer2: " + question.answer2 + " - Wrong Answer"
-	    + "\nAnswer3: " + question.answer3 + " - Wrong Answer"
-	    + "\nAnswer4: " + question.answer4 + " - Wrong Answer");
+	    + "\nAnswer1: " + question.getPossibleAnswers()[0] + " - Right Answer"
+	    + "\nAnswer2: " + question.getPossibleAnswers()[1] + " - Wrong Answer"
+	    + "\nAnswer3: " + question.getPossibleAnswers()[2] + " - Wrong Answer"
+	    + "\nAnswer4: " + question.getPossibleAnswers()[3] + " - Wrong Answer");
 	}
 
 	return result;
