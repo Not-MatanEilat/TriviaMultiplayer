@@ -125,7 +125,15 @@ RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo info)
 		response.questionCount = m_room.getRoomData().numOfQuestionsInGame;
 		response.status = SUCCESS;
 
-		result.newHandler = this;
+		if (response.hasGameBegun)
+		{
+			GameManager& gameManager = m_handlerFactory.getGameManager();
+			result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, gameManager.getGame(m_user));
+		}
+		else
+		{
+			result.newHandler = this;
+		}
 		result.response = JsonResponsePacketSerializer::serializeResponse(response);
 
 		string playersStr = "";
@@ -168,12 +176,14 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo info)
 	try
 	{
 		m_room.startGame();
+		GameManager& gameManager = m_handlerFactory.getGameManager();
+		Game game = gameManager.createGame(m_room);
 
 		StartGameResponse response;
 		response.status = SUCCESS;
 
 		// stays this for now, soon will change to be the start game handler
-		result.newHandler = this;
+		result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, game);
 		result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	}
 	catch (const std::exception& e)

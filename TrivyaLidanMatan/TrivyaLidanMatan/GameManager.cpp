@@ -94,3 +94,15 @@ Game& GameManager::getGame(unsigned gameId)
 	}
 	throw std::exception("Game not found");
 }
+
+Game& GameManager::getGame(LoggedUser user)
+{
+	for (Game& game : m_games)
+	{
+		if (game.getPlayers().find(user) != game.getPlayers().end())
+		{
+			return game;
+		}
+	}
+	throw std::exception("Game not found");
+}

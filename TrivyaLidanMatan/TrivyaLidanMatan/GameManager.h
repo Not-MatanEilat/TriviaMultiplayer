@@ -16,12 +16,14 @@ public:
 	void deleteGame(unsigned int gameId);
 
 	vector<string> getGamesResults(unsigned int gameId);
+	Game& getGame(unsigned int gameId);
+	Game& getGame(LoggedUser user);
 
 private:
 	IDataBase* m_dataBase;
 	vector<Game> m_games;
 
 	int getLastID();
-	Game& getGame(unsigned int gameId);
+	
 };
 

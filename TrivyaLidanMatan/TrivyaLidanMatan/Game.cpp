@@ -18,6 +18,8 @@ Game::Game(const vector<Question>& questions, const map<LoggedUser, GameData>& p
 Question* Game::getQuestionForUser(const LoggedUser& loggedUser)
 {
 	GameData gameData = m_players[loggedUser];
+	int totalAnswerCount = gameData.correctAnswerCount + gameData.wrongAnswerCount;
+	gameData.currentQuestion = &(m_questions[totalAnswerCount]);
 	return gameData.currentQuestion;
 }
 
