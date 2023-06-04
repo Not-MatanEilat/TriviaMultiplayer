@@ -34,7 +34,7 @@ public:
 	// but I'm Not sure
 	bool isGameOver(const LoggedUser& loggedUser);
 	map<LoggedUser, GameData> getPlayers() const;
-	int amountOfQuestionsLeft();
+	int amountOfQuestionsLeft(const LoggedUser& loggedUser);
 
 private:
 	vector<Question> m_questions;

@@ -57,10 +57,37 @@ unsigned Game::getGameId() const
 }
 
 /**
+ * \brief return if the game is over
+ * \param loggedUser the user
+ * \return true if the game is over otherwise false
+ */
+bool Game::isGameOver(const LoggedUser& loggedUser)
+{
+	if (amountOfQuestionsLeft(loggedUser) == 0)
+	{
+		return true;
+	}
+	return false;
+}
+
+/**
  * \brief returns players in the game
  * \return the map of players
  */
 map<LoggedUser, GameData> Game::getPlayers() const
 {
 	return m_players;
+}
+
+/**
+ * \brief returns the amount of questions left
+ * \param loggedUser the user
+ * \return the amount of questions left
+ */
+int Game::amountOfQuestionsLeft(const LoggedUser& loggedUser)
+{
+	GameData gameData = m_players[loggedUser];
+	int questionCount = m_questions.size();
+	int totalAnswerCount = gameData.correctAnswerCount + gameData.wrongAnswerCount;
+	return questionCount - totalAnswerCount;
 }
