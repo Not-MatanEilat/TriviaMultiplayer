@@ -1,6 +1,16 @@
 #include "Game.h"
 
 /**
+ * \brief c'tor for game
+ * \param questions questions of the game
+ * \param players players of the game
+ * \param gameId id of the game
+ */
+Game::Game(const vector<Question>& questions, const map<LoggedUser, GameData>& players, unsigned gameId): m_questions(questions),m_players(players),m_gameId(gameId)
+{
+}
+
+/**
  * \brief returns the question for the user
  * \param loggedUser the user
  * \return the question
