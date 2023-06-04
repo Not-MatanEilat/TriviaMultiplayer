@@ -9,6 +9,7 @@ class GameManager
 {
 
 public:
+	GameManager(IDataBase* dataBase);
 
 	Game createGame(const Room& room);
 	void deleteGame(unsigned int gameId);
