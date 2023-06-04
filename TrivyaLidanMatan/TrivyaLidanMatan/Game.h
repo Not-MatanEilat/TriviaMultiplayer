@@ -30,15 +30,15 @@ public:
 	unsigned int getGameId() const;
 
 	// this is not in the UML, but, a check for if the is game over is needed, so for now, it is here
-	// I think the implementation should be something like questions.size() == 0
+	// I think the implementation should be something like m_questions.size() == 0
 	// but I'm Not sure
 	bool isGameOver(const LoggedUser& loggedUser);
 	map<LoggedUser, GameData> getPlayers() const;
 	int amountOfQuestionsLeft();
 
 private:
-	vector<Question> questions;
+	vector<Question> m_questions;
 	map<LoggedUser, GameData> m_players;
-	unsigned int gameId;
+	unsigned int m_gameId;
 };
 
