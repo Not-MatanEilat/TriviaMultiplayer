@@ -142,12 +142,12 @@ std::vector<Question> SqliteDataBase::getQuestions(int questionsNo)
 	std::vector<Question> questions;
 	for (Row& row : res)
 	{
-		Question question;
-		question.question = row["question"];
-		question.correctAnswer = row["correctAnswer"];
-		question.answer2 = row["answer2"];
-		question.answer3 = row["answer3"];
-		question.answer4 = row["answer4"];
+		vector<string> answers;
+		answers.push_back(row["correctAnswer"]);
+		answers.push_back(row["answer2"]);
+		answers.push_back(row["answer3"]);
+		answers.push_back(row["answer4"]);
+		Question question(row["question"], answers);
 		questions.push_back(question);
 	}
 	return questions;
