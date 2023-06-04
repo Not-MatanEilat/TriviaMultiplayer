@@ -20,6 +20,23 @@ void Game::submitAnswer(const LoggedUser& loggedUser, unsigned answerId)
 }
 
 /**
+ * \brief remove the user from the game and throws exception if the user is not in the game
+ * \param loggedUser the user
+ */
+void Game::removePlayer(const LoggedUser& loggedUser)
+{
+	for (auto it = m_players.begin(); it != m_players.end(); it++)
+	{
+		if (it->first.getUsername() == loggedUser.getUsername())
+		{
+			m_players.erase(it);
+			return;
+		}
+	}
+	throw std::exception("Player not found");
+}
+
+/**
  * \brief returns the id of the game
  * \return game id
  */
