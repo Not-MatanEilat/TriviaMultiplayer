@@ -373,6 +373,8 @@ namespace TriviaClientApp
             return SendRequestDict((byte)RequestCodes.START_GAME_CODE);
         }
 
+
+
         /// <summary>
         /// The function will return a boolean based no if the result given was a success or not.
         /// You can set displayMessageBox to true to see the error in an error message.

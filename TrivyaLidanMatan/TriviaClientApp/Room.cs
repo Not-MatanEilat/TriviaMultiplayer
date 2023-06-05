@@ -102,7 +102,6 @@ namespace TriviaClientApp
                     }
                     Label playerLabel = new Label();
                     playerLabel.Text = player;
-                    // change to consts later
                     playerLabel.Location = new Point(PLAYER_LABEL_BASE_X, PLAYER_LABEL_BASE_Y + i * PLAYER_LABEL_MARGIN);
 
                     controls.Add(playerLabel);
@@ -148,8 +147,7 @@ namespace TriviaClientApp
             }
             else
             {
-                // this is for checking if the player is an admin, the admin is always the first player in the current room
-                if (client.Username == players[0])
+                if (IsAdmin())
                 {
                     client.CloseRoom();
                 }
@@ -179,6 +177,15 @@ namespace TriviaClientApp
         {
             Thread loader = new Thread(loadAllNames);
             loader.Start();
+        }
+
+        /// <summary>
+        /// Returns true or false based on if the current player is the admin of the room
+        /// </summary>
+        /// <returns>True Or False</returns>
+        private bool IsAdmin()
+        {
+            return roomCreatorName == TriviaClient.GetClient().Username;
         }
     }
 }

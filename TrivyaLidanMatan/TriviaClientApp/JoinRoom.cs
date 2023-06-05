@@ -76,8 +76,7 @@ namespace TriviaClientApp
                     int roomIdInt = (int)room["id"];
                     roomName.Text = room["name"].ToString();
                     int players = (int)room["currentPlayersAmount"];
-                    roomPlayersAmount.Text = "Players: " + players;
-                    roomMaxPlayers.Text = "Max Players: " + room["maxPlayers"];
+                    roomPlayersAmount.Text = "Players: " + players + "/" + room["maxPlayers"];
                     roomQuestions.Text = "Questions: " + room["numOfQuestionsInGame"];
                     roomId.Text = room["id"].ToString();
 
