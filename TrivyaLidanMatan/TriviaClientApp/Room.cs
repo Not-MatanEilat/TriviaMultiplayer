@@ -84,13 +84,14 @@ namespace TriviaClientApp
                 int i = 0;
                 foreach (string player in playersJson)
                 {
-                    if (i == 0)
-                    {
-                        roomCreatorName = player;
-                    }
                     Label playerLabel = new Label();
                     playerLabel.Text = player;
                     playerLabel.Location = new Point(PLAYER_LABEL_BASE_X, PLAYER_LABEL_BASE_Y + i * PLAYER_LABEL_MARGIN);
+                    if (i == 0)
+                    {
+                        roomCreatorName = player;
+                        playerLabel.Text += "👑";
+                    }
 
                     controls.Add(playerLabel);
 
