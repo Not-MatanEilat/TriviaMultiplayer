@@ -21,6 +21,9 @@ def main():
         # get the json's data
         question = result["question"]
 
+        # quotes are being passed as "quot;" in the question so we replace those
+        question.replace("quot;", '"')
+
         correct_answer = result["correct_answer"]
         incorrect_answers = result["incorrect_answers"]
 
