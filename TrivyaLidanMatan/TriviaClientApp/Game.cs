@@ -19,6 +19,7 @@ namespace TriviaClientApp
         public Game()
         {
             InitializeComponent();
+            main.AcceptButton = nextButton;
         }
 
         private void Game_Load(object sender, EventArgs e)
@@ -47,6 +48,7 @@ namespace TriviaClientApp
                     answersButtons[i].BackColor = Color.FromKnownColor(KnownColor.Control);
                     answersButtons[i].Enabled = true;
                 }
+                nextButton.Enabled = false;
             }
             else
             {
@@ -83,6 +85,7 @@ namespace TriviaClientApp
                 {
                     button.BackColor = Color.Red;
                 }
+                nextButton.Enabled = true;
             }
         }
 

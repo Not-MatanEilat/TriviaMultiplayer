@@ -1,5 +1,7 @@
 #include "Game.h"
 
+#include <ctime>
+
 /**
  * \brief c'tor for game
  * \param questions questions of the game
@@ -23,6 +25,7 @@ Question* Game::getQuestionForUser(const LoggedUser& loggedUser)
 	{
 		throw std::exception("no more questions for you");
 	}
+	gameData.lastAnswerTime = (float)clock() / CLOCKS_PER_SEC;
 	gameData.currentQuestion = &(m_questions[totalAnswerCount]);
 	return gameData.currentQuestion;
 }
@@ -40,7 +43,8 @@ bool Game::submitAnswer(const LoggedUser& loggedUser, unsigned answerId)
 	{
 		throw std::exception("no more questions for you");
 	}
-
+	float diff = (float)clock() / CLOCKS_PER_SEC - gameData.lastAnswerTime;
+	gameData.averageAnswerTime = (gameData.averageAnswerTime + diff) / 2;
 	if (answerId == gameData.currentQuestion->getCorrectAnswerId())
 	{
 		gameData.correctAnswerCount++;

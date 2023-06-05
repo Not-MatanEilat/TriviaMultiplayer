@@ -18,6 +18,7 @@ typedef struct GameData
 	unsigned int correctAnswerCount = 0;
 	unsigned int wrongAnswerCount = 0;
 	float averageAnswerTime = 0;
+	float lastAnswerTime = 0;
 } GameData;
 
 
