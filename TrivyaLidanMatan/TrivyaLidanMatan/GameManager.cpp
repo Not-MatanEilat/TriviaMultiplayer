@@ -22,7 +22,7 @@ Game GameManager::createGame(Room room)
 		players.insert({ user.getUsername(), GameData()});
 	}
 	vector<Question> questions = m_dataBase->getQuestions(room.getRoomData().numOfQuestionsInGame);
-	Game game(questions, players, getLastID() + 1);
+	Game game(questions, players, getLastID() + 1, m_dataBase);
 	return game;
 }
 
