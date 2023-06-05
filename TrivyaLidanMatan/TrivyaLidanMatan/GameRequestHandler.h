@@ -2,7 +2,7 @@
 
 #include "IRequestHandler.h"
 #include "RequestHandlerFactory.h"
-#include "Communicator.h""
+#include "Communicator.h"
 
 class GameRequestHandler : public IRequestHandler
 {
