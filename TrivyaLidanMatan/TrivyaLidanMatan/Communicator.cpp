@@ -54,6 +54,24 @@ Communicator::Communicator(RequestHandlerFactory& handlerFactory) : m_handlerFac
 }
 
 /**
+ * \brief disconnect the client from the server in a safe way
+ * \param clientSocket the client socket
+ */
+void Communicator::disconnectSocket(SOCKET clientSocket)
+{
+	m_clients[clientSocket]->handleDisconnect();
+	for (auto it = m_clients.begin(); it != m_clients.end(); ++it)
+	{
+		if (it->first == clientSocket)
+		{
+			m_clients.erase(it);
+			break;
+		}
+	}
+	closesocket(clientSocket);
+}
+
+/**
  * \brief The function will handle a new client - for now sends hello and prints its answer
  * \param clientSocket - the socket of the new client
  */
@@ -67,6 +85,10 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 		{
 			int code = Helper::getMessageTypeCode(clientSocket);
 			int len = Helper::getIntPartFromSocket(clientSocket, 4);
+			if (len > 5000)
+			{
+				throw std::exception("Length too big");
+			}
 			TRACE("code: " << code << " len: " << len);
 			Buffer msg = Helper::getBufferPartFromSocket(clientSocket, len);
 			RequestInfo requestInfo;
@@ -91,16 +113,13 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 	}
 	catch (const std::exception& e)
 	{
-		m_clients[clientSocket]->handleDisconnect();
-		for (auto it = m_clients.begin(); it != m_clients.end(); ++it)
-		{
-			if (it->first == clientSocket)
-			{
-				m_clients.erase(it);
-				break;
-			}
-		}
+		disconnectSocket(clientSocket);
 		std::cout << "Connection lost: " << e.what() << std::endl;
+	}
+	catch (...)
+	{
+		closesocket(clientSocket);
+		std::cout << "Connection lost: " << "UNKNOWN" << std::endl;
 	}
 	
 }

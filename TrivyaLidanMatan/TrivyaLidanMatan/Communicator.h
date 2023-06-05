@@ -48,6 +48,7 @@ public:
 	void startHandleRequests();
 
 	Communicator(RequestHandlerFactory& handlerFactory);
+	void disconnectSocket(SOCKET clientSocket);
 
 private:
 	void bindAndListen();
