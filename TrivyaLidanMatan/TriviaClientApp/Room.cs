@@ -195,8 +195,10 @@ namespace TriviaClientApp
 
         private void startGameButton_Click(object sender, EventArgs e)
         {
-            main.ChangePage(new Game());
+            startGameButton.Enabled = false;
             TriviaClient.GetClient().StartGame();
+            Thread.Sleep(500);
+            main.ChangePage(new Game());
         }
     }
 }

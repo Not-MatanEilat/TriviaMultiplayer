@@ -28,10 +28,104 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            questionLabel = new Label();
+            answer1Button = new Button();
+            answer2Button = new Button();
+            answer3Button = new Button();
+            answer4Button = new Button();
+            button1 = new Button();
+            BackButtonPress = new Button();
+            SuspendLayout();
+            // 
+            // questionLabel
+            // 
+            questionLabel.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            questionLabel.Location = new Point(3, 35);
+            questionLabel.Name = "questionLabel";
+            questionLabel.Size = new Size(794, 78);
+            questionLabel.TabIndex = 0;
+            questionLabel.Text = "Why this project is the best one?";
+            questionLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // answer1Button
+            // 
+            answer1Button.Location = new Point(132, 116);
+            answer1Button.Name = "answer1Button";
+            answer1Button.Size = new Size(260, 30);
+            answer1Button.TabIndex = 1;
+            answer1Button.Text = "button1";
+            answer1Button.UseVisualStyleBackColor = true;
+            // 
+            // answer2Button
+            // 
+            answer2Button.Location = new Point(398, 116);
+            answer2Button.Name = "answer2Button";
+            answer2Button.Size = new Size(260, 30);
+            answer2Button.TabIndex = 2;
+            answer2Button.Text = "button2";
+            answer2Button.UseVisualStyleBackColor = true;
+            // 
+            // answer3Button
+            // 
+            answer3Button.Location = new Point(132, 161);
+            answer3Button.Name = "answer3Button";
+            answer3Button.Size = new Size(260, 30);
+            answer3Button.TabIndex = 3;
+            answer3Button.Text = "button3";
+            answer3Button.UseVisualStyleBackColor = true;
+            // 
+            // answer4Button
+            // 
+            answer4Button.Location = new Point(398, 161);
+            answer4Button.Name = "answer4Button";
+            answer4Button.Size = new Size(260, 30);
+            answer4Button.TabIndex = 4;
+            answer4Button.Text = "button4";
+            answer4Button.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(360, 232);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 5;
+            button1.Text = "Next";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += nextButton_Click;
+            // 
+            // BackButtonPress
+            // 
+            BackButtonPress.Location = new Point(15, 415);
+            BackButtonPress.Name = "BackButtonPress";
+            BackButtonPress.Size = new Size(75, 23);
+            BackButtonPress.TabIndex = 7;
+            BackButtonPress.Text = "Back";
+            BackButtonPress.UseVisualStyleBackColor = true;
+            // 
+            // Game
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(BackButtonPress);
+            Controls.Add(button1);
+            Controls.Add(answer4Button);
+            Controls.Add(answer3Button);
+            Controls.Add(answer2Button);
+            Controls.Add(answer1Button);
+            Controls.Add(questionLabel);
+            Name = "Game";
+            Load += Game_Load;
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Label questionLabel;
+        private Button answer1Button;
+        private Button answer2Button;
+        private Button answer3Button;
+        private Button answer4Button;
+        private Button button1;
+        private Button BackButtonPress;
     }
 }

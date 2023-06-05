@@ -293,7 +293,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const GetGameResultsRespo
 
 /**
  * \brief The function will take a getGameResult response and serialize it to a buffer
- * {"status" : status, "question" : question, "answers" : [["answerNumber", "Question"], ["answerNumber", "Question"], ["answerNumber", "Question"], ["answerNumber", "Question"]]}
+ * {"status" : status, "question" : question, "answers" : [["answerNumber", "Answer"], ["answerNumber", "Answer"], ["answerNumber", "Answer"], ["answerNumber", "Answer"]]}
  * \param getQuestionResponse getQuestion response response to serialize
  * \return getQuestion response to serialized to a buffer
  */
