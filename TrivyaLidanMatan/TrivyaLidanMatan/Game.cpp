@@ -19,7 +19,7 @@ Question* Game::getQuestionForUser(const LoggedUser& loggedUser)
 {
 	GameData& gameData = m_players[loggedUser.getUsername()];
 	int totalAnswerCount = gameData.correctAnswerCount + gameData.wrongAnswerCount;
-	if (isGameOver(loggedUser))
+	if (isGameOver(loggedUser.getUsername()))
 	{
 		throw std::exception("no more questions for you");
 	}
@@ -36,7 +36,7 @@ bool Game::submitAnswer(const LoggedUser& loggedUser, unsigned answerId)
 {
 	GameData& gameData = m_players[loggedUser.getUsername()];
 
-	if (isGameOver(loggedUser))
+	if (isGameOver(loggedUser.getUsername()))
 	{
 		throw std::exception("no more questions for you");
 	}
@@ -74,17 +74,34 @@ unsigned Game::getGameId() const
 
 /**
  * \brief return if the game is over
- * \param loggedUser the user
+ * \param username the username
  * \return true if the game is over otherwise false
  */
-bool Game::isGameOver(const LoggedUser& loggedUser)
+bool Game::isGameOver(const string& username)
 {
-	if (amountOfQuestionsLeft(loggedUser) <= 0)
+	if (amountOfQuestionsLeft(username) <= 0)
 	{
 		return true;
 	}
 	return false;
 }
+
+/**
+ * \brief return if game is over for all the players
+ * \return True or False
+ */
+bool Game::isGameOver()
+{
+	for (auto& player : m_players)
+	{
+		if (!isGameOver(player.first))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 
 /**
  * \brief returns players in the game
@@ -97,12 +114,12 @@ map<string, GameData> Game::getPlayers() const
 
 /**
  * \brief returns the amount of questions left
- * \param loggedUser the user
+ * \param username the username
  * \return the amount of questions left
  */
-int Game::amountOfQuestionsLeft(const LoggedUser& loggedUser)
+int Game::amountOfQuestionsLeft(const string& username)
 {
-	GameData& gameData = m_players[loggedUser.getUsername()];
+	GameData& gameData = m_players[username];
 	int questionCount = m_questions.size();
 	int totalAnswerCount = gameData.correctAnswerCount + gameData.wrongAnswerCount;
 	return questionCount - totalAnswerCount;

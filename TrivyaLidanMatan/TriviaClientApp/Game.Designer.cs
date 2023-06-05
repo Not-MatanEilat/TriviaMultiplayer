@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             questionLabel = new Label();
             answer1Button = new Button();
             answer2Button = new Button();
             answer3Button = new Button();
             answer4Button = new Button();
-            button1 = new Button();
+            nextButton = new Button();
             BackButtonPress = new Button();
+            gameOverTImer = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // questionLabel
@@ -83,15 +85,15 @@
             answer4Button.Text = "button4";
             answer4Button.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // nextButton
             // 
-            button1.Location = new Point(360, 232);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 5;
-            button1.Text = "Next";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += nextButton_Click;
+            nextButton.Location = new Point(360, 232);
+            nextButton.Name = "nextButton";
+            nextButton.Size = new Size(75, 23);
+            nextButton.TabIndex = 5;
+            nextButton.Text = "Next";
+            nextButton.UseVisualStyleBackColor = true;
+            nextButton.Click += nextButton_Click;
             // 
             // BackButtonPress
             // 
@@ -102,12 +104,17 @@
             BackButtonPress.Text = "Back";
             BackButtonPress.UseVisualStyleBackColor = true;
             // 
+            // gameOverTImer
+            // 
+            gameOverTImer.Interval = 1000;
+            gameOverTImer.Tick += gameOverTImer_Tick;
+            // 
             // Game
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(BackButtonPress);
-            Controls.Add(button1);
+            Controls.Add(nextButton);
             Controls.Add(answer4Button);
             Controls.Add(answer3Button);
             Controls.Add(answer2Button);
@@ -125,7 +132,8 @@
         private Button answer2Button;
         private Button answer3Button;
         private Button answer4Button;
-        private Button button1;
+        private Button nextButton;
         private Button BackButtonPress;
+        private System.Windows.Forms.Timer gameOverTImer;
     }
 }

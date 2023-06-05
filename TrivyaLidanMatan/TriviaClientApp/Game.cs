@@ -37,7 +37,7 @@ namespace TriviaClientApp
         private void UpdateQuestion()
         {
             JObject res = TriviaClient.GetClient().GetQuestion();
-            if (TriviaClient.IsSuccessResponse(res))
+            if (TriviaClient.IsSuccessResponse(res, false))
             {
                 JObject result = (JObject)res["message"];
                 questionLabel.Text = result["question"].Value<string>();
@@ -47,6 +47,20 @@ namespace TriviaClientApp
                     answersButtons[i].BackColor = Color.FromKnownColor(KnownColor.Control);
                     answersButtons[i].Enabled = true;
                 }
+            }
+            else
+            {
+                foreach (Button answerButton in answersButtons)
+                {
+                    answerButton.Visible = false;
+                }
+
+                nextButton.Visible = false;
+
+                questionLabel.Text = "Waiting for players to finish answering too....";
+
+                gameOverTImer.Start();
+
             }
         }
 
@@ -75,6 +89,17 @@ namespace TriviaClientApp
         private void nextButton_Click(object sender, EventArgs e)
         {
             UpdateQuestion();
+        }
+
+        private void gameOverTImer_Tick(object sender, EventArgs e)
+        {
+            JObject result = TriviaClient.GetClient().GetGameResults();
+            if (TriviaClient.IsSuccessResponse(result, false))
+            {
+                gameOverTImer.Stop();
+                GameResults gameResults = new GameResults((JObject)result["message"]);
+                main.ChangePage(gameResults);
+            }
         }
     }
 }

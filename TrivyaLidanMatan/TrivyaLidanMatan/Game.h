@@ -31,9 +31,10 @@ public:
 	void removePlayer(const LoggedUser& loggedUser);
 	unsigned int getGameId() const;
 
-	bool isGameOver(const LoggedUser& loggedUser);
+	bool isGameOver(const string& username);
+	bool isGameOver();
 	map<string, GameData> getPlayers() const;
-	int amountOfQuestionsLeft(const LoggedUser& loggedUser);
+	int amountOfQuestionsLeft(const string& username);
 
 private:
 	vector<Question> m_questions;
