@@ -215,7 +215,7 @@ int SqliteDataBase::getPlayerScore(string const& username)
 
 void SqliteDataBase::setPlayerStatistics(string const& username, Row stats)
 {
-	const string sqlStatement = "UPDATE Statistics SET averageAnswerTime = $0 AND correctAnswers = $1 AND totalAnswers = $2 AND games = $3 WHERE username == '$4'";
+	const string sqlStatement = "UPDATE Statistics SET averageAnswerTime = $0, correctAnswers = $1, totalAnswers = $2, games = $3 WHERE username == '$4'";
 	vector<string> params = { stats["averageAnswerTime"], stats["correctAnswers"], stats["totalAnswers"], stats["games"], username };
 	_db.exec(sqlStatement, params);
 }

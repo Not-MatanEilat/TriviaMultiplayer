@@ -66,10 +66,10 @@ void Game::removePlayer(const LoggedUser& loggedUser)
 {
 	GameData& gameData = m_players[loggedUser.getUsername()];
 	Row stats;
-	stats["averageAnswerTime"] = (m_database->getPlayerAverageAnswerTime(loggedUser.getUsername()) + gameData.averageAnswerTime) / 2;
-	stats["correctAnswers"] = m_database->getNumOfCorrectAnswers(loggedUser.getUsername()) + gameData.correctAnswerCount;
-	stats["totalAnswers"] = m_database->getNumOfTotalAnswers(loggedUser.getUsername()) + gameData.wrongAnswerCount + gameData.correctAnswerCount;
-	stats["games"] = m_database->getNumOfPlayerGames(loggedUser.getUsername()) + 1;
+	stats["averageAnswerTime"] = std::to_string((m_database->getPlayerAverageAnswerTime(loggedUser.getUsername()) + gameData.averageAnswerTime) / 2);
+	stats["correctAnswers"] = std::to_string(m_database->getNumOfCorrectAnswers(loggedUser.getUsername()) + gameData.correctAnswerCount);
+	stats["totalAnswers"] = std::to_string(m_database->getNumOfTotalAnswers(loggedUser.getUsername()) + gameData.wrongAnswerCount + gameData.correctAnswerCount);
+	stats["games"] = std::to_string(m_database->getNumOfPlayerGames(loggedUser.getUsername()) + 1);
 	m_database->setPlayerStatistics(loggedUser.getUsername(), stats);
 
 	m_players.erase(loggedUser.getUsername());
