@@ -171,7 +171,14 @@ namespace TriviaClientApp
         private void button1_Click(object sender, EventArgs e)
         {
             int roomId = (int)roomIdBox.Value;
-            JoinRoomById(roomId, getRoomNameById(roomId), getRoomCreatorName(roomId));
+            try
+            {
+                JoinRoomById(roomId, getRoomNameById(roomId), getRoomCreatorName(roomId));
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
         }
 
         /// <summary>
@@ -206,14 +213,19 @@ namespace TriviaClientApp
         {
             TriviaClient client = TriviaClient.GetClient();
             JObject playersInRoom = client.GetPlayersInRoom(roomId);
-            string roomCreatorName = "";
-            // if we'd have 0 players (somehow) we'd get an exception
-            if (playersInRoom.Count != 0)
+            if (TriviaClient.IsSuccessResponse(playersInRoom))
             {
-                roomCreatorName = playersInRoom["message"]["players"][0].ToString();
+                string roomCreatorName = "";
+                // if we'd have 0 players (somehow) we'd get an exception
+                if (playersInRoom.Count != 0)
+                {
+                    roomCreatorName = playersInRoom["message"]["players"][0].ToString();
+                }
+
+                return roomCreatorName;
             }
 
-            return roomCreatorName;
+            throw new Exception("Cannot Get Room Creator Name");
         }
 
         private void AutoRefresh_Tick(object sender, EventArgs e)
