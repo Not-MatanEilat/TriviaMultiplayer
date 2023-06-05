@@ -20,7 +20,6 @@ namespace TriviaClientApp
         private const int PLAYER_LABEL_MARGIN = 20;
 
         private string roomName;
-        private Mutex mutex = new();
         private List<string> players = new();
         private string roomCreatorName;
         private int roomId;
@@ -39,7 +38,7 @@ namespace TriviaClientApp
 
         private void Room_Load(object sender, EventArgs e)
         {
-            Thread loader = new Thread(loadAllNames);
+            Thread loader = new Thread(roomHandler);
             loader.Start();
 
             roomNameLabel.Text = roomName;
@@ -61,21 +60,11 @@ namespace TriviaClientApp
         /// <summary>
         /// load all the names of the players in the room
         /// </summary>
-        private void loadAllNames()
+        /// <param name="roomState">The current state of the room</param>
+        private void LoadAllNames(JObject roomState)
         {
-            try
-            {
-                mutex.WaitOne();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                return;
-            }
-
-            TriviaClient client = TriviaClient.GetClient();
-            JObject result = client.GetRoomState();
-            if (!TriviaClient.IsSuccessResponse(result, false))
+            
+            if (!TriviaClient.IsSuccessResponse(roomState, false))
             {
                 try
                 {
@@ -85,7 +74,6 @@ namespace TriviaClientApp
                         main.ChangePage(mainMenu);
                     });
 
-                    mutex.ReleaseMutex();
                 }
                 catch (Exception e)
                 {
@@ -95,7 +83,7 @@ namespace TriviaClientApp
                 return;
             }
 
-            JToken playersJson = result["message"]["players"];
+            JToken playersJson = roomState["message"]["players"];
             players.Clear();
             List<Control> controls = new();
 
@@ -128,13 +116,35 @@ namespace TriviaClientApp
                     namesListFlow.Controls.AddRange(controls.ToArray());
                 });
 
-                mutex.ReleaseMutex();
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e.Message);
-                return;
             }
+        }
+
+        /// <summary>
+        /// Function to check if the game has begun, if it did begin, go into its page's
+        /// </summary>
+        /// <param name="roomState">The current state of the room</param>
+        private void CheckGameHasBegun(JObject roomState)
+        {
+            if (roomState["message"]["hasGameBegun"].Value<bool>())
+            {
+                main.ChangePage(new Game());
+            }
+        }
+
+        /// <summary>
+        /// functions that happens on each clock timer (3 seconds)
+        /// </summary>
+        private void roomHandler()
+        {
+            TriviaClient client = TriviaClient.GetClient();
+            JObject result = client.GetRoomState();
+
+            LoadAllNames(result);
+            CheckGameHasBegun(result);
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -183,7 +193,7 @@ namespace TriviaClientApp
 
         private void autoRefresh_Tick(object sender, EventArgs e)
         {
-            Thread loader = new Thread(loadAllNames);
+            Thread loader = new Thread(roomHandler);
             loader.Start();
         }
 
@@ -199,6 +209,7 @@ namespace TriviaClientApp
         private void startGameButton_Click(object sender, EventArgs e)
         {
             main.ChangePage(new Game());
+            TriviaClient.GetClient().StartGame();
         }
     }
 }
