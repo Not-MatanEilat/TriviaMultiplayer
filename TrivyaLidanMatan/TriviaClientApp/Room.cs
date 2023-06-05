@@ -91,7 +91,7 @@ namespace TriviaClientApp
                 {
                     Debug.WriteLine(e.Message);
                 }
-                
+
                 return;
             }
 
@@ -147,7 +147,7 @@ namespace TriviaClientApp
             TriviaClient client = TriviaClient.GetClient();
 
             JObject result;
-            
+
             if (players.Count == 0)
             {
                 MessageBox.Show("Something went wrong", "Room ERROR", MessageBoxButtons.OK,
@@ -194,6 +194,11 @@ namespace TriviaClientApp
         private bool IsAdmin()
         {
             return roomCreatorName == TriviaClient.GetClient().Username;
+        }
+
+        private void startGameButton_Click(object sender, EventArgs e)
+        {
+            main.ChangePage(new Game());
         }
     }
 }

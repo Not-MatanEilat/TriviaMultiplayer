@@ -125,6 +125,7 @@
             startGameButton.TabIndex = 11;
             startGameButton.Text = "Start";
             startGameButton.UseVisualStyleBackColor = true;
+            startGameButton.Click += startGameButton_Click;
             // 
             // Room
             // 
