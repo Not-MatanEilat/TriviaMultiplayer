@@ -12,7 +12,7 @@ class GameManager
 public:
 	GameManager(IDataBase* dataBase);
 
-	Game createGame(Room& room);
+	Game createGame(Room room);
 	Game& addGame(Game& game);
 	void deleteGame(unsigned int gameId);
 

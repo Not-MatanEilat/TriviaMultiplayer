@@ -13,7 +13,7 @@ GameManager::GameManager(IDataBase* dataBase): m_dataBase(dataBase)
  * \param room room to create game from
  * \return the created game
  */
-Game GameManager::createGame(Room& room)
+Game GameManager::createGame(Room room)
 {
 	vector<LoggedUser> users = room.getAllUsers();
 	map<string, GameData> players;
@@ -98,7 +98,7 @@ Game& GameManager::getGame(unsigned gameId)
 			return game;
 		}
 	}
-	throw std::exception("Game not found");
+	throw std::exception("Game id not found");
 }
 
 Game& GameManager::getGame(LoggedUser user)
@@ -112,5 +112,5 @@ Game& GameManager::getGame(LoggedUser user)
 			return game;
 		}
 	}
-	throw std::exception("Game not found");
+	throw std::exception("Game not found for user");
 }

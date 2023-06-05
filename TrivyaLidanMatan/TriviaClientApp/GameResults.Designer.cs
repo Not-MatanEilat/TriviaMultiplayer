@@ -36,7 +36,7 @@
             // 
             resultsFlow.Location = new Point(180, 3);
             resultsFlow.Name = "resultsFlow";
-            resultsFlow.Size = new Size(459, 444);
+            resultsFlow.Size = new Size(600, 444);
             resultsFlow.TabIndex = 0;
             // 
             // leaveButton

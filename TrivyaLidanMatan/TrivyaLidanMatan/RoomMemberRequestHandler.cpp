@@ -111,6 +111,7 @@ RequestResult RoomMemberRequestHandler::getRoomState(RequestInfo info)
 	{
 		GameManager& gameManager = m_handlerFactory.getGameManager();
 		result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, gameManager.getGame(m_user));
+		m_room.removeUser(m_user);
 	}
 	else
 	{

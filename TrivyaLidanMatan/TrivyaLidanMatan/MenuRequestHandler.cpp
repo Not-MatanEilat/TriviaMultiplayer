@@ -112,7 +112,7 @@ RequestResult MenuRequestHandler::getRooms(RequestInfo const& info)
 
 	GetRoomsResponse response;
 	
-	response.rooms = m_roomManager.getRooms();
+	response.rooms = m_roomManager.getWaitingRooms();
 	response.status = SUCCESS;
 
 	result.newHandler = this;
