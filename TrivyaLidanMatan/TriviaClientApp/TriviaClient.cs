@@ -373,6 +373,52 @@ namespace TriviaClientApp
             return SendRequestDict((byte)RequestCodes.START_GAME_CODE);
         }
 
+        /// <summary>
+        /// Will get the question
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject GetQuestion()
+        {
+            return SendRequestDict((byte)RequestCodes.GET_QUESTION_CODE);
+        }
+
+        /// <summary>
+        /// Will submit the answer
+        /// </summary>
+        /// <param name="answerId">answer id</param>
+        /// <returns>response</returns>
+        public JObject SubmitAnswer(int answerId)
+        {
+            JObject data = new JObject() { { "answerId", answerId } };
+            return SendRequestDict((byte)RequestCodes.SUBMIT_ANSWER_CODE, data);
+        }
+
+        /// <summary>
+        /// Will get the game results
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject GetGameResults()
+        {
+            return SendRequestDict((byte)RequestCodes.GET_GAME_RESULTS_CODE);
+        }
+
+        /// <summary>
+        /// Will leave the game
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject LeaveGame()
+        {
+            return SendRequestDict((byte)RequestCodes.LEAVE_GAME_CODE);
+        }
+
+        /// <summary>
+        /// Will get the room state
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject GetRoomUsers()
+        {
+            return SendRequestDict((byte)RequestCodes.PLAYER_RESULTS_CODE);
+        }
 
 
         /// <summary>
