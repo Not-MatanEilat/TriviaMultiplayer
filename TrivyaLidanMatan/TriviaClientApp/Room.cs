@@ -48,6 +48,14 @@ namespace TriviaClientApp
 
             roomIdLabel.Text = roomId.ToString();
 
+            if (IsAdmin())
+            {
+                startGameButton.Visible = true;
+            }
+            else
+            {
+                startGameButton.Visible = false;
+            }
         }
 
         /// <summary>

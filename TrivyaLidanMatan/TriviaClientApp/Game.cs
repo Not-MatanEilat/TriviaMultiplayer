@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace TriviaClientApp
 {
-    public partial class Game : UserControl
+    public partial class Game : Page
     {
         public Game()
         {
