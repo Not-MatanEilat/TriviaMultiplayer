@@ -70,7 +70,7 @@ void RoomAdminRequestHandler::handleDisconnect()
 {
 	TRACE("RoomAdminHandler " << m_user.getUsername() << ": disconnected")
 	m_roomManager.deleteRoom(m_room.getRoomData().id);
-	m_handlerFactory.getLoginManager().logout(m_user.getUsername());z
+	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
 }
 
 /**
