@@ -66,19 +66,11 @@ namespace TriviaClientApp
             
             if (!TriviaClient.IsSuccessResponse(roomState, false))
             {
-                try
+                InvokeSafe(() =>
                 {
-                    Invoke(() =>
-                    {
-                        MainMenu mainMenu = new MainMenu();
-                        main.ChangePage(mainMenu);
-                    });
-
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e.Message);
-                }
+                    MainMenu mainMenu = new MainMenu();
+                    main.ChangePage(mainMenu);
+                });
 
                 return;
             }
@@ -106,21 +98,13 @@ namespace TriviaClientApp
                     players.Add(player);
                 }
             }
-
-            try
+            InvokeSafe(() =>
             {
-                Invoke(() =>
-                {
-                    DoubleBuffered = false;
-                    namesListFlow.Controls.Clear();
-                    namesListFlow.Controls.AddRange(controls.ToArray());
-                });
+                DoubleBuffered = false;
+                namesListFlow.Controls.Clear();
+                namesListFlow.Controls.AddRange(controls.ToArray());
+            });
 
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-            }
         }
 
         /// <summary>
@@ -131,7 +115,10 @@ namespace TriviaClientApp
         {
             if (roomState["message"]["hasGameBegun"].Value<bool>())
             {
-                main.ChangePage(new Game());
+                InvokeSafe(() =>
+                {
+                    main.ChangePage(new Game());
+                });
             }
         }
 
