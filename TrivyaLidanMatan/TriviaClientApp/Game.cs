@@ -101,5 +101,11 @@ namespace TriviaClientApp
                 main.ChangePage(gameResults);
             }
         }
+
+        private void BackButtonPress_Click(object sender, EventArgs e)
+        {
+            TriviaClient.GetClient().LeaveGame();
+            main.ChangePage(new MainMenu());
+        }
     }
 }

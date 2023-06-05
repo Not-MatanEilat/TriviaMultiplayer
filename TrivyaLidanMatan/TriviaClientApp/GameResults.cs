@@ -13,12 +13,48 @@ namespace TriviaClientApp
 {
     public partial class GameResults : Page
     {
+        private const int PLAYER_LABEL_BASE_X = 10;
+        private const int PLAYER_LABEL_BASE_Y = 20;
+        private const int PLAYER_LABEL_MARGIN = 30;
 
         private JObject results;
         public GameResults(JObject results)
         {
             InitializeComponent();
-            this.results = results; 
+            this.results = results;
+        }
+
+        public void LoadResults()
+        {
+            resultsFlow.Controls.Clear();
+            int i = 0;
+            foreach (JToken result in results["results"])
+            {
+
+                string resultStr = $"{result["username"]} - Correct: {result["correctAnswerCount"]} Wrong: {result["wrongAnswerCount"]} avg speed: {result["averageAnswerTime"]}";
+                Label playerLabel = new()
+                {
+                    Text = resultStr,
+                    Location = new Point(PLAYER_LABEL_BASE_X, PLAYER_LABEL_BASE_Y + i * PLAYER_LABEL_MARGIN),
+                    AutoSize = true,
+                    Font = new Font(FontFamily.GenericSerif, 20)
+                };
+
+                resultsFlow.Controls.Add(playerLabel);
+
+                i++;
+            }
+        }
+
+        private void GameResults_Load(object sender, EventArgs e)
+        {
+            LoadResults();
+        }
+
+        private void leaveButton_Click(object sender, EventArgs e)
+        {
+            TriviaClient.GetClient().LeaveGame();
+            main.ChangePage(new MainMenu());
         }
     }
 }

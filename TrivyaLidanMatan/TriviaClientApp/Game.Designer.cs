@@ -101,8 +101,9 @@
             BackButtonPress.Name = "BackButtonPress";
             BackButtonPress.Size = new Size(75, 23);
             BackButtonPress.TabIndex = 7;
-            BackButtonPress.Text = "Back";
+            BackButtonPress.Text = "Leave";
             BackButtonPress.UseVisualStyleBackColor = true;
+            BackButtonPress.Click += BackButtonPress_Click;
             // 
             // gameOverTImer
             // 

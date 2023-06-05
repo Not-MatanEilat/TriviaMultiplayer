@@ -28,10 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            resultsFlow = new FlowLayoutPanel();
+            leaveButton = new Button();
+            SuspendLayout();
+            // 
+            // resultsFlow
+            // 
+            resultsFlow.Location = new Point(180, 3);
+            resultsFlow.Name = "resultsFlow";
+            resultsFlow.Size = new Size(459, 444);
+            resultsFlow.TabIndex = 0;
+            // 
+            // leaveButton
+            // 
+            leaveButton.Location = new Point(14, 418);
+            leaveButton.Name = "leaveButton";
+            leaveButton.Size = new Size(75, 23);
+            leaveButton.TabIndex = 1;
+            leaveButton.Text = "Leave";
+            leaveButton.UseVisualStyleBackColor = true;
+            leaveButton.Click += leaveButton_Click;
+            // 
+            // GameResults
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(leaveButton);
+            Controls.Add(resultsFlow);
+            Name = "GameResults";
+            Load += GameResults_Load;
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private FlowLayoutPanel resultsFlow;
+        private Button leaveButton;
     }
 }
