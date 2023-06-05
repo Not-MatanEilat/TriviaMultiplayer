@@ -181,7 +181,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const CreateRoomResponse&
 }
 
 /**
- * \brief The function will take a closeRoom response and serialize it to a buffer ("status" : status)
+ * \brief The function will take a closeRoom response and serialize it to a buffer ("status" : status)("status" : status)
  * \param closeRoomResponse the closeRoom response to serialize
  * \return closeRoom response serialized to a buffer
  */
