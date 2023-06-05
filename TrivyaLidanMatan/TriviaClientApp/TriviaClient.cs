@@ -35,7 +35,12 @@ namespace TriviaClientApp
             CLOSE_ROOM_CODE = 10,
             START_GAME_CODE = 11,
             ROOM_STATE_CODE = 12,
-            LEAVE_ROOM_CODE = 13
+            LEAVE_ROOM_CODE = 13,
+            LEAVE_GAME_CODE = 14,
+            GET_QUESTION_CODE = 15,
+            SUBMIT_ANSWER_CODE = 16,
+            GET_GAME_RESULTS_CODE = 17,
+            PLAYER_RESULTS_CODE = 18,
         }
 
         private static TriviaClient? instance = null;
@@ -357,6 +362,15 @@ namespace TriviaClientApp
         public JObject CloseRoom()
         {
             return SendRequestDict((byte)RequestCodes.CLOSE_ROOM_CODE);
+        }
+
+        /// <summary>
+        /// Will start the game
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject StartGame()
+        {
+            return SendRequestDict((byte)RequestCodes.START_GAME_CODE);
         }
 
         /// <summary>
