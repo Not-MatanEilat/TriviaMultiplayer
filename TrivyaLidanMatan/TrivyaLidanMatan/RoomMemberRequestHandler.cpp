@@ -107,7 +107,17 @@ RequestResult RoomMemberRequestHandler::getRoomState(RequestInfo info)
 	response.questionCount = m_room.getRoomData().numOfQuestionsInGame;
 	response.status = SUCCESS;
 
-	result.newHandler = this;
+	if (response.hasGameBegun)
+	{
+		GameManager& gameManager = m_handlerFactory.getGameManager();
+		result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, gameManager.getGame(m_user));
+		m_room.removeUser(m_user);
+	}
+	else
+	{
+		result.newHandler = this;
+	}
+
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 
 	string playersStr = "";

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,25 @@ namespace TriviaClientApp
         {
             main = MainForm.GetMainForm();
             InitializeComponent();
+        }
+
+        public void InvokeSafe(Action action)
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(action);
+                }
+                else
+                {
+                    action();
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
         }
     }
 }

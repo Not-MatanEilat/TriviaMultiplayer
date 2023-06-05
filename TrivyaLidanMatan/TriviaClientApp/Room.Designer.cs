@@ -37,6 +37,7 @@
             label2 = new Label();
             roomIdLabel = new Label();
             autoRefresh = new System.Windows.Forms.Timer(components);
+            startGameButton = new Button();
             SuspendLayout();
             // 
             // label1
@@ -116,12 +117,22 @@
             autoRefresh.Interval = 3000;
             autoRefresh.Tick += autoRefresh_Tick;
             // 
+            // startGameButton
+            // 
+            startGameButton.Location = new Point(651, 353);
+            startGameButton.Name = "startGameButton";
+            startGameButton.Size = new Size(104, 25);
+            startGameButton.TabIndex = 11;
+            startGameButton.Text = "Start";
+            startGameButton.UseVisualStyleBackColor = true;
+            startGameButton.Click += startGameButton_Click;
+            // 
             // Room
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
-            ClientSize = new Size(800, 450);
+            Controls.Add(startGameButton);
             Controls.Add(roomIdLabel);
             Controls.Add(label2);
             Controls.Add(roomCreatorNameLabel);
@@ -130,7 +141,6 @@
             Controls.Add(namesListFlow);
             Controls.Add(label1);
             Name = "Room";
-            Text = "Room";
             Load += Room_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -146,5 +156,6 @@
         private Label label2;
         private Label roomIdLabel;
         private System.Windows.Forms.Timer autoRefresh;
+        private Button startGameButton;
     }
 }

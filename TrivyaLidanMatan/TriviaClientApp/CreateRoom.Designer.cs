@@ -31,14 +31,17 @@
             label1 = new Label();
             nameRoomTextBox = new TextBox();
             label2 = new Label();
-            amountQuestionsTextBox = new TextBox();
             label3 = new Label();
-            maxPlayersTextBox = new TextBox();
             label4 = new Label();
             createRoomButton = new Button();
-            questionsAmountTextBox = new TextBox();
             label5 = new Label();
             BackButtonPress = new Button();
+            timePerQuestionBox = new NumericUpDown();
+            maxPlayersBox = new NumericUpDown();
+            questionAmountBox = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)timePerQuestionBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)maxPlayersBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)questionAmountBox).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -68,13 +71,6 @@
             label2.TabIndex = 2;
             label2.Text = "Room Name";
             // 
-            // amountQuestionsTextBox
-            // 
-            amountQuestionsTextBox.Location = new Point(367, 147);
-            amountQuestionsTextBox.Name = "amountQuestionsTextBox";
-            amountQuestionsTextBox.Size = new Size(100, 23);
-            amountQuestionsTextBox.TabIndex = 2;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -84,14 +80,6 @@
             label3.TabIndex = 2;
             label3.Text = "Time Per Question";
             label3.Click += label3_Click;
-            // 
-            // maxPlayersTextBox
-            // 
-            maxPlayersTextBox.Location = new Point(367, 187);
-            maxPlayersTextBox.Name = "maxPlayersTextBox";
-            maxPlayersTextBox.Size = new Size(100, 23);
-            maxPlayersTextBox.TabIndex = 3;
-            maxPlayersTextBox.TextChanged += maxPlayersTextBox_TextChanged;
             // 
             // label4
             // 
@@ -113,14 +101,6 @@
             createRoomButton.UseVisualStyleBackColor = true;
             createRoomButton.Click += button1_Click;
             // 
-            // questionsAmountTextBox
-            // 
-            questionsAmountTextBox.Location = new Point(367, 227);
-            questionsAmountTextBox.Name = "questionsAmountTextBox";
-            questionsAmountTextBox.Size = new Size(100, 23);
-            questionsAmountTextBox.TabIndex = 4;
-            questionsAmountTextBox.TextChanged += maxPlayersTextBox_TextChanged;
-            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -141,25 +121,47 @@
             BackButtonPress.UseVisualStyleBackColor = true;
             BackButtonPress.Click += BackButtonPress_Click;
             // 
+            // timePerQuestionBox
+            // 
+            timePerQuestionBox.Location = new Point(367, 148);
+            timePerQuestionBox.Name = "timePerQuestionBox";
+            timePerQuestionBox.Size = new Size(100, 23);
+            timePerQuestionBox.TabIndex = 2;
+            // 
+            // maxPlayersBox
+            // 
+            maxPlayersBox.Location = new Point(367, 188);
+            maxPlayersBox.Name = "maxPlayersBox";
+            maxPlayersBox.Size = new Size(100, 23);
+            maxPlayersBox.TabIndex = 3;
+            // 
+            // questionAmountBox
+            // 
+            questionAmountBox.Location = new Point(367, 228);
+            questionAmountBox.Name = "questionAmountBox";
+            questionAmountBox.Size = new Size(100, 23);
+            questionAmountBox.TabIndex = 4;
+            // 
             // CreateRoom
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Green;
-            ClientSize = new Size(800, 450);
+            Controls.Add(questionAmountBox);
+            Controls.Add(maxPlayersBox);
+            Controls.Add(timePerQuestionBox);
             Controls.Add(BackButtonPress);
             Controls.Add(createRoomButton);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(questionsAmountTextBox);
-            Controls.Add(maxPlayersTextBox);
-            Controls.Add(amountQuestionsTextBox);
             Controls.Add(nameRoomTextBox);
             Controls.Add(label1);
             Name = "CreateRoom";
-            Text = "CreateRoom";
+            ((System.ComponentModel.ISupportInitialize)timePerQuestionBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)maxPlayersBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)questionAmountBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -169,13 +171,13 @@
         private Label label1;
         private TextBox nameRoomTextBox;
         private Label label2;
-        private TextBox amountQuestionsTextBox;
         private Label label3;
-        private TextBox maxPlayersTextBox;
         private Label label4;
         private Button createRoomButton;
-        private TextBox questionsAmountTextBox;
         private Label label5;
         private Button BackButtonPress;
+        private NumericUpDown timePerQuestionBox;
+        private NumericUpDown maxPlayersBox;
+        private NumericUpDown questionAmountBox;
     }
 }

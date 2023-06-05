@@ -20,6 +20,7 @@ public:
 	void deleteRoom(unsigned int id);
 	unsigned int getRoomState(int id);
 	vector<RoomData> getRooms() const;
+	vector<RoomData> getWaitingRooms() const;
 	Room& getRoom(int id);
 	Room& getRoomOfUser(const string& username);
 	bool isUserInAnyRoom(const string& username);

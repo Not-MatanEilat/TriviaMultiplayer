@@ -70,7 +70,7 @@ void RoomAdminRequestHandler::handleDisconnect()
 {
 	TRACE("RoomAdminHandler " << m_user.getUsername() << ": disconnected")
 	m_roomManager.deleteRoom(m_room.getRoomData().id);
-	m_handlerFactory.getLoginManager().logout(m_user.getUsername());z
+	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
 }
 
 /**
@@ -179,6 +179,7 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo info)
 		GameManager& gameManager = m_handlerFactory.getGameManager();
 		Game game = gameManager.createGame(m_room);
 		gameManager.addGame(game);
+		m_room.removeUser(m_user);
 
 		StartGameResponse response;
 		response.status = SUCCESS;

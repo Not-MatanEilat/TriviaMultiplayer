@@ -138,7 +138,27 @@ vector<RoomData> RoomManager::getRooms() const
 	vector<RoomData> rooms;
 	for (const auto& room : m_rooms)
 	{
-		rooms.push_back(room.second.getRoomData());
+		RoomData roomData = room.second.getRoomData();
+		rooms.push_back(roomData);
+		
+	}
+	return rooms;
+}
+
+/**
+ * \brief The function returns a vector of the roomData of all of the rooms
+ * \return Vector of the roomData
+ */
+vector<RoomData> RoomManager::getWaitingRooms() const
+{
+	vector<RoomData> rooms;
+	for (const auto& room : m_rooms)
+	{
+		RoomData roomData = room.second.getRoomData();
+		if (!roomData.isActive)
+		{
+			rooms.push_back(roomData);
+		}
 	}
 	return rooms;
 }

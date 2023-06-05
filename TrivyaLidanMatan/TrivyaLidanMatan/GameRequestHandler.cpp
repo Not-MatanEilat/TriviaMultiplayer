@@ -137,7 +137,7 @@ RequestResult GameRequestHandler::getGameResults(RequestInfo info)
 	RequestResult result;
 
 
-	if (!m_game.isGameOver(m_user))
+	if (m_game.isGameOver())
 	{
 
 		GetGameResultsResponse response;
@@ -170,14 +170,7 @@ RequestResult GameRequestHandler::getGameResults(RequestInfo info)
 	}
 	else
 	{
-		GetGameResultsResponse response;
-
-		response.status = FAILED;
-		response.results = {};
-
-		result.newHandler = this;
-		result.response = JsonResponsePacketSerializer::serializeResponse(response);
-
+		throw std::exception("Game is not over yet");
 	}
 
 
