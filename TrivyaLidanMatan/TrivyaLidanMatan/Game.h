@@ -3,6 +3,7 @@
 #include <map>
 #include <vector>
 
+#include "IDataBase.h"
 #include "Question.h"
 
 #include "LoggedUser.h"
@@ -25,7 +26,7 @@ typedef struct GameData
 class Game
 {
 public:
-	Game(vector<Question> questions, const map<string, GameData>& players, unsigned gameId);
+	Game(vector<Question> questions, const map<string, GameData>& players, unsigned gameId, IDataBase* database);
 
 	Question* getQuestionForUser(const LoggedUser& loggedUser);
 	bool submitAnswer(const LoggedUser& loggedUser, unsigned int answerId);
@@ -41,5 +42,6 @@ private:
 	vector<Question> m_questions;
 	map<string, GameData> m_players;
 	unsigned int m_gameId;
+	IDataBase* m_database;
 };
 

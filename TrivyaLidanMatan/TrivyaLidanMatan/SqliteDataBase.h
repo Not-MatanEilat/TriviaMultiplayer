@@ -26,8 +26,10 @@ public:
 	int getNumOfTotalAnswers(string const& username) override;
 	int getNumOfPlayerGames(string const& username) override;
 	int getPlayerScore(string const& username) override;
+	void setPlayerStatistics(string const& username, Row stats) override;
 private:
 	Row getPlayerStatistics(string const& username);
+	
 
 private:
 	Sqlite3DB _db;

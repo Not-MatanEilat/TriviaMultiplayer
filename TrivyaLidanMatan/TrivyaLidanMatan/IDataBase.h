@@ -4,6 +4,7 @@
 #include <string>
 #include <regex>
 #include "Question.h"
+#include "Sqlite3DB.h"
 
 
 using std::regex;
@@ -30,6 +31,7 @@ public:
 	virtual int getNumOfPlayerGames(string const& username) = 0;
 	virtual int getPlayerScore(string const& username) = 0;
 	virtual vector<string> getHighScores() = 0;
+	virtual void setPlayerStatistics(string const& username, Row stats) = 0;
 
 	static bool isValidPassword(const string& username);
 	static bool isValidEmail(const string& email);

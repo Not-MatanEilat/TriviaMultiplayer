@@ -8,7 +8,7 @@
  * \param players players of the game
  * \param gameId id of the game
  */
-Game::Game(vector<Question> questions, const map<string, GameData>& players, unsigned gameId): m_questions(questions),m_players(players),m_gameId(gameId)
+Game::Game(vector<Question> questions, const map<string, GameData>& players, unsigned gameId,	  IDataBase* database): m_questions(questions),m_players(players),m_gameId(gameId), m_database(database)
 {
 }
 
@@ -64,6 +64,14 @@ bool Game::submitAnswer(const LoggedUser& loggedUser, unsigned answerId)
  */
 void Game::removePlayer(const LoggedUser& loggedUser)
 {
+	GameData& gameData = m_players[loggedUser.getUsername()];
+	Row stats;
+	stats["averageAnswerTime"] = (m_database->getPlayerAverageAnswerTime(loggedUser.getUsername()) + gameData.averageAnswerTime) / 2;
+	stats["correctAnswers"] = m_database->getNumOfCorrectAnswers(loggedUser.getUsername()) + gameData.correctAnswerCount;
+	stats["totalAnswers"] = m_database->getNumOfTotalAnswers(loggedUser.getUsername()) + gameData.wrongAnswerCount + gameData.correctAnswerCount;
+	stats["games"] = m_database->getNumOfPlayerGames(loggedUser.getUsername()) + 1;
+	m_database->setPlayerStatistics(loggedUser.getUsername(), stats);
+
 	m_players.erase(loggedUser.getUsername());
 }
 
