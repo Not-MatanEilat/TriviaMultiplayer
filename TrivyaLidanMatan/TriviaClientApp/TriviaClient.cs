@@ -231,6 +231,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Login to the server.
+        /// {"status" : status}
         /// </summary>
         /// <param name="username">username</param>
         /// <param name="password">password</param>
@@ -248,6 +249,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Signup to the server.
+        /// {"status" : status}
         /// </summary>
         /// <param name="username">username</param>
         /// <param name="password">password</param>
@@ -266,6 +268,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Logout from the server.
+        /// {"status" : status}
         /// </summary>
         /// <returns>response</returns>
         public JObject Logout()
@@ -276,6 +279,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Get the room list.
+        /// {"status" : status, "rooms" : {"isActive" : isActive, "name" : name, "maxPlayers" : maxPlayers, "numOfQuestionsInGame" : numOfQuestionsInGame, "timePerQuestion" : timePerQuestion, "id" : id}}
         /// </summary>
         /// <returns>response</returns>
         public JObject GetRoomsList()
@@ -285,6 +289,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Get the players in a room.
+        /// {"status" : status, "players" : players}
         /// </summary>
         /// <param name="roomId">room id</param>
         /// <returns>response</returns>
@@ -297,6 +302,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Get the high scores.
+        /// {"status" : status, "highscores" : players}
         /// </summary>
         /// <returns>response</returns>
         public JObject GetHighScores()
@@ -306,6 +312,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Get the personal stats.
+        /// {status" : status, "statistics" : statistics}
         /// </summary>
         /// <returns>response</returns>
         public JObject GetPersonalStats()
@@ -315,6 +322,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Join a room.
+        /// {"status" : status}
         /// </summary>
         /// <param name="roomId">room id</param>
         /// <returns>response</returns>
@@ -326,6 +334,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Create a room.
+        /// {"status" : status}
         /// </summary>
         /// <param name="roomName">room name</param>
         /// <param name="maxUsers">max players</param>
@@ -340,6 +349,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will get room state
+        ///  {"status" : status, "hasGameBegun" : hasGameBegun, "players" : players, "questionCount" : questionCount, "answerTimeout" : answerTimeout}
         /// </summary>
         /// <returns>response</returns>
         public JObject GetRoomState()
@@ -349,6 +359,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will leave the room
+        /// {"status" : status}
         /// </summary>
         /// <returns>response</returns>
         public JObject LeaveRoom(){
@@ -357,6 +368,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will close the room
+        /// {"status" : status}
         /// </summary>
         /// <returns>response</returns>
         public JObject CloseRoom()
@@ -366,6 +378,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will start the game
+        /// {"status" : status}
         /// </summary>
         /// <returns>response</returns>
         public JObject StartGame()
@@ -375,6 +388,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will get the question
+        /// {"status" : status, "question" : question, "answers" : [["answerNumber", "Answer"], ["answerNumber", "Answer"], ["answerNumber", "Answer"], ["answerNumber", "Answer"]]}
         /// </summary>
         /// <returns>response</returns>
         public JObject GetQuestion()
@@ -384,6 +398,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will submit the answer
+        /// {"status" : status, "correctAnswer" : correctAnswer}
         /// </summary>
         /// <param name="answerId">answer id</param>
         /// <returns>response</returns>
@@ -395,6 +410,8 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will get the game results
+        /// {"status" : status, "results" :
+        /// {"username" : username, "correctAnswerCount" : correctAnswerCount", "wrongAnswerCount" : wrongAnswerCount, "AverageAnswerTime" : AverageAnswerTime}}
         /// </summary>
         /// <returns>response</returns>
         public JObject GetGameResults()
@@ -404,6 +421,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will leave the game
+        /// {"status" : status}
         /// </summary>
         /// <returns>response</returns>
         public JObject LeaveGame()
