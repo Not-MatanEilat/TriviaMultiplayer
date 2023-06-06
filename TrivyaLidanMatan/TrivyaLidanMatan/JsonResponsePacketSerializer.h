@@ -4,7 +4,8 @@
 #include <string>
 #include <vector>
 #include "json.hpp"
-#include "Communicator.h"
+#include "Room.h"
+#include "Helper.h"
 
 using std::string;
 using std::vector;
@@ -101,7 +102,7 @@ typedef struct GetQuestionResponse
 {
 	unsigned int status;
 	string question;
-	map<unsigned int, string> answers;
+	std::map<unsigned int, string> answers;
 } GetQuestionResponse;
 
 typedef struct SubmitAnswerResponse

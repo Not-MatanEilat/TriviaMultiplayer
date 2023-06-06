@@ -54,16 +54,28 @@ void GameManager::deleteGame(unsigned gameId)
 	throw std::exception("Game not found");
 }
 
-vector<string> GameManager::getGamesResults(unsigned gameId)
+vector<PlayerResults> GameManager::getGamesResults(unsigned gameId)
 {
+	vector<PlayerResults> results;
 	Game& game = getGame(gameId);
-	vector<string> results;
-	for (auto it = game.getPlayers().begin(); it != game.getPlayers().end(); it++)
+	for (const auto& player : game.getPlayers())
 	{
-		std::stringstream ss;
-		ss << it->first << " " << it->second.correctAnswerCount << " " << it->second.wrongAnswerCount << " " << it->second.averageAnswerTime << "\n";
-		results.push_back(ss.str());
+		PlayerResults playerResults;
+
+		string loggedUser = player.first;
+		GameData gameData = player.second;
+
+
+		playerResults.username = loggedUser;
+
+		playerResults.correctAnswerCount = gameData.correctAnswerCount;
+		playerResults.wrongAnswerCount = gameData.wrongAnswerCount;
+		playerResults.averageAnswerTime = gameData.averageAnswerTime;
+
+		results.push_back(playerResults);
 	}
+	std::sort(results.begin(), results.end(), [&](PlayerResults a, PlayerResults b) {return a.correctAnswerCount > b.averageAnswerTime; });
+
 	return results;
 }
 

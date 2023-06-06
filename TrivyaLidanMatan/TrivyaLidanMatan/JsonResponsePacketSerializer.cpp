@@ -1,5 +1,7 @@
 #include "JsonResponsePacketSerializer.h"
 
+#include "Communicator.h"
+
 /**
  * \brief The function will take an error response and serialize it to a buffer ("message" : error message)
  * \param errorResponse the error response to serialize

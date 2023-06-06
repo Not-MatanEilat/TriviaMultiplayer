@@ -15,9 +15,6 @@
 using std::vector;
 using std::string;
 
-typedef unsigned char byte;
-typedef vector<byte> Buffer;
-
 enum RESPONSE_CODES
 {
 	ERROR_CODE = 0,

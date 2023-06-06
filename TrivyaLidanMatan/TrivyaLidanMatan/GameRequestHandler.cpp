@@ -144,26 +144,7 @@ RequestResult GameRequestHandler::getGameResults(RequestInfo info)
 
 		response.status = SUCCESS;
 
-		map<string, GameData> playersList = m_game.getPlayers();
-
-		for (const auto& player : playersList)
-		{
-			PlayerResults playerResults;
-
-			string loggedUser = player.first;
-			GameData gameData = player.second;
-
-
-			playerResults.username = loggedUser;
-
-			playerResults.correctAnswerCount = gameData.correctAnswerCount;
-			playerResults.wrongAnswerCount = gameData.wrongAnswerCount;
-			playerResults.averageAnswerTime = gameData.averageAnswerTime;
-
-
-			response.results.push_back(playerResults);
-		}
-
+		response.results = m_gameManager.getGamesResults(m_game.getGameId());
 		result.newHandler = this;
 		result.response = JsonResponsePacketSerializer::serializeResponse(response);
 

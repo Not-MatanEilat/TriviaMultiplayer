@@ -5,6 +5,9 @@
 #include "Room.h"
 #include <sstream>
 
+#include "JsonResponsePacketSerializer.h"
+
+struct PlayerResults;
 
 class GameManager
 {
@@ -16,7 +19,7 @@ public:
 	Game& addGame(Game& game);
 	void deleteGame(unsigned int gameId);
 
-	vector<string> getGamesResults(unsigned int gameId);
+	vector<PlayerResults> getGamesResults(unsigned int gameId);
 	Game& getGame(unsigned int gameId);
 	Game& getGame(LoggedUser user);
 
