@@ -91,5 +91,21 @@ CreateRoomRequest JsonRequestPacketDeserializer::deserializeCreateRoomRequest(co
 	return request;
 }
 
+/**
+ * \brief deserialize SubmitAnswerRequest
+ * \param buffer buffer of json data
+ * \return deserialized SubmitAnswerRequest
+ */
+SubmitAnswerRequest JsonRequestPacketDeserializer::deserializeSubmitAnswerRequest(const Buffer& buffer)
+{
+	string bufferStr = Helper::getStringFromBuffer(buffer);
+
+	json j = json::parse(bufferStr);
+
+	SubmitAnswerRequest request;
+	request.answerId = j["answerId"];
+	return request;
+}
+
 
 

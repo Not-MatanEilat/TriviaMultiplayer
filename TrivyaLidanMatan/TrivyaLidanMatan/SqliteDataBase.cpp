@@ -136,18 +136,18 @@ std::vector<string> SqliteDataBase::getHighScores()
  */
 std::vector<Question> SqliteDataBase::getQuestions(int questionsNo)
 {
-	const string sqlStatement = "SELECT * FROM questions LIMIT $0";
+	const string sqlStatement = "SELECT * FROM questions ORDER BY random() LIMIT $0";
 	vector<string> params = { std::to_string(questionsNo) };
 	Result res = _db.exec(sqlStatement, params);
 	std::vector<Question> questions;
 	for (Row& row : res)
 	{
-		Question question;
-		question.question = row["question"];
-		question.correctAnswer = row["correctAnswer"];
-		question.answer2 = row["answer2"];
-		question.answer3 = row["answer3"];
-		question.answer4 = row["answer4"];
+		vector<string> answers;
+		answers.push_back(row["correctAnswer"]);
+		answers.push_back(row["answer2"]);
+		answers.push_back(row["answer3"]);
+		answers.push_back(row["answer4"]);
+		Question question(row["question"], answers);
 		questions.push_back(question);
 	}
 	return questions;
@@ -211,6 +211,13 @@ int SqliteDataBase::getPlayerScore(string const& username)
 	float averageAnswerTime = getPlayerAverageAnswerTime(username);
 	int score = (correctAnswers * 10) - (averageAnswerTime / 2);
 	return score;
+}
+
+void SqliteDataBase::setPlayerStatistics(string const& username, Row stats)
+{
+	const string sqlStatement = "UPDATE Statistics SET averageAnswerTime = $0, correctAnswers = $1, totalAnswers = $2, games = $3 WHERE username == '$4'";
+	vector<string> params = { stats["averageAnswerTime"], stats["correctAnswers"], stats["totalAnswers"], stats["games"], username };
+	_db.exec(sqlStatement, params);
 }
 
 /**

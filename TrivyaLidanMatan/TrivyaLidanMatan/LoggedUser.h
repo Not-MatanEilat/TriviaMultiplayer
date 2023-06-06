@@ -12,6 +12,7 @@ public:
 	LoggedUser(const string &username);
 	string getUsername() const;
 
+	friend bool operator<(const LoggedUser& lhs, const LoggedUser& rhs);
 
 private:
 	string m_username;
