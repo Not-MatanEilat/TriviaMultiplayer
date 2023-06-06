@@ -43,17 +43,6 @@ namespace TriviaClientApp
 
         private void Room_Load(object sender, EventArgs e)
         {
-            TriviaClient client = TriviaClient.GetClient();
-            JObject result = client.GetRoomState();
-
-            if (TriviaClient.IsSuccessResponse(result, false))
-            {
-            }
-            else
-            // if failed, set to default time
-            {
-            }
-
             Thread loader = new Thread(roomHandler);
             loader.Start();
 
