@@ -15,7 +15,7 @@ namespace TriviaClientApp
         public const string SERVER_IP = "localhost";
         public const int SERVER_PORT = 8826;
         public const int BYTE_SIZE = 1024;
-        public const int TIMEOUT = 5000;
+        public const int TIMEOUT = 60000;
 
         public const int ERROR_CODE = 0;
         public const int SUCCESS_CODE = 1;

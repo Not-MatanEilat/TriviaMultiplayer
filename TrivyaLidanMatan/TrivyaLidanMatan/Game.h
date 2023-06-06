@@ -38,6 +38,8 @@ public:
 	map<string, GameData> getPlayers() const;
 	int amountOfQuestionsLeft(const string& username);
 
+	bool isPlayerInGame(const LoggedUser& loggedUser) const;
+
 private:
 	vector<Question> m_questions;
 	map<string, GameData> m_players;

@@ -105,9 +105,7 @@ Game& GameManager::getGame(LoggedUser user)
 {
 	for (Game& game : m_games)
 	{
-		auto iterator = game.getPlayers().find(user.getUsername());
-		auto end = game.getPlayers().end();
-		if (iterator != end)
+		if (game.isPlayerInGame(user))
 		{
 			return game;
 		}

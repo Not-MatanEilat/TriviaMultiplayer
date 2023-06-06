@@ -136,3 +136,20 @@ int Game::amountOfQuestionsLeft(const string& username)
 	int totalAnswerCount = gameData.correctAnswerCount + gameData.wrongAnswerCount;
 	return questionCount - totalAnswerCount;
 }
+
+/**
+ * \brief check if player in game
+ * \param loggedUser the user
+ * \return true if player in game
+ */
+bool Game::isPlayerInGame(const LoggedUser& loggedUser) const
+{
+	for (std::pair<const string, GameData> pair : m_players)
+	{
+		if (pair.first == loggedUser.getUsername())
+		{
+			return true;
+		}
+	}
+	return false;
+}

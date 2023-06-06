@@ -124,16 +124,7 @@ RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo info)
 		response.players = m_room.getAllUsernames();
 		response.questionCount = m_room.getRoomData().numOfQuestionsInGame;
 		response.status = SUCCESS;
-
-		if (response.hasGameBegun)
-		{
-			GameManager& gameManager = m_handlerFactory.getGameManager();
-			result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, gameManager.getGame(m_user));
-		}
-		else
-		{
-			result.newHandler = this;
-		}
+		result.newHandler = this;
 		result.response = JsonResponsePacketSerializer::serializeResponse(response);
 
 		string playersStr = "";

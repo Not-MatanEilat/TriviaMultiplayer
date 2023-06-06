@@ -6,6 +6,8 @@
 static const unsigned short PORT = 8826;
 static const unsigned int IFACE = 0;
 
+std::mutex m_mutex;
+
 /**
  * \brief The function will start listening to incoming connections
  */
@@ -24,6 +26,7 @@ void Communicator::startHandleRequests()
 		if (client_socket == INVALID_SOCKET)
 			throw std::exception(__FUNCTION__);
 
+		std::lock_guard<std::mutex> m_lockGuard(m_mutex);
 		TRACE("Client accepted !");
 
 		// add client to the clients map
@@ -59,6 +62,7 @@ Communicator::Communicator(RequestHandlerFactory& handlerFactory) : m_handlerFac
  */
 void Communicator::disconnectSocket(SOCKET clientSocket)
 {
+	std::lock_guard<std::mutex> m_lockGuard(m_mutex);
 	m_clients[clientSocket]->handleDisconnect();
 	for (auto it = m_clients.begin(); it != m_clients.end(); ++it)
 	{
@@ -89,8 +93,9 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 			{
 				throw std::exception("Length too big");
 			}
-			TRACE("code: " << code << " len: " << len);
 			Buffer msg = Helper::getBufferPartFromSocket(clientSocket, len);
+			std::lock_guard<std::mutex> m_lockGuard(m_mutex);
+			TRACE("code: " << code << " len: " << len);
 			RequestInfo requestInfo;
 			requestInfo.requestId = code;
 			requestInfo.buffer = msg;
