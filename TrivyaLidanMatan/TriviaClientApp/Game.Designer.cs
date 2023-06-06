@@ -40,6 +40,7 @@
             questionNumberLabel = new Label();
             timeLeftLabel = new Label();
             timeLeftTimer = new System.Windows.Forms.Timer(components);
+            correctAnswersLabel = new Label();
             SuspendLayout();
             // 
             // questionLabel
@@ -138,10 +139,21 @@
             timeLeftTimer.Interval = 1000;
             timeLeftTimer.Tick += timeLeftTimer_Tick;
             // 
+            // correctAnswersLabel
+            // 
+            correctAnswersLabel.AutoSize = true;
+            correctAnswersLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            correctAnswersLabel.Location = new Point(659, 21);
+            correctAnswersLabel.Name = "correctAnswersLabel";
+            correctAnswersLabel.Size = new Size(77, 21);
+            correctAnswersLabel.TabIndex = 10;
+            correctAnswersLabel.Text = "Correct: 0";
+            // 
             // Game
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(correctAnswersLabel);
             Controls.Add(timeLeftLabel);
             Controls.Add(questionNumberLabel);
             Controls.Add(BackButtonPress);
@@ -170,5 +182,6 @@
         private Label questionNumberLabel;
         private Label timeLeftLabel;
         private System.Windows.Forms.Timer timeLeftTimer;
+        private Label correctAnswersLabel;
     }
 }

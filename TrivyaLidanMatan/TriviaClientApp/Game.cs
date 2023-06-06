@@ -23,13 +23,24 @@ namespace TriviaClientApp
         private int questionNumber;
 
         private int _timeLeft;
-        private int TimeLeft
+        public int TimeLeft
         {
             get => _timeLeft;
             set
             {
                 _timeLeft = value;
                 timeLeftLabel.Text = $"Time Left: {value}";
+            }
+        }
+
+        private int _correctAnswers;
+        public int CorrectAnswers
+        {
+            get => _correctAnswers;
+            set
+            {
+                _correctAnswers = value;
+                correctAnswersLabel.Text = $"Correct: {value}";
             }
         }
 
@@ -99,6 +110,7 @@ namespace TriviaClientApp
                 nextButton.Visible = false;
                 questionNumberLabel.Visible = false;
                 timeLeftLabel.Visible = false;
+                correctAnswersLabel.Visible = false;
 
                 questionLabel.Text = "Waiting for players to finish answering too....";
 
@@ -118,6 +130,10 @@ namespace TriviaClientApp
                 if (!result["correctAnswer"].Value<bool>())
                 {
                     button.BackColor = Color.Red;
+                }
+                else
+                {
+                    CorrectAnswers++;
                 }
                 handleSubmitAnswer();
             }
