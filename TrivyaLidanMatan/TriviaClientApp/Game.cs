@@ -22,7 +22,6 @@ namespace TriviaClientApp
         private readonly RoomData roomData;
         private int questionNumber;
 
-        private int test { get; set; }
         private int _timeLeft;
         private int TimeLeft
         {

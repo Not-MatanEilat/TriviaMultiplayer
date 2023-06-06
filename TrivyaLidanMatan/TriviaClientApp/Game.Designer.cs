@@ -37,7 +37,6 @@
             nextButton = new Button();
             BackButtonPress = new Button();
             gameOverTImer = new System.Windows.Forms.Timer(components);
-            questionTimeTimer = new System.Windows.Forms.Timer(components);
             questionNumberLabel = new Label();
             timeLeftLabel = new Label();
             timeLeftTimer = new System.Windows.Forms.Timer(components);
@@ -114,10 +113,6 @@
             gameOverTImer.Interval = 1000;
             gameOverTImer.Tick += gameOverTImer_Tick;
             // 
-            // questionTimeTimer
-            // 
-            questionTimeTimer.Enabled = true;
-            questionTimeTimer.Tick += questionTimeTimer_Tick;
             // questionNumberLabel
             // 
             questionNumberLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -172,7 +167,6 @@
         private Button nextButton;
         private Button BackButtonPress;
         private System.Windows.Forms.Timer gameOverTImer;
-        private System.Windows.Forms.Timer questionTimeTimer;
         private Label questionNumberLabel;
         private Label timeLeftLabel;
         private System.Windows.Forms.Timer timeLeftTimer;

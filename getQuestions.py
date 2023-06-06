@@ -1,3 +1,4 @@
+from html import unescape
 import requests
 import json
 import sqlite3
@@ -6,7 +7,7 @@ DB_PATH = "TrivyaLidanMatan\\TrivyaLidanMatan\\Trivia.db"
 
 
 def main():
-    amount = int(input("Enter amount of questions: "))
+    amount = 50
 
     # get answers from API
     answer = requests.get(f'https://opentdb.com/api.php?amount={amount}&category=15&difficulty=medium&type=multiple')
@@ -24,20 +25,21 @@ def main():
         question = result["question"]
 
         # quotes are being passed as "quot;" in the question so we replace those
-        question.replace("quot;", '"')
+        decoded_question = unescape(question)
+        decoded_question = decoded_question.replace('"', '""')
 
         correct_answer = result["correct_answer"]
         incorrect_answers = result["incorrect_answers"]
 
         # the line to execute
-        execute_line = f'INSERT INTO questions VALUES ("{question}", "{correct_answer}", "{incorrect_answers[0]}", "{incorrect_answers[1]}", "{incorrect_answers[2]}")'
+        execute_line = f'INSERT INTO questions VALUES ("{decoded_question}", "{correct_answer}", "{incorrect_answers[0]}", "{incorrect_answers[1]}", "{incorrect_answers[2]}")'
 
         # execute and then commit
         try:
             cursor.execute(execute_line)
             connect.commit()
         except sqlite3.IntegrityError:
-            print("Question already exists " + question)
+            print("Question already exists " + decoded_question)
 
     # after, close the database
     connect.close()

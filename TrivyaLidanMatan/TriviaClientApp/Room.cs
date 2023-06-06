@@ -24,8 +24,7 @@ namespace TriviaClientApp
         private string roomName;
         private List<string> players = new();
         private string roomCreatorName;
-        private int roomId; 
-        private int timePerQuestion;
+        private int roomId;
 
         private RoomData? roomData = null;
 
@@ -49,12 +48,10 @@ namespace TriviaClientApp
 
             if (TriviaClient.IsSuccessResponse(result, false))
             {
-                timePerQuestion = (int)result["message"]["answerTimeout"];
             }
             else
             // if failed, set to default time
             {
-                timePerQuestion = DEFAULT_TIME_PER_QUESTION;
             }
 
             Thread loader = new Thread(roomHandler);
@@ -137,7 +134,7 @@ namespace TriviaClientApp
             {
                 InvokeSafe(() =>
                 {
-                    main.ChangePage(new Game(roomData, timePerQuestion));
+                    main.ChangePage(new Game(roomData));
                 });
             }
         }
@@ -233,7 +230,7 @@ namespace TriviaClientApp
 
 
             Thread.Sleep(500);
-            main.ChangePage(new Game(roomData, timePerQuestion));
+            main.ChangePage(new Game(roomData));
         }
     }
 
