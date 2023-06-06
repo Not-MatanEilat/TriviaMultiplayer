@@ -63,7 +63,7 @@ namespace TriviaClientApp
         /// <param name="roomState">The current state of the room</param>
         private void LoadAllNames(JObject roomState)
         {
-            
+
             if (!TriviaClient.IsSuccessResponse(roomState, false))
             {
                 InvokeSafe(() =>

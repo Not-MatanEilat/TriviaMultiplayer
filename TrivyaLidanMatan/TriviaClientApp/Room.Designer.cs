@@ -114,7 +114,7 @@
             // autoRefresh
             // 
             autoRefresh.Enabled = true;
-            autoRefresh.Interval = 3000;
+            autoRefresh.Interval = 1000;
             autoRefresh.Tick += autoRefresh_Tick;
             // 
             // startGameButton
