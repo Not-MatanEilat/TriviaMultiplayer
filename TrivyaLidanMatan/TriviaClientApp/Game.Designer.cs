@@ -38,6 +38,8 @@
             BackButtonPress = new Button();
             gameOverTImer = new System.Windows.Forms.Timer(components);
             questionNumberLabel = new Label();
+            timeLeftLabel = new Label();
+            timeLeftTimer = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // questionLabel
@@ -121,10 +123,26 @@
             questionNumberLabel.Text = "Question 1/1";
             questionNumberLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // timeLeftLabel
+            // 
+            timeLeftLabel.AutoSize = true;
+            timeLeftLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            timeLeftLabel.Location = new Point(35, 20);
+            timeLeftLabel.Name = "timeLeftLabel";
+            timeLeftLabel.Size = new Size(99, 21);
+            timeLeftLabel.TabIndex = 9;
+            timeLeftLabel.Text = "Time Left: 10";
+            // 
+            // timeLeftTimer
+            // 
+            timeLeftTimer.Interval = 1000;
+            timeLeftTimer.Tick += timeLeftTimer_Tick;
+            // 
             // Game
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(timeLeftLabel);
             Controls.Add(questionNumberLabel);
             Controls.Add(BackButtonPress);
             Controls.Add(nextButton);
@@ -136,6 +154,7 @@
             Name = "Game";
             Load += Game_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -149,5 +168,7 @@
         private Button BackButtonPress;
         private System.Windows.Forms.Timer gameOverTImer;
         private Label questionNumberLabel;
+        private Label timeLeftLabel;
+        private System.Windows.Forms.Timer timeLeftTimer;
     }
 }

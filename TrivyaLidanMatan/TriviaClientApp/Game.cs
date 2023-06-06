@@ -18,8 +18,20 @@ namespace TriviaClientApp
         List<Button> answersButtons = new List<Button>();
         List<Button> AnswersButtonsOriginal = new List<Button>();
         private string correctAnswer;
-        private RoomData roomData;
+        private readonly RoomData roomData;
         private int questionNumber;
+
+        private int test { get; set; }
+        private int _timeLeft;
+        private int TimeLeft
+        {
+            get => _timeLeft;
+            set
+            {
+                _timeLeft = value;
+                timeLeftLabel.Text = $"Time Left: {value}";
+            }
+        }
 
         public Game(RoomData roomData)
         {
@@ -27,6 +39,8 @@ namespace TriviaClientApp
             main.AcceptButton = nextButton;
             this.roomData = roomData;
             this.questionNumber = 0;
+            this.TimeLeft = roomData.answerTimeout;
+            this.correctAnswer = "";
         }
 
         private void Game_Load(object sender, EventArgs e)
@@ -50,9 +64,8 @@ namespace TriviaClientApp
                 JObject result = (JObject)res["message"];
                 questionLabel.Text = result["question"].Value<string>();
 
-                // first one alwatys correct
+                // first one always correct
                 correctAnswer = result["answers"][0][1].Value<string>();
-
                 for (int i = 0; i < answersButtons.Count; i++)
                 {
                     answersButtons[i].Text = result["answers"][i][1].Value<string>();
@@ -72,6 +85,9 @@ namespace TriviaClientApp
 
                 questionNumber++;
                 questionNumberLabel.Text = $"Question {questionNumber}/{roomData.questionCount}";
+
+                TimeLeft = roomData.answerTimeout;
+                timeLeftTimer.Start();
             }
             else
             {
@@ -82,6 +98,7 @@ namespace TriviaClientApp
 
                 nextButton.Visible = false;
                 questionNumberLabel.Visible = false;
+                timeLeftLabel.Visible = false;
 
                 questionLabel.Text = "Waiting for players to finish answering too....";
 
@@ -97,21 +114,28 @@ namespace TriviaClientApp
             if (TriviaClient.IsSuccessResponse(res))
             {
                 JObject result = (JObject)res["message"];
-                for (int i = 0; i < answersButtons.Count; i++)
+
+                if (!result["correctAnswer"].Value<bool>())
                 {
-                    answersButtons[i].Enabled = false;
-                }
-                if (result["correctAnswer"].Value<bool>())
-                {
-                    button.BackColor = Color.Green;
-                }
-                else
-                {
-                    GetButtonByAnswer(correctAnswer).BackColor = Color.Green;
                     button.BackColor = Color.Red;
                 }
-                nextButton.Enabled = true;
+                handleSubmitAnswer();
             }
+        }
+
+        /// <summary>
+        /// Handles the submit answer.
+        /// </summary>
+        private void handleSubmitAnswer()
+        {
+            for (int i = 0; i < answersButtons.Count; i++)
+            {
+                answersButtons[i].Enabled = false;
+            }
+
+            GetButtonByAnswer(correctAnswer).BackColor = Color.Green;
+            timeLeftTimer.Stop();
+            nextButton.Enabled = true;
         }
 
         private void nextButton_Click(object sender, EventArgs e)
@@ -151,6 +175,17 @@ namespace TriviaClientApp
         {
             TriviaClient.GetClient().LeaveGame();
             main.ChangePage(new MainMenu());
+        }
+
+        private void timeLeftTimer_Tick(object sender, EventArgs e)
+        {
+            TimeLeft--;
+            if (TimeLeft <= 0)
+            {
+                // always worng
+                JObject res = TriviaClient.GetClient().SubmitAnswer(5);
+                handleSubmitAnswer();
+            }
         }
     }
 }
