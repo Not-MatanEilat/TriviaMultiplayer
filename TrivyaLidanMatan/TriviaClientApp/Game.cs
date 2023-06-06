@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
+using Timer = System.Threading.Timer;
 
 namespace TriviaClientApp
 {
@@ -17,12 +18,14 @@ namespace TriviaClientApp
 
         List<Button> answersButtons = new List<Button>();
         List<Button> AnswersButtonsOriginal = new List<Button>();
+        private int timePerQuestion;
         private string correctAnswer;
 
-        public Game()
+        public Game(int timePerQuestion)
         {
             InitializeComponent();
             main.AcceptButton = nextButton;
+            this.timePerQuestion = timePerQuestion;
         }
 
         private void Game_Load(object sender, EventArgs e)
@@ -36,6 +39,7 @@ namespace TriviaClientApp
                 button.Click += AnswerButton_Click;
             }
             UpdateQuestion();
+            questionTimeTimer.Interval = timePerQuestion * 1000;
         }
 
         private void UpdateQuestion()
@@ -101,7 +105,6 @@ namespace TriviaClientApp
                 {
                     GetButtonByAnswer(correctAnswer).BackColor = Color.Green;
                     button.BackColor = Color.Red;
-                    MessageBox.Show(correctAnswer);
                 }
                 nextButton.Enabled = true;
             }
@@ -110,6 +113,11 @@ namespace TriviaClientApp
         private void nextButton_Click(object sender, EventArgs e)
         {
             UpdateQuestion();
+
+            // reset the answer timer
+            questionTimeTimer.Stop();
+            questionTimeTimer.Start();
+
         }
 
         private void gameOverTImer_Tick(object sender, EventArgs e)
@@ -144,6 +152,13 @@ namespace TriviaClientApp
         {
             TriviaClient.GetClient().LeaveGame();
             main.ChangePage(new MainMenu());
+        }
+
+        private void questionTimeTimer_Tick(object sender, EventArgs e)
+        {
+            // submit wrong answer purposely
+            TriviaClient.GetClient().SubmitAnswer(-1);
+            UpdateQuestion();
         }
     }
 }

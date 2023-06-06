@@ -37,6 +37,7 @@
             nextButton = new Button();
             BackButtonPress = new Button();
             gameOverTImer = new System.Windows.Forms.Timer(components);
+            questionTimeTimer = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // questionLabel
@@ -110,6 +111,11 @@
             gameOverTImer.Interval = 1000;
             gameOverTImer.Tick += gameOverTImer_Tick;
             // 
+            // questionTimeTimer
+            // 
+            questionTimeTimer.Enabled = true;
+            questionTimeTimer.Tick += questionTimeTimer_Tick;
+            // 
             // Game
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -136,5 +142,6 @@
         private Button nextButton;
         private Button BackButtonPress;
         private System.Windows.Forms.Timer gameOverTImer;
+        private System.Windows.Forms.Timer questionTimeTimer;
     }
 }

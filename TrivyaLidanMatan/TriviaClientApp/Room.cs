@@ -18,11 +18,13 @@ namespace TriviaClientApp
         private const int PLAYER_LABEL_BASE_X = 10;
         private const int PLAYER_LABEL_BASE_Y = 20;
         private const int PLAYER_LABEL_MARGIN = 20;
+        private const int DEFAULT_TIME_PER_QUESTION = 100;
 
         private string roomName;
         private List<string> players = new();
         private string roomCreatorName;
         private int roomId;
+        private int timePerQuestion;
         public Room(int roomId, string roomName, string roomCreatorName)
         {
             InitializeComponent();
@@ -38,6 +40,19 @@ namespace TriviaClientApp
 
         private void Room_Load(object sender, EventArgs e)
         {
+            TriviaClient client = TriviaClient.GetClient();
+            JObject result = client.GetRoomState();
+
+            if (TriviaClient.IsSuccessResponse(result, false))
+            {
+                timePerQuestion = (int)result["message"]["answerTimeout"];
+            }
+            else
+            // if failed, set to default time
+            {
+                timePerQuestion = DEFAULT_TIME_PER_QUESTION;
+            }
+
             Thread loader = new Thread(roomHandler);
             loader.Start();
 
@@ -118,7 +133,7 @@ namespace TriviaClientApp
             {
                 InvokeSafe(() =>
                 {
-                    main.ChangePage(new Game());
+                    main.ChangePage(new Game(timePerQuestion));
                 });
             }
         }
@@ -196,10 +211,18 @@ namespace TriviaClientApp
 
         private void startGameButton_Click(object sender, EventArgs e)
         {
+
             startGameButton.Enabled = false;
-            TriviaClient.GetClient().StartGame();
+
+            TriviaClient client = TriviaClient.GetClient();
+
+            client.StartGame();
+            JObject result = client.GetRoomState();
+
+
+
             Thread.Sleep(500);
-            main.ChangePage(new Game());
+            main.ChangePage(new Game(timePerQuestion));
         }
     }
 }
