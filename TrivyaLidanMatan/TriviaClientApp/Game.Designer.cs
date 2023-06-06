@@ -37,7 +37,7 @@
             nextButton = new Button();
             BackButtonPress = new Button();
             gameOverTImer = new System.Windows.Forms.Timer(components);
-            questionAmountLabel = new Label();
+            questionNumberLabel = new Label();
             SuspendLayout();
             // 
             // questionLabel
@@ -111,21 +111,21 @@
             gameOverTImer.Interval = 1000;
             gameOverTImer.Tick += gameOverTImer_Tick;
             // 
-            // questionAmountLabel
+            // questionNumberLabel
             // 
-            questionAmountLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            questionAmountLabel.Location = new Point(345, 20);
-            questionAmountLabel.Name = "questionAmountLabel";
-            questionAmountLabel.Size = new Size(120, 23);
-            questionAmountLabel.TabIndex = 8;
-            questionAmountLabel.Text = "Question 1/1";
-            questionAmountLabel.TextAlign = ContentAlignment.MiddleCenter;
+            questionNumberLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            questionNumberLabel.Location = new Point(345, 20);
+            questionNumberLabel.Name = "questionNumberLabel";
+            questionNumberLabel.Size = new Size(120, 23);
+            questionNumberLabel.TabIndex = 8;
+            questionNumberLabel.Text = "Question 1/1";
+            questionNumberLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Game
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(questionAmountLabel);
+            Controls.Add(questionNumberLabel);
             Controls.Add(BackButtonPress);
             Controls.Add(nextButton);
             Controls.Add(answer4Button);
@@ -148,6 +148,6 @@
         private Button nextButton;
         private Button BackButtonPress;
         private System.Windows.Forms.Timer gameOverTImer;
-        private Label questionAmountLabel;
+        private Label questionNumberLabel;
     }
 }

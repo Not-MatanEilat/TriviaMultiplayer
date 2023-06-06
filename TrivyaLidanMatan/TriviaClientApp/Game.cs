@@ -19,12 +19,14 @@ namespace TriviaClientApp
         List<Button> AnswersButtonsOriginal = new List<Button>();
         private string correctAnswer;
         private RoomData roomData;
+        private int questionNumber;
 
         public Game(RoomData roomData)
         {
             InitializeComponent();
             main.AcceptButton = nextButton;
             this.roomData = roomData;
+            this.questionNumber = 0;
         }
 
         private void Game_Load(object sender, EventArgs e)
@@ -67,6 +69,9 @@ namespace TriviaClientApp
                 answersButtons = randomized.ToList();
 
                 nextButton.Enabled = false;
+
+                questionNumber++;
+                questionNumberLabel.Text = $"Question {questionNumber}/{roomData.questionCount}";
             }
             else
             {
@@ -76,6 +81,7 @@ namespace TriviaClientApp
                 }
 
                 nextButton.Visible = false;
+                questionNumberLabel.Visible = false;
 
                 questionLabel.Text = "Waiting for players to finish answering too....";
 
