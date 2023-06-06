@@ -101,7 +101,6 @@ namespace TriviaClientApp
                 {
                     GetButtonByAnswer(correctAnswer).BackColor = Color.Green;
                     button.BackColor = Color.Red;
-                    MessageBox.Show(correctAnswer);
                 }
                 nextButton.Enabled = true;
             }
