@@ -22,25 +22,17 @@ namespace TriviaClientApp
         private string correctAnswer;
         private RoomData roomData;
         private int questionNumber;
-
-<<<<<<< HEAD
-        public Game(int timePerQuestion)
-        {
-            InitializeComponent();
-            main.AcceptButton = nextButton;
-            this.timePerQuestion = timePerQuestion;
-=======
-        public Game(RoomData roomData)
+        public Game(RoomData roomData, int timePerQuestion)
         {
             InitializeComponent();
             main.AcceptButton = nextButton;
             this.roomData = roomData;
             this.questionNumber = 0;
->>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
+            this.timePerQuestion = timePerQuestion;
         }
 
         private void Game_Load(object sender, EventArgs e)
-        {
+        { 
             answersButtons.Add(answer1Button);
             answersButtons.Add(answer2Button);
             answersButtons.Add(answer3Button);

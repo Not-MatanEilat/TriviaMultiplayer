@@ -24,13 +24,11 @@ namespace TriviaClientApp
         private string roomName;
         private List<string> players = new();
         private string roomCreatorName;
-        private int roomId;
-<<<<<<< HEAD
+        private int roomId; 
         private int timePerQuestion;
-=======
+
         private RoomData? roomData = null;
 
->>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
         public Room(int roomId, string roomName, string roomCreatorName)
         {
             InitializeComponent();
@@ -139,11 +137,7 @@ namespace TriviaClientApp
             {
                 InvokeSafe(() =>
                 {
-<<<<<<< HEAD
-                    main.ChangePage(new Game(timePerQuestion));
-=======
-                    main.ChangePage(new Game(roomData));
->>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
+                    main.ChangePage(new Game(roomData, timePerQuestion));
                 });
             }
         }
@@ -222,16 +216,13 @@ namespace TriviaClientApp
 
         private void startGameButton_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
 
-=======
             if (roomData == null)
             {
                 MessageBox.Show("Cannot start Room try again later!", "Room ERROR", MessageBoxButtons.OK,
                                        MessageBoxIcon.Error);
                 return;
             }
->>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
             startGameButton.Enabled = false;
 
             TriviaClient client = TriviaClient.GetClient();
@@ -242,11 +233,7 @@ namespace TriviaClientApp
 
 
             Thread.Sleep(500);
-<<<<<<< HEAD
-            main.ChangePage(new Game(timePerQuestion));
-=======
-            main.ChangePage(new Game(roomData));
->>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
+            main.ChangePage(new Game(roomData, timePerQuestion));
         }
     }
 

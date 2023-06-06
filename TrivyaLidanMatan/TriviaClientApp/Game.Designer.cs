@@ -37,11 +37,8 @@
             nextButton = new Button();
             BackButtonPress = new Button();
             gameOverTImer = new System.Windows.Forms.Timer(components);
-<<<<<<< HEAD
             questionTimeTimer = new System.Windows.Forms.Timer(components);
-=======
             questionNumberLabel = new Label();
->>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
             SuspendLayout();
             // 
             // questionLabel
@@ -115,12 +112,10 @@
             gameOverTImer.Interval = 1000;
             gameOverTImer.Tick += gameOverTImer_Tick;
             // 
-<<<<<<< HEAD
             // questionTimeTimer
             // 
             questionTimeTimer.Enabled = true;
             questionTimeTimer.Tick += questionTimeTimer_Tick;
-=======
             // questionNumberLabel
             // 
             questionNumberLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -130,7 +125,6 @@
             questionNumberLabel.TabIndex = 8;
             questionNumberLabel.Text = "Question 1/1";
             questionNumberLabel.TextAlign = ContentAlignment.MiddleCenter;
->>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
             // 
             // Game
             // 
@@ -159,10 +153,7 @@
         private Button nextButton;
         private Button BackButtonPress;
         private System.Windows.Forms.Timer gameOverTImer;
-<<<<<<< HEAD
         private System.Windows.Forms.Timer questionTimeTimer;
-=======
         private Label questionNumberLabel;
->>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
     }
 }
