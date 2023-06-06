@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,8 @@ namespace TriviaClientApp
     {
 
         List<Button> answersButtons = new List<Button>();
+        List<Button> AnswersButtonsOriginal = new List<Button>();
+        private string correctAnswer;
 
         public Game()
         {
@@ -42,12 +45,25 @@ namespace TriviaClientApp
             {
                 JObject result = (JObject)res["message"];
                 questionLabel.Text = result["question"].Value<string>();
+
+                // first one alwatys correct
+                correctAnswer = result["answers"][0][1].Value<string>();
+
                 for (int i = 0; i < answersButtons.Count; i++)
                 {
                     answersButtons[i].Text = result["answers"][i][1].Value<string>();
                     answersButtons[i].BackColor = Color.FromKnownColor(KnownColor.Control);
                     answersButtons[i].Enabled = true;
                 }
+
+                Random rnd = new Random();
+
+                // shuffle the list buttons
+                var randomized = answersButtons.OrderBy(item => rnd.Next());
+
+                AnswersButtonsOriginal = answersButtons;
+                answersButtons = randomized.ToList();
+
                 nextButton.Enabled = false;
             }
             else
@@ -69,7 +85,7 @@ namespace TriviaClientApp
         private void AnswerButton_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            JObject res = TriviaClient.GetClient().SubmitAnswer(answersButtons.IndexOf(button) + 1);
+            JObject res = TriviaClient.GetClient().SubmitAnswer(AnswersButtonsOriginal.IndexOf(button) + 1);
             if (TriviaClient.IsSuccessResponse(res))
             {
                 JObject result = (JObject)res["message"];
@@ -83,7 +99,9 @@ namespace TriviaClientApp
                 }
                 else
                 {
+                    GetButtonByAnswer(correctAnswer).BackColor = Color.Green;
                     button.BackColor = Color.Red;
+                    MessageBox.Show(correctAnswer);
                 }
                 nextButton.Enabled = true;
             }
@@ -103,6 +121,23 @@ namespace TriviaClientApp
                 GameResults gameResults = new GameResults((JObject)result["message"]);
                 main.ChangePage(gameResults);
             }
+        }
+
+        /// <summary>
+        /// Will get button by the given answer
+        /// </summary>
+        /// <param name="answer">The function to get the button by</param>
+        /// <returns>Button</returns>
+        private Button GetButtonByAnswer(string answer)
+        {
+            foreach (Button button in answersButtons)
+            {
+                if (button.Text == answer)
+                {
+                    return button;
+                }
+            }
+            return null;
         }
 
         private void BackButtonPress_Click(object sender, EventArgs e)
