@@ -37,14 +37,15 @@
             nextButton = new Button();
             BackButtonPress = new Button();
             gameOverTImer = new System.Windows.Forms.Timer(components);
+            questionAmountLabel = new Label();
             SuspendLayout();
             // 
             // questionLabel
             // 
             questionLabel.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            questionLabel.Location = new Point(3, 35);
+            questionLabel.Location = new Point(3, 43);
             questionLabel.Name = "questionLabel";
-            questionLabel.Size = new Size(794, 78);
+            questionLabel.Size = new Size(794, 70);
             questionLabel.TabIndex = 0;
             questionLabel.Text = "Why this project is the best one?";
             questionLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -110,10 +111,21 @@
             gameOverTImer.Interval = 1000;
             gameOverTImer.Tick += gameOverTImer_Tick;
             // 
+            // questionAmountLabel
+            // 
+            questionAmountLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            questionAmountLabel.Location = new Point(345, 20);
+            questionAmountLabel.Name = "questionAmountLabel";
+            questionAmountLabel.Size = new Size(120, 23);
+            questionAmountLabel.TabIndex = 8;
+            questionAmountLabel.Text = "Question 1/1";
+            questionAmountLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Game
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(questionAmountLabel);
             Controls.Add(BackButtonPress);
             Controls.Add(nextButton);
             Controls.Add(answer4Button);
@@ -136,5 +148,6 @@
         private Button nextButton;
         private Button BackButtonPress;
         private System.Windows.Forms.Timer gameOverTImer;
+        private Label questionAmountLabel;
     }
 }

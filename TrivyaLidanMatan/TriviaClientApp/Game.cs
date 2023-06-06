@@ -18,11 +18,13 @@ namespace TriviaClientApp
         List<Button> answersButtons = new List<Button>();
         List<Button> AnswersButtonsOriginal = new List<Button>();
         private string correctAnswer;
+        private RoomData roomData;
 
-        public Game()
+        public Game(RoomData roomData)
         {
             InitializeComponent();
             main.AcceptButton = nextButton;
+            this.roomData = roomData;
         }
 
         private void Game_Load(object sender, EventArgs e)
