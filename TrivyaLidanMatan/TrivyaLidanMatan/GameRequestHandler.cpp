@@ -180,9 +180,6 @@ RequestResult GameRequestHandler::getQuestion(RequestInfo info)
 	// randomize the answers/correct answer order
 	vector<string> answers = question.getPossibleAnswers();
 
-	// std::shuffle(answers.begin(), answers.end(), std::random_device());
-	// shuffle will be client side ONLY
-
 	int i = 1;
 	for (auto answer : answers)
 	{
