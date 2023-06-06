@@ -70,7 +70,7 @@ vector<PlayerResults> GameManager::getGamesResults(unsigned gameId)
 
 		playerResults.correctAnswerCount = gameData.correctAnswerCount;
 		playerResults.wrongAnswerCount = gameData.wrongAnswerCount;
-		playerResults.averageAnswerTime = gameData.averageAnswerTime;
+		playerResults.averageAnswerTime = gameData.averageAnswerTime * 1000;
 
 		results.push_back(playerResults);
 	}

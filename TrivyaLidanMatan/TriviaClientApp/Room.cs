@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
@@ -24,7 +25,12 @@ namespace TriviaClientApp
         private List<string> players = new();
         private string roomCreatorName;
         private int roomId;
+<<<<<<< HEAD
         private int timePerQuestion;
+=======
+        private RoomData? roomData = null;
+
+>>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
         public Room(int roomId, string roomName, string roomCreatorName)
         {
             InitializeComponent();
@@ -78,7 +84,7 @@ namespace TriviaClientApp
         /// <param name="roomState">The current state of the room</param>
         private void LoadAllNames(JObject roomState)
         {
-            
+
             if (!TriviaClient.IsSuccessResponse(roomState, false))
             {
                 InvokeSafe(() =>
@@ -133,7 +139,11 @@ namespace TriviaClientApp
             {
                 InvokeSafe(() =>
                 {
+<<<<<<< HEAD
                     main.ChangePage(new Game(timePerQuestion));
+=======
+                    main.ChangePage(new Game(roomData));
+>>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
                 });
             }
         }
@@ -145,6 +155,7 @@ namespace TriviaClientApp
         {
             TriviaClient client = TriviaClient.GetClient();
             JObject result = client.GetRoomState();
+            roomData = JsonConvert.DeserializeObject<RoomData>(result["message"].ToString());
 
             LoadAllNames(result);
             CheckGameHasBegun(result);
@@ -211,7 +222,16 @@ namespace TriviaClientApp
 
         private void startGameButton_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
 
+=======
+            if (roomData == null)
+            {
+                MessageBox.Show("Cannot start Room try again later!", "Room ERROR", MessageBoxButtons.OK,
+                                       MessageBoxIcon.Error);
+                return;
+            }
+>>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
             startGameButton.Enabled = false;
 
             TriviaClient client = TriviaClient.GetClient();
@@ -222,7 +242,20 @@ namespace TriviaClientApp
 
 
             Thread.Sleep(500);
+<<<<<<< HEAD
             main.ChangePage(new Game(timePerQuestion));
+=======
+            main.ChangePage(new Game(roomData));
+>>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
         }
+    }
+
+    public class RoomData
+    {
+        public int answerTimeout;
+        public bool hasGameBegun;
+        public List<string> players;
+        public int questionCount;
+        public int status;
     }
 }

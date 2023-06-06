@@ -37,15 +37,19 @@
             nextButton = new Button();
             BackButtonPress = new Button();
             gameOverTImer = new System.Windows.Forms.Timer(components);
+<<<<<<< HEAD
             questionTimeTimer = new System.Windows.Forms.Timer(components);
+=======
+            questionNumberLabel = new Label();
+>>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
             SuspendLayout();
             // 
             // questionLabel
             // 
             questionLabel.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            questionLabel.Location = new Point(3, 35);
+            questionLabel.Location = new Point(3, 43);
             questionLabel.Name = "questionLabel";
-            questionLabel.Size = new Size(794, 78);
+            questionLabel.Size = new Size(794, 70);
             questionLabel.TabIndex = 0;
             questionLabel.Text = "Why this project is the best one?";
             questionLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -111,15 +115,28 @@
             gameOverTImer.Interval = 1000;
             gameOverTImer.Tick += gameOverTImer_Tick;
             // 
+<<<<<<< HEAD
             // questionTimeTimer
             // 
             questionTimeTimer.Enabled = true;
             questionTimeTimer.Tick += questionTimeTimer_Tick;
+=======
+            // questionNumberLabel
+            // 
+            questionNumberLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            questionNumberLabel.Location = new Point(345, 20);
+            questionNumberLabel.Name = "questionNumberLabel";
+            questionNumberLabel.Size = new Size(120, 23);
+            questionNumberLabel.TabIndex = 8;
+            questionNumberLabel.Text = "Question 1/1";
+            questionNumberLabel.TextAlign = ContentAlignment.MiddleCenter;
+>>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
             // 
             // Game
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(questionNumberLabel);
             Controls.Add(BackButtonPress);
             Controls.Add(nextButton);
             Controls.Add(answer4Button);
@@ -142,6 +159,10 @@
         private Button nextButton;
         private Button BackButtonPress;
         private System.Windows.Forms.Timer gameOverTImer;
+<<<<<<< HEAD
         private System.Windows.Forms.Timer questionTimeTimer;
+=======
+        private Label questionNumberLabel;
+>>>>>>> 639348b9bab00c6b254390fbdc775312e2cee43b
     }
 }
