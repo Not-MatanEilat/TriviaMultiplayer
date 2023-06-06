@@ -19,11 +19,14 @@ namespace TriviaClientApp
         private const int PLAYER_LABEL_BASE_X = 10;
         private const int PLAYER_LABEL_BASE_Y = 20;
         private const int PLAYER_LABEL_MARGIN = 20;
+        private const int DEFAULT_TIME_PER_QUESTION = 100;
 
         private string roomName;
         private List<string> players = new();
         private string roomCreatorName;
-        private int roomId;
+        private int roomId; 
+        private int timePerQuestion;
+
         private RoomData? roomData = null;
 
         public Room(int roomId, string roomName, string roomCreatorName)
@@ -41,6 +44,19 @@ namespace TriviaClientApp
 
         private void Room_Load(object sender, EventArgs e)
         {
+            TriviaClient client = TriviaClient.GetClient();
+            JObject result = client.GetRoomState();
+
+            if (TriviaClient.IsSuccessResponse(result, false))
+            {
+                timePerQuestion = (int)result["message"]["answerTimeout"];
+            }
+            else
+            // if failed, set to default time
+            {
+                timePerQuestion = DEFAULT_TIME_PER_QUESTION;
+            }
+
             Thread loader = new Thread(roomHandler);
             loader.Start();
 
@@ -121,7 +137,7 @@ namespace TriviaClientApp
             {
                 InvokeSafe(() =>
                 {
-                    main.ChangePage(new Game(roomData));
+                    main.ChangePage(new Game(roomData, timePerQuestion));
                 });
             }
         }
@@ -200,6 +216,7 @@ namespace TriviaClientApp
 
         private void startGameButton_Click(object sender, EventArgs e)
         {
+
             if (roomData == null)
             {
                 MessageBox.Show("Cannot start Room try again later!", "Room ERROR", MessageBoxButtons.OK,
@@ -207,9 +224,16 @@ namespace TriviaClientApp
                 return;
             }
             startGameButton.Enabled = false;
-            TriviaClient.GetClient().StartGame();
+
+            TriviaClient client = TriviaClient.GetClient();
+
+            client.StartGame();
+            JObject result = client.GetRoomState();
+
+
+
             Thread.Sleep(500);
-            main.ChangePage(new Game(roomData));
+            main.ChangePage(new Game(roomData, timePerQuestion));
         }
     }
 

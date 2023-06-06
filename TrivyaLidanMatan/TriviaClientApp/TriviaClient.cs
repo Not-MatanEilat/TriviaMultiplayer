@@ -349,7 +349,8 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will get room state
-        ///  {"status" : status, "hasGameBegun" : hasGameBegun, "players" : players, "questionCount" : questionCount, "answerTimeout" : answerTimeout}
+        ///  {"status" : status, "has
+        /// Begun" : hasGameBegun, "players" : players, "questionCount" : questionCount, "answerTimeout" : answerTimeout}
         /// </summary>
         /// <returns>response</returns>
         public JObject GetRoomState()

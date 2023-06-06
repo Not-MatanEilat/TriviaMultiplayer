@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
+using Timer = System.Threading.Timer;
 
 namespace TriviaClientApp
 {
