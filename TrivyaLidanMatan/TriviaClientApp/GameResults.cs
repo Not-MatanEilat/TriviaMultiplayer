@@ -30,7 +30,7 @@ namespace TriviaClientApp
             int i = 0;
             foreach (JToken result in results["results"])
             {
-                string resultStr = $"{i+1}. {result["username"]} - Correct: {result["correctAnswerCount"]} avg speed: {result["averageAnswerTime"]}";
+                string resultStr = $"{i+1}. {result["username"]} - Correct: {result["correctAnswerCount"]} avg speed: {result["averageAnswerTime"].Value<float>() / 1000} secs";
                 Label playerLabel = new()
                 {
                     Text = resultStr,
