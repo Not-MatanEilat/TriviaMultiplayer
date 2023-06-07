@@ -8,6 +8,11 @@ SqliteDataBase::SqliteDataBase() : _db(DB_PATH)
 {
 }
 
+SqliteDataBase::~SqliteDataBase()
+{
+	close();
+}
+
 /**
  * \brief Will open the database
  * \return True or False, if the database opened

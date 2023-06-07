@@ -11,6 +11,7 @@ class SqliteDataBase : public IDataBase
 public:
 
 	SqliteDataBase();
+	virtual ~SqliteDataBase();
 
 	bool open() override;
 	bool close() override;

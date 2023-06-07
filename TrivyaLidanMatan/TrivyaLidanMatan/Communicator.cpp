@@ -8,6 +8,15 @@ static const unsigned int IFACE = 0;
 
 std::mutex m_mutex;
 
+Communicator::~Communicator()
+{
+	for (auto& client : m_clients)
+	{
+		delete client.second;
+	}
+	m_clients.clear();
+}
+
 /**
  * \brief The function will start listening to incoming connections
  */
@@ -68,6 +77,7 @@ void Communicator::disconnectSocket(SOCKET clientSocket)
 	{
 		if (it->first == clientSocket)
 		{
+			delete it->second;
 			m_clients.erase(it);
 			break;
 		}
@@ -104,6 +114,10 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 			if (m_clients[clientSocket]->isRequestRelevant(requestInfo))
 			{
 				result = m_clients[clientSocket]->handleRequest(requestInfo);
+				if (m_clients[clientSocket] != result.newHandler)
+				{
+					delete m_clients[clientSocket];
+				}
 				m_clients[clientSocket] = result.newHandler;
 			}
 			else

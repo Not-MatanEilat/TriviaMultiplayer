@@ -43,6 +43,7 @@ class RequestHandlerFactory;
 class Communicator
 {
 public:
+	~Communicator();
 	void startHandleRequests();
 
 	Communicator(RequestHandlerFactory& handlerFactory);
