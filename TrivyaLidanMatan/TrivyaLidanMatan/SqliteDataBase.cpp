@@ -242,3 +242,19 @@ Row SqliteDataBase::getPlayerStatistics(string const& username)
 
 	return res[0];
 }
+
+/**
+ * \brief Function adds a question to the database
+ * \param question the question to add
+ * \param correctAns the correct answer of the given question
+ * \param ans2 a possible but wrong answer for question
+ * \param ans3 a possible but wrong answer for question
+ * \param ans4 a possible but wrong answer for question
+ */
+void SqliteDataBase::addQuestion(string const& question, string const& correctAns, string const& ans2, string const& ans3, string const& ans4)
+{
+	const string sqlStatement = "INSERT INTO questions (question, correctAnswer, answer2, answer3, answer4) VALUES ('$0', '$1', '$2', '$3', '$4')";
+	vector<string> params = { question, correctAns, ans2, ans3, ans4 };
+	_db.exec(sqlStatement, params);
+}
+

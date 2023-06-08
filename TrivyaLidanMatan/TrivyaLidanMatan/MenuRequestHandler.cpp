@@ -250,3 +250,15 @@ RequestResult MenuRequestHandler::createRoom(RequestInfo const& info)
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
+
+RequestResult MenuRequestHandler::addQuestion(RequestInfo const& info)
+{
+	RequestResult result;
+
+	AddQuestionRequest request = JsonRequestPacketDeserializer::deserializeAddQuestionRequest(info.buffer);
+
+	AddQuestionResponse response;
+
+	IDataBase* db = m_handlerFactory.getDataBase();
+	db.
+}
