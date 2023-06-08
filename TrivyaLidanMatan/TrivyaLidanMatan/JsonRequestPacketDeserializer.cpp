@@ -107,5 +107,26 @@ SubmitAnswerRequest JsonRequestPacketDeserializer::deserializeSubmitAnswerReques
 	return request;
 }
 
+/**
+ * \brief deserialize AddQuestionRequest
+ * \param buffer buffer of json data
+ * \return deseriazlized AddQuestionRequest
+ */
+AddQuestionRequest JsonRequestPacketDeserializer::deserializeAddQuestionRequest(const Buffer& buffer)
+{
+	string bufferStr = Helper::getStringFromBuffer(buffer);
+
+	json j = json::parse(bufferStr);
+
+	AddQuestionRequest request;
+	request.question = j["question"];
+	request.correctAns = j["correctAns"];
+	request.ans2 = j["ans2"];
+	request.ans3 = j["ans3"];
+	request.ans4 = j["ans4"];
+	return request;
+}
+
+
 
 

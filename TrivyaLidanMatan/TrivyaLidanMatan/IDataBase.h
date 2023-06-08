@@ -33,6 +33,8 @@ public:
 	virtual vector<string> getHighScores() = 0;
 	virtual void setPlayerStatistics(string const& username, Row stats) = 0;
 
+	virtual void addQuestion(string const& question, string const& correctAns, string const& ans2, string const& ans3, string const& ans4) = 0;
+
 	static bool isValidPassword(const string& username);
 	static bool isValidEmail(const string& email);
 	static bool isValidUsername(const string& username);

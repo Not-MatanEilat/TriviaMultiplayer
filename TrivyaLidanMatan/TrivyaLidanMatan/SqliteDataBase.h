@@ -4,6 +4,9 @@
 #include "Sqlite3DB.h"
 #include <algorithm>
 
+#define MAX_QUESTION_CHARS 100
+#define MAX_ANSWER_CHARS 50
+
 class IDataBase;
 
 class SqliteDataBase : public IDataBase
@@ -28,6 +31,7 @@ public:
 	int getNumOfPlayerGames(string const& username) override;
 	int getPlayerScore(string const& username) override;
 	void setPlayerStatistics(string const& username, Row stats) override;
+	void addQuestion(string const& question, string const& correctAns, string const& ans2, string const& ans3, string const& ans4) override;
 private:
 	Row getPlayerStatistics(string const& username);
 	

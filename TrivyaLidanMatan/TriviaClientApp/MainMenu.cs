@@ -43,10 +43,10 @@ namespace TriviaClientApp
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void createQuestionButton_Click(object sender, EventArgs e)
         {
-            Statistics statistics = new Statistics();
-            main.ChangePage(statistics);
+            CreateQuestion createQuestion = new CreateQuestion();
+            main.ChangePage(createQuestion);
         }
 
         private void button4_Click(object sender, EventArgs e)

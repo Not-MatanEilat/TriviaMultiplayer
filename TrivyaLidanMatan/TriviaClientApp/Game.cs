@@ -23,7 +23,7 @@ namespace TriviaClientApp
         private RoomData roomData;
         private int questionNumber;
 
-        public Game(roomData roomData, int timePerQuestion)
+        public Game(RoomData roomData, int timePerQuestion)
         {
             InitializeComponent();
             main.AcceptButton = nextButton;

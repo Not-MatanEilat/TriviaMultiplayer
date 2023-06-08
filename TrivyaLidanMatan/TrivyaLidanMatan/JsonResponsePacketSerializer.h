@@ -126,6 +126,11 @@ typedef struct GetGameResultsResponse
 	vector<PlayerResults> results;
 } GetGameResultsResponse;
 
+typedef struct AddQuestionResponse
+{
+	unsigned int status;
+} AddQuestionResponse;
+
 class JsonResponsePacketSerializer
 {
 
@@ -153,5 +158,7 @@ public:
 	static Buffer serializeResponse(const SubmitAnswerResponse& submitAnswerResponse);
 	static Buffer serializeResponse(const GetGameResultsResponse& getGameResultsResponse);
 	static Buffer serializeResponse(const GetQuestionResponse& getQuestionResponse);
+
+	static Buffer serializeResponse(const AddQuestionResponse& addQuestionResponse);
 };
 

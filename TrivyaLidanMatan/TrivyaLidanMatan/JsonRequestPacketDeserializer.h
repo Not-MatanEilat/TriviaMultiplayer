@@ -51,6 +51,15 @@ typedef struct SubmitAnswerRequest
 	unsigned int answerId;
 } SubmitAnswerRequest;
 
+typedef struct AddQuestionRequest
+{
+	string question;
+	string correctAns;
+	string ans2;
+	string ans3;
+	string ans4;
+} AddQuestionRequest;
+
 
 class JsonRequestPacketDeserializer
 {
@@ -63,5 +72,7 @@ public:
 	static CreateRoomRequest deserializeCreateRoomRequest(const Buffer& buffer);
 
 	static SubmitAnswerRequest deserializeSubmitAnswerRequest(const Buffer& buffer);
+
+	static AddQuestionRequest deserializeAddQuestionRequest(const Buffer& buffer);
 };
 

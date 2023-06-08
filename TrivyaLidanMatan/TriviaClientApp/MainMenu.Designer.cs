@@ -35,6 +35,7 @@
             button4 = new Button();
             userConnected = new Label();
             logoutButton = new Button();
+            createQuestionButton = new Button();
             SuspendLayout();
             // 
             // label1
@@ -75,11 +76,11 @@
             button3.TabIndex = 3;
             button3.Text = "Stats";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            button3.Click += createQuestionButton_Click;
             // 
             // button4
             // 
-            button4.Location = new Point(344, 275);
+            button4.Location = new Point(344, 311);
             button4.Name = "button4";
             button4.Size = new Size(107, 30);
             button4.TabIndex = 4;
@@ -107,21 +108,30 @@
             logoutButton.UseVisualStyleBackColor = true;
             logoutButton.Click += logoutButton_Click;
             // 
+            // createQuestionButton
+            // 
+            createQuestionButton.Location = new Point(344, 275);
+            createQuestionButton.Name = "createQuestionButton";
+            createQuestionButton.Size = new Size(107, 30);
+            createQuestionButton.TabIndex = 3;
+            createQuestionButton.Text = "Create Question";
+            createQuestionButton.UseVisualStyleBackColor = true;
+            createQuestionButton.Click += createQuestionButton_Click;
+            // 
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.MenuHighlight;
-            ClientSize = new Size(800, 450);
             Controls.Add(logoutButton);
             Controls.Add(userConnected);
             Controls.Add(button4);
+            Controls.Add(createQuestionButton);
             Controls.Add(button3);
             Controls.Add(JoinRoomButton);
             Controls.Add(CreateRoomButton);
             Controls.Add(label1);
             Name = "MainMenu";
-            Text = "MainMenu";
             Load += MainMenu_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -137,5 +147,6 @@
         private Label userConnected;
         private Button JoinRoomButton;
         private Button logoutButton;
+        private Button createQuestionButton;
     }
 }
