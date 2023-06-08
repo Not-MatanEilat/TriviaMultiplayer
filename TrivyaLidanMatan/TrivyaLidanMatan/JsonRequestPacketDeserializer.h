@@ -72,5 +72,7 @@ public:
 	static CreateRoomRequest deserializeCreateRoomRequest(const Buffer& buffer);
 
 	static SubmitAnswerRequest deserializeSubmitAnswerRequest(const Buffer& buffer);
+
+	static AddQuestionRequest deserializeAddQuestionRequest(const Buffer& buffer);
 };
 

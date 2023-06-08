@@ -79,60 +79,60 @@
             answer3TextBox.Location = new Point(336, 253);
             answer3TextBox.Name = "answer3TextBox";
             answer3TextBox.Size = new Size(100, 23);
-            answer3TextBox.TabIndex = 3;
+            answer3TextBox.TabIndex = 4;
             // 
             // answer4TextBox
             // 
             answer4TextBox.Location = new Point(336, 301);
             answer4TextBox.Name = "answer4TextBox";
             answer4TextBox.Size = new Size(100, 23);
-            answer4TextBox.TabIndex = 3;
+            answer4TextBox.TabIndex = 5;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(187, 110);
+            label2.Location = new Point(275, 110);
             label2.Name = "label2";
-            label2.Size = new Size(143, 15);
+            label2.Size = new Size(55, 15);
             label2.TabIndex = 4;
-            label2.Text = "Question (100 Chars Max)";
+            label2.Text = "Question";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(160, 157);
+            label3.Location = new Point(242, 160);
             label3.Name = "label3";
-            label3.Size = new Size(170, 15);
+            label3.Size = new Size(88, 15);
             label3.TabIndex = 5;
-            label3.Text = "Correct Answer (20 Chars Max)";
+            label3.Text = "Correct Answer";
             label3.Click += label3_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(193, 209);
+            label4.Location = new Point(245, 209);
             label4.Name = "label4";
-            label4.Size = new Size(137, 15);
+            label4.Size = new Size(85, 15);
             label4.TabIndex = 6;
-            label4.Text = "Answer 2 (20 Chars Max)";
+            label4.Text = "Wrong Answer";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(193, 256);
+            label5.Location = new Point(245, 256);
             label5.Name = "label5";
-            label5.Size = new Size(137, 15);
+            label5.Size = new Size(85, 15);
             label5.TabIndex = 6;
-            label5.Text = "Answer 3 (20 Chars Max)";
+            label5.Text = "Wrong Answer";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(193, 304);
+            label6.Location = new Point(245, 304);
             label6.Name = "label6";
-            label6.Size = new Size(137, 15);
+            label6.Size = new Size(85, 15);
             label6.TabIndex = 6;
-            label6.Text = "Answer 4 (20 Chars Max)";
+            label6.Text = "Wrong Answer";
             // 
             // BackButtonPress
             // 
@@ -149,7 +149,7 @@
             createQuestionButton.Location = new Point(348, 341);
             createQuestionButton.Name = "createQuestionButton";
             createQuestionButton.Size = new Size(75, 23);
-            createQuestionButton.TabIndex = 8;
+            createQuestionButton.TabIndex = 6;
             createQuestionButton.Text = "Create";
             createQuestionButton.UseVisualStyleBackColor = true;
             createQuestionButton.Click += createQuestionButton_Click;

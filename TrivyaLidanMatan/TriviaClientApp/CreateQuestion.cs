@@ -37,11 +37,21 @@ namespace TriviaClientApp
             string answer3 = answer3TextBox.Text;
             string answer4 = answer4TextBox.Text;
 
-            JObject res = TriviaClient.GetClient().AddQuestion(question, correctAnswer, answer2, answer3, answer4);
-
-            if (TriviaClient.IsSuccessResponse(res))
+            if (question.Length == 0 || correctAnswer.Length == 0 || answer2.Length == 0 || answer3.Length == 0 ||
+                answer4.Length == 0)
             {
-                MessageBox.Show("Question was added successfully!");
+                MessageBox.Show("Please fill all fields, a field can't be empty there");
+            }
+            else
+            {
+                JObject res = TriviaClient.GetClient().AddQuestion(question, correctAnswer, answer2, answer3, answer4);
+
+                if (TriviaClient.IsSuccessResponse(res))
+                {
+                    MessageBox.Show("Question was added successfully!");
+                    MainMenu mainMenu = new MainMenu();
+                    main.ChangePage(mainMenu);
+                }
             }
         }
     }

@@ -61,6 +61,10 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 		{
 			result = createRoom(info);
 		}
+		else if (info.requestId == ADD_QUESTION_CODE)
+		{
+			result = addQuestion(info);
+		}
 	}
 	catch (const std::exception& e)
 	{
@@ -264,6 +268,18 @@ RequestResult MenuRequestHandler::addQuestion(RequestInfo const& info)
 
 
 	AddQuestionResponse response;
+
+	TRACE("\nA new question addition was requested: " <<
+		"Question: " << request.question <<
+		"Correct answer: " << request.correctAns <<
+		"Answer 2: " << request.ans2 <<
+		"Answer 3: " << request.ans3 <<
+		"Answer 4: " << request.ans4 << "\n");
+	if (request.question.size() == 0 || request.correctAns.size() == 0 || request.ans2.size() == 0 ||
+				request.ans3.size() == 0 || request.ans4.size() == 0)
+	{
+		throw std::exception("A filed cannot be empty");
+	}
 
 	if (request.question.size() > MAX_QUESTION_CHARS)
 	{
