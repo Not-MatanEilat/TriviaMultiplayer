@@ -18,40 +18,18 @@ namespace TriviaClientApp
 
         List<Button> answersButtons = new List<Button>();
         List<Button> AnswersButtonsOriginal = new List<Button>();
+        private int timePerQuestion;
         private string correctAnswer;
-        private readonly RoomData roomData;
+        private RoomData roomData;
         private int questionNumber;
 
-        private int _timeLeft;
-        public int TimeLeft
-        {
-            get => _timeLeft;
-            set
-            {
-                _timeLeft = value;
-                timeLeftLabel.Text = $"Time Left: {value}";
-            }
-        }
-
-        private int _correctAnswers;
-        public int CorrectAnswers
-        {
-            get => _correctAnswers;
-            set
-            {
-                _correctAnswers = value;
-                correctAnswersLabel.Text = $"Correct: {value}";
-            }
-        }
-
-        public Game(RoomData roomData)
+        public Game(roomData roomData, int timePerQuestion)
         {
             InitializeComponent();
             main.AcceptButton = nextButton;
             this.roomData = roomData;
             this.questionNumber = 0;
-            this.TimeLeft = roomData.answerTimeout;
-            this.correctAnswer = "";
+            this.timePerQuestion = timePerQuestion;
         }
 
         private void Game_Load(object sender, EventArgs e)
@@ -65,6 +43,7 @@ namespace TriviaClientApp
                 button.Click += AnswerButton_Click;
             }
             UpdateQuestion();
+            questionTimeTimer.Interval = timePerQuestion * 1000;
         }
 
         private void UpdateQuestion()
@@ -75,8 +54,9 @@ namespace TriviaClientApp
                 JObject result = (JObject)res["message"];
                 questionLabel.Text = result["question"].Value<string>();
 
-                // first one always correct
+                // first one alwatys correct
                 correctAnswer = result["answers"][0][1].Value<string>();
+
                 for (int i = 0; i < answersButtons.Count; i++)
                 {
                     answersButtons[i].Text = result["answers"][i][1].Value<string>();
@@ -96,9 +76,6 @@ namespace TriviaClientApp
 
                 questionNumber++;
                 questionNumberLabel.Text = $"Question {questionNumber}/{roomData.questionCount}";
-
-                TimeLeft = roomData.answerTimeout;
-                timeLeftTimer.Start();
             }
             else
             {
@@ -109,8 +86,6 @@ namespace TriviaClientApp
 
                 nextButton.Visible = false;
                 questionNumberLabel.Visible = false;
-                timeLeftLabel.Visible = false;
-                correctAnswersLabel.Visible = false;
 
                 questionLabel.Text = "Waiting for players to finish answering too....";
 
@@ -126,37 +101,31 @@ namespace TriviaClientApp
             if (TriviaClient.IsSuccessResponse(res))
             {
                 JObject result = (JObject)res["message"];
-
-                if (!result["correctAnswer"].Value<bool>())
+                for (int i = 0; i < answersButtons.Count; i++)
                 {
-                    button.BackColor = Color.Red;
+                    answersButtons[i].Enabled = false;
+                }
+                if (result["correctAnswer"].Value<bool>())
+                {
+                    button.BackColor = Color.Green;
                 }
                 else
                 {
-                    CorrectAnswers++;
+                    GetButtonByAnswer(correctAnswer).BackColor = Color.Green;
+                    button.BackColor = Color.Red;
                 }
-                handleSubmitAnswer();
+                nextButton.Enabled = true;
             }
-        }
-
-        /// <summary>
-        /// Handles the submit answer.
-        /// </summary>
-        private void handleSubmitAnswer()
-        {
-            for (int i = 0; i < answersButtons.Count; i++)
-            {
-                answersButtons[i].Enabled = false;
-            }
-
-            GetButtonByAnswer(correctAnswer).BackColor = Color.Green;
-            timeLeftTimer.Stop();
-            nextButton.Enabled = true;
         }
 
         private void nextButton_Click(object sender, EventArgs e)
         {
             UpdateQuestion();
+
+            // reset the answer timer
+            questionTimeTimer.Stop();
+            questionTimeTimer.Start();
+
         }
 
         private void gameOverTImer_Tick(object sender, EventArgs e)
@@ -193,15 +162,11 @@ namespace TriviaClientApp
             main.ChangePage(new MainMenu());
         }
 
-        private void timeLeftTimer_Tick(object sender, EventArgs e)
+        private void questionTimeTimer_Tick(object sender, EventArgs e)
         {
-            TimeLeft--;
-            if (TimeLeft <= 0)
-            {
-                // always worng
-                JObject res = TriviaClient.GetClient().SubmitAnswer(5);
-                handleSubmitAnswer();
-            }
+            // submit wrong answer purposely
+            TriviaClient.GetClient().SubmitAnswer(-1);
+            UpdateQuestion();
         }
     }
 }

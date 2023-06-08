@@ -25,9 +25,9 @@ namespace TriviaClientApp
         private List<string> players = new();
         private string roomCreatorName;
         private int roomId;
-
         private RoomData? roomData = null;
 
+        private int timePerQuestion;
         public Room(int roomId, string roomName, string roomCreatorName)
         {
             InitializeComponent();
@@ -43,6 +43,19 @@ namespace TriviaClientApp
 
         private void Room_Load(object sender, EventArgs e)
         {
+            TriviaClient client = TriviaClient.GetClient();
+            JObject result = client.GetRoomState();
+
+            if (TriviaClient.IsSuccessResponse(result, false))
+            {
+                timePerQuestion = (int)result["message"]["answerTimeout"];
+            }
+            else
+            // if failed, set to default time
+            {
+                timePerQuestion = DEFAULT_TIME_PER_QUESTION;
+            }
+
             Thread loader = new Thread(roomHandler);
             loader.Start();
 
@@ -123,7 +136,7 @@ namespace TriviaClientApp
             {
                 InvokeSafe(() =>
                 {
-                    main.ChangePage(new Game(roomData));
+                    main.ChangePage(new Game(roomData, timePerQuestion));
                 });
             }
         }
@@ -202,7 +215,6 @@ namespace TriviaClientApp
 
         private void startGameButton_Click(object sender, EventArgs e)
         {
-
             if (roomData == null)
             {
                 MessageBox.Show("Cannot start Room try again later!", "Room ERROR", MessageBoxButtons.OK,
@@ -219,7 +231,7 @@ namespace TriviaClientApp
 
 
             Thread.Sleep(500);
-            main.ChangePage(new Game(roomData));
+            main.ChangePage(new Game(roomData, timePerQuestion));
         }
     }
 
