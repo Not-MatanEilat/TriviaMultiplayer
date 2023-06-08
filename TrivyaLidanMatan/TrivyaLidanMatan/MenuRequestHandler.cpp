@@ -262,7 +262,22 @@ RequestResult MenuRequestHandler::addQuestion(RequestInfo const& info)
 
 	AddQuestionRequest request = JsonRequestPacketDeserializer::deserializeAddQuestionRequest(info.buffer);
 
+
 	AddQuestionResponse response;
+
+	if (request.question.size() > MAX_QUESTION_CHARS)
+	{
+		throw std::exception(("Question is too long (a max of " + std::to_string(MAX_QUESTION_CHARS) + "chars exists)").c_str());
+	}
+
+	if (request.correctAns.size() > MAX_ANSWER_CHARS || request.ans2.size() > MAX_ANSWER_CHARS ||
+		request.ans3.size() > MAX_ANSWER_CHARS || request.ans4.size() > MAX_ANSWER_CHARS)
+	{
+		throw std::exception(("Correct answer is too long (a max of " + std::to_string(MAX_ANSWER_CHARS) + "chars exists)").c_str());
+	}
+
+
+
 	response.status = SUCCESS;
 
 	IDataBase* db = m_handlerFactory.getDataBase();

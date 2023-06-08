@@ -4,6 +4,9 @@
 #include "Sqlite3DB.h"
 #include <algorithm>
 
+#define MAX_QUESTION_CHARS 100
+#define MAX_ANSWER_CHARS 20
+
 class IDataBase;
 
 class SqliteDataBase : public IDataBase
