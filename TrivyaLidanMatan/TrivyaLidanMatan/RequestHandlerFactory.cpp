@@ -67,6 +67,15 @@ GameManager& RequestHandlerFactory::getGameManager()
 }
 
 /**
+ * \brief Returns a pointer to the database
+ * \return IDataBase
+ */
+IDataBase* RequestHandlerFactory::getDataBase()
+{
+	return m_database;
+}
+
+/**
  * \brief Creates a new Room handler a returns it with the current handler
  * \param loggedUser the user that is logged in to the room now
  * \param room the room the user is in now

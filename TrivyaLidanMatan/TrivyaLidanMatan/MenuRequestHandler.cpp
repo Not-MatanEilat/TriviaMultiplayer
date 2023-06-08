@@ -19,7 +19,7 @@ MenuRequestHandler::MenuRequestHandler(RequestHandlerFactory& handlerFactory, Lo
 bool MenuRequestHandler::isRequestRelevant(RequestInfo info)
 {
 	int code = info.requestId;
-	return code == LOGOUT_CODE || code == ROOMS_LIST_CODE || code == PLAYERS_IN_ROOM_CODE || code == HIGH_SCORES_CODE || code == PERSONAL_STATS_CODE || code == JOIN_ROOM_CODE || code == CREATE_ROOM_CODE;
+	return code == LOGOUT_CODE || code == ROOMS_LIST_CODE || code == PLAYERS_IN_ROOM_CODE || code == HIGH_SCORES_CODE || code == PERSONAL_STATS_CODE || code == JOIN_ROOM_CODE || code == CREATE_ROOM_CODE || code == ADD_QUESTION_CODE;
 }
 
 
