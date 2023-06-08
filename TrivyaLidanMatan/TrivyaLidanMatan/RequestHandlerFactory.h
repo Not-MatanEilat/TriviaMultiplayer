@@ -28,6 +28,7 @@ public:
 	RoomManager& getRoomManager();
 	StatisticsManager& getStatisticsManager();
 	GameManager& getGameManager();
+	IDataBase* getDataBase();
 	RoomAdminRequestHandler* createRoomAdminRequestHandler(const LoggedUser& loggedUser, Room& room);
 	RoomMemberRequestHandler* createRoomMemberRequestHandler(const LoggedUser& loggedUser, Room& room);
 	GameRequestHandler* createGameRequestHandler(const LoggedUser& loggedUser, Game& game);

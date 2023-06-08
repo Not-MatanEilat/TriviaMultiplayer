@@ -19,7 +19,7 @@ MenuRequestHandler::MenuRequestHandler(RequestHandlerFactory& handlerFactory, Lo
 bool MenuRequestHandler::isRequestRelevant(RequestInfo info)
 {
 	int code = info.requestId;
-	return code == LOGOUT_CODE || code == ROOMS_LIST_CODE || code == PLAYERS_IN_ROOM_CODE || code == HIGH_SCORES_CODE || code == PERSONAL_STATS_CODE || code == JOIN_ROOM_CODE || code == CREATE_ROOM_CODE;
+	return code == LOGOUT_CODE || code == ROOMS_LIST_CODE || code == PLAYERS_IN_ROOM_CODE || code == HIGH_SCORES_CODE || code == PERSONAL_STATS_CODE || code == JOIN_ROOM_CODE || code == CREATE_ROOM_CODE || code == ADD_QUESTION_CODE;
 }
 
 
@@ -60,6 +60,10 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 		else if (info.requestId == CREATE_ROOM_CODE)
 		{
 			result = createRoom(info);
+		}
+		else if (info.requestId == ADD_QUESTION_CODE)
+		{
+			result = addQuestion(info);
 		}
 	}
 	catch (const std::exception& e)
@@ -247,6 +251,55 @@ RequestResult MenuRequestHandler::createRoom(RequestInfo const& info)
 	response.roomId = roomData.id;
 
 	result.newHandler = m_handlerFactory.createRoomAdminRequestHandler(m_user, m_handlerFactory.getRoomManager().getRoom(roomData.id));;
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	return result;
+}
+
+/**
+ * \brief Adds a question to the current DataBase
+ * \param info the info of request
+ * \return the add question result
+ */
+RequestResult MenuRequestHandler::addQuestion(RequestInfo const& info)
+{
+	RequestResult result;
+
+	AddQuestionRequest request = JsonRequestPacketDeserializer::deserializeAddQuestionRequest(info.buffer);
+
+
+	AddQuestionResponse response;
+
+	TRACE("\nA new question addition was requested: " <<
+		"Question: " << request.question <<
+		"Correct answer: " << request.correctAns <<
+		"Answer 2: " << request.ans2 <<
+		"Answer 3: " << request.ans3 <<
+		"Answer 4: " << request.ans4 << "\n");
+	if (request.question.size() == 0 || request.correctAns.size() == 0 || request.ans2.size() == 0 ||
+				request.ans3.size() == 0 || request.ans4.size() == 0)
+	{
+		throw std::exception("A filed cannot be empty");
+	}
+
+	if (request.question.size() > MAX_QUESTION_CHARS)
+	{
+		throw std::exception(("Question is too long (a max of " + std::to_string(MAX_QUESTION_CHARS) + "chars exists)").c_str());
+	}
+
+	if (request.correctAns.size() > MAX_ANSWER_CHARS || request.ans2.size() > MAX_ANSWER_CHARS ||
+		request.ans3.size() > MAX_ANSWER_CHARS || request.ans4.size() > MAX_ANSWER_CHARS)
+	{
+		throw std::exception(("Correct answer is too long (a max of " + std::to_string(MAX_ANSWER_CHARS) + "chars exists)").c_str());
+	}
+
+
+
+	response.status = SUCCESS;
+
+	IDataBase* db = m_handlerFactory.getDataBase();
+	db->addQuestion(request.question, request.correctAns, request.ans2, request.ans3, request.ans4);
+
+	result.newHandler = this;
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }

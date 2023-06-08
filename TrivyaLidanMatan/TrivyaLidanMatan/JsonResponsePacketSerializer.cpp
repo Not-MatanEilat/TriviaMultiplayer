@@ -310,6 +310,20 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const GetQuestionResponse
 	return vec;
 }
 
+/**
+ * \brief The function will take a AddQuestion response and serialize it to a buffer {"status" : status}
+ * \param addQuestionResponse 
+ * \return 
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(const AddQuestionResponse& addQuestionResponse)
+{
+	json j;
+	j["status"] = addQuestionResponse.status;
+	Buffer vec = serializeResponseFromJson(ADD_QUESTION_CODE, j);
+	return vec;
+}
+
+
 
 
 

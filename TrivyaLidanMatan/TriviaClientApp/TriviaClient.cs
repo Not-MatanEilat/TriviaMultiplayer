@@ -41,6 +41,7 @@ namespace TriviaClientApp
             SUBMIT_ANSWER_CODE = 16,
             GET_GAME_RESULTS_CODE = 17,
             PLAYER_RESULTS_CODE = 18,
+            ADD_QUESTION_CODE = 19,
         }
 
         private static TriviaClient? instance = null;
@@ -437,6 +438,17 @@ namespace TriviaClientApp
         public JObject GetRoomUsers()
         {
             return SendRequestDict((byte)RequestCodes.PLAYER_RESULTS_CODE);
+        }
+
+        /// <summary>
+        /// Will add a question
+        /// {"status" : status}
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject AddQuestion(string question, string correctAnswer, string answer2, string answer3, string answer4)
+        {
+            JObject data = new JObject() { { "question", question }, { "correctAns", correctAnswer }, { "ans2", answer2 }, { "ans3", answer3 }, { "ans4", answer4 } };
+            return SendRequestDict((byte)RequestCodes.ADD_QUESTION_CODE, data);
         }
 
 
