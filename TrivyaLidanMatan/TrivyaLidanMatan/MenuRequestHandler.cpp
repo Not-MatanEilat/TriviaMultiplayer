@@ -251,6 +251,11 @@ RequestResult MenuRequestHandler::createRoom(RequestInfo const& info)
 	return result;
 }
 
+/**
+ * \brief Adds a question to the current DataBase
+ * \param info the info of request
+ * \return the add question result
+ */
 RequestResult MenuRequestHandler::addQuestion(RequestInfo const& info)
 {
 	RequestResult result;
@@ -258,7 +263,12 @@ RequestResult MenuRequestHandler::addQuestion(RequestInfo const& info)
 	AddQuestionRequest request = JsonRequestPacketDeserializer::deserializeAddQuestionRequest(info.buffer);
 
 	AddQuestionResponse response;
+	response.status = SUCCESS;
 
 	IDataBase* db = m_handlerFactory.getDataBase();
-	db.
+	db->addQuestion(request.question, request.correctAns, request.ans2, request.ans3, request.ans4);
+
+	result.newHandler = this;
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	return result;
 }
