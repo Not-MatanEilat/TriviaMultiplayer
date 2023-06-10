@@ -60,5 +60,12 @@ namespace TriviaClientApp
             Login login = new Login();
             main.ChangePage(login);
         }
+
+        private void headToHeaButton_Click(object sender, EventArgs e)
+        {
+            // Do a client action here later after
+            HeadToHeadWaitingRoom headToHeadWaitingRoom = new HeadToHeadWaitingRoom();
+            main.ChangePage(headToHeadWaitingRoom);
+        }
     }
 }
