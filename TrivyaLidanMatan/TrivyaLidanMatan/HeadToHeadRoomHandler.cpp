@@ -6,11 +6,11 @@
  * \param user the user in room
  * \param room the current room user's in
  */
-HeadToHeadRoomHandler::HeadToHeadRoomHandler(RequestHandlerFactory& handlerFactory, const LoggedUser& user, Room& room) :
-	m_room(room), m_user(user), m_roomManager(handlerFactory.getRoomManager()), m_handlerFactory(handlerFactory)
+HeadToHeadRoomHandler::HeadToHeadRoomHandler(RequestHandlerFactory& handlerFactory, const LoggedUser& user, Matchmaker& matchmaker) :
+	m_matchmaker(matchmaker), m_user(user), m_matchmakerManager(handlerFactory.getMatchmakerManager()), m_handlerFactory(handlerFactory)
 
 {
-	
+	matchmaker.addPlayer(m_user);
 }
 
 /**
@@ -32,7 +32,6 @@ bool HeadToHeadRoomHandler::isRequestRelevant(RequestInfo info)
 RequestResult HeadToHeadRoomHandler::handleRequest(RequestInfo info)
 {
 	RequestResult result;
-	checkForGameStart();
 
 	try
 	{
@@ -45,6 +44,7 @@ RequestResult HeadToHeadRoomHandler::handleRequest(RequestInfo info)
 			result = getRoomState(info);
 		}
 
+
 	}
 	catch (const std::exception& e)
 	{
@@ -56,5 +56,18 @@ RequestResult HeadToHeadRoomHandler::handleRequest(RequestInfo info)
 
 	}
 
+	m_matchmaker.handleMatchmaking();
 	return result;
 }
+
+RequestResult HeadToHeadRoomHandler::leaveRoom(RequestInfo info)
+{
+	RequestResult result;
+	LeaveRoomResponse response;
+	response.status = SUCCESS;
+	m_roomManager.deleteRoom(m_room.getId());
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+	result.newHandler = m_handlerFactory.createMenuRequestHandler(m_user);
+	return result;
+}
+

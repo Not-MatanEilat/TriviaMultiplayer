@@ -5,11 +5,14 @@
 #include "RequestHandlerFactory.h"
 #include "Communicator.h"
 
+
+#define PLAYERS_PER_HEAD_TO_HEAD_ROOM_AMOUNT 2
+
 class HeadToHeadRoomHandler : public IRequestHandler
 {
 public:
 
-	HeadToHeadRoomHandler(RequestHandlerFactory& handlerFactory, const LoggedUser& user, Room& room);
+	HeadToHeadRoomHandler(RequestHandlerFactory& handlerFactory, const LoggedUser& user, Matchmaker& matchmaker);
 
 	bool isRequestRelevant(RequestInfo info) override;
 	RequestResult handleRequest(RequestInfo info) override;
@@ -21,11 +24,8 @@ private:
 	RequestResult leaveRoom(RequestInfo info);
 	RequestResult startGame(RequestInfo info);
 
-	void checkForGameStart();
-
-	Room& m_room;
+	Matchmaker& m_matchmaker;
 	LoggedUser m_user;
-	RoomManager& m_roomManager;
 	RequestHandlerFactory& m_handlerFactory;
 
 };
