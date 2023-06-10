@@ -13,8 +13,10 @@ public:
 	Matchmaker(int playersPerGame, RoomManager& roomManager);
 
 	void handleMatchmaking();
-	void addPlayer(LoggedUser loggedUser);
-	void removePlayer(LoggedUser loggedUser);
+	void addPlayer(const LoggedUser& loggedUser);
+	void removePlayer(const LoggedUser& loggedUser);
+
+	bool isPlayerInQueue(const LoggedUser& loggedUser);
 
 private:
 	int m_playersPerGame;

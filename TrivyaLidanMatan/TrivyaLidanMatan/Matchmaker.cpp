@@ -10,3 +10,50 @@ Matchmaker::Matchmaker(int playersPerGame, RoomManager& roomManager) : m_players
 	
 }
 
+/**
+ * \brief Will add a player to the waiting players queue, if already in it, then throws exception
+ * \param loggedUser the loggedUser to add
+ */
+void Matchmaker::addPlayer(const LoggedUser& loggedUser)
+{
+	if (isPlayerInQueue(loggedUser))
+	{
+		throw std::exception("Player is already in queue");
+	}
+
+	m_waitingPlayers.push(loggedUser);
+}
+
+/**
+ * \brief Checks if player is already waiting in the queue
+ * \param loggedUser the loggedUser to check
+ * \return True or False
+ */
+bool Matchmaker::isPlayerInQueue(const LoggedUser& loggedUser)
+{
+	queue<LoggedUser> helper;
+
+	bool playerInQueue = false;
+
+	
+	while (!m_waitingPlayers.empty())
+	{
+		if (m_waitingPlayers.front().getUsername() == loggedUser.getUsername())
+		{
+			playerInQueue = true;
+		}
+
+		helper.push(m_waitingPlayers.front());
+		m_waitingPlayers.pop();
+	}
+
+	while (!helper.empty())
+	{
+		m_waitingPlayers.push(helper.front());
+		helper.pop();
+	}
+
+	return playerInQueue;
+}
+
+
