@@ -7,7 +7,7 @@
  * \param room the current room user's in
  */
 HeadToHeadRoomHandler::HeadToHeadRoomHandler(RequestHandlerFactory& handlerFactory, const LoggedUser& user, Matchmaker& matchmaker) :
-	m_matchmaker(matchmaker), m_user(user), m_matchmakerManager(handlerFactory.getMatchmakerManager()), m_handlerFactory(handlerFactory)
+	m_matchmaker(matchmaker), m_user(user), m_handlerFactory(handlerFactory)
 
 {
 	matchmaker.addPlayer(m_user);

@@ -7,6 +7,8 @@
 
 
 #define PLAYERS_PER_HEAD_TO_HEAD_ROOM_AMOUNT 2
+#define QUESTIONS_AMOUNT_HEAD_TO_HEAD_ROOM_AMOUNT 15
+#define QUESTION_TIME_HEAD_TO_HEAD 12
 
 class HeadToHeadRoomHandler : public IRequestHandler
 {

@@ -232,17 +232,7 @@ RequestResult MenuRequestHandler::createRoom(RequestInfo const& info)
 	roomData.numOfQuestionsInGame = request.questionCount;
 	roomData.currentPlayersAmount = 0;
 
-	int id = 0;
-	for (RoomData data : m_roomManager.getRooms())
-	{
-		if (data.id > id)
-		{
-			id = data.id;
-		}
-	}
-	roomData.id = id + 1;
-	roomData.isActive = false;
-
+	unsigned int id = m_roomManager.getNewRoomId();
 	m_roomManager.createRoom(m_user, roomData);
 
 

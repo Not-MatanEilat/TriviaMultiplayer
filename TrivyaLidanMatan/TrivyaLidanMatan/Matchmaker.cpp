@@ -5,10 +5,48 @@
  * \param playersPerGame amount of players per game
  * \param roomManager ref from room manager
  */
-Matchmaker::Matchmaker(int playersPerGame, RoomManager& roomManager) : m_playersPerGame(playersPerGame), m_roomManager(roomManager)
+Matchmaker::Matchmaker(int playersPerGame, int questionsAmount, int questionTime, RoomManager& roomManager, GameManager& gameManager) : m_playersPerGame(playersPerGame), m_questionsAmount(questionsAmount), m_questionTime(questionTime), m_roomManager(roomManager), m_gameManager(gameManager)
 {
 	
 }
+
+
+
+
+void Matchmaker::handleMatchmaking()
+{
+	// if enough users in queue to make a new game here
+	if (m_waitingPlayers.size() >= m_playersPerGame)
+	{
+		vector<LoggedUser> players;
+		for (int i = 0; i < m_playersPerGame; i++)
+		{
+			players.push_back(m_waitingPlayers.front());
+			m_waitingPlayers.pop();
+		}
+
+		RoomData roomData;
+
+		roomData.id = m_roomManager.getNewRoomId();
+		roomData.currentPlayersAmount = m_playersPerGame;
+		roomData.maxPlayers = m_playersPerGame;
+		roomData.isActive = true;
+		roomData.numOfQuestionsInGame = m_questionsAmount;
+		roomData.timePerQuestion = m_questionTime;
+
+		m_roomManager.createRoom(roomData);
+
+		for (const LoggedUser& loggedUser : players)
+		{
+			m_roomManager.getRoom(roomData.id).addUser(loggedUser);
+		}
+
+		m_gameManager.createGame(m_roomManager.getRoom(roomData.id));
+
+	}
+
+}
+
 
 /**
  * \brief Will add a player to the waiting players queue, if already in it, then throws exception
