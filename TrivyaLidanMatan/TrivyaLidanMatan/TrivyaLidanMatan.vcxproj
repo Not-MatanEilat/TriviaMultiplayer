@@ -131,6 +131,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameRequestHandler.h" />
+    <ClInclude Include="HeadToHeadRoomHandler.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="RoomAdminRequestHandler.h" />
     <ClInclude Include="RoomMemberRequestHandler.h" />
@@ -159,6 +160,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameRequestHandler.cpp" />
+    <ClCompile Include="HeadToHeadRoomHandler.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="RoomAdminRequestHandler.cpp" />
     <ClCompile Include="RoomMemberRequestHandler.cpp" />
