@@ -21,7 +21,7 @@ HeadToHeadRoomHandler::HeadToHeadRoomHandler(RequestHandlerFactory& handlerFacto
 bool HeadToHeadRoomHandler::isRequestRelevant(RequestInfo info)
 {
 	int code = info.requestId;
-	return code == LEAVE_ROOM_CODE || code == ROOM_STATE_CODE;
+	return code == LEAVE_HTH_CODE || code == HTH_GET_STATE_CODE;
 }
 
 /**
@@ -35,11 +35,11 @@ RequestResult HeadToHeadRoomHandler::handleRequest(RequestInfo info)
 
 	try
 	{
-		if (info.requestId == LEAVE_ROOM_CODE)
+		if (info.requestId == LEAVE_HTH_CODE)
 		{
 			result = leaveRoom(info);
 		}
-		else if (info.requestId == ROOM_STATE_CODE)
+		else if (info.requestId == HTH_GET_STATE_CODE)
 		{
 			result = getRoomState(info);
 		}

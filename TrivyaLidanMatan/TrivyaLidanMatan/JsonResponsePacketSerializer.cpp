@@ -312,8 +312,8 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const GetQuestionResponse
 
 /**
  * \brief The function will take a AddQuestion response and serialize it to a buffer {"status" : status}
- * \param addQuestionResponse 
- * \return 
+ * \param addQuestionResponse addQuestion response response to serialize 
+ * \return addQuestion response to serialized to a buffer
  */
 Buffer JsonResponsePacketSerializer::serializeResponse(const AddQuestionResponse& addQuestionResponse)
 {
@@ -322,6 +322,20 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const AddQuestionResponse
 	Buffer vec = serializeResponseFromJson(ADD_QUESTION_CODE, j);
 	return vec;
 }
+
+/**
+ * \brief The function will take a LeaveTHT response response and serialize it to a buffer {"status" : status}
+ * \param leaveHTHResponse leaveTHTQuestion response response to serialize 
+ * \return leaveTHT response to serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(const LeaveHTHResponse& leaveHTHResponse)
+{
+	json j;
+	j["status"] = leaveHTHResponse.status;
+	Buffer vec = serializeResponseFromJson(LEAVE_HTH_CODE, j);
+	return vec;
+}
+
 
 
 

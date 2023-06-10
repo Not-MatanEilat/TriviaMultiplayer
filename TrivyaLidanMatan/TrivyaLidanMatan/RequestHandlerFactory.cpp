@@ -8,7 +8,7 @@
  * \param mDatabase the DB of the server
  */
 RequestHandlerFactory::RequestHandlerFactory(IDataBase* mDatabase) : m_database(mDatabase)
-, m_loginManager(mDatabase), m_roomManager(), m_statisticsManager(mDatabase), m_gameManager(mDatabase), m_headToHeadMatchmaker(PLAYERS_PER_HEAD_TO_HEAD_ROOM_AMOUNT, QUESTIONS_AMOUNT_HEAD_TO_HEAD_ROOM_AMOUNT, QUESTION_TIME_HEAD_TO_HEAD, m_roomManager, m_gameManager)
+, m_loginManager(mDatabase), m_roomManager(), m_statisticsManager(mDatabase), m_gameManager(mDatabase), m_headToHeadMatchmaker(PLAYERS_PER_HTH_ROOM_AMOUNT, QUESTIONS_AMOUNT_HTH_ROOM_AMOUNT, QUESTION_TIME_HTH, m_roomManager, m_gameManager)
 {
 }
 
