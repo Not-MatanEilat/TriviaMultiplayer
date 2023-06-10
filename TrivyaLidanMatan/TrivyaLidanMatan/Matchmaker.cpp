@@ -56,4 +56,33 @@ bool Matchmaker::isPlayerInQueue(const LoggedUser& loggedUser)
 	return playerInQueue;
 }
 
+/**
+ * \brief Removes given loggedUser from the waiting queue, if not in it, throws an exception
+ * \param loggedUser the loggedUser to remove
+ */
+void Matchmaker::removePlayer(const LoggedUser& loggedUser)
+{
+	if (!isPlayerInQueue(loggedUser))
+	{
+		throw std::exception("Player is not in queue");
+	}
+
+	queue<LoggedUser> helper;
+	while (!m_waitingPlayers.empty())
+	{
+		if (m_waitingPlayers.front().getUsername() != loggedUser.getUsername())
+		{
+			helper.push(m_waitingPlayers.front());
+		}
+		m_waitingPlayers.pop();
+	}
+
+	while (!helper.empty())
+	{
+		m_waitingPlayers.push(helper.front());
+		helper.pop();
+	}
+}
+
+
 
