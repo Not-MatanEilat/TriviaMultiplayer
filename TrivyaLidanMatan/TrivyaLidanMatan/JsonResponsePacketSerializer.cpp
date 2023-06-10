@@ -336,6 +336,21 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const LeaveHTHResponse& l
 	return vec;
 }
 
+/**
+ * \brief The function will take a getTHTState response response and serialize it to a buffer {"status" : status, "hasGameBegun" : hasGameBegun}
+ * \param getHTHStateResponse getTHTState response response to serialize 
+ * \return getTHTState response to serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(const getHTHStateResponse& getHTHStateResponse)
+{
+	json j;
+	j["status"] = getHTHStateResponse.status;
+	j["hasGameBegun"] = getHTHStateResponse.hasGameBegun;
+	Buffer vec = serializeResponseFromJson(HTH_GET_STATE_CODE, j);
+	return vec;
+}
+
+
 
 
 

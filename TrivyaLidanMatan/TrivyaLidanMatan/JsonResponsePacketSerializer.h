@@ -177,6 +177,7 @@ public:
 
 	static Buffer serializeResponse(const AddQuestionResponse& addQuestionResponse);
 
-	static Buffer serializeResponse(const LeaveHTHRoomResponse& leaveHTHRoomResponse);
+	static Buffer serializeResponse(const LeaveHTHResponse& leaveHTHResponse);
+	static Buffer serializeResponse(const getHTHStateResponse& getHTHStateResponse);
 };
 
