@@ -22,7 +22,7 @@ public:
 
 private:
 
-	RequestResult getRoomState(RequestInfo info);
+	RequestResult getState(RequestInfo info);
 	RequestResult leaveRoom(RequestInfo info);
 	RequestResult startGame(RequestInfo info);
 

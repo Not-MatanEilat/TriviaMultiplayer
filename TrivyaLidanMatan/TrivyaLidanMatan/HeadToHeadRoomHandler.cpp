@@ -41,7 +41,7 @@ RequestResult HeadToHeadRoomHandler::handleRequest(RequestInfo info)
 		}
 		else if (info.requestId == HTH_GET_STATE_CODE)
 		{
-			result = getRoomState(info);
+			result = getState(info);
 		}
 
 
@@ -59,6 +59,36 @@ RequestResult HeadToHeadRoomHandler::handleRequest(RequestInfo info)
 	m_matchmaker.handleMatchmaking();
 	return result;
 }
+
+/**
+ * \brief Will let the user know if a game was found
+ * \param info the info of request
+ * \return the result of request
+ */
+RequestResult HeadToHeadRoomHandler::getState(RequestInfo info)
+{
+	RequestResult result;
+	getHTHStateResponse response;
+
+
+	response.status = SUCCESS;
+
+	if (m_matchmaker.isPlayerInQueue(m_user))
+	{
+		response.hasGameBegun = false;
+		result.newHandler = this;
+	}
+	else
+	{
+		response.hasGameBegun = true;
+		result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, m_handlerFactory.getGameManager().getGame(m_user));
+	}
+
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+
+	return result;
+}
+
 
 /**
  * \brief Will remove player from the current matchmaking
