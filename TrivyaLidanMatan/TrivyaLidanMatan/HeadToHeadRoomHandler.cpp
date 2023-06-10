@@ -60,10 +60,18 @@ RequestResult HeadToHeadRoomHandler::handleRequest(RequestInfo info)
 	return result;
 }
 
+/**
+ * \brief Will remove player from the current matchmaking
+ * \param info info of the request
+ * \return the result of request
+ */
 RequestResult HeadToHeadRoomHandler::leaveRoom(RequestInfo info)
 {
 	RequestResult result;
-	LeaveRoomResponse response;
+	LeaveHTHResponse response;
+
+	m_matchmaker.removePlayer(m_user);
+
 	response.status = SUCCESS;
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	result.newHandler = m_handlerFactory.createMenuRequestHandler(m_user);
