@@ -37,8 +37,10 @@
             nextButton = new Button();
             BackButtonPress = new Button();
             gameOverTImer = new System.Windows.Forms.Timer(components);
-            questionTimeTimer = new System.Windows.Forms.Timer(components);
             questionNumberLabel = new Label();
+            timeLeftLabel = new Label();
+            timeLeftTimer = new System.Windows.Forms.Timer(components);
+            correctAnswersLabel = new Label();
             SuspendLayout();
             // 
             // questionLabel
@@ -122,15 +124,37 @@
             questionNumberLabel.Text = "Question 1/1";
             questionNumberLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // questionTimeTimer
+            // timeLeftLabel
             // 
-            questionTimeTimer.Enabled = true;
-            questionTimeTimer.Tick += questionTimeTimer_Tick;
+            timeLeftLabel.AutoSize = true;
+            timeLeftLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            timeLeftLabel.Location = new Point(35, 20);
+            timeLeftLabel.Name = "timeLeftLabel";
+            timeLeftLabel.Size = new Size(99, 21);
+            timeLeftLabel.TabIndex = 9;
+            timeLeftLabel.Text = "Time Left: 10";
+            // 
+            // timeLeftTimer
+            // 
+            timeLeftTimer.Interval = 1000;
+            timeLeftTimer.Tick += timeLeftTimer_Tick;
+            // 
+            // correctAnswersLabel
+            // 
+            correctAnswersLabel.AutoSize = true;
+            correctAnswersLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            correctAnswersLabel.Location = new Point(659, 21);
+            correctAnswersLabel.Name = "correctAnswersLabel";
+            correctAnswersLabel.Size = new Size(77, 21);
+            correctAnswersLabel.TabIndex = 10;
+            correctAnswersLabel.Text = "Correct: 0";
             // 
             // Game
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(correctAnswersLabel);
+            Controls.Add(timeLeftLabel);
             Controls.Add(questionNumberLabel);
             Controls.Add(BackButtonPress);
             Controls.Add(nextButton);
@@ -142,6 +166,7 @@
             Name = "Game";
             Load += Game_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -155,6 +180,8 @@
         private Button BackButtonPress;
         private System.Windows.Forms.Timer gameOverTImer;
         private Label questionNumberLabel;
-        private System.Windows.Forms.Timer questionTimeTimer;
+        private Label timeLeftLabel;
+        private System.Windows.Forms.Timer timeLeftTimer;
+        private Label correctAnswersLabel;
     }
 }
