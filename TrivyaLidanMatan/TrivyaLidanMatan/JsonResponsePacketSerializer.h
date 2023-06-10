@@ -142,7 +142,7 @@ typedef struct getHTHStateResponse
 	bool hasGameBegun;
 } getHTHStateResponse;
 
-typedef struct joinHTHRoomResponse
+typedef struct joinHTHResponse
 {
 	unsigned int status;
 } joinHTHRoomResponse;
@@ -179,5 +179,6 @@ public:
 
 	static Buffer serializeResponse(const LeaveHTHResponse& leaveHTHResponse);
 	static Buffer serializeResponse(const getHTHStateResponse& getHTHStateResponse);
+	static Buffer serializeResponse(const joinHTHResponse& joinHTHResponse);
 };
 

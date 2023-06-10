@@ -65,7 +65,6 @@ RequestResult HeadToHeadRoomHandler::leaveRoom(RequestInfo info)
 	RequestResult result;
 	LeaveRoomResponse response;
 	response.status = SUCCESS;
-	m_roomManager.deleteRoom(m_room.getId());
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	result.newHandler = m_handlerFactory.createMenuRequestHandler(m_user);
 	return result;

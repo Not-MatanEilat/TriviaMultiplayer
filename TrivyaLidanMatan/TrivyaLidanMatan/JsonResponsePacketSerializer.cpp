@@ -337,9 +337,9 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const LeaveHTHResponse& l
 }
 
 /**
- * \brief The function will take a getTHTState response response and serialize it to a buffer {"status" : status, "hasGameBegun" : hasGameBegun}
- * \param getHTHStateResponse getTHTState response response to serialize 
- * \return getTHTState response to serialized to a buffer
+ * \brief The function will take a getHTHState response response and serialize it to a buffer {"status" : status, "hasGameBegun" : hasGameBegun}
+ * \param getHTHStateResponse GetTHTState response response to serialize 
+ * \return getHTHState response to serialized to a buffer
  */
 Buffer JsonResponsePacketSerializer::serializeResponse(const getHTHStateResponse& getHTHStateResponse)
 {
@@ -349,6 +349,20 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const getHTHStateResponse
 	Buffer vec = serializeResponseFromJson(HTH_GET_STATE_CODE, j);
 	return vec;
 }
+
+/**
+ * \brief The function will take a joinTHT response response and serialize it to a buffer {"status" : status}
+ * \param joinHTHResponse joinTHT response to serialize
+ * \return joinHTH response to serialized to a buffer
+ */
+Buffer JsonResponsePacketSerializer::serializeResponse(const joinHTHResponse& joinHTHResponse)
+{
+	json j;
+	j["status"] = joinHTHResponse.status;
+	Buffer vec = serializeResponseFromJson(JOIN_HTH_CODE, j);
+	return vec;
+}
+
 
 
 
