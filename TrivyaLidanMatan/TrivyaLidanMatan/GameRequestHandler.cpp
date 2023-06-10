@@ -74,9 +74,8 @@ RequestResult GameRequestHandler::handleRequest(RequestInfo info)
 void GameRequestHandler::handleDisconnect()
 {
 	TRACE("GameRequestHandler " << m_user.getUsername() << ": disconnected")
-		m_game.removePlayer(m_user);
+	m_game.removePlayer(m_user);
 	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
-	m_gameManager.getGame(m_user).removePlayer(m_user);
 }
 
 
