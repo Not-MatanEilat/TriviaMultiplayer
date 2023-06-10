@@ -12,3 +12,14 @@ HeadToHeadRoomHandler::HeadToHeadRoomHandler(RequestHandlerFactory& handlerFacto
 {
 	
 }
+
+/**
+ * \brief Will return a bool based on if the request was relevant or not
+ * \param info the info of request
+ * \return True or False
+ */
+bool HeadToHeadRoomHandler::isRequestRelevant(RequestInfo info)
+{
+	int code = info.requestId;
+	return code == LEAVE_ROOM_CODE || code == ROOM_STATE_CODE;
+}

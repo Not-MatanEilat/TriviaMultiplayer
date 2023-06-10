@@ -21,6 +21,12 @@ private:
 	RequestResult leaveRoom(RequestInfo info);
 	RequestResult startGame(RequestInfo info);
 
+	void checkForGameStart();
+
+	Room& m_room;
+	LoggedUser m_user;
+	RoomManager& m_roomManager;
+	RequestHandlerFactory& m_handlerFactory;
 
 };
 
