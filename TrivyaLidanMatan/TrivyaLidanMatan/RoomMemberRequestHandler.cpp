@@ -111,6 +111,15 @@ RequestResult RoomMemberRequestHandler::getRoomState(RequestInfo info)
 	{
 		GameManager& gameManager = m_handlerFactory.getGameManager();
 		result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, gameManager.getGame(m_user));
+
+		Room& room = m_handlerFactory.getRoomManager().getRoomOfUser(m_user.getUsername());
+		room.removeUser(m_user.getUsername());
+
+		// if empty, all left, we can delete that now then
+		if (room.getAllUsers().empty())
+		{
+			m_handlerFactory.getRoomManager().deleteRoom(room.getRoomData().id);
+		}
 	}
 	else
 	{

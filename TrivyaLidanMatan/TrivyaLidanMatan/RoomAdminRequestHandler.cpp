@@ -174,9 +174,17 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo info)
 		StartGameResponse response;
 		response.status = SUCCESS;
 
-		// stays this for now, soon will change to be the start game handler
 		result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, gameManager.getGame(m_user));
 		result.response = JsonResponsePacketSerializer::serializeResponse(response);
+
+		Room& room = m_handlerFactory.getRoomManager().getRoomOfUser(m_user.getUsername());
+		room.removeUser(m_user.getUsername());
+
+		// if empty, all left, we can delete that now then
+		if (room.getAllUsers().empty())
+		{
+			m_handlerFactory.getRoomManager().deleteRoom(room.getRoomData().id);
+		}
 	}
 	catch (const std::exception& e)
 	{

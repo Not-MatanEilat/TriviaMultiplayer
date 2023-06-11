@@ -154,15 +154,6 @@ RequestResult GameRequestHandler::getGameResults(RequestInfo info)
 		result.newHandler = this;
 		result.response = JsonResponsePacketSerializer::serializeResponse(response);
 
-		Room& room = m_handlerFactory.getRoomManager().getRoomOfUser(m_user.getUsername());
-		room.removeUser(m_user.getUsername());
-
-		// if empty, all left, we can delete that now then
-		if (room.getAllUsers().empty())
-		{
-			m_handlerFactory.getRoomManager().deleteRoom(room.getRoomData().id);
-		}
-
 	}
 	else
 	{
