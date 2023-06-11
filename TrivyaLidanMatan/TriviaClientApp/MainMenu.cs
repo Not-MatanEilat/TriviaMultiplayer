@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bootstrap.BSControl;
+using CustomControls.RJControls;
 
 namespace TriviaClientApp
 {
@@ -72,6 +74,11 @@ namespace TriviaClientApp
             TriviaClient.GetClient().JoinHeadToHead();
             HeadToHeadWaitingRoom headToHeadWaitingRoom = new HeadToHeadWaitingRoom();
             main.ChangePage(headToHeadWaitingRoom);
+        }
+
+        private void rjButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
