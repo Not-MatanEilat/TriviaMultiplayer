@@ -91,6 +91,13 @@ RequestResult GameRequestHandler::leaveGame(RequestInfo info)
 	LeaveGameResponse response;
 
 	m_game.removePlayer(m_user.getUsername());
+
+	// check room empty, if empty, all left can delete this
+	if (m_game.getPlayers().empty())
+	{
+		m_gameManager.deleteGame(m_game.getGameId());
+	}
+
 	response.status = SUCCESS;
 
 	result.newHandler = m_handlerFactory.createMenuRequestHandler(m_user);
@@ -146,6 +153,15 @@ RequestResult GameRequestHandler::getGameResults(RequestInfo info)
 		response.results = m_gameManager.getGamesResults(m_game.getGameId());
 		result.newHandler = this;
 		result.response = JsonResponsePacketSerializer::serializeResponse(response);
+
+		Room& room = m_handlerFactory.getRoomManager().getRoomOfUser(m_user.getUsername());
+		room.removeUser(m_user.getUsername());
+
+		// if empty, all left, we can delete that now then
+		if (room.getAllUsers().empty())
+		{
+			m_handlerFactory.getRoomManager().deleteRoom(room.getRoomData().id);
+		}
 
 	}
 	else
