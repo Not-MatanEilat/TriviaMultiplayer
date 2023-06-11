@@ -41,6 +41,7 @@
             timeLeftLabel = new Label();
             timeLeftTimer = new System.Windows.Forms.Timer(components);
             correctAnswersLabel = new Label();
+            nextButtonTimer = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // questionLabel
@@ -149,6 +150,11 @@
             correctAnswersLabel.TabIndex = 10;
             correctAnswersLabel.Text = "Correct: 0";
             // 
+            // nextButtonTimer
+            // 
+            nextButtonTimer.Interval = 5000;
+            nextButtonTimer.Tick += nextButtonTimer_Tick;
+            // 
             // Game
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -183,5 +189,6 @@
         private Label timeLeftLabel;
         private System.Windows.Forms.Timer timeLeftTimer;
         private Label correctAnswersLabel;
+        private System.Windows.Forms.Timer nextButtonTimer;
     }
 }
