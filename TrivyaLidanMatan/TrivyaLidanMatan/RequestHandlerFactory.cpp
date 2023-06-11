@@ -7,7 +7,8 @@
  * \brief Constructor to RequestHandler Factory
  * \param mDatabase the DB of the server
  */
-RequestHandlerFactory::RequestHandlerFactory(IDataBase* mDatabase) : m_database(mDatabase), m_loginManager(mDatabase), m_roomManager(), m_statisticsManager(mDatabase), m_gameManager(mDatabase)
+RequestHandlerFactory::RequestHandlerFactory(IDataBase* mDatabase) : m_database(mDatabase)
+, m_loginManager(mDatabase), m_roomManager(), m_statisticsManager(mDatabase), m_gameManager(mDatabase), m_headToHeadMatchmaker(PLAYERS_PER_HTH_ROOM_AMOUNT, QUESTIONS_AMOUNT_HTH_ROOM_AMOUNT, QUESTION_TIME_HTH, m_roomManager, m_gameManager)
 {
 }
 
@@ -107,6 +108,12 @@ GameRequestHandler* RequestHandlerFactory::createGameRequestHandler(const Logged
 {
 	return new GameRequestHandler(*this, loggedUser, game);
 }
+
+HeadToHeadRoomHandler* RequestHandlerFactory::createHeadToHeadRoomHandler(const LoggedUser& loggedUser)
+{
+	return new HeadToHeadRoomHandler(*this, loggedUser, m_headToHeadMatchmaker);
+}
+
 
 
 

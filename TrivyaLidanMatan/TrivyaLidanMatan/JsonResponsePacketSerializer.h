@@ -131,6 +131,25 @@ typedef struct AddQuestionResponse
 	unsigned int status;
 } AddQuestionResponse;
 
+typedef struct LeaveHTHResponse
+{
+	unsigned int status;
+} LeaveHTHRoomResponse;
+
+typedef struct GetHTHStateResponse
+{
+	unsigned int status;
+	bool hasGameBegun;
+	int timePerQuestion;
+	int questionsAmount;
+	vector<string> players;
+} GetHTHStateResponse;
+
+typedef struct JoinHTHResponse
+{
+	unsigned int status;
+} JoinHTHRoomResponse;
+
 class JsonResponsePacketSerializer
 {
 
@@ -160,5 +179,9 @@ public:
 	static Buffer serializeResponse(const GetQuestionResponse& getQuestionResponse);
 
 	static Buffer serializeResponse(const AddQuestionResponse& addQuestionResponse);
+
+	static Buffer serializeResponse(const LeaveHTHResponse& leaveHTHResponse);
+	static Buffer serializeResponse(const GetHTHStateResponse& getHTHStateResponse);
+	static Buffer serializeResponse(const JoinHTHResponse& joinHTHResponse);
 };
 

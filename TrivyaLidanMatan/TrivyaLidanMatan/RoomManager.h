@@ -15,6 +15,7 @@ public:
 	RoomManager();
 
 	void createRoom(const LoggedUser& user, const RoomData& roomData);
+	void createRoom(const RoomData& roomData);
 	void joinRoom(const LoggedUser& user, unsigned int id);
 	void leaveRoom(const LoggedUser& user);
 	void deleteRoom(unsigned int id);
@@ -25,6 +26,7 @@ public:
 	Room& getRoomOfUser(const string& username);
 	bool isUserInAnyRoom(const string& username);
 	bool doesRoomExist(unsigned int id);
+	unsigned int getNewRoomId();
 
 private:
 	map<unsigned int,Room> m_rooms;

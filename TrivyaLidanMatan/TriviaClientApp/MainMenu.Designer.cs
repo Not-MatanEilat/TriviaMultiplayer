@@ -36,6 +36,7 @@
             userConnected = new Label();
             logoutButton = new Button();
             createQuestionButton = new Button();
+            headToHeaButton = new Button();
             SuspendLayout();
             // 
             // label1
@@ -70,7 +71,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(344, 239);
+            button3.Location = new Point(344, 275);
             button3.Name = "button3";
             button3.Size = new Size(107, 30);
             button3.TabIndex = 3;
@@ -80,7 +81,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(344, 311);
+            button4.Location = new Point(344, 347);
             button4.Name = "button4";
             button4.Size = new Size(107, 30);
             button4.TabIndex = 4;
@@ -110,7 +111,7 @@
             // 
             // createQuestionButton
             // 
-            createQuestionButton.Location = new Point(344, 275);
+            createQuestionButton.Location = new Point(344, 311);
             createQuestionButton.Name = "createQuestionButton";
             createQuestionButton.Size = new Size(107, 30);
             createQuestionButton.TabIndex = 3;
@@ -118,11 +119,22 @@
             createQuestionButton.UseVisualStyleBackColor = true;
             createQuestionButton.Click += createQuestionButton_Click;
             // 
+            // headToHeaButton
+            // 
+            headToHeaButton.Location = new Point(344, 239);
+            headToHeaButton.Name = "headToHeaButton";
+            headToHeaButton.Size = new Size(107, 30);
+            headToHeaButton.TabIndex = 6;
+            headToHeaButton.Text = "Head To Head";
+            headToHeaButton.UseVisualStyleBackColor = true;
+            headToHeaButton.Click += headToHeaButton_Click;
+            // 
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.MenuHighlight;
+            Controls.Add(headToHeaButton);
             Controls.Add(logoutButton);
             Controls.Add(userConnected);
             Controls.Add(button4);
@@ -148,5 +160,6 @@
         private Button JoinRoomButton;
         private Button logoutButton;
         private Button createQuestionButton;
+        private Button headToHeaButton;
     }
 }

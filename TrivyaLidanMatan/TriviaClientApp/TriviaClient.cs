@@ -42,6 +42,9 @@ namespace TriviaClientApp
             GET_GAME_RESULTS_CODE = 17,
             PLAYER_RESULTS_CODE = 18,
             ADD_QUESTION_CODE = 19,
+            HTH_GET_STATE_CODE = 20,
+            JOIN_HTH_CODE = 21,
+            LEAVE_HTH_CODE = 22,
         }
 
         private static TriviaClient? instance = null;
@@ -449,6 +452,26 @@ namespace TriviaClientApp
         {
             JObject data = new JObject() { { "question", question }, { "correctAns", correctAnswer }, { "ans2", answer2 }, { "ans3", answer3 }, { "ans4", answer4 } };
             return SendRequestDict((byte)RequestCodes.ADD_QUESTION_CODE, data);
+        }
+
+        /// <summary>
+        /// Will join the hth
+        /// {"status" : status}
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject JoinHeadToHead()
+        {
+            return SendRequestDict((byte)RequestCodes.JOIN_HTH_CODE);
+        }
+
+        /// <summary>
+        /// Will get hth state
+        /// {"status" : status, "hasGameBegun" : hasGameBegun, "questionsAmount" : questionsAmount, "players" : players, "timePerQuestion"}
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject getHeadToHeadState()
+        {
+            return SendRequestDict((byte)RequestCodes.HTH_GET_STATE_CODE);
         }
 
 

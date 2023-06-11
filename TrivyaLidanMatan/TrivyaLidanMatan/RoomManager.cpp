@@ -17,6 +17,17 @@ RoomManager::RoomManager()
  */
 void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 {
+	createRoom(roomData);
+	TRACE(" Creator of the room: " + user.getUsername());
+	joinRoom(user, roomData.id);
+}
+
+/**
+ * \brief Creates the room without adding user to it
+ * \param roomData the Data of Room
+ */
+void RoomManager::createRoom(const RoomData& roomData)
+{
 	// check if id already exists
 	for (auto it = m_rooms.begin(); it != m_rooms.end(); it++)
 	{
@@ -32,7 +43,7 @@ void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 	std::pair<int, Room> pair(roomData.id, room);
 	m_rooms.insert(pair);
 
-	TRACE("\nRoom created, Creator of the room: " + user.getUsername() + ", Room Data:\n"
+	TRACE("\nRoom created, Room Data:\n"
 		"Id: " + std::to_string(roomData.id) + "\n"
 		"Room Name: " + roomData.name + "\n"
 		"Is Active: " + std::to_string(roomData.isActive) + "\n"
@@ -40,9 +51,8 @@ void RoomManager::createRoom(const LoggedUser& user, const RoomData& roomData)
 		"Max Players: " + std::to_string(roomData.maxPlayers) + "\n"
 		"Time Per a Question: " + std::to_string(roomData.timePerQuestion) + "\n");
 
-
-	joinRoom(user, room.getRoomData().id);
 }
+
 
 /**
  * \brief Will let the user join the room he wants, if user already in a room, we throw an exception,
@@ -227,6 +237,27 @@ bool RoomManager::doesRoomExist(unsigned id)
 {
 	return m_rooms.find(id) != m_rooms.end();
 }
+
+/**
+ * \brief Will return an id for a new room to use it
+ * \return unsigned int id
+ */
+unsigned int RoomManager::getNewRoomId()
+{
+	unsigned int id = 0;
+	for (RoomData data : getRooms())
+	{
+		if (data.id > id)
+		{
+			id = data.id;
+		}
+	}
+
+	// return the highest id plus one
+	return id + 1;
+
+}
+
 
 
 

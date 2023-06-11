@@ -113,6 +113,11 @@ Game& GameManager::getGame(unsigned gameId)
 	throw std::exception("Game id not found");
 }
 
+/**
+ * \brief Returns the game that the given user is in currently
+ * \param user the user for checking
+ * \return the game user's in
+ */
 Game& GameManager::getGame(LoggedUser user)
 {
 	for (Game& game : m_games)
