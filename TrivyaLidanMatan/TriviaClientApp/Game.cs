@@ -94,6 +94,9 @@ namespace TriviaClientApp
 
                 nextButton.Enabled = false;
 
+                nextButtonTimer.Enabled = false;
+                nextButtonTimer.Stop();
+
                 questionNumber++;
                 questionNumberLabel.Text = $"Question {questionNumber}/{roomData.questionCount}";
 
@@ -152,6 +155,8 @@ namespace TriviaClientApp
             GetButtonByAnswer(correctAnswer).BackColor = Color.Green;
             timeLeftTimer.Stop();
             nextButton.Enabled = true;
+            nextButtonTimer.Enabled = true;
+            nextButtonTimer.Start();
         }
 
         private void nextButton_Click(object sender, EventArgs e)
@@ -202,6 +207,11 @@ namespace TriviaClientApp
                 JObject res = TriviaClient.GetClient().SubmitAnswer(-1);
                 handleSubmitAnswer();
             }
+        }
+
+        private void nextButtonTimer_Tick(object sender, EventArgs e)
+        {
+            UpdateQuestion();
         }
     }
 }
