@@ -341,7 +341,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const LeaveHTHResponse& l
  * \param getHTHStateResponse GetTHTState response response to serialize 
  * \return getHTHState response to serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(const getHTHStateResponse& getHTHStateResponse)
+Buffer JsonResponsePacketSerializer::serializeResponse(const GetHTHStateResponse& getHTHStateResponse)
 {
 	json j;
 	j["status"] = getHTHStateResponse.status;
@@ -355,7 +355,7 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const getHTHStateResponse
  * \param joinHTHResponse joinTHT response to serialize
  * \return joinHTH response to serialized to a buffer
  */
-Buffer JsonResponsePacketSerializer::serializeResponse(const joinHTHResponse& joinHTHResponse)
+Buffer JsonResponsePacketSerializer::serializeResponse(const JoinHTHResponse& joinHTHResponse)
 {
 	json j;
 	j["status"] = joinHTHResponse.status;

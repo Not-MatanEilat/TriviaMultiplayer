@@ -79,7 +79,7 @@ void HeadToHeadRoomHandler::handleDisconnect()
 RequestResult HeadToHeadRoomHandler::getState(RequestInfo info)
 {
 	RequestResult result;
-	getHTHStateResponse response;
+	GetHTHStateResponse response;
 
 
 	response.status = SUCCESS;
