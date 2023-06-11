@@ -24,7 +24,6 @@ private:
 
 	RequestResult getState(RequestInfo info);
 	RequestResult leaveRoom(RequestInfo info);
-	RequestResult startGame(RequestInfo info);
 
 	Matchmaker& m_matchmaker;
 	LoggedUser m_user;

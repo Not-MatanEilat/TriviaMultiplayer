@@ -61,6 +61,17 @@ RequestResult HeadToHeadRoomHandler::handleRequest(RequestInfo info)
 }
 
 /**
+ * \brief Will handle a user whenever they have disconnected
+ */
+void HeadToHeadRoomHandler::handleDisconnect()
+{
+	TRACE("HeadToHeadRoomHandler " << m_user.getUsername() << ": disconnected");
+	m_matchmaker.removePlayer(m_user);
+	m_handlerFactory.getLoginManager().logout(m_user.getUsername());
+}
+
+
+/**
  * \brief Will let the user know if a game was found
  * \param info the info of request
  * \return the result of request
