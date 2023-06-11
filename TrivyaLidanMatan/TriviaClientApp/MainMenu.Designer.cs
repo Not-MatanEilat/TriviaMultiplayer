@@ -31,7 +31,7 @@
             label1 = new Label();
             CreateRoomButton = new Button();
             JoinRoomButton = new Button();
-            button3 = new Button();
+            statisticsButton = new Button();
             button4 = new Button();
             userConnected = new Label();
             logoutButton = new Button();
@@ -69,15 +69,15 @@
             JoinRoomButton.UseVisualStyleBackColor = true;
             JoinRoomButton.Click += JoinRoomButton_Click;
             // 
-            // button3
+            // statisticsButton
             // 
-            button3.Location = new Point(344, 275);
-            button3.Name = "button3";
-            button3.Size = new Size(107, 30);
-            button3.TabIndex = 3;
-            button3.Text = "Stats";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += createQuestionButton_Click;
+            statisticsButton.Location = new Point(344, 275);
+            statisticsButton.Name = "statisticsButton";
+            statisticsButton.Size = new Size(107, 30);
+            statisticsButton.TabIndex = 3;
+            statisticsButton.Text = "statistics";
+            statisticsButton.UseVisualStyleBackColor = true;
+            statisticsButton.Click += statisticsButton_Click;
             // 
             // button4
             // 
@@ -139,7 +139,7 @@
             Controls.Add(userConnected);
             Controls.Add(button4);
             Controls.Add(createQuestionButton);
-            Controls.Add(button3);
+            Controls.Add(statisticsButton);
             Controls.Add(JoinRoomButton);
             Controls.Add(CreateRoomButton);
             Controls.Add(label1);
@@ -154,7 +154,7 @@
         private Label label1;
         private Button CreateRoomButton;
         private Button button2;
-        private Button button3;
+        private Button statisticsButton;
         private Button button4;
         private Label userConnected;
         private Button JoinRoomButton;
