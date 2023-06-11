@@ -466,7 +466,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will get hth state
-        /// {"status" : status, "hasGameBegun" : hasGameBegun, "questionsAmount" : questionsAmount, "players" : players, "timePerQuestion"}
+        /// {"status" : status, "hasGameBegun" : hasGameBegun, "questionsAmount" : questionsAmount, "players" : players, "timePerQuestion" : timePerQuestion}
         /// </summary>
         /// <returns>response</returns>
         public JObject GetHeadToHeadState()
