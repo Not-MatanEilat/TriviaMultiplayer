@@ -17,7 +17,7 @@ void Room::addUser(const LoggedUser& user)
 {
 	if (isUserInRoom(user.getUsername()))
 	{
-				throw std::exception("User already in room");
+		throw std::exception("User already in room");
 	}
 	m_users.push_back(user);
 	m_roomData.currentPlayersAmount++;

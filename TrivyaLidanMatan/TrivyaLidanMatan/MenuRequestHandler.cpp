@@ -19,7 +19,7 @@ MenuRequestHandler::MenuRequestHandler(RequestHandlerFactory& handlerFactory, Lo
 bool MenuRequestHandler::isRequestRelevant(RequestInfo info)
 {
 	int code = info.requestId;
-	return code == LOGOUT_CODE || code == ROOMS_LIST_CODE || code == PLAYERS_IN_ROOM_CODE || code == HIGH_SCORES_CODE || code == PERSONAL_STATS_CODE || code == JOIN_ROOM_CODE || code == CREATE_ROOM_CODE || code == ADD_QUESTION_CODE;
+	return code == LOGOUT_CODE || code == ROOMS_LIST_CODE || code == PLAYERS_IN_ROOM_CODE || code == HIGH_SCORES_CODE || code == PERSONAL_STATS_CODE || code == JOIN_ROOM_CODE || code == CREATE_ROOM_CODE || code == ADD_QUESTION_CODE || JOIN_HTH_CODE;
 }
 
 
@@ -64,6 +64,10 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 		else if (info.requestId == ADD_QUESTION_CODE)
 		{
 			result = addQuestion(info);
+		}
+		else if (info.requestId == JOIN_HTH_CODE)
+		{
+			result = joinHeadToHead(info);
 		}
 	}
 	catch (const std::exception& e)
@@ -232,17 +236,9 @@ RequestResult MenuRequestHandler::createRoom(RequestInfo const& info)
 	roomData.numOfQuestionsInGame = request.questionCount;
 	roomData.currentPlayersAmount = 0;
 
-	int id = 0;
-	for (RoomData data : m_roomManager.getRooms())
-	{
-		if (data.id > id)
-		{
-			id = data.id;
-		}
-	}
-	roomData.id = id + 1;
 	roomData.isActive = false;
-
+	unsigned int id = m_roomManager.getNewRoomId();
+	roomData.id = id;
 	m_roomManager.createRoom(m_user, roomData);
 
 
@@ -303,3 +299,25 @@ RequestResult MenuRequestHandler::addQuestion(RequestInfo const& info)
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	return result;
 }
+
+
+/**
+ * \brief Function will join head to head room
+ * \param info the info of request
+ * \return result of the request
+ */
+RequestResult MenuRequestHandler::joinHeadToHead(RequestInfo const& info)
+{
+	RequestResult result;
+	JoinHTHResponse response;
+
+	response.status = SUCCESS;
+
+	TRACE("Player " << m_user.getUsername() << " requested to join a head to head room\n");
+
+	result.newHandler = m_handlerFactory.createHeadToHeadRoomHandler(m_user);
+	result.response = JsonResponsePacketSerializer::serializeResponse(response);
+
+	return result;
+}
+
