@@ -146,10 +146,13 @@ namespace TriviaClientApp
         {
             TriviaClient client = TriviaClient.GetClient();
             JObject result = client.GetRoomState();
-            roomData = JsonConvert.DeserializeObject<RoomData>(result["message"].ToString());
+            if (TriviaClient.IsSuccessResponse(result, false))
+            {
+                roomData = JsonConvert.DeserializeObject<RoomData>(result["message"].ToString());
 
-            LoadAllNames(result);
-            CheckGameHasBegun(result);
+                LoadAllNames(result);
+                CheckGameHasBegun(result);
+            }
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
