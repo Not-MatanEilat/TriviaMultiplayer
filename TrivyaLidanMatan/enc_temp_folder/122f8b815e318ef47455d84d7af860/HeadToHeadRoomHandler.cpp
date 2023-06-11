@@ -131,10 +131,6 @@ RequestResult HeadToHeadRoomHandler::leaveRoom(RequestInfo info)
 	response.status = SUCCESS;
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 	result.newHandler = m_handlerFactory.createMenuRequestHandler(m_user);
-
-
-	TRACE("Player " << m_user.getUsername() << " left Head To Head");
-
 	return result;
 }
 

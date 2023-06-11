@@ -469,9 +469,19 @@ namespace TriviaClientApp
         /// {"status" : status, "hasGameBegun" : hasGameBegun, "questionsAmount" : questionsAmount, "players" : players, "timePerQuestion"}
         /// </summary>
         /// <returns>response</returns>
-        public JObject getHeadToHeadState()
+        public JObject GetHeadToHeadState()
         {
             return SendRequestDict((byte)RequestCodes.HTH_GET_STATE_CODE);
+        }
+
+        /// <summary>
+        /// Will leave the hth
+        /// {"status" : status}
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject LeaveHeadToHead()
+        {
+            return SendRequestDict((byte)RequestCodes.LEAVE_HTH_CODE);
         }
 
 

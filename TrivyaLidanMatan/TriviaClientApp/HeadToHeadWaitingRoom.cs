@@ -22,7 +22,7 @@ namespace TriviaClientApp
 
         private void getState_Tick(object sender, EventArgs e)
         {
-            JObject result = TriviaClient.GetClient().getHeadToHeadState();
+            JObject result = TriviaClient.GetClient().GetHeadToHeadState();
 
             if (TriviaClient.IsSuccessResponse(result, false))
             {
@@ -47,6 +47,7 @@ namespace TriviaClientApp
 
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
+            TriviaClient.GetClient().LeaveHeadToHead();
             MainMenu mainMenu = new MainMenu();
             main.ChangePage(mainMenu);
         }
@@ -63,7 +64,7 @@ namespace TriviaClientApp
                 }
                 else
                 {
-                    Game game = new Game(roomData, roomData.answerTimeout);
+                    Game game = new Game(roomData);
                     main.ChangePage(game);
                 }
             }
