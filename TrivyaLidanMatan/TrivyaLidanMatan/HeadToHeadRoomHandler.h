@@ -10,6 +10,8 @@
 #define QUESTIONS_AMOUNT_HTH_ROOM_AMOUNT 15
 #define QUESTION_TIME_HTH 12
 
+class RequestHandlerFactory;
+
 class HeadToHeadRoomHandler : public IRequestHandler
 {
 public:

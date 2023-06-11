@@ -18,6 +18,7 @@ void Matchmaker::handleMatchmaking()
 	// if enough users in queue to make a new game here
 	if (m_waitingPlayers.size() >= m_playersPerGame)
 	{
+
 		vector<LoggedUser> players;
 		for (int i = 0; i < m_playersPerGame; i++)
 		{
@@ -40,9 +41,10 @@ void Matchmaker::handleMatchmaking()
 		{
 			m_roomManager.getRoom(roomData.id).addUser(loggedUser);
 		}
+		Game game = m_gameManager.createGame(m_roomManager.getRoom(roomData.id));
+		m_gameManager.addGame(game);
 
-		m_gameManager.createGame(m_roomManager.getRoom(roomData.id));
-
+		TRACE("Game has been found!");
 	}
 
 }

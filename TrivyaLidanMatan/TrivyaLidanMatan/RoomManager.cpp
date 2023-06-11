@@ -244,7 +244,7 @@ bool RoomManager::doesRoomExist(unsigned id)
  */
 unsigned int RoomManager::getNewRoomId()
 {
-	int id = 0;
+	unsigned int id = 0;
 	for (RoomData data : getRooms())
 	{
 		if (data.id > id)

@@ -29,9 +29,59 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            getState = new System.Windows.Forms.Timer(components);
+            topText = new Label();
+            BackButtonPress = new Button();
+            countdownStartGameTimer = new System.Windows.Forms.Timer(components);
+            SuspendLayout();
+            // 
+            // getState
+            // 
+            getState.Enabled = true;
+            getState.Interval = 1500;
+            getState.Tick += getState_Tick;
+            // 
+            // topText
+            // 
+            topText.AutoSize = true;
+            topText.Font = new Font("Segoe UI", 21F, FontStyle.Regular, GraphicsUnit.Point);
+            topText.Location = new Point(212, 49);
+            topText.Name = "topText";
+            topText.Size = new Size(366, 38);
+            topText.TabIndex = 0;
+            topText.Text = "Waiting for another player....";
+            // 
+            // BackButtonPress
+            // 
+            BackButtonPress.Location = new Point(12, 415);
+            BackButtonPress.Name = "BackButtonPress";
+            BackButtonPress.Size = new Size(75, 23);
+            BackButtonPress.TabIndex = 6;
+            BackButtonPress.Text = "Back";
+            BackButtonPress.UseVisualStyleBackColor = true;
+            BackButtonPress.Click += BackButtonPress_Click;
+            // 
+            // countdownStartGameTimer
+            // 
+            countdownStartGameTimer.Interval = 1000;
+            countdownStartGameTimer.Tick += countdownStartGameTimer_Tick;
+            // 
+            // HeadToHeadWaitingRoom
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(BackButtonPress);
+            Controls.Add(topText);
+            Name = "HeadToHeadWaitingRoom";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer getState;
+        private Label topText;
+        private Button BackButtonPress;
+        private System.Windows.Forms.Timer countdownStartGameTimer;
     }
 }

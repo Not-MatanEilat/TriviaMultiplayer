@@ -84,15 +84,30 @@ RequestResult HeadToHeadRoomHandler::getState(RequestInfo info)
 
 	response.status = SUCCESS;
 
+	// game was not found
 	if (m_matchmaker.isPlayerInQueue(m_user))
 	{
 		response.hasGameBegun = false;
+		response.questionsAmount = 0;
+		response.timePerQuestion = 0;
+		response.players = {};
 		result.newHandler = this;
 	}
-	else
+	else // a game was found
 	{
 		response.hasGameBegun = true;
-		result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, m_handlerFactory.getGameManager().getGame(m_user));
+		Game& game = m_handlerFactory.getGameManager().getGame(m_user);
+		Room& room = m_handlerFactory.getRoomManager().getRoomOfUser(m_user.getUsername());
+		map<string, GameData> players = game.getPlayers();
+		for (const auto& player : players)
+		{
+			response.players.push_back(player.first);
+		}
+		response.questionsAmount = room.getRoomData().numOfQuestionsInGame;
+		response.timePerQuestion = room.getRoomData().timePerQuestion;
+
+		result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, game);
+		room.removeUser(m_user.getUsername());
 	}
 
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);

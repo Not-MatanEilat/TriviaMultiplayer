@@ -337,7 +337,8 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const LeaveHTHResponse& l
 }
 
 /**
- * \brief The function will take a getHTHState response response and serialize it to a buffer {"status" : status, "hasGameBegun" : hasGameBegun}
+ * \brief The function will take a getHTHState response response and serialize it to a buffer
+ * {"status" : status, "hasGameBegun" : hasGameBegun, "questionsAmount" : questionsAmount, "players" : players, "timePerQuestion"}
  * \param getHTHStateResponse GetTHTState response response to serialize 
  * \return getHTHState response to serialized to a buffer
  */
@@ -346,6 +347,10 @@ Buffer JsonResponsePacketSerializer::serializeResponse(const GetHTHStateResponse
 	json j;
 	j["status"] = getHTHStateResponse.status;
 	j["hasGameBegun"] = getHTHStateResponse.hasGameBegun;
+	j["questionsAmount"] = getHTHStateResponse.questionsAmount;
+	j["players"] = getHTHStateResponse.players;
+	j["timePerQuestion"] = getHTHStateResponse.timePerQuestion;
+
 	Buffer vec = serializeResponseFromJson(HTH_GET_STATE_CODE, j);
 	return vec;
 }

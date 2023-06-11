@@ -63,7 +63,7 @@ namespace TriviaClientApp
 
         private void headToHeaButton_Click(object sender, EventArgs e)
         {
-            // Do a client action here later after
+            TriviaClient.GetClient().JoinHeadToHead();
             HeadToHeadWaitingRoom headToHeadWaitingRoom = new HeadToHeadWaitingRoom();
             main.ChangePage(headToHeadWaitingRoom);
         }

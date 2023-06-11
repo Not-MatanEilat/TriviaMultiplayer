@@ -18,6 +18,7 @@ class MenuRequestHandler;
 class RoomAdminRequestHandler;
 class RoomMemberRequestHandler;
 class GameRequestHandler;
+class HeadToHeadRoomHandler;
 
 class RequestHandlerFactory
 {

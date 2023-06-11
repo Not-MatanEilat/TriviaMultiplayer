@@ -140,6 +140,9 @@ typedef struct GetHTHStateResponse
 {
 	unsigned int status;
 	bool hasGameBegun;
+	int timePerQuestion;
+	int questionsAmount;
+	vector<string> players;
 } GetHTHStateResponse;
 
 typedef struct JoinHTHResponse
