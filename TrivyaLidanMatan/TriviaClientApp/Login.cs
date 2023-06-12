@@ -12,7 +12,6 @@ namespace TriviaClientApp
         public Login()
         {
             InitializeComponent();
-            main.AcceptButton = loginButton;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -75,6 +74,14 @@ namespace TriviaClientApp
         {
             Signup signup = new Signup();
             main.ChangePage(signup);
+        }
+
+        private void Enter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                loginButton_Click(sender, e);
+            }
         }
     }
 }

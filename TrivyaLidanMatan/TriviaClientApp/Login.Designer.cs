@@ -89,6 +89,7 @@
             usernameBox.PlaceholderText = "  Username";
             usernameBox.Size = new Size(187, 29);
             usernameBox.TabIndex = 1;
+            usernameBox.KeyDown += Enter;
             // 
             // passwordBox
             // 
@@ -108,6 +109,7 @@
             passwordBox.Size = new Size(187, 29);
             passwordBox.TabIndex = 2;
             passwordBox.UseSystemPasswordChar = true;
+            passwordBox.KeyDown += Enter;
             // 
             // dungeonHeaderLabel1
             // 
