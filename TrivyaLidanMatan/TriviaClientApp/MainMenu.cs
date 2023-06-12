@@ -53,7 +53,7 @@ namespace TriviaClientApp
             main.ChangePage(createQuestion);
         }
 
-        private void statisticsButton_Click(object sender, EventArgs e)
+        private void StatisticsButton_Click(object sender, EventArgs e)
         {
             Statistics statistics = new Statistics();
             main.ChangePage(statistics);
