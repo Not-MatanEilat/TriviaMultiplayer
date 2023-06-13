@@ -186,6 +186,7 @@
             // 
             hereLinkText.AutoSize = true;
             hereLinkText.BackColor = Color.Transparent;
+            hereLinkText.Cursor = Cursors.Hand;
             hereLinkText.Font = new Font("Ebrima", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             hereLinkText.ForeColor = Color.MediumBlue;
             hereLinkText.Location = new Point(435, 337);
