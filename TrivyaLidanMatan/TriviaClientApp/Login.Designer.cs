@@ -185,6 +185,7 @@
             // 
             hereLinkText.AutoSize = true;
             hereLinkText.BackColor = Color.Transparent;
+            hereLinkText.Cursor = Cursors.Hand;
             hereLinkText.Font = new Font("Ebrima", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             hereLinkText.ForeColor = Color.MediumBlue;
             hereLinkText.Location = new Point(435, 337);
@@ -193,7 +194,6 @@
             hereLinkText.TabIndex = 11;
             hereLinkText.Text = "here";
             hereLinkText.Click += hereTextLink_Click;
-            hereLinkText.Cursor = Cursors.Hand;
             // 
             // Login
             // 

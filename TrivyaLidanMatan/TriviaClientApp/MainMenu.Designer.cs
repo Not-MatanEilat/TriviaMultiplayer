@@ -30,13 +30,13 @@
         {
             label1 = new Label();
             userConnected = new Label();
-            logoutButton = new Button();
             statisticsButton = new ReaLTaiizor.Controls.ParrotButton();
             exitButton = new ReaLTaiizor.Controls.ParrotButton();
             createQuestionButton = new ReaLTaiizor.Controls.ParrotButton();
             headToHeadButton = new ReaLTaiizor.Controls.ParrotButton();
             joinRoomButton = new ReaLTaiizor.Controls.ParrotButton();
             createRoomButton = new ReaLTaiizor.Controls.ParrotButton();
+            logoutButton = new ReaLTaiizor.Controls.RoyalButton();
             SuspendLayout();
             // 
             // label1
@@ -59,16 +59,6 @@
             userConnected.TabIndex = 2;
             userConnected.Text = "Connected as: error";
             // 
-            // logoutButton
-            // 
-            logoutButton.Location = new Point(12, 415);
-            logoutButton.Name = "logoutButton";
-            logoutButton.Size = new Size(75, 23);
-            logoutButton.TabIndex = 5;
-            logoutButton.Text = "Logout";
-            logoutButton.UseVisualStyleBackColor = true;
-            logoutButton.Click += logoutButton_Click;
-            // 
             // statisticsButton
             // 
             statisticsButton.BackgroundColor = Color.FromArgb(255, 255, 255);
@@ -83,7 +73,7 @@
             statisticsButton.HoverBackgroundColor = Color.FromArgb(225, 225, 225);
             statisticsButton.HoverTextColor = Color.Black;
             statisticsButton.ImagePosition = ReaLTaiizor.Controls.ParrotButton.ImgPosition.Left;
-            statisticsButton.Location = new Point(659, 365);
+            statisticsButton.Location = new Point(685, 379);
             statisticsButton.Name = "statisticsButton";
             statisticsButton.Size = new Size(112, 31);
             statisticsButton.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
@@ -107,7 +97,7 @@
             exitButton.HoverBackgroundColor = Color.FromArgb(225, 225, 225);
             exitButton.HoverTextColor = Color.Black;
             exitButton.ImagePosition = ReaLTaiizor.Controls.ParrotButton.ImgPosition.Left;
-            exitButton.Location = new Point(659, 402);
+            exitButton.Location = new Point(685, 416);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(112, 31);
             exitButton.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
@@ -131,7 +121,7 @@
             createQuestionButton.HoverBackgroundColor = Color.FromArgb(225, 225, 225);
             createQuestionButton.HoverTextColor = Color.Black;
             createQuestionButton.ImagePosition = ReaLTaiizor.Controls.ParrotButton.ImgPosition.Left;
-            createQuestionButton.Location = new Point(659, 328);
+            createQuestionButton.Location = new Point(685, 342);
             createQuestionButton.Name = "createQuestionButton";
             createQuestionButton.Size = new Size(112, 31);
             createQuestionButton.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
@@ -213,18 +203,38 @@
             createRoomButton.Vertical_Alignment = StringAlignment.Center;
             createRoomButton.Click += CreateRoomButton_Click;
             // 
+            // logoutButton
+            // 
+            logoutButton.BackColor = Color.FromArgb(243, 243, 243);
+            logoutButton.BorderColor = Color.FromArgb(180, 180, 180);
+            logoutButton.BorderThickness = 3;
+            logoutButton.DrawBorder = true;
+            logoutButton.Font = new Font("Berlin Sans FB Demi", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            logoutButton.ForeColor = Color.FromArgb(31, 31, 31);
+            logoutButton.HotTrackColor = Color.FromArgb(221, 221, 221);
+            logoutButton.Image = null;
+            logoutButton.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            logoutButton.Location = new Point(14, 398);
+            logoutButton.Name = "logoutButton";
+            logoutButton.PressedColor = Color.FromArgb(51, 102, 255);
+            logoutButton.PressedForeColor = Color.White;
+            logoutButton.Size = new Size(114, 40);
+            logoutButton.TabIndex = 9;
+            logoutButton.Text = "Logout";
+            logoutButton.Click += logoutButton_Click;
+            // 
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.MenuHighlight;
+            Controls.Add(logoutButton);
             Controls.Add(exitButton);
             Controls.Add(createRoomButton);
             Controls.Add(joinRoomButton);
             Controls.Add(headToHeadButton);
             Controls.Add(createQuestionButton);
             Controls.Add(statisticsButton);
-            Controls.Add(logoutButton);
             Controls.Add(userConnected);
             Controls.Add(label1);
             Name = "MainMenu";
@@ -239,7 +249,6 @@
         private ReaLTaiizor.Controls.ParrotButton statisticsButton;
         private ReaLTaiizor.Controls.ParrotButton button4;
         private Label userConnected;
-        private Button logoutButton;
         private ReaLTaiizor.Controls.ParrotButton playButton;
         private ReaLTaiizor.Controls.ParrotButton exitButton;
         private ReaLTaiizor.Controls.ParrotButton createQuestionButton;
@@ -247,5 +256,6 @@
         private ReaLTaiizor.Controls.ParrotButton joinRoomButton;
         private ReaLTaiizor.Controls.ParrotButton createRoomButton;
         private ReaLTaiizor.Controls.ParrotButton parrotButton3;
+        private ReaLTaiizor.Controls.RoyalButton logoutButton;
     }
 }
