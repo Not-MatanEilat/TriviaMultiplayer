@@ -82,6 +82,15 @@ namespace TriviaClientApp
         {
 
         }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
