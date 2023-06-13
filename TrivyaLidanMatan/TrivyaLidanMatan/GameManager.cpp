@@ -74,7 +74,7 @@ vector<PlayerResults> GameManager::getGamesResults(unsigned gameId)
 
 		results.push_back(playerResults);
 	}
-	std::sort(results.begin(), results.end(), [&](PlayerResults a, PlayerResults b) {return a.correctAnswerCount > b.averageAnswerTime; });
+	std::sort(results.begin(), results.end(), [&](PlayerResults a, PlayerResults b) {return a.correctAnswerCount > b.correctAnswerCount; });
 
 	return results;
 }
