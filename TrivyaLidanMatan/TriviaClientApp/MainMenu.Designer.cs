@@ -216,11 +216,11 @@
             logoutButton.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
             logoutButton.Location = new Point(14, 398);
             logoutButton.Name = "logoutButton";
-            logoutButton.PressedColor = Color.FromArgb(51, 102, 255);
-            logoutButton.PressedForeColor = Color.White;
+            logoutButton.PressedColor = Color.FromArgb(243, 243, 243);
+            logoutButton.PressedForeColor = Color.Black;
             logoutButton.Size = new Size(114, 40);
             logoutButton.TabIndex = 9;
-            logoutButton.Text = "Logout";
+            logoutButton.Text = " Logout";
             logoutButton.Click += logoutButton_Click;
             // 
             // MainMenu
