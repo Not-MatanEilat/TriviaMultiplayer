@@ -57,7 +57,7 @@
             nameRoomTextBox.Name = "nameRoomTextBox";
             nameRoomTextBox.PlaceholderText = "   Room Name";
             nameRoomTextBox.Size = new Size(187, 29);
-            nameRoomTextBox.TabIndex = 7;
+            nameRoomTextBox.TabIndex = 1;
             nameRoomTextBox.KeyDown += Enter;
             // 
             // label2
@@ -86,7 +86,7 @@
             timePerQuestionBox.MinimumSize = new Size(93, 28);
             timePerQuestionBox.Name = "timePerQuestionBox";
             timePerQuestionBox.Size = new Size(187, 28);
-            timePerQuestionBox.TabIndex = 10;
+            timePerQuestionBox.TabIndex = 2;
             timePerQuestionBox.Text = "dungeonNumeric1";
             timePerQuestionBox.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
             timePerQuestionBox.Value = 0L;
@@ -118,7 +118,7 @@
             maxPlayersBox.MinimumSize = new Size(93, 28);
             maxPlayersBox.Name = "maxPlayersBox";
             maxPlayersBox.Size = new Size(187, 28);
-            maxPlayersBox.TabIndex = 10;
+            maxPlayersBox.TabIndex = 3;
             maxPlayersBox.Text = "dungeonNumeric1";
             maxPlayersBox.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
             maxPlayersBox.Value = 0L;
@@ -150,7 +150,7 @@
             questionAmountBox.MinimumSize = new Size(93, 28);
             questionAmountBox.Name = "questionAmountBox";
             questionAmountBox.Size = new Size(187, 28);
-            questionAmountBox.TabIndex = 10;
+            questionAmountBox.TabIndex = 4;
             questionAmountBox.Text = "dungeonNumeric1";
             questionAmountBox.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
             questionAmountBox.Value = 0L;
@@ -176,8 +176,9 @@
             createRoomButton.Location = new Point(341, 254);
             createRoomButton.Name = "createRoomButton";
             createRoomButton.Size = new Size(123, 31);
-            createRoomButton.TabIndex = 14;
+            createRoomButton.TabIndex = 5;
             createRoomButton.Text = "Create";
+            createRoomButton.Click += button1_Click;
             // 
             // label5
             // 
@@ -222,7 +223,7 @@
             backButtonPress.NormalShadowForeColor = Color.FromArgb(200, 255, 255, 255);
             backButtonPress.Size = new Size(98, 26);
             backButtonPress.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            backButtonPress.TabIndex = 16;
+            backButtonPress.TabIndex = 6;
             backButtonPress.Text = "Back";
             backButtonPress.Click += BackButtonPress_Click;
             // 
