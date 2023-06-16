@@ -220,7 +220,7 @@
             logoutButton.PressedForeColor = Color.Black;
             logoutButton.Size = new Size(114, 40);
             logoutButton.TabIndex = 9;
-            logoutButton.Text = " Logout";
+            logoutButton.Text = "Logout";
             logoutButton.Click += logoutButton_Click;
             // 
             // MainMenu

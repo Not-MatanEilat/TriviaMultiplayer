@@ -16,7 +16,6 @@ namespace TriviaClientApp
         public CreateRoom()
         {
             InitializeComponent();
-            main.AcceptButton = createRoomButton;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -75,6 +74,14 @@ namespace TriviaClientApp
         {
             MainMenu mainMenu = new MainMenu();
             main.ChangePage(mainMenu);
+        }
+
+        private void Enter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(sender, e);
+            }
         }
     }
 }
