@@ -28,242 +28,251 @@
         /// </summary>
         private void InitializeComponent()
         {
-            questionTextBox = new ReaLTaiizor.Controls.DreamTextBox();
-            label7 = new Label();
-            correctAnswerTextBox = new ReaLTaiizor.Controls.DreamTextBox();
-            label2 = new Label();
-            label1 = new Label();
-            answer2TextBox = new ReaLTaiizor.Controls.DreamTextBox();
-            label3 = new Label();
-            answer3TextBox = new ReaLTaiizor.Controls.DreamTextBox();
-            label4 = new Label();
-            answer4TextBox = new ReaLTaiizor.Controls.DreamTextBox();
-            label5 = new Label();
-            createQuestionButton = new ReaLTaiizor.Controls.LostAcceptButton();
-            backButtonPress = new ReaLTaiizor.Controls.SkyButton();
-            SuspendLayout();
+            this.questionTextBox = new ReaLTaiizor.Controls.DreamTextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.correctAnswerTextBox = new ReaLTaiizor.Controls.DreamTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.answer2TextBox = new ReaLTaiizor.Controls.DreamTextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.answer3TextBox = new ReaLTaiizor.Controls.DreamTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.answer4TextBox = new ReaLTaiizor.Controls.DreamTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.createQuestionButton = new ReaLTaiizor.Controls.LostAcceptButton();
+            this.backButtonPress = new ReaLTaiizor.Controls.SkyButton();
+            this.SuspendLayout();
             // 
             // questionTextBox
             // 
-            questionTextBox.BackColor = Color.FromArgb(224, 224, 224);
-            questionTextBox.BorderStyle = BorderStyle.FixedSingle;
-            questionTextBox.ColorA = Color.Silver;
-            questionTextBox.ColorB = Color.FromArgb(224, 224, 224);
-            questionTextBox.ColorC = Color.FromArgb(224, 224, 224);
-            questionTextBox.ColorD = Color.FromArgb(0, 0, 0, 0);
-            questionTextBox.ColorE = Color.FromArgb(25, 255, 255, 255);
-            questionTextBox.ColorF = Color.FromArgb(64, 64, 64);
-            questionTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            questionTextBox.ForeColor = Color.Black;
-            questionTextBox.Location = new Point(294, 103);
-            questionTextBox.Name = "questionTextBox";
-            questionTextBox.PlaceholderText = "   Question";
-            questionTextBox.Size = new Size(187, 29);
-            questionTextBox.TabIndex = 1;
+            this.questionTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.questionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.questionTextBox.ColorA = System.Drawing.Color.Silver;
+            this.questionTextBox.ColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.questionTextBox.ColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.questionTextBox.ColorD = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.questionTextBox.ColorE = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.questionTextBox.ColorF = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.questionTextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.questionTextBox.ForeColor = System.Drawing.Color.Black;
+            this.questionTextBox.Location = new System.Drawing.Point(336, 137);
+            this.questionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.questionTextBox.Name = "questionTextBox";
+            this.questionTextBox.PlaceholderText = "   Question";
+            this.questionTextBox.Size = new System.Drawing.Size(213, 34);
+            this.questionTextBox.TabIndex = 1;
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Berlin Sans FB Demi", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(199, 103);
-            label7.Name = "label7";
-            label7.Size = new Size(89, 24);
-            label7.TabIndex = 9;
-            label7.Text = "Question";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Berlin Sans FB Demi", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(227, 137);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(111, 29);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Question";
             // 
             // correctAnswerTextBox
             // 
-            correctAnswerTextBox.BackColor = Color.FromArgb(224, 224, 224);
-            correctAnswerTextBox.BorderStyle = BorderStyle.FixedSingle;
-            correctAnswerTextBox.ColorA = Color.Silver;
-            correctAnswerTextBox.ColorB = Color.FromArgb(224, 224, 224);
-            correctAnswerTextBox.ColorC = Color.FromArgb(224, 224, 224);
-            correctAnswerTextBox.ColorD = Color.FromArgb(0, 0, 0, 0);
-            correctAnswerTextBox.ColorE = Color.FromArgb(25, 255, 255, 255);
-            correctAnswerTextBox.ColorF = Color.FromArgb(64, 64, 64);
-            correctAnswerTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            correctAnswerTextBox.ForeColor = Color.Black;
-            correctAnswerTextBox.Location = new Point(294, 138);
-            correctAnswerTextBox.Name = "correctAnswerTextBox";
-            correctAnswerTextBox.PlaceholderText = "   Correct Answer";
-            correctAnswerTextBox.Size = new Size(187, 29);
-            correctAnswerTextBox.TabIndex = 2;
+            this.correctAnswerTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.correctAnswerTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.correctAnswerTextBox.ColorA = System.Drawing.Color.Silver;
+            this.correctAnswerTextBox.ColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.correctAnswerTextBox.ColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.correctAnswerTextBox.ColorD = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.correctAnswerTextBox.ColorE = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.correctAnswerTextBox.ColorF = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.correctAnswerTextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.correctAnswerTextBox.ForeColor = System.Drawing.Color.Black;
+            this.correctAnswerTextBox.Location = new System.Drawing.Point(336, 184);
+            this.correctAnswerTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.correctAnswerTextBox.Name = "correctAnswerTextBox";
+            this.correctAnswerTextBox.PlaceholderText = "   Correct Answer";
+            this.correctAnswerTextBox.Size = new System.Drawing.Size(213, 34);
+            this.correctAnswerTextBox.TabIndex = 2;
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Berlin Sans FB Demi", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(140, 137);
-            label2.Name = "label2";
-            label2.Size = new Size(148, 24);
-            label2.TabIndex = 9;
-            label2.Text = "Correct Answer";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Berlin Sans FB Demi", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(160, 183);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(186, 29);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Correct Answer";
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Courier New", 45F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(104, 16);
-            label1.Name = "label1";
-            label1.Size = new Size(569, 67);
-            label1.TabIndex = 9;
-            label1.Text = "Create Question";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Courier New", 45F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(119, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(712, 85);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Create Question";
             // 
             // answer2TextBox
             // 
-            answer2TextBox.BackColor = Color.FromArgb(224, 224, 224);
-            answer2TextBox.BorderStyle = BorderStyle.FixedSingle;
-            answer2TextBox.ColorA = Color.Silver;
-            answer2TextBox.ColorB = Color.FromArgb(224, 224, 224);
-            answer2TextBox.ColorC = Color.FromArgb(224, 224, 224);
-            answer2TextBox.ColorD = Color.FromArgb(0, 0, 0, 0);
-            answer2TextBox.ColorE = Color.FromArgb(25, 255, 255, 255);
-            answer2TextBox.ColorF = Color.FromArgb(64, 64, 64);
-            answer2TextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            answer2TextBox.ForeColor = Color.Black;
-            answer2TextBox.Location = new Point(294, 173);
-            answer2TextBox.Name = "answer2TextBox";
-            answer2TextBox.PlaceholderText = "   Wrong Answer";
-            answer2TextBox.Size = new Size(187, 29);
-            answer2TextBox.TabIndex = 3;
+            this.answer2TextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.answer2TextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.answer2TextBox.ColorA = System.Drawing.Color.Silver;
+            this.answer2TextBox.ColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.answer2TextBox.ColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.answer2TextBox.ColorD = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.answer2TextBox.ColorE = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.answer2TextBox.ColorF = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.answer2TextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.answer2TextBox.ForeColor = System.Drawing.Color.Black;
+            this.answer2TextBox.Location = new System.Drawing.Point(336, 231);
+            this.answer2TextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.answer2TextBox.Name = "answer2TextBox";
+            this.answer2TextBox.PlaceholderText = "   Wrong Answer";
+            this.answer2TextBox.Size = new System.Drawing.Size(213, 34);
+            this.answer2TextBox.TabIndex = 3;
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Berlin Sans FB Demi", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(140, 172);
-            label3.Name = "label3";
-            label3.Size = new Size(142, 24);
-            label3.TabIndex = 9;
-            label3.Text = "Wrong Answer";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Berlin Sans FB Demi", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(160, 229);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(179, 29);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Wrong Answer";
             // 
             // answer3TextBox
             // 
-            answer3TextBox.BackColor = Color.FromArgb(224, 224, 224);
-            answer3TextBox.BorderStyle = BorderStyle.FixedSingle;
-            answer3TextBox.ColorA = Color.Silver;
-            answer3TextBox.ColorB = Color.FromArgb(224, 224, 224);
-            answer3TextBox.ColorC = Color.FromArgb(224, 224, 224);
-            answer3TextBox.ColorD = Color.FromArgb(0, 0, 0, 0);
-            answer3TextBox.ColorE = Color.FromArgb(25, 255, 255, 255);
-            answer3TextBox.ColorF = Color.FromArgb(64, 64, 64);
-            answer3TextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            answer3TextBox.ForeColor = Color.Black;
-            answer3TextBox.Location = new Point(294, 207);
-            answer3TextBox.Name = "answer3TextBox";
-            answer3TextBox.PlaceholderText = "   Wrong Answer";
-            answer3TextBox.Size = new Size(187, 29);
-            answer3TextBox.TabIndex = 4;
+            this.answer3TextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.answer3TextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.answer3TextBox.ColorA = System.Drawing.Color.Silver;
+            this.answer3TextBox.ColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.answer3TextBox.ColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.answer3TextBox.ColorD = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.answer3TextBox.ColorE = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.answer3TextBox.ColorF = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.answer3TextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.answer3TextBox.ForeColor = System.Drawing.Color.Black;
+            this.answer3TextBox.Location = new System.Drawing.Point(336, 276);
+            this.answer3TextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.answer3TextBox.Name = "answer3TextBox";
+            this.answer3TextBox.PlaceholderText = "   Wrong Answer";
+            this.answer3TextBox.Size = new System.Drawing.Size(213, 34);
+            this.answer3TextBox.TabIndex = 4;
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Berlin Sans FB Demi", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(140, 206);
-            label4.Name = "label4";
-            label4.Size = new Size(142, 24);
-            label4.TabIndex = 9;
-            label4.Text = "Wrong Answer";
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Berlin Sans FB Demi", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(160, 275);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(179, 29);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Wrong Answer";
             // 
             // answer4TextBox
             // 
-            answer4TextBox.BackColor = Color.FromArgb(224, 224, 224);
-            answer4TextBox.BorderStyle = BorderStyle.FixedSingle;
-            answer4TextBox.ColorA = Color.Silver;
-            answer4TextBox.ColorB = Color.FromArgb(224, 224, 224);
-            answer4TextBox.ColorC = Color.FromArgb(224, 224, 224);
-            answer4TextBox.ColorD = Color.FromArgb(0, 0, 0, 0);
-            answer4TextBox.ColorE = Color.FromArgb(25, 255, 255, 255);
-            answer4TextBox.ColorF = Color.FromArgb(64, 64, 64);
-            answer4TextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            answer4TextBox.ForeColor = Color.Black;
-            answer4TextBox.Location = new Point(294, 242);
-            answer4TextBox.Name = "answer4TextBox";
-            answer4TextBox.PlaceholderText = "   Wrong Answer";
-            answer4TextBox.Size = new Size(187, 29);
-            answer4TextBox.TabIndex = 5;
+            this.answer4TextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.answer4TextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.answer4TextBox.ColorA = System.Drawing.Color.Silver;
+            this.answer4TextBox.ColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.answer4TextBox.ColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.answer4TextBox.ColorD = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.answer4TextBox.ColorE = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.answer4TextBox.ColorF = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.answer4TextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.answer4TextBox.ForeColor = System.Drawing.Color.Black;
+            this.answer4TextBox.Location = new System.Drawing.Point(336, 323);
+            this.answer4TextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.answer4TextBox.Name = "answer4TextBox";
+            this.answer4TextBox.PlaceholderText = "   Wrong Answer";
+            this.answer4TextBox.Size = new System.Drawing.Size(213, 34);
+            this.answer4TextBox.TabIndex = 5;
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Berlin Sans FB Demi", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(140, 241);
-            label5.Name = "label5";
-            label5.Size = new Size(142, 24);
-            label5.TabIndex = 9;
-            label5.Text = "Wrong Answer";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Berlin Sans FB Demi", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(160, 321);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(179, 29);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Wrong Answer";
             // 
             // createQuestionButton
             // 
-            createQuestionButton.BackColor = Color.SeaGreen;
-            createQuestionButton.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            createQuestionButton.ForeColor = Color.White;
-            createQuestionButton.HoverColor = Color.ForestGreen;
-            createQuestionButton.Image = null;
-            createQuestionButton.Location = new Point(322, 277);
-            createQuestionButton.Name = "createQuestionButton";
-            createQuestionButton.Size = new Size(123, 31);
-            createQuestionButton.TabIndex = 6;
-            createQuestionButton.Text = "Create";
-            createQuestionButton.Click += createQuestionButton_Click;
+            this.createQuestionButton.BackColor = System.Drawing.Color.SeaGreen;
+            this.createQuestionButton.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.createQuestionButton.ForeColor = System.Drawing.Color.White;
+            this.createQuestionButton.HoverColor = System.Drawing.Color.ForestGreen;
+            this.createQuestionButton.Image = null;
+            this.createQuestionButton.Location = new System.Drawing.Point(368, 369);
+            this.createQuestionButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.createQuestionButton.Name = "createQuestionButton";
+            this.createQuestionButton.Size = new System.Drawing.Size(141, 41);
+            this.createQuestionButton.TabIndex = 6;
+            this.createQuestionButton.Text = "Create";
             // 
             // backButtonPress
             // 
-            backButtonPress.BackColor = Color.Transparent;
-            backButtonPress.DownBGColorA = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBGColorB = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBorderColorA = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBorderColorB = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBorderColorC = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBorderColorD = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownForeColor = Color.Black;
-            backButtonPress.DownShadowForeColor = Color.Black;
-            backButtonPress.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            backButtonPress.ForeColor = Color.Black;
-            backButtonPress.HoverBGColorA = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBGColorB = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBorderColorA = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBorderColorB = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBorderColorC = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBorderColorD = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverForeColor = Color.Black;
-            backButtonPress.HoverShadowForeColor = Color.Black;
-            backButtonPress.Location = new Point(21, 407);
-            backButtonPress.Name = "backButtonPress";
-            backButtonPress.NormalBGColorA = Color.FromArgb(245, 245, 245);
-            backButtonPress.NormalBGColorB = Color.FromArgb(230, 230, 230);
-            backButtonPress.NormalBorderColorA = Color.FromArgb(252, 252, 252);
-            backButtonPress.NormalBorderColorB = Color.FromArgb(249, 249, 249);
-            backButtonPress.NormalBorderColorC = Color.FromArgb(189, 189, 189);
-            backButtonPress.NormalBorderColorD = Color.FromArgb(200, 168, 168, 168);
-            backButtonPress.NormalForeColor = Color.Black;
-            backButtonPress.NormalShadowForeColor = Color.FromArgb(200, 255, 255, 255);
-            backButtonPress.Size = new Size(98, 26);
-            backButtonPress.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            backButtonPress.TabIndex = 7;
-            backButtonPress.Text = "Back";
+            this.backButtonPress.BackColor = System.Drawing.Color.Transparent;
+            this.backButtonPress.DownBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButtonPress.DownBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButtonPress.DownBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButtonPress.DownBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButtonPress.DownBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButtonPress.DownBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButtonPress.DownForeColor = System.Drawing.Color.Black;
+            this.backButtonPress.DownShadowForeColor = System.Drawing.Color.Black;
+            this.backButtonPress.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.backButtonPress.ForeColor = System.Drawing.Color.Black;
+            this.backButtonPress.HoverBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButtonPress.HoverBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButtonPress.HoverBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButtonPress.HoverBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButtonPress.HoverBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButtonPress.HoverBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backButtonPress.HoverForeColor = System.Drawing.Color.Black;
+            this.backButtonPress.HoverShadowForeColor = System.Drawing.Color.Black;
+            this.backButtonPress.Location = new System.Drawing.Point(24, 543);
+            this.backButtonPress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.backButtonPress.Name = "backButtonPress";
+            this.backButtonPress.NormalBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.backButtonPress.NormalBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.backButtonPress.NormalBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.backButtonPress.NormalBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.backButtonPress.NormalBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.backButtonPress.NormalBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
+            this.backButtonPress.NormalForeColor = System.Drawing.Color.Black;
+            this.backButtonPress.NormalShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.backButtonPress.Size = new System.Drawing.Size(112, 35);
+            this.backButtonPress.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.backButtonPress.TabIndex = 7;
+            this.backButtonPress.Text = "Back";
+            this.backButtonPress.Click += new System.EventHandler(this.BackButtonPress_Click);
             // 
             // CreateQuestion
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(255, 128, 128);
-            Controls.Add(backButtonPress);
-            Controls.Add(createQuestionButton);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(answer4TextBox);
-            Controls.Add(answer3TextBox);
-            Controls.Add(label7);
-            Controls.Add(answer2TextBox);
-            Controls.Add(correctAnswerTextBox);
-            Controls.Add(questionTextBox);
-            Name = "CreateQuestion";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Controls.Add(this.backButtonPress);
+            this.Controls.Add(this.createQuestionButton);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.answer4TextBox);
+            this.Controls.Add(this.answer3TextBox);
+            this.Controls.Add(this.answer2TextBox);
+            this.Controls.Add(this.correctAnswerTextBox);
+            this.Controls.Add(this.questionTextBox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label7);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Name = "CreateQuestion";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
