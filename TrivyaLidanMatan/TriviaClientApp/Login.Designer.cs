@@ -28,192 +28,193 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.usernameBox = new ReaLTaiizor.Controls.DreamTextBox();
-            this.passwordBox = new ReaLTaiizor.Controls.DreamTextBox();
-            this.dungeonHeaderLabel1 = new ReaLTaiizor.Controls.DungeonHeaderLabel();
-            this.rememberMeToggle = new ReaLTaiizor.Controls.HopeToggle();
-            this.loginButton = new ReaLTaiizor.Controls.LostAcceptButton();
-            this.noAccountText = new ReaLTaiizor.Controls.DungeonHeaderLabel();
-            this.createAccountText = new ReaLTaiizor.Controls.DungeonHeaderLabel();
-            this.hereLinkText = new ReaLTaiizor.Controls.DungeonHeaderLabel();
-            this.SuspendLayout();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            usernameBox = new ReaLTaiizor.Controls.DreamTextBox();
+            passwordBox = new ReaLTaiizor.Controls.DreamTextBox();
+            dungeonHeaderLabel1 = new ReaLTaiizor.Controls.DungeonHeaderLabel();
+            rememberMeToggle = new ReaLTaiizor.Controls.HopeToggle();
+            loginButton = new ReaLTaiizor.Controls.LostAcceptButton();
+            noAccountText = new ReaLTaiizor.Controls.DungeonHeaderLabel();
+            createAccountText = new ReaLTaiizor.Controls.DungeonHeaderLabel();
+            hereLinkText = new ReaLTaiizor.Controls.DungeonHeaderLabel();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Courier New", 45F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(338, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(262, 85);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Login";
+            label1.AutoSize = true;
+            label1.Font = new Font("Courier New", 45F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(296, 39);
+            label1.Name = "label1";
+            label1.Size = new Size(209, 67);
+            label1.TabIndex = 0;
+            label1.Text = "Login";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Berlin Sans FB Demi", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(224, 193);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 29);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Username";
+            label2.AutoSize = true;
+            label2.Font = new Font("Berlin Sans FB Demi", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(196, 145);
+            label2.Name = "label2";
+            label2.Size = new Size(101, 24);
+            label2.TabIndex = 2;
+            label2.Text = "Username";
+            label2.Click += label2_Click;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Berlin Sans FB Demi", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(230, 241);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 29);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Password";
+            label3.AutoSize = true;
+            label3.Font = new Font("Berlin Sans FB Demi", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(201, 181);
+            label3.Name = "label3";
+            label3.Size = new Size(96, 24);
+            label3.TabIndex = 4;
+            label3.Text = "Password";
             // 
             // usernameBox
             // 
-            this.usernameBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.usernameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.usernameBox.ColorA = System.Drawing.Color.Silver;
-            this.usernameBox.ColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.usernameBox.ColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.usernameBox.ColorD = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.usernameBox.ColorE = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.usernameBox.ColorF = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.usernameBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.usernameBox.ForeColor = System.Drawing.Color.Black;
-            this.usernameBox.Location = new System.Drawing.Point(350, 191);
-            this.usernameBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.usernameBox.Name = "usernameBox";
-            this.usernameBox.PlaceholderText = "  Username";
-            this.usernameBox.Size = new System.Drawing.Size(213, 34);
-            this.usernameBox.TabIndex = 1;
+            usernameBox.BackColor = Color.FromArgb(224, 224, 224);
+            usernameBox.BorderStyle = BorderStyle.FixedSingle;
+            usernameBox.ColorA = Color.Silver;
+            usernameBox.ColorB = Color.FromArgb(224, 224, 224);
+            usernameBox.ColorC = Color.FromArgb(224, 224, 224);
+            usernameBox.ColorD = Color.FromArgb(0, 0, 0, 0);
+            usernameBox.ColorE = Color.FromArgb(25, 255, 255, 255);
+            usernameBox.ColorF = Color.FromArgb(64, 64, 64);
+            usernameBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            usernameBox.ForeColor = Color.Black;
+            usernameBox.Location = new Point(306, 143);
+            usernameBox.Name = "usernameBox";
+            usernameBox.PlaceholderText = "  Username";
+            usernameBox.Size = new Size(187, 29);
+            usernameBox.TabIndex = 1;
+            usernameBox.KeyDown += Enter;
             // 
             // passwordBox
             // 
-            this.passwordBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.passwordBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.passwordBox.ColorA = System.Drawing.Color.Silver;
-            this.passwordBox.ColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.passwordBox.ColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.passwordBox.ColorD = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.passwordBox.ColorE = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.passwordBox.ColorF = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.passwordBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.passwordBox.ForeColor = System.Drawing.Color.Black;
-            this.passwordBox.Location = new System.Drawing.Point(350, 237);
-            this.passwordBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.passwordBox.Name = "passwordBox";
-            this.passwordBox.PlaceholderText = "  Password";
-            this.passwordBox.Size = new System.Drawing.Size(213, 34);
-            this.passwordBox.TabIndex = 2;
-            this.passwordBox.UseSystemPasswordChar = true;
+            passwordBox.BackColor = Color.FromArgb(224, 224, 224);
+            passwordBox.BorderStyle = BorderStyle.FixedSingle;
+            passwordBox.ColorA = Color.Silver;
+            passwordBox.ColorB = Color.FromArgb(224, 224, 224);
+            passwordBox.ColorC = Color.FromArgb(224, 224, 224);
+            passwordBox.ColorD = Color.FromArgb(0, 0, 0, 0);
+            passwordBox.ColorE = Color.FromArgb(25, 255, 255, 255);
+            passwordBox.ColorF = Color.FromArgb(64, 64, 64);
+            passwordBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            passwordBox.ForeColor = Color.Black;
+            passwordBox.Location = new Point(306, 178);
+            passwordBox.Name = "passwordBox";
+            passwordBox.PlaceholderText = "  Password";
+            passwordBox.Size = new Size(187, 29);
+            passwordBox.TabIndex = 2;
+            passwordBox.UseSystemPasswordChar = true;
             // 
             // dungeonHeaderLabel1
             // 
-            this.dungeonHeaderLabel1.AutoSize = true;
-            this.dungeonHeaderLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.dungeonHeaderLabel1.Font = new System.Drawing.Font("Courier New", 17.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.dungeonHeaderLabel1.ForeColor = System.Drawing.Color.Black;
-            this.dungeonHeaderLabel1.Location = new System.Drawing.Point(386, 307);
-            this.dungeonHeaderLabel1.Name = "dungeonHeaderLabel1";
-            this.dungeonHeaderLabel1.Size = new System.Drawing.Size(202, 33);
-            this.dungeonHeaderLabel1.TabIndex = 11;
-            this.dungeonHeaderLabel1.Text = "Remember Me";
+            dungeonHeaderLabel1.AutoSize = true;
+            dungeonHeaderLabel1.BackColor = Color.Transparent;
+            dungeonHeaderLabel1.Font = new Font("Courier New", 17.2F, FontStyle.Bold, GraphicsUnit.Point);
+            dungeonHeaderLabel1.ForeColor = Color.Black;
+            dungeonHeaderLabel1.Location = new Point(338, 230);
+            dungeonHeaderLabel1.Name = "dungeonHeaderLabel1";
+            dungeonHeaderLabel1.Size = new Size(166, 27);
+            dungeonHeaderLabel1.TabIndex = 11;
+            dungeonHeaderLabel1.Text = "Remember Me";
+            dungeonHeaderLabel1.Click += dungeonHeaderLabel1_Click;
             // 
             // rememberMeToggle
             // 
-            this.rememberMeToggle.AutoSize = true;
-            this.rememberMeToggle.BackColor = System.Drawing.Color.Gray;
-            this.rememberMeToggle.BaseColor = System.Drawing.Color.DeepSkyBlue;
-            this.rememberMeToggle.BaseColorA = System.Drawing.Color.White;
-            this.rememberMeToggle.BaseColorB = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.rememberMeToggle.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.rememberMeToggle.HeadColorA = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(223)))), ((int)(((byte)(230)))));
-            this.rememberMeToggle.HeadColorB = System.Drawing.Color.White;
-            this.rememberMeToggle.HeadColorC = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.rememberMeToggle.HeadColorD = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.rememberMeToggle.Location = new System.Drawing.Point(338, 313);
-            this.rememberMeToggle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.rememberMeToggle.Name = "rememberMeToggle";
-            this.rememberMeToggle.Size = new System.Drawing.Size(48, 20);
-            this.rememberMeToggle.TabIndex = 12;
-            this.rememberMeToggle.Text = "hopeToggle1";
-            this.rememberMeToggle.UseVisualStyleBackColor = false;
+            rememberMeToggle.AutoSize = true;
+            rememberMeToggle.BackColor = Color.Gray;
+            rememberMeToggle.BaseColor = Color.DeepSkyBlue;
+            rememberMeToggle.BaseColorA = Color.White;
+            rememberMeToggle.BaseColorB = Color.FromArgb(100, 64, 158, 255);
+            rememberMeToggle.ForeColor = Color.DeepSkyBlue;
+            rememberMeToggle.HeadColorA = Color.FromArgb(220, 223, 230);
+            rememberMeToggle.HeadColorB = Color.White;
+            rememberMeToggle.HeadColorC = Color.FromArgb(64, 158, 255);
+            rememberMeToggle.HeadColorD = Color.FromArgb(64, 158, 255);
+            rememberMeToggle.Location = new Point(296, 235);
+            rememberMeToggle.Name = "rememberMeToggle";
+            rememberMeToggle.Size = new Size(48, 20);
+            rememberMeToggle.TabIndex = 12;
+            rememberMeToggle.Text = "hopeToggle1";
+            rememberMeToggle.UseVisualStyleBackColor = false;
+            rememberMeToggle.CheckedChanged += hopeToggle1_CheckedChanged;
             // 
             // loginButton
             // 
-            this.loginButton.BackColor = System.Drawing.Color.SeaGreen;
-            this.loginButton.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.loginButton.ForeColor = System.Drawing.Color.White;
-            this.loginButton.HoverColor = System.Drawing.Color.ForestGreen;
-            this.loginButton.Image = null;
-            this.loginButton.Location = new System.Drawing.Point(375, 363);
-            this.loginButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(141, 41);
-            this.loginButton.TabIndex = 13;
-            this.loginButton.Text = "Login";
+            loginButton.BackColor = Color.SeaGreen;
+            loginButton.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            loginButton.ForeColor = Color.White;
+            loginButton.HoverColor = Color.ForestGreen;
+            loginButton.Image = null;
+            loginButton.Location = new Point(328, 272);
+            loginButton.Name = "loginButton";
+            loginButton.Size = new Size(123, 31);
+            loginButton.TabIndex = 13;
+            loginButton.Text = "Login";
+            loginButton.Click += loginButton_Click;
             // 
             // noAccountText
             // 
-            this.noAccountText.AutoSize = true;
-            this.noAccountText.BackColor = System.Drawing.Color.Transparent;
-            this.noAccountText.Font = new System.Drawing.Font("Ebrima", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.noAccountText.ForeColor = System.Drawing.Color.Black;
-            this.noAccountText.Location = new System.Drawing.Point(386, 424);
-            this.noAccountText.Name = "noAccountText";
-            this.noAccountText.Size = new System.Drawing.Size(107, 23);
-            this.noAccountText.TabIndex = 11;
-            this.noAccountText.Text = "No account?";
+            noAccountText.AutoSize = true;
+            noAccountText.BackColor = Color.Transparent;
+            noAccountText.Font = new Font("Ebrima", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            noAccountText.ForeColor = Color.Black;
+            noAccountText.Location = new Point(338, 318);
+            noAccountText.Name = "noAccountText";
+            noAccountText.Size = new Size(91, 19);
+            noAccountText.TabIndex = 11;
+            noAccountText.Text = "No account?";
             // 
             // createAccountText
             // 
-            this.createAccountText.AutoSize = true;
-            this.createAccountText.BackColor = System.Drawing.Color.Transparent;
-            this.createAccountText.Font = new System.Drawing.Font("Ebrima", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.createAccountText.ForeColor = System.Drawing.Color.Black;
-            this.createAccountText.Location = new System.Drawing.Point(350, 449);
-            this.createAccountText.Name = "createAccountText";
-            this.createAccountText.Size = new System.Drawing.Size(153, 23);
-            this.createAccountText.TabIndex = 11;
-            this.createAccountText.Text = "Create an account";
+            createAccountText.AutoSize = true;
+            createAccountText.BackColor = Color.Transparent;
+            createAccountText.Font = new Font("Ebrima", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            createAccountText.ForeColor = Color.Black;
+            createAccountText.Location = new Point(306, 337);
+            createAccountText.Name = "createAccountText";
+            createAccountText.Size = new Size(129, 19);
+            createAccountText.TabIndex = 11;
+            createAccountText.Text = "Create an account";
             // 
             // hereLinkText
             // 
-            this.hereLinkText.AutoSize = true;
-            this.hereLinkText.BackColor = System.Drawing.Color.Transparent;
-            this.hereLinkText.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.hereLinkText.Font = new System.Drawing.Font("Ebrima", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.hereLinkText.ForeColor = System.Drawing.Color.MediumBlue;
-            this.hereLinkText.Location = new System.Drawing.Point(497, 449);
-            this.hereLinkText.Name = "hereLinkText";
-            this.hereLinkText.Size = new System.Drawing.Size(45, 23);
-            this.hereLinkText.TabIndex = 11;
-            this.hereLinkText.Text = "here";
+            hereLinkText.AutoSize = true;
+            hereLinkText.BackColor = Color.Transparent;
+            hereLinkText.Cursor = Cursors.Hand;
+            hereLinkText.Font = new Font("Ebrima", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            hereLinkText.ForeColor = Color.MediumBlue;
+            hereLinkText.Location = new Point(435, 337);
+            hereLinkText.Name = "hereLinkText";
+            hereLinkText.Size = new Size(39, 19);
+            hereLinkText.TabIndex = 11;
+            hereLinkText.Text = "here";
+            hereLinkText.Click += hereTextLink_Click;
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.Controls.Add(this.loginButton);
-            this.Controls.Add(this.rememberMeToggle);
-            this.Controls.Add(this.hereLinkText);
-            this.Controls.Add(this.createAccountText);
-            this.Controls.Add(this.noAccountText);
-            this.Controls.Add(this.dungeonHeaderLabel1);
-            this.Controls.Add(this.passwordBox);
-            this.Controls.Add(this.usernameBox);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
-            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.Name = "Login";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.DeepSkyBlue;
+            Controls.Add(loginButton);
+            Controls.Add(rememberMeToggle);
+            Controls.Add(hereLinkText);
+            Controls.Add(createAccountText);
+            Controls.Add(noAccountText);
+            Controls.Add(dungeonHeaderLabel1);
+            Controls.Add(passwordBox);
+            Controls.Add(usernameBox);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Name = "Login";
+            Load += Form1_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

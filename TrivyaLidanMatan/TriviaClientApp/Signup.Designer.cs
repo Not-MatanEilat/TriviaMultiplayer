@@ -23,184 +23,184 @@
 
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.usernameBox = new ReaLTaiizor.Controls.DreamTextBox();
-            this.passwordBox = new ReaLTaiizor.Controls.DreamTextBox();
-            this.emailBox = new ReaLTaiizor.Controls.DreamTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.signupButton = new ReaLTaiizor.Controls.LostAcceptButton();
-            this.backButtonPress = new ReaLTaiizor.Controls.SkyButton();
-            this.SuspendLayout();
+            label1 = new Label();
+            usernameBox = new ReaLTaiizor.Controls.DreamTextBox();
+            passwordBox = new ReaLTaiizor.Controls.DreamTextBox();
+            emailBox = new ReaLTaiizor.Controls.DreamTextBox();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            signupButton = new ReaLTaiizor.Controls.LostAcceptButton();
+            backButtonPress = new ReaLTaiizor.Controls.SkyButton();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Courier New", 45F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(296, 61);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(307, 85);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Signup";
+            label1.AutoSize = true;
+            label1.Font = new Font("Courier New", 45F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(259, 46);
+            label1.Name = "label1";
+            label1.Size = new Size(245, 67);
+            label1.TabIndex = 0;
+            label1.Text = "Signup";
+            label1.Click += label1_Click;
             // 
             // usernameBox
             // 
-            this.usernameBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.usernameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.usernameBox.ColorA = System.Drawing.Color.Silver;
-            this.usernameBox.ColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.usernameBox.ColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.usernameBox.ColorD = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.usernameBox.ColorE = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.usernameBox.ColorF = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.usernameBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.usernameBox.ForeColor = System.Drawing.Color.Black;
-            this.usernameBox.Location = new System.Drawing.Point(318, 179);
-            this.usernameBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.usernameBox.Name = "usernameBox";
-            this.usernameBox.PlaceholderText = "  Username";
-            this.usernameBox.Size = new System.Drawing.Size(213, 34);
-            this.usernameBox.TabIndex = 8;
+            usernameBox.BackColor = Color.FromArgb(224, 224, 224);
+            usernameBox.BorderStyle = BorderStyle.FixedSingle;
+            usernameBox.ColorA = Color.Silver;
+            usernameBox.ColorB = Color.FromArgb(224, 224, 224);
+            usernameBox.ColorC = Color.FromArgb(224, 224, 224);
+            usernameBox.ColorD = Color.FromArgb(0, 0, 0, 0);
+            usernameBox.ColorE = Color.FromArgb(25, 255, 255, 255);
+            usernameBox.ColorF = Color.FromArgb(64, 64, 64);
+            usernameBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            usernameBox.ForeColor = Color.Black;
+            usernameBox.Location = new Point(278, 134);
+            usernameBox.Name = "usernameBox";
+            usernameBox.PlaceholderText = "  Username";
+            usernameBox.Size = new Size(187, 29);
+            usernameBox.TabIndex = 8;
+            usernameBox.TextChanged += usernameBox_TextChanged;
+            usernameBox.KeyDown += Enter;
             // 
             // passwordBox
             // 
-            this.passwordBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.passwordBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.passwordBox.ColorA = System.Drawing.Color.Silver;
-            this.passwordBox.ColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.passwordBox.ColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.passwordBox.ColorD = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.passwordBox.ColorE = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.passwordBox.ColorF = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.passwordBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.passwordBox.ForeColor = System.Drawing.Color.Black;
-            this.passwordBox.Location = new System.Drawing.Point(318, 225);
-            this.passwordBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.passwordBox.Name = "passwordBox";
-            this.passwordBox.PlaceholderText = "  Password";
-            this.passwordBox.Size = new System.Drawing.Size(213, 34);
-            this.passwordBox.TabIndex = 9;
-            this.passwordBox.UseSystemPasswordChar = true;
+            passwordBox.BackColor = Color.FromArgb(224, 224, 224);
+            passwordBox.BorderStyle = BorderStyle.FixedSingle;
+            passwordBox.ColorA = Color.Silver;
+            passwordBox.ColorB = Color.FromArgb(224, 224, 224);
+            passwordBox.ColorC = Color.FromArgb(224, 224, 224);
+            passwordBox.ColorD = Color.FromArgb(0, 0, 0, 0);
+            passwordBox.ColorE = Color.FromArgb(25, 255, 255, 255);
+            passwordBox.ColorF = Color.FromArgb(64, 64, 64);
+            passwordBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            passwordBox.ForeColor = Color.Black;
+            passwordBox.Location = new Point(278, 169);
+            passwordBox.Name = "passwordBox";
+            passwordBox.PlaceholderText = "  Password";
+            passwordBox.Size = new Size(187, 29);
+            passwordBox.TabIndex = 9;
+            passwordBox.UseSystemPasswordChar = true;
+            passwordBox.KeyDown += Enter;
             // 
             // emailBox
             // 
-            this.emailBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.emailBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.emailBox.ColorA = System.Drawing.Color.Silver;
-            this.emailBox.ColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.emailBox.ColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.emailBox.ColorD = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.emailBox.ColorE = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.emailBox.ColorF = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.emailBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.emailBox.ForeColor = System.Drawing.Color.Black;
-            this.emailBox.Location = new System.Drawing.Point(318, 272);
-            this.emailBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.emailBox.Name = "emailBox";
-            this.emailBox.PlaceholderText = "  Email";
-            this.emailBox.Size = new System.Drawing.Size(213, 34);
-            this.emailBox.TabIndex = 10;
+            emailBox.BackColor = Color.FromArgb(224, 224, 224);
+            emailBox.BorderStyle = BorderStyle.FixedSingle;
+            emailBox.ColorA = Color.Silver;
+            emailBox.ColorB = Color.FromArgb(224, 224, 224);
+            emailBox.ColorC = Color.FromArgb(224, 224, 224);
+            emailBox.ColorD = Color.FromArgb(0, 0, 0, 0);
+            emailBox.ColorE = Color.FromArgb(25, 255, 255, 255);
+            emailBox.ColorF = Color.FromArgb(64, 64, 64);
+            emailBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            emailBox.ForeColor = Color.Black;
+            emailBox.Location = new Point(278, 204);
+            emailBox.Name = "emailBox";
+            emailBox.PlaceholderText = "  Email";
+            emailBox.Size = new Size(187, 29);
+            emailBox.TabIndex = 10;
+            emailBox.KeyDown += Enter;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Berlin Sans FB Demi", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(195, 185);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 29);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Username";
+            label2.AutoSize = true;
+            label2.Font = new Font("Berlin Sans FB Demi", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(171, 139);
+            label2.Name = "label2";
+            label2.Size = new Size(101, 24);
+            label2.TabIndex = 11;
+            label2.Text = "Username";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Berlin Sans FB Demi", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(201, 232);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 29);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Password";
+            label3.AutoSize = true;
+            label3.Font = new Font("Berlin Sans FB Demi", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(176, 174);
+            label3.Name = "label3";
+            label3.Size = new Size(96, 24);
+            label3.TabIndex = 12;
+            label3.Text = "Password";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Berlin Sans FB Demi", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(242, 272);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 29);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Email";
+            label4.AutoSize = true;
+            label4.Font = new Font("Berlin Sans FB Demi", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(212, 204);
+            label4.Name = "label4";
+            label4.Size = new Size(60, 24);
+            label4.TabIndex = 13;
+            label4.Text = "Email";
             // 
             // signupButton
             // 
-            this.signupButton.BackColor = System.Drawing.Color.SeaGreen;
-            this.signupButton.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.signupButton.ForeColor = System.Drawing.Color.White;
-            this.signupButton.HoverColor = System.Drawing.Color.ForestGreen;
-            this.signupButton.Image = null;
-            this.signupButton.Location = new System.Drawing.Point(345, 333);
-            this.signupButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.signupButton.Name = "signupButton";
-            this.signupButton.Size = new System.Drawing.Size(141, 41);
-            this.signupButton.TabIndex = 14;
-            this.signupButton.Text = "Signup";
+            signupButton.BackColor = Color.SeaGreen;
+            signupButton.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            signupButton.ForeColor = Color.White;
+            signupButton.HoverColor = Color.ForestGreen;
+            signupButton.Image = null;
+            signupButton.Location = new Point(302, 250);
+            signupButton.Name = "signupButton";
+            signupButton.Size = new Size(123, 31);
+            signupButton.TabIndex = 14;
+            signupButton.Text = "Signup";
+            signupButton.Click += signupButton_Click;
             // 
             // backButtonPress
             // 
-            this.backButtonPress.BackColor = System.Drawing.Color.Transparent;
-            this.backButtonPress.DownBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.backButtonPress.DownBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.backButtonPress.DownBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.backButtonPress.DownBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.backButtonPress.DownBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.backButtonPress.DownBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.backButtonPress.DownForeColor = System.Drawing.Color.Black;
-            this.backButtonPress.DownShadowForeColor = System.Drawing.Color.Black;
-            this.backButtonPress.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.backButtonPress.ForeColor = System.Drawing.Color.Black;
-            this.backButtonPress.HoverBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.backButtonPress.HoverBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.backButtonPress.HoverBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.backButtonPress.HoverBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.backButtonPress.HoverBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.backButtonPress.HoverBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.backButtonPress.HoverForeColor = System.Drawing.Color.Black;
-            this.backButtonPress.HoverShadowForeColor = System.Drawing.Color.Black;
-            this.backButtonPress.Location = new System.Drawing.Point(24, 543);
-            this.backButtonPress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.backButtonPress.Name = "backButtonPress";
-            this.backButtonPress.NormalBGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.backButtonPress.NormalBGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.backButtonPress.NormalBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            this.backButtonPress.NormalBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
-            this.backButtonPress.NormalBorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.backButtonPress.NormalBorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
-            this.backButtonPress.NormalForeColor = System.Drawing.Color.Black;
-            this.backButtonPress.NormalShadowForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.backButtonPress.Size = new System.Drawing.Size(112, 35);
-            this.backButtonPress.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.backButtonPress.TabIndex = 15;
-            this.backButtonPress.Text = "Back";
+            backButtonPress.BackColor = Color.Transparent;
+            backButtonPress.DownBGColorA = Color.FromArgb(224, 224, 224);
+            backButtonPress.DownBGColorB = Color.FromArgb(224, 224, 224);
+            backButtonPress.DownBorderColorA = Color.FromArgb(224, 224, 224);
+            backButtonPress.DownBorderColorB = Color.FromArgb(224, 224, 224);
+            backButtonPress.DownBorderColorC = Color.FromArgb(224, 224, 224);
+            backButtonPress.DownBorderColorD = Color.FromArgb(224, 224, 224);
+            backButtonPress.DownForeColor = Color.Black;
+            backButtonPress.DownShadowForeColor = Color.Black;
+            backButtonPress.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            backButtonPress.ForeColor = Color.Black;
+            backButtonPress.HoverBGColorA = Color.FromArgb(224, 224, 224);
+            backButtonPress.HoverBGColorB = Color.FromArgb(224, 224, 224);
+            backButtonPress.HoverBorderColorA = Color.FromArgb(224, 224, 224);
+            backButtonPress.HoverBorderColorB = Color.FromArgb(224, 224, 224);
+            backButtonPress.HoverBorderColorC = Color.FromArgb(224, 224, 224);
+            backButtonPress.HoverBorderColorD = Color.FromArgb(224, 224, 224);
+            backButtonPress.HoverForeColor = Color.Black;
+            backButtonPress.HoverShadowForeColor = Color.Black;
+            backButtonPress.Location = new Point(21, 407);
+            backButtonPress.Name = "backButtonPress";
+            backButtonPress.NormalBGColorA = Color.FromArgb(245, 245, 245);
+            backButtonPress.NormalBGColorB = Color.FromArgb(230, 230, 230);
+            backButtonPress.NormalBorderColorA = Color.FromArgb(252, 252, 252);
+            backButtonPress.NormalBorderColorB = Color.FromArgb(249, 249, 249);
+            backButtonPress.NormalBorderColorC = Color.FromArgb(189, 189, 189);
+            backButtonPress.NormalBorderColorD = Color.FromArgb(200, 168, 168, 168);
+            backButtonPress.NormalForeColor = Color.Black;
+            backButtonPress.NormalShadowForeColor = Color.FromArgb(200, 255, 255, 255);
+            backButtonPress.Size = new Size(98, 26);
+            backButtonPress.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            backButtonPress.TabIndex = 15;
+            backButtonPress.Text = "Back";
+            backButtonPress.Click += BackButtonPress_Click;
             // 
             // Signup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.BackColor = System.Drawing.Color.SteelBlue;
-            this.Controls.Add(this.backButtonPress);
-            this.Controls.Add(this.signupButton);
-            this.Controls.Add(this.emailBox);
-            this.Controls.Add(this.passwordBox);
-            this.Controls.Add(this.usernameBox);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label4);
-            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.Name = "Signup";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            BackColor = Color.SteelBlue;
+            Controls.Add(backButtonPress);
+            Controls.Add(signupButton);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(emailBox);
+            Controls.Add(passwordBox);
+            Controls.Add(usernameBox);
+            Controls.Add(label1);
+            Name = "Signup";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private ReaLTaiizor.Controls.DreamTextBox usernameBox;
