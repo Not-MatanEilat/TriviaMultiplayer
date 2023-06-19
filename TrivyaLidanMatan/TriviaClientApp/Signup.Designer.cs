@@ -31,7 +31,7 @@
             label3 = new Label();
             label4 = new Label();
             signupButton = new ReaLTaiizor.Controls.LostAcceptButton();
-            backButtonPress = new ReaLTaiizor.Controls.SkyButton();
+            BackButtonPress = new ReaLTaiizor.Controls.RoyalButton();
             SuspendLayout();
             // 
             // label1
@@ -148,48 +148,31 @@
             signupButton.Text = "Signup";
             signupButton.Click += signupButton_Click;
             // 
-            // backButtonPress
+            // BackButtonPress
             // 
-            backButtonPress.BackColor = Color.Transparent;
-            backButtonPress.DownBGColorA = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBGColorB = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBorderColorA = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBorderColorB = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBorderColorC = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBorderColorD = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownForeColor = Color.Black;
-            backButtonPress.DownShadowForeColor = Color.Black;
-            backButtonPress.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            backButtonPress.ForeColor = Color.Black;
-            backButtonPress.HoverBGColorA = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBGColorB = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBorderColorA = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBorderColorB = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBorderColorC = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBorderColorD = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverForeColor = Color.Black;
-            backButtonPress.HoverShadowForeColor = Color.Black;
-            backButtonPress.Location = new Point(21, 407);
-            backButtonPress.Name = "backButtonPress";
-            backButtonPress.NormalBGColorA = Color.FromArgb(245, 245, 245);
-            backButtonPress.NormalBGColorB = Color.FromArgb(230, 230, 230);
-            backButtonPress.NormalBorderColorA = Color.FromArgb(252, 252, 252);
-            backButtonPress.NormalBorderColorB = Color.FromArgb(249, 249, 249);
-            backButtonPress.NormalBorderColorC = Color.FromArgb(189, 189, 189);
-            backButtonPress.NormalBorderColorD = Color.FromArgb(200, 168, 168, 168);
-            backButtonPress.NormalForeColor = Color.Black;
-            backButtonPress.NormalShadowForeColor = Color.FromArgb(200, 255, 255, 255);
-            backButtonPress.Size = new Size(98, 26);
-            backButtonPress.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            backButtonPress.TabIndex = 15;
-            backButtonPress.Text = "Back";
-            backButtonPress.Click += BackButtonPress_Click;
+            BackButtonPress.BackColor = Color.FromArgb(243, 243, 243);
+            BackButtonPress.BorderColor = Color.FromArgb(180, 180, 180);
+            BackButtonPress.BorderThickness = 3;
+            BackButtonPress.DrawBorder = true;
+            BackButtonPress.Font = new Font("Berlin Sans FB Demi", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            BackButtonPress.ForeColor = Color.FromArgb(31, 31, 31);
+            BackButtonPress.HotTrackColor = Color.FromArgb(221, 221, 221);
+            BackButtonPress.Image = null;
+            BackButtonPress.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            BackButtonPress.Location = new Point(14, 398);
+            BackButtonPress.Name = "BackButtonPress";
+            BackButtonPress.PressedColor = Color.FromArgb(243, 243, 243);
+            BackButtonPress.PressedForeColor = Color.Black;
+            BackButtonPress.Size = new Size(114, 40);
+            BackButtonPress.TabIndex = 15;
+            BackButtonPress.Text = "Back";
+            BackButtonPress.Click += BackButtonPress_Click;
             // 
             // Signup
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             BackColor = Color.SteelBlue;
-            Controls.Add(backButtonPress);
+            Controls.Add(BackButtonPress);
             Controls.Add(signupButton);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -210,6 +193,6 @@
         private Label label3;
         private Label label4;
         private ReaLTaiizor.Controls.LostAcceptButton signupButton;
-        private ReaLTaiizor.Controls.SkyButton backButtonPress;
+        private ReaLTaiizor.Controls.RoyalButton BackButtonPress;
     }
 }

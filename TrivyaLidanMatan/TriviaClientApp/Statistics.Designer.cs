@@ -29,52 +29,73 @@
         private void InitializeComponent()
         {
             myStats = new Label();
-            BackButtonPress = new Button();
-            button1 = new Button();
+            highScoreButton = new ReaLTaiizor.Controls.ParrotButton();
+            BackButtonPress = new ReaLTaiizor.Controls.RoyalButton();
             SuspendLayout();
             // 
             // myStats
             // 
             myStats.AutoSize = true;
-            myStats.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            myStats.Font = new Font("Berlin Sans FB Demi", 16F, FontStyle.Regular, GraphicsUnit.Point);
             myStats.Location = new Point(222, 50);
             myStats.Name = "myStats";
-            myStats.Size = new Size(109, 30);
+            myStats.Size = new Size(107, 25);
             myStats.TabIndex = 0;
             myStats.Text = "MY STATS";
             // 
+            // highScoreButton
+            // 
+            highScoreButton.BackgroundColor = Color.FromArgb(255, 255, 255);
+            highScoreButton.ButtonImage = null;
+            highScoreButton.ButtonStyle = ReaLTaiizor.Controls.ParrotButton.Style.MaterialRounded;
+            highScoreButton.ButtonText = "High Score";
+            highScoreButton.ClickBackColor = Color.FromArgb(195, 195, 195);
+            highScoreButton.ClickTextColor = Color.Black;
+            highScoreButton.CornerRadius = 16;
+            highScoreButton.Font = new Font("Berlin Sans FB Demi", 11.2F, FontStyle.Regular, GraphicsUnit.Point);
+            highScoreButton.Horizontal_Alignment = StringAlignment.Center;
+            highScoreButton.HoverBackgroundColor = Color.FromArgb(225, 225, 225);
+            highScoreButton.HoverTextColor = Color.Black;
+            highScoreButton.ImagePosition = ReaLTaiizor.Controls.ParrotButton.ImgPosition.Left;
+            highScoreButton.Location = new Point(332, 398);
+            highScoreButton.Name = "highScoreButton";
+            highScoreButton.Size = new Size(166, 40);
+            highScoreButton.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            highScoreButton.TabIndex = 12;
+            highScoreButton.TextColor = Color.Black;
+            highScoreButton.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            highScoreButton.Vertical_Alignment = StringAlignment.Center;
+            highScoreButton.Click += button1_Click;
+            // 
             // BackButtonPress
             // 
-            BackButtonPress.Location = new Point(12, 415);
+            BackButtonPress.BackColor = Color.FromArgb(243, 243, 243);
+            BackButtonPress.BorderColor = Color.FromArgb(180, 180, 180);
+            BackButtonPress.BorderThickness = 3;
+            BackButtonPress.DrawBorder = true;
+            BackButtonPress.Font = new Font("Berlin Sans FB Demi", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            BackButtonPress.ForeColor = Color.FromArgb(31, 31, 31);
+            BackButtonPress.HotTrackColor = Color.FromArgb(221, 221, 221);
+            BackButtonPress.Image = null;
+            BackButtonPress.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            BackButtonPress.Location = new Point(14, 398);
             BackButtonPress.Name = "BackButtonPress";
-            BackButtonPress.Size = new Size(75, 23);
-            BackButtonPress.TabIndex = 6;
+            BackButtonPress.PressedColor = Color.FromArgb(243, 243, 243);
+            BackButtonPress.PressedForeColor = Color.Black;
+            BackButtonPress.Size = new Size(114, 40);
+            BackButtonPress.TabIndex = 13;
             BackButtonPress.Text = "Back";
-            BackButtonPress.UseVisualStyleBackColor = true;
             BackButtonPress.Click += BackButtonPress_Click;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(332, 382);
-            button1.Name = "button1";
-            button1.Size = new Size(166, 56);
-            button1.TabIndex = 7;
-            button1.Text = "High Scores";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // Statistics
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button1);
-            Controls.Add(BackButtonPress);
             Controls.Add(myStats);
+            Controls.Add(highScoreButton);
+            Controls.Add(BackButtonPress);
             Name = "Statistics";
-            Text = "Statistics";
             Load += Statistics_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -83,7 +104,7 @@
         #endregion
 
         private Label myStats;
-        private Button BackButtonPress;
-        private Button button1;
+        private ReaLTaiizor.Controls.ParrotButton highScoreButton;
+        private ReaLTaiizor.Controls.RoyalButton BackButtonPress;
     }
 }

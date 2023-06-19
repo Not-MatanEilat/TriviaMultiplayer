@@ -40,7 +40,7 @@
             answer4TextBox = new ReaLTaiizor.Controls.DreamTextBox();
             label5 = new Label();
             createQuestionButton = new ReaLTaiizor.Controls.LostAcceptButton();
-            backButtonPress = new ReaLTaiizor.Controls.SkyButton();
+            backButton = new ReaLTaiizor.Controls.RoyalButton();
             SuspendLayout();
             // 
             // questionTextBox
@@ -207,49 +207,32 @@
             createQuestionButton.Text = "Create";
             createQuestionButton.Click += createQuestionButton_Click;
             // 
-            // backButtonPress
+            // backButton
             // 
-            backButtonPress.BackColor = Color.Transparent;
-            backButtonPress.DownBGColorA = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBGColorB = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBorderColorA = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBorderColorB = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBorderColorC = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownBorderColorD = Color.FromArgb(224, 224, 224);
-            backButtonPress.DownForeColor = Color.Black;
-            backButtonPress.DownShadowForeColor = Color.Black;
-            backButtonPress.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            backButtonPress.ForeColor = Color.Black;
-            backButtonPress.HoverBGColorA = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBGColorB = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBorderColorA = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBorderColorB = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBorderColorC = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverBorderColorD = Color.FromArgb(224, 224, 224);
-            backButtonPress.HoverForeColor = Color.Black;
-            backButtonPress.HoverShadowForeColor = Color.Black;
-            backButtonPress.Location = new Point(21, 407);
-            backButtonPress.Name = "backButtonPress";
-            backButtonPress.NormalBGColorA = Color.FromArgb(245, 245, 245);
-            backButtonPress.NormalBGColorB = Color.FromArgb(230, 230, 230);
-            backButtonPress.NormalBorderColorA = Color.FromArgb(252, 252, 252);
-            backButtonPress.NormalBorderColorB = Color.FromArgb(249, 249, 249);
-            backButtonPress.NormalBorderColorC = Color.FromArgb(189, 189, 189);
-            backButtonPress.NormalBorderColorD = Color.FromArgb(200, 168, 168, 168);
-            backButtonPress.NormalForeColor = Color.Black;
-            backButtonPress.NormalShadowForeColor = Color.FromArgb(200, 255, 255, 255);
-            backButtonPress.Size = new Size(98, 26);
-            backButtonPress.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            backButtonPress.TabIndex = 7;
-            backButtonPress.Text = "Back";
-            backButtonPress.Click += BackButtonPress_Click;
+            backButton.BackColor = Color.FromArgb(243, 243, 243);
+            backButton.BorderColor = Color.FromArgb(180, 180, 180);
+            backButton.BorderThickness = 3;
+            backButton.DrawBorder = true;
+            backButton.Font = new Font("Berlin Sans FB Demi", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            backButton.ForeColor = Color.FromArgb(31, 31, 31);
+            backButton.HotTrackColor = Color.FromArgb(221, 221, 221);
+            backButton.Image = null;
+            backButton.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            backButton.Location = new Point(14, 398);
+            backButton.Name = "backButton";
+            backButton.PressedColor = Color.FromArgb(243, 243, 243);
+            backButton.PressedForeColor = Color.Black;
+            backButton.Size = new Size(114, 40);
+            backButton.TabIndex = 11;
+            backButton.Text = "Back";
+            backButton.Click += BackButtonPress_Click;
             // 
             // CreateQuestion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(255, 128, 128);
-            Controls.Add(backButtonPress);
+            BackColor = Color.RoyalBlue;
+            Controls.Add(backButton);
             Controls.Add(createQuestionButton);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -280,6 +263,6 @@
         private ReaLTaiizor.Controls.DreamTextBox answer4TextBox;
         private Label label5;
         private ReaLTaiizor.Controls.LostAcceptButton createQuestionButton;
-        private ReaLTaiizor.Controls.SkyButton backButtonPress;
+        private ReaLTaiizor.Controls.RoyalButton backButton;
     }
 }

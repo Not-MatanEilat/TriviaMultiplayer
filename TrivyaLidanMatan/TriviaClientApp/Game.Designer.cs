@@ -35,13 +35,13 @@
             answer3Button = new Button();
             answer4Button = new Button();
             nextButton = new Button();
-            BackButtonPress = new Button();
             gameOverTImer = new System.Windows.Forms.Timer(components);
             questionNumberLabel = new Label();
             timeLeftLabel = new Label();
             timeLeftTimer = new System.Windows.Forms.Timer(components);
             correctAnswersLabel = new Label();
             nextButtonTimer = new System.Windows.Forms.Timer(components);
+            leaveButton = new ReaLTaiizor.Controls.RoyalButton();
             SuspendLayout();
             // 
             // questionLabel
@@ -100,16 +100,6 @@
             nextButton.UseVisualStyleBackColor = true;
             nextButton.Click += nextButton_Click;
             // 
-            // BackButtonPress
-            // 
-            BackButtonPress.Location = new Point(15, 415);
-            BackButtonPress.Name = "BackButtonPress";
-            BackButtonPress.Size = new Size(75, 23);
-            BackButtonPress.TabIndex = 7;
-            BackButtonPress.Text = "Leave";
-            BackButtonPress.UseVisualStyleBackColor = true;
-            BackButtonPress.Click += BackButtonPress_Click;
-            // 
             // gameOverTImer
             // 
             gameOverTImer.Interval = 1000;
@@ -155,20 +145,41 @@
             nextButtonTimer.Interval = 5000;
             nextButtonTimer.Tick += nextButtonTimer_Tick;
             // 
+            // leaveButton
+            // 
+            leaveButton.BackColor = Color.FromArgb(243, 243, 243);
+            leaveButton.BorderColor = Color.FromArgb(180, 180, 180);
+            leaveButton.BorderThickness = 3;
+            leaveButton.DrawBorder = true;
+            leaveButton.Font = new Font("Berlin Sans FB Demi", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            leaveButton.ForeColor = Color.FromArgb(31, 31, 31);
+            leaveButton.HotTrackColor = Color.FromArgb(221, 221, 221);
+            leaveButton.Image = null;
+            leaveButton.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            leaveButton.Location = new Point(14, 398);
+            leaveButton.Name = "leaveButton";
+            leaveButton.PressedColor = Color.FromArgb(243, 243, 243);
+            leaveButton.PressedForeColor = Color.Black;
+            leaveButton.Size = new Size(114, 40);
+            leaveButton.TabIndex = 12;
+            leaveButton.Text = "Leave";
+            leaveButton.Click += BackButtonPress_Click;
+            // 
             // Game
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.DodgerBlue;
             Controls.Add(correctAnswersLabel);
             Controls.Add(timeLeftLabel);
             Controls.Add(questionNumberLabel);
-            Controls.Add(BackButtonPress);
             Controls.Add(nextButton);
             Controls.Add(answer4Button);
             Controls.Add(answer3Button);
             Controls.Add(answer2Button);
             Controls.Add(answer1Button);
             Controls.Add(questionLabel);
+            Controls.Add(leaveButton);
             Name = "Game";
             Load += Game_Load;
             ResumeLayout(false);
@@ -183,12 +194,12 @@
         private Button answer3Button;
         private Button answer4Button;
         private Button nextButton;
-        private Button BackButtonPress;
         private System.Windows.Forms.Timer gameOverTImer;
         private Label questionNumberLabel;
         private Label timeLeftLabel;
         private System.Windows.Forms.Timer timeLeftTimer;
         private Label correctAnswersLabel;
         private System.Windows.Forms.Timer nextButtonTimer;
+        private ReaLTaiizor.Controls.RoyalButton leaveButton;
     }
 }

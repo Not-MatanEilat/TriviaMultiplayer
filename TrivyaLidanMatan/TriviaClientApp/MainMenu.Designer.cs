@@ -42,20 +42,20 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(328, 33);
+            label1.Font = new Font("Courier New", 48F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(267, 25);
             label1.Name = "label1";
-            label1.Size = new Size(137, 65);
+            label1.Size = new Size(260, 73);
             label1.TabIndex = 0;
             label1.Text = "Trivia";
             // 
             // userConnected
             // 
             userConnected.AutoSize = true;
-            userConnected.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            userConnected.Font = new Font("Berlin Sans FB Demi", 12F, FontStyle.Regular, GraphicsUnit.Point);
             userConnected.Location = new Point(328, 98);
             userConnected.Name = "userConnected";
-            userConnected.Size = new Size(145, 21);
+            userConnected.Size = new Size(148, 18);
             userConnected.TabIndex = 2;
             userConnected.Text = "Connected as: error";
             // 
