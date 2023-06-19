@@ -58,6 +58,7 @@
             nameRoomTextBox.PlaceholderText = "   Room Name";
             nameRoomTextBox.Size = new Size(187, 29);
             nameRoomTextBox.TabIndex = 1;
+            nameRoomTextBox.TextAlign = HorizontalAlignment.Center;
             nameRoomTextBox.KeyDown += Enter;
             // 
             // label2
@@ -88,8 +89,8 @@
             timePerQuestionBox.Size = new Size(187, 28);
             timePerQuestionBox.TabIndex = 2;
             timePerQuestionBox.Text = "dungeonNumeric1";
-            timePerQuestionBox.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
-            timePerQuestionBox.Value = 0L;
+            timePerQuestionBox.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Far;
+            timePerQuestionBox.Value = 20L;
             timePerQuestionBox.KeyDown += Enter;
             // 
             // label3
@@ -120,8 +121,8 @@
             maxPlayersBox.Size = new Size(187, 28);
             maxPlayersBox.TabIndex = 3;
             maxPlayersBox.Text = "dungeonNumeric1";
-            maxPlayersBox.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
-            maxPlayersBox.Value = 0L;
+            maxPlayersBox.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Far;
+            maxPlayersBox.Value = 5L;
             maxPlayersBox.KeyDown += Enter;
             // 
             // label6
@@ -152,8 +153,8 @@
             questionAmountBox.Size = new Size(187, 28);
             questionAmountBox.TabIndex = 4;
             questionAmountBox.Text = "dungeonNumeric1";
-            questionAmountBox.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Near;
-            questionAmountBox.Value = 0L;
+            questionAmountBox.TextAlignment = ReaLTaiizor.Controls.DungeonNumeric._TextAlignment.Far;
+            questionAmountBox.Value = 5L;
             questionAmountBox.KeyDown += Enter;
             // 
             // label4
