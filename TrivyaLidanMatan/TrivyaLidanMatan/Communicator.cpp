@@ -112,6 +112,7 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 			requestInfo.buffer = msg;
 			requestInfo.receivalTime = clock();
 			RequestResult result;
+			IRequestHandler* handler = m_clients[clientSocket];
 			if (m_clients[clientSocket]->isRequestRelevant(requestInfo))
 			{
 				result = m_clients[clientSocket]->handleRequest(requestInfo);

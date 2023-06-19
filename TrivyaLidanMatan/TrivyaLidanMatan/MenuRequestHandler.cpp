@@ -31,6 +31,7 @@ bool MenuRequestHandler::isRequestRelevant(RequestInfo info)
 RequestResult MenuRequestHandler::handleRequest(RequestInfo info)
 {
 	RequestResult result;
+	result.newHandler = this;
 	try
 	{
 		if (info.requestId == LOGOUT_CODE)
