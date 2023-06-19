@@ -242,6 +242,7 @@
             backButtonPress.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             backButtonPress.TabIndex = 7;
             backButtonPress.Text = "Back";
+            backButtonPress.Click += BackButtonPress_Click;
             // 
             // CreateQuestion
             // 
