@@ -33,6 +33,7 @@
             playersAmountLabel = new Label();
             questionsLabel = new Label();
             timeLabel = new Label();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             SuspendLayout();
             // 
             // nameLabel
@@ -105,5 +106,6 @@
         private Label playersAmountLabel;
         private Label questionsLabel;
         private Label timeLabel;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
