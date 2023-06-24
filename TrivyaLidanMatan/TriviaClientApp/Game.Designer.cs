@@ -112,9 +112,9 @@
             // questionLabel
             // 
             questionLabel.Font = new Font("Courier New", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            questionLabel.Location = new Point(175, 73);
+            questionLabel.Location = new Point(14, 48);
             questionLabel.Name = "questionLabel";
-            questionLabel.Size = new Size(441, 25);
+            questionLabel.Size = new Size(783, 61);
             questionLabel.TabIndex = 13;
             questionLabel.Text = "Why this project is the best one?";
             questionLabel.TextAlign = ContentAlignment.MiddleCenter;
