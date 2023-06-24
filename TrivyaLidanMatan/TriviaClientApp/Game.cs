@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
+using ReaLTaiizor.Controls;
+using Button = System.Windows.Forms.Button;
 using Timer = System.Threading.Timer;
 
 namespace TriviaClientApp
@@ -16,8 +18,8 @@ namespace TriviaClientApp
     public partial class Game : Page
     {
 
-        List<Button> answersButtons = new List<Button>();
-        List<Button> AnswersButtonsOriginal = new List<Button>();
+        List<RoyalButton> answersButtons = new List<RoyalButton>();
+        List<RoyalButton> AnswersButtonsOriginal = new List<RoyalButton>();
         private string correctAnswer;
         private readonly RoomData roomData;
         private int questionNumber;
@@ -47,7 +49,6 @@ namespace TriviaClientApp
         public Game(RoomData roomData)
         {
             InitializeComponent();
-            main.AcceptButton = nextButton;
             this.roomData = roomData;
             this.questionNumber = 0;
             this.TimeLeft = roomData.answerTimeout;
@@ -60,7 +61,7 @@ namespace TriviaClientApp
             answersButtons.Add(answer2Button);
             answersButtons.Add(answer3Button);
             answersButtons.Add(answer4Button);
-            foreach (Button button in answersButtons)
+            foreach (RoyalButton button in answersButtons)
             {
                 button.Click += AnswerButton_Click;
             }
@@ -105,7 +106,7 @@ namespace TriviaClientApp
             }
             else
             {
-                foreach (Button answerButton in answersButtons)
+                foreach (RoyalButton answerButton in answersButtons)
                 {
                     answerButton.Visible = false;
                 }
@@ -124,7 +125,7 @@ namespace TriviaClientApp
 
         private void AnswerButton_Click(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
+            RoyalButton button = (RoyalButton)sender;
             JObject res = TriviaClient.GetClient().SubmitAnswer(AnswersButtonsOriginal.IndexOf(button) + 1);
             if (TriviaClient.IsSuccessResponse(res))
             {
@@ -180,9 +181,9 @@ namespace TriviaClientApp
         /// </summary>
         /// <param name="answer">The function to get the button by</param>
         /// <returns>Button</returns>
-        private Button GetButtonByAnswer(string answer)
+        private RoyalButton GetButtonByAnswer(string answer)
         {
-            foreach (Button button in answersButtons)
+            foreach (RoyalButton button in answersButtons)
             {
                 if (button.Text == answer)
                 {
@@ -212,6 +213,19 @@ namespace TriviaClientApp
         private void nextButtonTimer_Tick(object sender, EventArgs e)
         {
             UpdateQuestion();
+        }
+
+        private void Enter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                UpdateQuestion();
+            }
+        }
+
+        private void answer2Button_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
