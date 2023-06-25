@@ -15,6 +15,7 @@ namespace TriviaClientApp
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             MainForm mainForm = new MainForm();
+            SoundManager soundManager = new SoundManager();
 
             mainForm.Show();
             Thread thread = new Thread(() =>

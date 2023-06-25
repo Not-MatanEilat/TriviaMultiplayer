@@ -25,12 +25,16 @@ namespace TriviaClientApp
 
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             MainMenu mainMenu = new MainMenu();
             main.ChangePage(mainMenu);
         }
 
         private void createQuestionButton_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             string question = questionTextBox.Text;
             string correctAnswer = correctAnswerTextBox.Text;
             string answer2 = answer2TextBox.Text;

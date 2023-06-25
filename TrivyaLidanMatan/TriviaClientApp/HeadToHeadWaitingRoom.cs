@@ -28,6 +28,8 @@ namespace TriviaClientApp
             {
                 if (result["message"]["hasGameBegun"].ToObject<bool>())
                 {
+                    soundManager.PlayCountdownTimerSound();
+
                     countdownStartGameTimer.Enabled = true;
                     countdownStartGameTimer.Start();
 
@@ -47,6 +49,8 @@ namespace TriviaClientApp
 
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             TriviaClient.GetClient().LeaveHeadToHead();
             MainMenu mainMenu = new MainMenu();
             main.ChangePage(mainMenu);

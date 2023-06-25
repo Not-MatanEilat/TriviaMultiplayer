@@ -31,6 +31,8 @@ namespace TriviaClientApp
 
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             Statistics menu = new Statistics();
             main.ChangePage(menu);
         }

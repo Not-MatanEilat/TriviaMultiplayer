@@ -25,6 +25,8 @@ namespace TriviaClientApp
 
         private void button1_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             if (AreInputsValid())
             {
                 string roomName = nameRoomTextBox.Text;
@@ -72,6 +74,8 @@ namespace TriviaClientApp
 
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             MainMenu mainMenu = new MainMenu();
             main.ChangePage(mainMenu);
         }

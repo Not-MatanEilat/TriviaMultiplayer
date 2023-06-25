@@ -98,6 +98,8 @@ namespace TriviaClientApp
 
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             MainMenu mainMenu = new MainMenu();
             main.ChangePage(mainMenu);
 
@@ -105,6 +107,8 @@ namespace TriviaClientApp
 
         private void JoinRoom_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             Button button = (Button)sender;
             RoomBox box = (RoomBox)button.Parent;
             int roomId = box.RoomId;
@@ -129,12 +133,16 @@ namespace TriviaClientApp
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             Thread loader = new Thread(loadAllRooms);
             loader.Start();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             int roomId = (int)roomIdBox.Value;
             try
             {
