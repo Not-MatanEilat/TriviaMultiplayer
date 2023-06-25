@@ -29,86 +29,20 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            questionLabel = new Label();
-            answer1Button = new Button();
-            answer2Button = new Button();
-            answer3Button = new Button();
-            answer4Button = new Button();
-            nextButton = new Button();
-            BackButtonPress = new Button();
             gameOverTImer = new System.Windows.Forms.Timer(components);
             questionNumberLabel = new Label();
             timeLeftLabel = new Label();
             timeLeftTimer = new System.Windows.Forms.Timer(components);
             correctAnswersLabel = new Label();
             nextButtonTimer = new System.Windows.Forms.Timer(components);
+            leaveButton = new ReaLTaiizor.Controls.RoyalButton();
+            questionLabel = new Label();
+            answer1Button = new ReaLTaiizor.Controls.RoyalButton();
+            answer3Button = new ReaLTaiizor.Controls.RoyalButton();
+            answer4Button = new ReaLTaiizor.Controls.RoyalButton();
+            nextButton = new ReaLTaiizor.Controls.LostAcceptButton();
+            answer2Button = new ReaLTaiizor.Controls.RoyalButton();
             SuspendLayout();
-            // 
-            // questionLabel
-            // 
-            questionLabel.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            questionLabel.Location = new Point(3, 43);
-            questionLabel.Name = "questionLabel";
-            questionLabel.Size = new Size(794, 70);
-            questionLabel.TabIndex = 0;
-            questionLabel.Text = "Why this project is the best one?";
-            questionLabel.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // answer1Button
-            // 
-            answer1Button.Location = new Point(132, 116);
-            answer1Button.Name = "answer1Button";
-            answer1Button.Size = new Size(260, 30);
-            answer1Button.TabIndex = 1;
-            answer1Button.Text = "button1";
-            answer1Button.UseVisualStyleBackColor = true;
-            // 
-            // answer2Button
-            // 
-            answer2Button.Location = new Point(398, 116);
-            answer2Button.Name = "answer2Button";
-            answer2Button.Size = new Size(260, 30);
-            answer2Button.TabIndex = 2;
-            answer2Button.Text = "button2";
-            answer2Button.UseVisualStyleBackColor = true;
-            // 
-            // answer3Button
-            // 
-            answer3Button.Location = new Point(132, 161);
-            answer3Button.Name = "answer3Button";
-            answer3Button.Size = new Size(260, 30);
-            answer3Button.TabIndex = 3;
-            answer3Button.Text = "button3";
-            answer3Button.UseVisualStyleBackColor = true;
-            // 
-            // answer4Button
-            // 
-            answer4Button.Location = new Point(398, 161);
-            answer4Button.Name = "answer4Button";
-            answer4Button.Size = new Size(260, 30);
-            answer4Button.TabIndex = 4;
-            answer4Button.Text = "button4";
-            answer4Button.UseVisualStyleBackColor = true;
-            // 
-            // nextButton
-            // 
-            nextButton.Location = new Point(360, 232);
-            nextButton.Name = "nextButton";
-            nextButton.Size = new Size(75, 23);
-            nextButton.TabIndex = 5;
-            nextButton.Text = "Next";
-            nextButton.UseVisualStyleBackColor = true;
-            nextButton.Click += nextButton_Click;
-            // 
-            // BackButtonPress
-            // 
-            BackButtonPress.Location = new Point(15, 415);
-            BackButtonPress.Name = "BackButtonPress";
-            BackButtonPress.Size = new Size(75, 23);
-            BackButtonPress.TabIndex = 7;
-            BackButtonPress.Text = "Leave";
-            BackButtonPress.UseVisualStyleBackColor = true;
-            BackButtonPress.Click += BackButtonPress_Click;
             // 
             // gameOverTImer
             // 
@@ -117,10 +51,10 @@
             // 
             // questionNumberLabel
             // 
-            questionNumberLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            questionNumberLabel.Location = new Point(345, 20);
+            questionNumberLabel.Font = new Font("Courier New", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            questionNumberLabel.Location = new Point(342, 25);
             questionNumberLabel.Name = "questionNumberLabel";
-            questionNumberLabel.Size = new Size(120, 23);
+            questionNumberLabel.Size = new Size(133, 23);
             questionNumberLabel.TabIndex = 8;
             questionNumberLabel.Text = "Question 1/1";
             questionNumberLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -128,10 +62,10 @@
             // timeLeftLabel
             // 
             timeLeftLabel.AutoSize = true;
-            timeLeftLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            timeLeftLabel.Location = new Point(35, 20);
+            timeLeftLabel.Font = new Font("Courier New", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            timeLeftLabel.Location = new Point(27, 27);
             timeLeftLabel.Name = "timeLeftLabel";
-            timeLeftLabel.Size = new Size(99, 21);
+            timeLeftLabel.Size = new Size(138, 18);
             timeLeftLabel.TabIndex = 9;
             timeLeftLabel.Text = "Time Left: 10";
             // 
@@ -143,10 +77,10 @@
             // correctAnswersLabel
             // 
             correctAnswersLabel.AutoSize = true;
-            correctAnswersLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            correctAnswersLabel.Location = new Point(659, 21);
+            correctAnswersLabel.Font = new Font("Courier New", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            correctAnswersLabel.Location = new Point(643, 25);
             correctAnswersLabel.Name = "correctAnswersLabel";
-            correctAnswersLabel.Size = new Size(77, 21);
+            correctAnswersLabel.Size = new Size(108, 18);
             correctAnswersLabel.TabIndex = 10;
             correctAnswersLabel.Text = "Correct: 0";
             // 
@@ -155,20 +89,144 @@
             nextButtonTimer.Interval = 5000;
             nextButtonTimer.Tick += nextButtonTimer_Tick;
             // 
+            // leaveButton
+            // 
+            leaveButton.BackColor = Color.FromArgb(243, 243, 243);
+            leaveButton.BorderColor = Color.FromArgb(180, 180, 180);
+            leaveButton.BorderThickness = 3;
+            leaveButton.DrawBorder = true;
+            leaveButton.Font = new Font("Berlin Sans FB Demi", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            leaveButton.ForeColor = Color.FromArgb(31, 31, 31);
+            leaveButton.HotTrackColor = Color.FromArgb(221, 221, 221);
+            leaveButton.Image = null;
+            leaveButton.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            leaveButton.Location = new Point(14, 398);
+            leaveButton.Name = "leaveButton";
+            leaveButton.PressedColor = Color.FromArgb(243, 243, 243);
+            leaveButton.PressedForeColor = Color.Black;
+            leaveButton.Size = new Size(114, 40);
+            leaveButton.TabIndex = 12;
+            leaveButton.Text = "Leave";
+            leaveButton.Click += BackButtonPress_Click;
+            // 
+            // questionLabel
+            // 
+            questionLabel.Font = new Font("Courier New", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            questionLabel.Location = new Point(14, 48);
+            questionLabel.Name = "questionLabel";
+            questionLabel.Size = new Size(783, 61);
+            questionLabel.TabIndex = 13;
+            questionLabel.Text = "Why this project is the best one?";
+            questionLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // answer1Button
+            // 
+            answer1Button.BackColor = Color.FromArgb(243, 243, 243);
+            answer1Button.BorderColor = Color.FromArgb(180, 180, 180);
+            answer1Button.BorderThickness = 3;
+            answer1Button.DrawBorder = true;
+            answer1Button.Font = new Font("Comic Sans MS", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            answer1Button.ForeColor = Color.FromArgb(31, 31, 31);
+            answer1Button.HotTrackColor = Color.FromArgb(221, 221, 221);
+            answer1Button.Image = null;
+            answer1Button.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            answer1Button.Location = new Point(175, 112);
+            answer1Button.Name = "answer1Button";
+            answer1Button.PressedColor = Color.FromArgb(243, 243, 243);
+            answer1Button.PressedForeColor = Color.Black;
+            answer1Button.Size = new Size(215, 33);
+            answer1Button.TabIndex = 14;
+            answer1Button.Text = "answer1";
+            // 
+            // answer3Button
+            // 
+            answer3Button.BackColor = Color.FromArgb(243, 243, 243);
+            answer3Button.BorderColor = Color.FromArgb(180, 180, 180);
+            answer3Button.BorderThickness = 3;
+            answer3Button.DrawBorder = true;
+            answer3Button.Font = new Font("Comic Sans MS", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            answer3Button.ForeColor = Color.FromArgb(31, 31, 31);
+            answer3Button.HotTrackColor = Color.FromArgb(221, 221, 221);
+            answer3Button.Image = null;
+            answer3Button.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            answer3Button.Location = new Point(175, 161);
+            answer3Button.Name = "answer3Button";
+            answer3Button.PressedColor = Color.FromArgb(243, 243, 243);
+            answer3Button.PressedForeColor = Color.Black;
+            answer3Button.Size = new Size(215, 33);
+            answer3Button.TabIndex = 14;
+            answer3Button.Text = "answer3";
+            // 
+            // answer4Button
+            // 
+            answer4Button.BackColor = Color.FromArgb(243, 243, 243);
+            answer4Button.BorderColor = Color.FromArgb(180, 180, 180);
+            answer4Button.BorderThickness = 3;
+            answer4Button.DrawBorder = true;
+            answer4Button.Font = new Font("Comic Sans MS", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            answer4Button.ForeColor = Color.FromArgb(31, 31, 31);
+            answer4Button.HotTrackColor = Color.FromArgb(221, 221, 221);
+            answer4Button.Image = null;
+            answer4Button.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            answer4Button.Location = new Point(401, 161);
+            answer4Button.Name = "answer4Button";
+            answer4Button.PressedColor = Color.FromArgb(243, 243, 243);
+            answer4Button.PressedForeColor = Color.Black;
+            answer4Button.Size = new Size(215, 33);
+            answer4Button.TabIndex = 14;
+            answer4Button.Text = "answer4";
+            // 
+            // nextButton
+            // 
+            nextButton.BackColor = Color.SeaGreen;
+            nextButton.Enabled = false;
+            nextButton.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            nextButton.ForeColor = Color.White;
+            nextButton.HoverColor = Color.ForestGreen;
+            nextButton.Image = null;
+            nextButton.Location = new Point(331, 214);
+            nextButton.Name = "nextButton";
+            nextButton.Size = new Size(123, 31);
+            nextButton.TabIndex = 15;
+            nextButton.Text = "Next";
+            nextButton.Click += nextButton_Click;
+            nextButton.KeyDown += Enter;
+            // 
+            // answer2Button
+            // 
+            answer2Button.BackColor = Color.FromArgb(243, 243, 243);
+            answer2Button.BorderColor = Color.FromArgb(180, 180, 180);
+            answer2Button.BorderThickness = 3;
+            answer2Button.DrawBorder = true;
+            answer2Button.Font = new Font("Comic Sans MS", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            answer2Button.ForeColor = Color.FromArgb(31, 31, 31);
+            answer2Button.HotTrackColor = Color.FromArgb(221, 221, 221);
+            answer2Button.Image = null;
+            answer2Button.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            answer2Button.Location = new Point(401, 112);
+            answer2Button.Name = "answer2Button";
+            answer2Button.PressedColor = Color.FromArgb(243, 243, 243);
+            answer2Button.PressedForeColor = Color.Black;
+            answer2Button.Size = new Size(215, 33);
+            answer2Button.TabIndex = 14;
+            answer2Button.Text = "answer2";
+            answer2Button.Click += answer2Button_Click;
+            // 
             // Game
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(correctAnswersLabel);
-            Controls.Add(timeLeftLabel);
-            Controls.Add(questionNumberLabel);
-            Controls.Add(BackButtonPress);
+            BackColor = Color.DodgerBlue;
             Controls.Add(nextButton);
             Controls.Add(answer4Button);
             Controls.Add(answer3Button);
             Controls.Add(answer2Button);
             Controls.Add(answer1Button);
             Controls.Add(questionLabel);
+            Controls.Add(correctAnswersLabel);
+            Controls.Add(timeLeftLabel);
+            Controls.Add(questionNumberLabel);
+            Controls.Add(leaveButton);
             Name = "Game";
             Load += Game_Load;
             ResumeLayout(false);
@@ -176,19 +234,18 @@
         }
 
         #endregion
-
-        private Label questionLabel;
-        private Button answer1Button;
-        private Button answer2Button;
-        private Button answer3Button;
-        private Button answer4Button;
-        private Button nextButton;
-        private Button BackButtonPress;
         private System.Windows.Forms.Timer gameOverTImer;
         private Label questionNumberLabel;
         private Label timeLeftLabel;
         private System.Windows.Forms.Timer timeLeftTimer;
         private Label correctAnswersLabel;
         private System.Windows.Forms.Timer nextButtonTimer;
+        private ReaLTaiizor.Controls.RoyalButton leaveButton;
+        private Label questionLabel;
+        private ReaLTaiizor.Controls.RoyalButton answer1Button;
+        private ReaLTaiizor.Controls.RoyalButton answer3Button;
+        private ReaLTaiizor.Controls.RoyalButton answer4Button;
+        private ReaLTaiizor.Controls.LostAcceptButton nextButton;
+        private ReaLTaiizor.Controls.RoyalButton answer2Button;
     }
 }

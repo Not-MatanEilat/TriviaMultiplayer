@@ -31,8 +31,8 @@
             components = new System.ComponentModel.Container();
             getState = new System.Windows.Forms.Timer(components);
             topText = new Label();
-            BackButtonPress = new Button();
             countdownStartGameTimer = new System.Windows.Forms.Timer(components);
+            BackButtonPress = new ReaLTaiizor.Controls.RoyalButton();
             SuspendLayout();
             // 
             // getState
@@ -44,34 +44,44 @@
             // topText
             // 
             topText.AutoSize = true;
-            topText.Font = new Font("Segoe UI", 21F, FontStyle.Regular, GraphicsUnit.Point);
+            topText.Font = new Font("Berlin Sans FB Demi", 21F, FontStyle.Regular, GraphicsUnit.Point);
             topText.Location = new Point(212, 49);
             topText.Name = "topText";
-            topText.Size = new Size(366, 38);
+            topText.Size = new Size(388, 33);
             topText.TabIndex = 0;
             topText.Text = "Waiting for another player....";
-            // 
-            // BackButtonPress
-            // 
-            BackButtonPress.Location = new Point(12, 415);
-            BackButtonPress.Name = "BackButtonPress";
-            BackButtonPress.Size = new Size(75, 23);
-            BackButtonPress.TabIndex = 6;
-            BackButtonPress.Text = "Back";
-            BackButtonPress.UseVisualStyleBackColor = true;
-            BackButtonPress.Click += BackButtonPress_Click;
             // 
             // countdownStartGameTimer
             // 
             countdownStartGameTimer.Interval = 1000;
             countdownStartGameTimer.Tick += countdownStartGameTimer_Tick;
             // 
+            // BackButtonPress
+            // 
+            BackButtonPress.BackColor = Color.FromArgb(243, 243, 243);
+            BackButtonPress.BorderColor = Color.FromArgb(180, 180, 180);
+            BackButtonPress.BorderThickness = 3;
+            BackButtonPress.DrawBorder = true;
+            BackButtonPress.Font = new Font("Berlin Sans FB Demi", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            BackButtonPress.ForeColor = Color.FromArgb(31, 31, 31);
+            BackButtonPress.HotTrackColor = Color.FromArgb(221, 221, 221);
+            BackButtonPress.Image = null;
+            BackButtonPress.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            BackButtonPress.Location = new Point(12, 398);
+            BackButtonPress.Name = "BackButtonPress";
+            BackButtonPress.PressedColor = Color.FromArgb(243, 243, 243);
+            BackButtonPress.PressedForeColor = Color.Black;
+            BackButtonPress.Size = new Size(114, 40);
+            BackButtonPress.TabIndex = 11;
+            BackButtonPress.Text = "Back";
+            BackButtonPress.Click += BackButtonPress_Click;
+            // 
             // HeadToHeadWaitingRoom
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(BackButtonPress);
             Controls.Add(topText);
+            Controls.Add(BackButtonPress);
             Name = "HeadToHeadWaitingRoom";
             ResumeLayout(false);
             PerformLayout();
@@ -81,7 +91,7 @@
 
         private System.Windows.Forms.Timer getState;
         private Label topText;
-        private Button BackButtonPress;
         private System.Windows.Forms.Timer countdownStartGameTimer;
+        private ReaLTaiizor.Controls.RoyalButton BackButtonPress;
     }
 }

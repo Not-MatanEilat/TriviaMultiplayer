@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             resultsFlow = new FlowLayoutPanel();
-            leaveButton = new Button();
+            leaveButton = new ReaLTaiizor.Controls.RoyalButton();
             SuspendLayout();
             // 
             // resultsFlow
@@ -41,20 +41,30 @@
             // 
             // leaveButton
             // 
-            leaveButton.Location = new Point(14, 418);
+            leaveButton.BackColor = Color.FromArgb(243, 243, 243);
+            leaveButton.BorderColor = Color.FromArgb(180, 180, 180);
+            leaveButton.BorderThickness = 3;
+            leaveButton.DrawBorder = true;
+            leaveButton.Font = new Font("Berlin Sans FB Demi", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            leaveButton.ForeColor = Color.FromArgb(31, 31, 31);
+            leaveButton.HotTrackColor = Color.FromArgb(221, 221, 221);
+            leaveButton.Image = null;
+            leaveButton.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            leaveButton.Location = new Point(14, 398);
             leaveButton.Name = "leaveButton";
-            leaveButton.Size = new Size(75, 23);
-            leaveButton.TabIndex = 1;
+            leaveButton.PressedColor = Color.FromArgb(243, 243, 243);
+            leaveButton.PressedForeColor = Color.Black;
+            leaveButton.Size = new Size(114, 40);
+            leaveButton.TabIndex = 11;
             leaveButton.Text = "Leave";
-            leaveButton.UseVisualStyleBackColor = true;
             leaveButton.Click += leaveButton_Click;
             // 
             // GameResults
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(leaveButton);
             Controls.Add(resultsFlow);
+            Controls.Add(leaveButton);
             Name = "GameResults";
             Load += GameResults_Load;
             ResumeLayout(false);
@@ -63,6 +73,6 @@
         #endregion
 
         private FlowLayoutPanel resultsFlow;
-        private Button leaveButton;
+        private ReaLTaiizor.Controls.RoyalButton leaveButton;
     }
 }

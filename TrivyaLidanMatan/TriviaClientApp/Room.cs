@@ -79,18 +79,6 @@ namespace TriviaClientApp
         /// <param name="roomState">The current state of the room</param>
         private void LoadAllNames(JObject roomState)
         {
-
-            if (!TriviaClient.IsSuccessResponse(roomState, false))
-            {
-                InvokeSafe(() =>
-                {
-                    MainMenu mainMenu = new MainMenu();
-                    main.ChangePage(mainMenu);
-                });
-
-                return;
-            }
-
             JToken playersJson = roomState["message"]["players"];
             players.Clear();
             List<Control> controls = new();
@@ -152,6 +140,14 @@ namespace TriviaClientApp
 
                 LoadAllNames(result);
                 CheckGameHasBegun(result);
+            }
+            else
+            {
+                InvokeSafe(() =>
+                {
+                    MainMenu mainMenu = new MainMenu();
+                    main.ChangePage(mainMenu);
+                });
             }
         }
 

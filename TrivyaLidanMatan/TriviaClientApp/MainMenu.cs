@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bootstrap.BSControl;
+using CustomControls.RJControls;
+using ReaLTaiizor.Controls;
 
 namespace TriviaClientApp
 {
@@ -27,6 +30,7 @@ namespace TriviaClientApp
         {
             string username = TriviaClient.GetClient().Username;
             userConnected.Text = "Connected as: " + username;
+
         }
 
         private void CreateRoomButton_Click(object sender, EventArgs e)
@@ -49,13 +53,13 @@ namespace TriviaClientApp
             main.ChangePage(createQuestion);
         }
 
-        private void statisticsButton_Click(object sender, EventArgs e)
+        private void StatisticsButton_Click(object sender, EventArgs e)
         {
             Statistics statistics = new Statistics();
             main.ChangePage(statistics);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void exitButton_Click(object sender, EventArgs e)
         {
             main.Close();
         }
@@ -67,11 +71,26 @@ namespace TriviaClientApp
             main.ChangePage(login);
         }
 
-        private void headToHeaButton_Click(object sender, EventArgs e)
+        private void headToHeadButton_Click(object sender, EventArgs e)
         {
             TriviaClient.GetClient().JoinHeadToHead();
             HeadToHeadWaitingRoom headToHeadWaitingRoom = new HeadToHeadWaitingRoom();
             main.ChangePage(headToHeadWaitingRoom);
         }
+
+        private void rjButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+

@@ -20,7 +20,6 @@ namespace TriviaClientApp
         public Signup()
         {
             InitializeComponent();
-            main.AcceptButton = signupButton;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -40,9 +39,9 @@ namespace TriviaClientApp
 
         private void signupButton_Click(object sender, EventArgs e)
         {
-            username = usernameTextBox.Text;
-            password = passwordTextBox.Text;
-            email = emailTextBox.Text;
+            username = usernameBox.Text;
+            password = passwordBox.Text;
+            email = emailBox.Text;
 
             TriviaClient client = TriviaClient.GetClient();
 
@@ -60,6 +59,34 @@ namespace TriviaClientApp
         {
             Login login = new Login();
             main.ChangePage(login);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void usernameBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Enter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                signupButton_Click(sender, e);
+            }
+        }
+
+        private void signupButton_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backButtonPress_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

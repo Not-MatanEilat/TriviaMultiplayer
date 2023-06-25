@@ -31,22 +31,22 @@
             components = new System.ComponentModel.Container();
             label1 = new Label();
             namesListFlow = new FlowLayoutPanel();
-            BackButtonPress = new Button();
             roomNameLabel = new Label();
             roomCreatorNameLabel = new Label();
             label2 = new Label();
             roomIdLabel = new Label();
             autoRefresh = new System.Windows.Forms.Timer(components);
-            startGameButton = new Button();
+            BackButtonPress = new ReaLTaiizor.Controls.RoyalButton();
+            startGameButton = new ReaLTaiizor.Controls.LostAcceptButton();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Berlin Sans FB Demi", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(33, 51);
             label1.Name = "label1";
-            label1.Size = new Size(86, 30);
+            label1.Size = new Size(90, 25);
             label1.TabIndex = 0;
             label1.Text = "Players:";
             // 
@@ -55,23 +55,13 @@
             namesListFlow.FlowDirection = FlowDirection.TopDown;
             namesListFlow.Location = new Point(33, 84);
             namesListFlow.Name = "namesListFlow";
-            namesListFlow.Size = new Size(220, 320);
+            namesListFlow.Size = new Size(220, 308);
             namesListFlow.TabIndex = 1;
             namesListFlow.Paint += flowLayoutPanel1_Paint;
             // 
-            // BackButtonPress
-            // 
-            BackButtonPress.Location = new Point(33, 415);
-            BackButtonPress.Name = "BackButtonPress";
-            BackButtonPress.Size = new Size(75, 23);
-            BackButtonPress.TabIndex = 6;
-            BackButtonPress.Text = "Back";
-            BackButtonPress.UseVisualStyleBackColor = true;
-            BackButtonPress.Click += BackButtonPress_Click;
-            // 
             // roomNameLabel
             // 
-            roomNameLabel.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            roomNameLabel.Font = new Font("Courier New", 24F, FontStyle.Bold, GraphicsUnit.Point);
             roomNameLabel.Location = new Point(231, 0);
             roomNameLabel.Name = "roomNameLabel";
             roomNameLabel.Size = new Size(355, 45);
@@ -82,7 +72,7 @@
             // 
             // roomCreatorNameLabel
             // 
-            roomCreatorNameLabel.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            roomCreatorNameLabel.Font = new Font("Berlin Sans FB Demi", 14F, FontStyle.Regular, GraphicsUnit.Point);
             roomCreatorNameLabel.Location = new Point(249, 45);
             roomCreatorNameLabel.Name = "roomCreatorNameLabel";
             roomCreatorNameLabel.Size = new Size(314, 36);
@@ -94,16 +84,16 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Berlin Sans FB Demi", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(651, 84);
             label2.Name = "label2";
-            label2.Size = new Size(88, 28);
+            label2.Size = new Size(86, 24);
             label2.TabIndex = 9;
             label2.Text = "Room ID";
             // 
             // roomIdLabel
             // 
-            roomIdLabel.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            roomIdLabel.Font = new Font("Berlin Sans FB Demi", 11F, FontStyle.Regular, GraphicsUnit.Point);
             roomIdLabel.Location = new Point(620, 112);
             roomIdLabel.Name = "roomIdLabel";
             roomIdLabel.Size = new Size(145, 23);
@@ -117,29 +107,53 @@
             autoRefresh.Interval = 1000;
             autoRefresh.Tick += autoRefresh_Tick;
             // 
+            // BackButtonPress
+            // 
+            BackButtonPress.BackColor = Color.FromArgb(243, 243, 243);
+            BackButtonPress.BorderColor = Color.FromArgb(180, 180, 180);
+            BackButtonPress.BorderThickness = 3;
+            BackButtonPress.DrawBorder = true;
+            BackButtonPress.Font = new Font("Berlin Sans FB Demi", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            BackButtonPress.ForeColor = Color.FromArgb(31, 31, 31);
+            BackButtonPress.HotTrackColor = Color.FromArgb(221, 221, 221);
+            BackButtonPress.Image = null;
+            BackButtonPress.LayoutFlags = ReaLTaiizor.Util.RoyalLayoutFlags.ImageBeforeText;
+            BackButtonPress.Location = new Point(14, 398);
+            BackButtonPress.Name = "BackButtonPress";
+            BackButtonPress.PressedColor = Color.FromArgb(243, 243, 243);
+            BackButtonPress.PressedForeColor = Color.Black;
+            BackButtonPress.Size = new Size(114, 40);
+            BackButtonPress.TabIndex = 13;
+            BackButtonPress.Text = "Back";
+            BackButtonPress.Click += BackButtonPress_Click;
+            // 
             // startGameButton
             // 
-            startGameButton.Location = new Point(651, 353);
+            startGameButton.BackColor = Color.SeaGreen;
+            startGameButton.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            startGameButton.ForeColor = Color.White;
+            startGameButton.HoverColor = Color.ForestGreen;
+            startGameButton.Image = null;
+            startGameButton.Location = new Point(353, 368);
             startGameButton.Name = "startGameButton";
-            startGameButton.Size = new Size(104, 25);
-            startGameButton.TabIndex = 11;
-            startGameButton.Text = "Start";
-            startGameButton.UseVisualStyleBackColor = true;
+            startGameButton.Size = new Size(137, 36);
+            startGameButton.TabIndex = 15;
+            startGameButton.Text = "Start Game";
             startGameButton.Click += startGameButton_Click;
             // 
             // Room
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(192, 192, 255);
-            Controls.Add(startGameButton);
+            BackColor = Color.SkyBlue;
             Controls.Add(roomIdLabel);
             Controls.Add(label2);
             Controls.Add(roomCreatorNameLabel);
             Controls.Add(roomNameLabel);
-            Controls.Add(BackButtonPress);
             Controls.Add(namesListFlow);
             Controls.Add(label1);
+            Controls.Add(BackButtonPress);
+            Controls.Add(startGameButton);
             Name = "Room";
             Load += Room_Load;
             ResumeLayout(false);
@@ -150,12 +164,12 @@
 
         private Label label1;
         private FlowLayoutPanel namesListFlow;
-        private Button BackButtonPress;
         private Label roomNameLabel;
         private Label roomCreatorNameLabel;
         private Label label2;
         private Label roomIdLabel;
         private System.Windows.Forms.Timer autoRefresh;
-        private Button startGameButton;
+        private ReaLTaiizor.Controls.RoyalButton BackButtonPress;
+        private ReaLTaiizor.Controls.LostAcceptButton startGameButton;
     }
 }

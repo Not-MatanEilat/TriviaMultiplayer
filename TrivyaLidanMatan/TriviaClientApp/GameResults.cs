@@ -30,13 +30,13 @@ namespace TriviaClientApp
             int i = 0;
             foreach (JToken result in results["results"])
             {
-                string resultStr = $"{i+1}. {result["username"]} - Correct: {result["correctAnswerCount"]} avg speed: {result["averageAnswerTime"].Value<float>() / 1000} secs";
+                string resultStr = $"{i + 1}. {result["username"]} - Correct: {result["correctAnswerCount"]} avg speed: {result["averageAnswerTime"].Value<float>() / 1000} secs";
                 Label playerLabel = new()
                 {
                     Text = resultStr,
                     Location = new Point(PLAYER_LABEL_BASE_X, PLAYER_LABEL_BASE_Y + i * PLAYER_LABEL_MARGIN),
                     AutoSize = true,
-                    Font = new Font(FontFamily.GenericSerif, 20)
+                    Font = new Font("Berlin Sans FB Demi", 20F, FontStyle.Regular, GraphicsUnit.Point)
                 };
 
                 resultsFlow.Controls.Add(playerLabel);

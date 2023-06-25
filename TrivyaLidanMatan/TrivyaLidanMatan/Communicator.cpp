@@ -105,12 +105,14 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 			}
 			Buffer msg = Helper::getBufferPartFromSocket(clientSocket, len);
 			std::lock_guard<std::mutex> m_lockGuard(m_mutex);
-			TRACE("code: " << code << " len: " << len);
+			string msgStr(msg.begin(), msg.end());
+			TRACE("code: " << code << " len: " << len << " data: " << msgStr);
 			RequestInfo requestInfo;
 			requestInfo.requestId = code;
 			requestInfo.buffer = msg;
 			requestInfo.receivalTime = clock();
 			RequestResult result;
+			IRequestHandler* handler = m_clients[clientSocket];
 			if (m_clients[clientSocket]->isRequestRelevant(requestInfo))
 			{
 				result = m_clients[clientSocket]->handleRequest(requestInfo);

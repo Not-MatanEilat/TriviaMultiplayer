@@ -54,5 +54,10 @@ namespace TriviaClientApp
                 }
             }
         }
+
+        private void createRoomButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

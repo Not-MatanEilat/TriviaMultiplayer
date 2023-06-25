@@ -68,6 +68,7 @@ namespace TriviaClientApp
         private Socket socket;
 
         public string Username { get; private set; }
+        private bool lostConnection = false;
 
         public TriviaClient()
         {
@@ -153,9 +154,13 @@ namespace TriviaClientApp
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e);
-                MessageBox.Show("Failed to connect to server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Environment.Exit(1);
+                if (!lostConnection)
+                {
+                    lostConnection = true;
+                    Debug.WriteLine(e);
+                    MessageBox.Show("Failed to connect to server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                }
             }
         }
 
@@ -172,9 +177,14 @@ namespace TriviaClientApp
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e);
-                MessageBox.Show("Failed to send to server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Environment.Exit(1);
+                if (!lostConnection)
+                {
+                    lostConnection = true;
+                    Debug.WriteLine(e);
+                    MessageBox.Show("Failed to send to server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                }
             }
 
             return ReceiveResponseBytes();
@@ -200,9 +210,14 @@ namespace TriviaClientApp
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e);
-                MessageBox.Show("Failed to receive from server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Environment.Exit(1);
+                if (!lostConnection)
+                {
+                    lostConnection = true;
+                    Debug.WriteLine(e);
+                    MessageBox.Show("Failed to receive from server: " + e.Message, "Connection ERROR",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                }
             }
             return receivedData;
         }
