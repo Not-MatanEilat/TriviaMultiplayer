@@ -28,6 +28,9 @@ namespace TriviaClientApp
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
+            soundManager.StopGameThemeSound();
+            soundManager.StartMenuThemeSound();
+
             string username = TriviaClient.GetClient().Username;
             userConnected.Text = "Connected as: " + username;
 
@@ -35,12 +38,16 @@ namespace TriviaClientApp
 
         private void CreateRoomButton_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             CreateRoom createRoom = new CreateRoom();
             main.ChangePage(createRoom);
         }
 
         private void JoinRoomButton_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             JoinRoom joinRoom = new JoinRoom();
             main.ChangePage(joinRoom);
 
@@ -49,12 +56,16 @@ namespace TriviaClientApp
 
         private void createQuestionButton_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             CreateQuestion createQuestion = new CreateQuestion();
             main.ChangePage(createQuestion);
         }
 
         private void StatisticsButton_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             Statistics statistics = new Statistics();
             main.ChangePage(statistics);
         }
@@ -66,6 +77,9 @@ namespace TriviaClientApp
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
+            soundManager.StopMenuThemeSound();
+            soundManager.PlayButtonClickSound();
+
             TriviaClient.GetClient().Logout();
             Login login = new Login();
             main.ChangePage(login);
@@ -73,6 +87,8 @@ namespace TriviaClientApp
 
         private void headToHeadButton_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             TriviaClient.GetClient().JoinHeadToHead();
             HeadToHeadWaitingRoom headToHeadWaitingRoom = new HeadToHeadWaitingRoom();
             main.ChangePage(headToHeadWaitingRoom);

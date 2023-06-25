@@ -52,6 +52,8 @@ namespace TriviaClientApp
 
         private void leaveButton_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             TriviaClient.GetClient().LeaveGame();
             main.ChangePage(new MainMenu());
         }

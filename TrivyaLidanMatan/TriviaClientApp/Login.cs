@@ -36,6 +36,8 @@ namespace TriviaClientApp
 
         private void loginButton_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             JObject result = client.Login(usernameBox.Text, passwordBox.Text);
 
             if (TriviaClient.IsSuccessResponse(result))
@@ -67,11 +69,14 @@ namespace TriviaClientApp
 
         private void dungeonHeaderLabel1_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
             rememberMeToggle.Checked = !rememberMeToggle.Checked;
         }
 
         private void hereTextLink_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             Signup signup = new Signup();
             main.ChangePage(signup);
         }

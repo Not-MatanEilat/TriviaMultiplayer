@@ -39,6 +39,8 @@ namespace TriviaClientApp
 
         private void signupButton_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             username = usernameBox.Text;
             password = passwordBox.Text;
             email = emailBox.Text;
@@ -57,6 +59,8 @@ namespace TriviaClientApp
 
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             Login login = new Login();
             main.ChangePage(login);
         }

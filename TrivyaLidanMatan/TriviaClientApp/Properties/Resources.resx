@@ -117,4 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="buttonClickSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sounds\buttonClickSound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="correctAnswerSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sounds\correctAnswerSound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="countdownTimerSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sounds\countdownTimerSound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gameThemeSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sounds\gameThemeSound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="menuThemeSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sounds\menuThemeSound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="wrongAnswerSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sounds\wrongAnswerSound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

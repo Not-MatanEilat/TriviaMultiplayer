@@ -57,6 +57,9 @@ namespace TriviaClientApp
 
         private void Game_Load(object sender, EventArgs e)
         {
+            soundManager.StopMenuThemeSound();
+            soundManager.StartGameThemeSound();
+
             answersButtons.Add(answer1Button);
             answersButtons.Add(answer2Button);
             answersButtons.Add(answer3Button);
@@ -133,10 +136,12 @@ namespace TriviaClientApp
 
                 if (!result["correctAnswer"].Value<bool>())
                 {
+                    soundManager.PlayWrongAnswerSound();
                     button.BackColor = Color.Red;
                 }
                 else
                 {
+                    soundManager.PlayCorrectAnswerSound();
                     CorrectAnswers++;
                 }
                 handleSubmitAnswer();
@@ -195,6 +200,8 @@ namespace TriviaClientApp
 
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             TriviaClient.GetClient().LeaveGame();
             main.ChangePage(new MainMenu());
         }
@@ -212,6 +219,8 @@ namespace TriviaClientApp
 
         private void nextButtonTimer_Tick(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             UpdateQuestion();
         }
 
