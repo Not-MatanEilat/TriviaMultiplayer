@@ -57,6 +57,7 @@ namespace TriviaClientApp
 
         private void Game_Load(object sender, EventArgs e)
         {
+            soundManager.StopMenuThemeSound();
             soundManager.StartGameThemeSound();
 
             answersButtons.Add(answer1Button);

@@ -28,6 +28,7 @@ namespace TriviaClientApp
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
+            soundManager.StopGameThemeSound();
             soundManager.StartMenuThemeSound();
 
             string username = TriviaClient.GetClient().Username;
@@ -76,6 +77,7 @@ namespace TriviaClientApp
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
+            soundManager.StopMenuThemeSound();
             soundManager.PlayButtonClickSound();
 
             TriviaClient.GetClient().Logout();

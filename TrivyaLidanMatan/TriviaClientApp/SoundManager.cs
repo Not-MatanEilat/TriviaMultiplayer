@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Media;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic;
@@ -10,23 +12,14 @@ using TriviaClientApp.Properties;
 
 namespace TriviaClientApp
 {
-    public partial class SoundManager
+    public class SoundManager
     {
-        private const string SOUNDS_FOLDER = "sounds\\";
-
-        private const string CORRECT_ANSWER_SOUND = "correctAnswerSound.wav";
-        private const string WRONG_ANSWER_SOUND = "wrongAnswerSound.wav";
-        private const string COUNTDOWN_TIMER_SOUND = "countdownTimerSound.wav";
-        private const string MENU_THEME_SOUND = "menuThemeSound.wav";
-        private const string GAME_THEME_SOUND = "gameThemeSound.wav";
-
-        private SoundPlayer buttonClickSound;
-        private SoundPlayer correctAnswerSound;
-        private SoundPlayer wrongAnswerSound;
-        private SoundPlayer countdownTimerSound;
-        private SoundPlayer menuThemeSound;
-        private SoundPlayer gameThemeSound;
-
+        public readonly SoundPlayer buttonClickSound;
+        public readonly SoundPlayer correctAnswerSound;
+        public readonly SoundPlayer wrongAnswerSound;
+        public readonly SoundPlayer countdownTimerSound;
+        public readonly SoundPlayerBg menuThemeSound;
+        public readonly SoundPlayerBg gameThemeSound;
 
         private static SoundManager? instance = null;
 
@@ -34,11 +27,17 @@ namespace TriviaClientApp
         {
             instance = this;
             buttonClickSound = new SoundPlayer(Resources.buttonClickSound);
-            correctAnswerSound = new SoundPlayer(Application.StartupPath + "\\" + SOUNDS_FOLDER + CORRECT_ANSWER_SOUND);
-            wrongAnswerSound = new SoundPlayer(Application.StartupPath + "\\" + SOUNDS_FOLDER + WRONG_ANSWER_SOUND);
-            countdownTimerSound = new SoundPlayer(Application.StartupPath + "\\" + SOUNDS_FOLDER + COUNTDOWN_TIMER_SOUND);
-            menuThemeSound = new SoundPlayer(Application.StartupPath + "\\" + SOUNDS_FOLDER + MENU_THEME_SOUND);
-            gameThemeSound = new SoundPlayer(Application.StartupPath + "\\" + SOUNDS_FOLDER + GAME_THEME_SOUND);
+            buttonClickSound.Tag = "buttonClickSound";
+            correctAnswerSound = new SoundPlayer(Resources.correctAnswerSound);
+            correctAnswerSound.Tag = "correctAnswerSound";
+            wrongAnswerSound = new SoundPlayer(Resources.wrongAnswerSound);
+            wrongAnswerSound.Tag = "wrongAnswerSound";
+            countdownTimerSound = new SoundPlayer(Resources.countdownTimerSound);
+            countdownTimerSound.Tag = "countdownTimerSound";
+            menuThemeSound = new SoundPlayerBg(Resources.menuThemeSound);
+            menuThemeSound.Tag = "menuThemeSound";
+            gameThemeSound = new SoundPlayerBg(Resources.gameThemeSound);
+            gameThemeSound.Tag = "gameThemeSound";
         }
 
         /// <summary>
@@ -50,55 +49,125 @@ namespace TriviaClientApp
             return instance;
         }
 
-        public static void PlaySound(SoundPlayer sound)
-        {
-            sound.PlaySync();
-            Thread.Sleep(sound.SoundLocation.Length);
-        }
-
+        /// <summary>
+        /// play the button click sound
+        /// </summary>
         public void PlayButtonClickSound()
         {
-            Thread thread = new Thread(() => PlaySound(buttonClickSound));
-            thread.Start();
+            buttonClickSound.Play();
         }
 
+        /// <summary>
+        /// play the correct answer sound
+        /// </summary>
         public void PlayCorrectAnswerSound()
         {
-            Thread thread = new Thread(() => PlaySound(correctAnswerSound));
-            thread.Start();
+            correctAnswerSound.Play();
         }
 
+        /// <summary>
+        /// play the wrong answer sound
+        /// </summary>
         public void PlayWrongAnswerSound()
         {
-            Thread thread = new Thread(() => wrongAnswerSound.Play());
-            thread.Start();
+            wrongAnswerSound.Play();
         }
 
+        /// <summary>
+        /// play the countdown timer sound
+        /// </summary>
         public void PlayCountdownTimerSound()
         {
-            Thread thread = new Thread(() => PlaySound(countdownTimerSound));
-            thread.Start();
+            countdownTimerSound.Play();
         }
 
+        /// <summary>
+        /// play the menu theme sound
+        /// </summary>
         public void StartMenuThemeSound()
         {
             menuThemeSound.PlayLooping();
         }
 
+        /// <summary>
+        /// stop the menu theme sound
+        /// </summary>
         public void StopMenuThemeSound()
         {
             menuThemeSound.Stop();
         }
 
+        /// <summary>
+        /// play the game theme sound
+        /// </summary>
         public void StartGameThemeSound()
         {
             gameThemeSound.PlayLooping();
         }
 
+        /// <summary>
+        /// stop the game theme sound
+        /// </summary>
         public void StopGameThemeSound()
         {
             gameThemeSound.Stop();
         }
 
     }
+
+    public class SoundPlayerBg : SoundPlayer
+    {
+        private readonly AudioPlayer audioPlayer;
+
+        public SoundPlayerBg()
+        {
+            audioPlayer = new AudioPlayer(MainForm.GetMainForm());
+        }
+
+        public SoundPlayerBg(Stream stream) : base(stream)
+        {
+            audioPlayer = new AudioPlayer(MainForm.GetMainForm());
+            audioPlayer.Open(stream);
+        }
+
+        public SoundPlayerBg(string soundLocation) : base(soundLocation)
+        {
+            audioPlayer = new AudioPlayer(MainForm.GetMainForm());
+            audioPlayer.Open(soundLocation);
+        }
+
+        /// <summary>
+        /// Play the sound in the background
+        /// </summary>
+        public new void Play()
+        {
+            audioPlayer.Play(false);
+            new Thread(() =>
+            {
+                Debug.WriteLine("Playing sound: " + Tag);
+                Thread.Sleep(audioPlayer.AudioLength());
+                audioPlayer.Stop();
+                Debug.WriteLine("Stop Playing sound: " + Tag);
+            }).Start();
+        }
+
+        /// <summary>
+        /// Play the sound in the background
+        /// </summary>
+        public new void PlayLooping()
+        {
+            audioPlayer.Play(true);
+        }
+
+        /// <summary>
+        /// Stop the sound
+        /// </summary>
+        public new void Stop()
+        {
+            // To stop the SoundPlayer wave file
+            audioPlayer.Stop();
+            Debug.WriteLine("Stopped sound!");
+        }
+    }
+
 }

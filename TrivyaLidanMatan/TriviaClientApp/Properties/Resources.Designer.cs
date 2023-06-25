@@ -68,5 +68,50 @@ namespace TriviaClientApp.Properties {
                 return ResourceManager.GetStream("buttonClickSound", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream correctAnswerSound {
+            get {
+                return ResourceManager.GetStream("correctAnswerSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream countdownTimerSound {
+            get {
+                return ResourceManager.GetStream("countdownTimerSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream gameThemeSound {
+            get {
+                return ResourceManager.GetStream("gameThemeSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream menuThemeSound {
+            get {
+                return ResourceManager.GetStream("menuThemeSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream wrongAnswerSound {
+            get {
+                return ResourceManager.GetStream("wrongAnswerSound", resourceCulture);
+            }
+        }
     }
 }
