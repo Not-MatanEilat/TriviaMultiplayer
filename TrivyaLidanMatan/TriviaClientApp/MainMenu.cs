@@ -28,6 +28,8 @@ namespace TriviaClientApp
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
+            soundManager.StartMenuThemeSound();
+
             string username = TriviaClient.GetClient().Username;
             userConnected.Text = "Connected as: " + username;
 

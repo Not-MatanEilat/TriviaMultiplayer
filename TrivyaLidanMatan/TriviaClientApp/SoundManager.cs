@@ -15,11 +15,15 @@ namespace TriviaClientApp
         private const string CORRECT_ANSWER_SOUND = "correctAnswerSound.wav";
         private const string WRONG_ANSWER_SOUND = "wrongAnswerSound.wav";
         private const string COUNTDOWN_TIMER_SOUND = "countdownTimerSound.wav";
+        private const string MENU_THEME_SOUND = "menuThemeSound.wav";
+        private const string GAME_THEME_SOUND = "gameThemeSound.wav";
 
         private SoundPlayer buttonClickSound;
         private SoundPlayer correctAnswerSound;
         private SoundPlayer wrongAnswerSound;
         private SoundPlayer countdownTimerSound;
+        private SoundPlayer menuThemeSound;
+        private SoundPlayer gameThemeSound;
 
 
         private static SoundManager? instance = null;
@@ -31,6 +35,8 @@ namespace TriviaClientApp
             correctAnswerSound = new SoundPlayer(Application.StartupPath + "\\" + SOUNDS_FOLDER + CORRECT_ANSWER_SOUND);
             wrongAnswerSound = new SoundPlayer(Application.StartupPath + "\\" + SOUNDS_FOLDER + WRONG_ANSWER_SOUND);
             countdownTimerSound = new SoundPlayer(Application.StartupPath + "\\" + SOUNDS_FOLDER + COUNTDOWN_TIMER_SOUND);
+            menuThemeSound = new SoundPlayer(Application.StartupPath + "\\" + SOUNDS_FOLDER + MENU_THEME_SOUND);
+            gameThemeSound = new SoundPlayer(Application.StartupPath + "\\" + SOUNDS_FOLDER + GAME_THEME_SOUND);
         }
 
         /// <summary>
@@ -42,24 +48,54 @@ namespace TriviaClientApp
             return instance;
         }
 
+        public static void PlaySound(SoundPlayer sound)
+        {
+            sound.PlaySync();
+            Thread.Sleep(sound.SoundLocation.Length);
+        }
+
         public void PlayButtonClickSound()
         {
-            buttonClickSound.Play();
+            Thread thread = new Thread(() => PlaySound(buttonClickSound));
+            thread.Start();
         }
 
         public void PlayCorrectAnswerSound()
         {
-            correctAnswerSound.Play();
+            Thread thread = new Thread(() => PlaySound(correctAnswerSound));
+            thread.Start();
         }
 
         public void PlayWrongAnswerSound()
         {
-            wrongAnswerSound.Play();
+            Thread thread = new Thread(() => wrongAnswerSound.Play());
+            thread.Start();
         }
 
         public void PlayCountdownTimerSound()
         {
-            countdownTimerSound.Play();
+            Thread thread = new Thread(() => PlaySound(countdownTimerSound));
+            thread.Start();
+        }
+
+        public void StartMenuThemeSound()
+        {
+            menuThemeSound.PlayLooping();
+        }
+
+        public void StopMenuThemeSound()
+        {
+            menuThemeSound.Stop();
+        }
+
+        public void StartGameThemeSound()
+        {
+            gameThemeSound.PlayLooping();
+        }
+
+        public void StopGameThemeSound()
+        {
+            gameThemeSound.Stop();
         }
 
     }
