@@ -32,6 +32,8 @@ public:
 	int getPlayerScore(string const& username) override;
 	void setPlayerStatistics(string const& username, Row stats) override;
 	void addQuestion(string const& question, string const& correctAns, string const& ans2, string const& ans3, string const& ans4) override;
+	string getSecurityKey(string encryptedText) override;
+	void setSecurityKey(string encryptedText, string key, string type) override;
 private:
 	Row getPlayerStatistics(string const& username);
 	

@@ -134,6 +134,7 @@
     <ClInclude Include="HeadToHeadRoomHandler.h" />
     <ClInclude Include="ICryptoAlgorithm.h" />
     <ClInclude Include="Matchmaker.h" />
+    <ClInclude Include="OTPCryptoAlgorithm.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="RoomAdminRequestHandler.h" />
     <ClInclude Include="RoomMemberRequestHandler.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="HeadToHeadRoomHandler.cpp" />
     <ClCompile Include="ICryptoAlgorithm.cpp" />
     <ClCompile Include="Matchmaker.cpp" />
+    <ClCompile Include="OTPCryptoAlgorithm.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="RoomAdminRequestHandler.cpp" />
     <ClCompile Include="RoomMemberRequestHandler.cpp" />

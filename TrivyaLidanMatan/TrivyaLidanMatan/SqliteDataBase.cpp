@@ -258,3 +258,17 @@ void SqliteDataBase::addQuestion(string const& question, string const& correctAn
 	_db.exec(sqlStatement, params);
 }
 
+string SqliteDataBase::getSecurityKey(string encryptedText)
+{
+	string sqlStatement = "SELECT * FROM keys WHERE encyptedText = '$0'";
+	vector<string> params = { encryptedText };
+	return _db.exec(sqlStatement, params)[0]["key"];
+}
+
+void SqliteDataBase::setSecurityKey(string encryptedText, string key, string type)
+{
+	string sqlStatement = "INSERT INTO keys(encyptedText, key, type) VALUES('$0', '$1', '$2')";
+	vector<string> params = { encryptedText, key, type };
+	_db.exec(sqlStatement, params);
+}
+
