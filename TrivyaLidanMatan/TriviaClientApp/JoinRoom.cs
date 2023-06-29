@@ -60,53 +60,18 @@ namespace TriviaClientApp
                 foreach (JObject room in rooms)
                 {
                     // create everything new for the group box
-                    GroupBox groupBox = new GroupBox();
+                    string roomName = room["name"].ToString();
+                    int roomId = room["id"].Value<int>();
+                    int players = room["currentPlayersAmount"].Value<int>();
+                    int maxPlayers = room["maxPlayers"].Value<int>();
+                    int questionCount = room["numOfQuestionsInGame"].Value<int>();
+                    int timePerQuestion = room["timePerQuestion"].Value<int>();
 
-                    groupBox.Size = new Size(GROUP_BOX_WIDTH, GROUP_BOX_HEIGHT);
+                    RoomBox box = new RoomBox(roomName, roomId, players, maxPlayers, questionCount, timePerQuestion);
 
-
-                    Label roomName = new Label();
-                    Label roomPlayersAmount = new Label();
-                    Label roomMaxPlayers = new Label();
-                    Label roomQuestions = new Label();
-                    Label roomId = new Label();
-                    Button joinRoomButton = new Button();
-
-                    // set all of the properties to the buttons/labels
-                    int roomIdInt = (int)room["id"];
-                    roomName.Text = room["name"].ToString();
-                    int players = (int)room["currentPlayersAmount"];
-                    roomPlayersAmount.Text = "Players: " + players;
-                    roomMaxPlayers.Text = "Max Players: " + room["maxPlayers"];
-                    roomQuestions.Text = "Questions: " + room["numOfQuestionsInGame"];
-                    roomId.Text = room["id"].ToString();
-
-
-                    roomName.Location = new Point(10, 20);
-                    roomPlayersAmount.Location = new Point(10, 40);
-                    roomMaxPlayers.Location = new Point(10, 60);
-                    roomQuestions.Location = new Point(10, 80);
-                    roomId.Location = new Point(10, 100);
-                    joinRoomButton.Location = new Point(10, 120);
-
-
-
-                    // add them to the group box
-                    groupBox.Controls.Add(roomId);
-                    groupBox.Controls.Add(roomName);
-                    groupBox.Controls.Add(roomPlayersAmount);
-                    groupBox.Controls.Add(roomMaxPlayers);
-                    groupBox.Controls.Add(roomQuestions);
-                    groupBox.Controls.Add(joinRoomButton);
-
-                    // set the properties to the join room groupbox button
-                    joinRoomButton.Text = "Join Room";
-                    joinRoomButton.Click += JoinRoom_Click;
-                    joinRoomButton.TabIndex = 4 + i;
-
-
-                    groupBox.Location = new Point(GROUP_BOX_BASE_X, GROUP_BOX_BASE_Y + i * GROUP_BOX_MARGIN);
-                    controls.Add(groupBox);
+                    box.Location = new Point(GROUP_BOX_BASE_X, GROUP_BOX_BASE_Y + i * GROUP_BOX_MARGIN);
+                    box.JoinRoomHandler += JoinRoom_Click;
+                    controls.Add(box);
 
 
                     i++;
@@ -133,6 +98,8 @@ namespace TriviaClientApp
 
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             MainMenu mainMenu = new MainMenu();
             main.ChangePage(mainMenu);
 
@@ -140,10 +107,12 @@ namespace TriviaClientApp
 
         private void JoinRoom_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             Button button = (Button)sender;
-            GroupBox groupBox = (GroupBox)button.Parent;
-            int roomId = int.Parse(groupBox.Controls[0].Text);
-            string roomName = groupBox.Controls[1].Text;
+            RoomBox box = (RoomBox)button.Parent;
+            int roomId = box.RoomId;
+            string roomName = box.RoomName;
             JoinRoomById(roomId, roomName, getRoomCreatorName(roomId));
         }
         /// <summary>
@@ -164,14 +133,25 @@ namespace TriviaClientApp
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             Thread loader = new Thread(loadAllRooms);
             loader.Start();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             int roomId = (int)roomIdBox.Value;
-            JoinRoomById(roomId, getRoomNameById(roomId), getRoomCreatorName(roomId));
+            try
+            {
+                JoinRoomById(roomId, getRoomNameById(roomId), getRoomCreatorName(roomId));
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
         }
 
         /// <summary>
@@ -206,14 +186,19 @@ namespace TriviaClientApp
         {
             TriviaClient client = TriviaClient.GetClient();
             JObject playersInRoom = client.GetPlayersInRoom(roomId);
-            string roomCreatorName = "";
-            // if we'd have 0 players (somehow) we'd get an exception
-            if (playersInRoom.Count != 0)
+            if (TriviaClient.IsSuccessResponse(playersInRoom))
             {
-                roomCreatorName = playersInRoom["message"]["players"][0].ToString();
+                string roomCreatorName = "";
+                // if we'd have 0 players (somehow) we'd get an exception
+                if (playersInRoom.Count != 0)
+                {
+                    roomCreatorName = playersInRoom["message"]["players"][0].ToString();
+                }
+
+                return roomCreatorName;
             }
 
-            return roomCreatorName;
+            throw new Exception("Cannot Get Room Creator Name");
         }
 
         private void AutoRefresh_Tick(object sender, EventArgs e)

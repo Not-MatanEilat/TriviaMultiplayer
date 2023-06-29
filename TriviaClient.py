@@ -16,6 +16,15 @@ HIGH_SCORES_CODE = 6
 PERSONAL_STATS_CODE = 7
 JOIN_ROOM_CODE = 8
 CREATE_ROOM_CODE = 9
+CLOSE_ROOM_CODE = 10
+START_GAME_CODE = 11
+ROOM_STATE_CODE = 12
+LEAVE_ROOM_CODE = 13
+LEAVE_GAME_CODE = 14
+GET_QUESTION_CODE = 15
+SUBMIT_ANSWER_CODE = 16
+GET_GAME_RESULTS_CODE = 17
+PLAYER_RESULTS_CODE = 18
 
 
 def build_message(code: int, message: str) -> bytes:
@@ -183,6 +192,49 @@ class TriviaClient:
             "answerTimeout": answer_timeout
         })
 
+    def leave_room(self) -> dict:
+        """
+        Leave a room.
+        :return: dict
+        """
+        return self.send_request_dict(LEAVE_ROOM_CODE, {})
+
+    def start_game(self) -> dict:
+        """
+        Start a game.
+        :return: dict
+        """
+        return self.send_request_dict(START_GAME_CODE, {})
+
+    def get_question(self) -> dict:
+        """
+        Get a question.
+        :return: dict
+        """
+        return self.send_request_dict(GET_QUESTION_CODE, {})
+
+    def submit_answer(self, answer_id: int) -> dict:
+        """
+        Submit an answer.
+        :param answer_id: answer id
+        :return: dict
+        """
+        return self.send_request_dict(SUBMIT_ANSWER_CODE, {"answerId": answer_id})
+
+    def get_game_results(self) -> dict:
+        """
+        Get the game results.
+        :return: dict
+        """
+        return self.send_request_dict(GET_GAME_RESULTS_CODE, {})
+
+    def leave_game(self) -> dict:
+        """
+        Leave a game.
+        :return: dict
+        """
+        return self.send_request_dict(LEAVE_GAME_CODE, {})
+
 
 def test_signup(username: str, password: str, email: str):
     """
@@ -205,7 +257,7 @@ def test_login(username: str, password: str):
     """
     client = TriviaClient()
     res = client.login(username, password)
-    if res["msg"]["status"] != SUCCESS_CODE:
+    if res["code"] == ERROR_CODE:
         raise ValueError("Login failed!")
     return client
 
@@ -220,7 +272,7 @@ def prompt_login():
     return test_login(username, password)
 
 
-def main():
+def test():
     print("Please login to the server")
     me = prompt_login()
     print("Logged in successfully!")
@@ -245,4 +297,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    me = prompt_login()
+    me.create_room("test", 8, 8, 8)
+    me.start_game()

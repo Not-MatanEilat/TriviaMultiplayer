@@ -6,6 +6,17 @@
 static const unsigned short PORT = 8826;
 static const unsigned int IFACE = 0;
 
+std::mutex m_mutex;
+
+Communicator::~Communicator()
+{
+	for (auto& client : m_clients)
+	{
+		delete client.second;
+	}
+	m_clients.clear();
+}
+
 /**
  * \brief The function will start listening to incoming connections
  */
@@ -24,6 +35,7 @@ void Communicator::startHandleRequests()
 		if (client_socket == INVALID_SOCKET)
 			throw std::exception(__FUNCTION__);
 
+		std::lock_guard<std::mutex> m_lockGuard(m_mutex);
 		TRACE("Client accepted !");
 
 		// add client to the clients map
@@ -54,6 +66,26 @@ Communicator::Communicator(RequestHandlerFactory& handlerFactory) : m_handlerFac
 }
 
 /**
+ * \brief disconnect the client from the server in a safe way
+ * \param clientSocket the client socket
+ */
+void Communicator::disconnectSocket(SOCKET clientSocket)
+{
+	std::lock_guard<std::mutex> m_lockGuard(m_mutex);
+	m_clients[clientSocket]->handleDisconnect();
+	for (auto it = m_clients.begin(); it != m_clients.end(); ++it)
+	{
+		if (it->first == clientSocket)
+		{
+			delete it->second;
+			m_clients.erase(it);
+			break;
+		}
+	}
+	closesocket(clientSocket);
+}
+
+/**
  * \brief The function will handle a new client - for now sends hello and prints its answer
  * \param clientSocket - the socket of the new client
  */
@@ -67,16 +99,27 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 		{
 			int code = Helper::getMessageTypeCode(clientSocket);
 			int len = Helper::getIntPartFromSocket(clientSocket, 4);
-			TRACE("code: " << code << " len: " << len);
+			if (len > 5000)
+			{
+				throw std::exception("Length too big");
+			}
 			Buffer msg = Helper::getBufferPartFromSocket(clientSocket, len);
+			std::lock_guard<std::mutex> m_lockGuard(m_mutex);
+			string msgStr(msg.begin(), msg.end());
+			TRACE("code: " << code << " len: " << len << " data: " << msgStr);
 			RequestInfo requestInfo;
 			requestInfo.requestId = code;
 			requestInfo.buffer = msg;
 			requestInfo.receivalTime = clock();
 			RequestResult result;
+			IRequestHandler* handler = m_clients[clientSocket];
 			if (m_clients[clientSocket]->isRequestRelevant(requestInfo))
 			{
 				result = m_clients[clientSocket]->handleRequest(requestInfo);
+				if (m_clients[clientSocket] != result.newHandler)
+				{
+					delete m_clients[clientSocket];
+				}
 				m_clients[clientSocket] = result.newHandler;
 			}
 			else
@@ -91,16 +134,13 @@ void Communicator::handleNewClient(SOCKET clientSocket)
 	}
 	catch (const std::exception& e)
 	{
-		m_clients[clientSocket]->handleDisconnect();
-		for (auto it = m_clients.begin(); it != m_clients.end(); ++it)
-		{
-			if (it->first == clientSocket)
-			{
-				m_clients.erase(it);
-				break;
-			}
-		}
+		disconnectSocket(clientSocket);
 		std::cout << "Connection lost: " << e.what() << std::endl;
+	}
+	catch (...)
+	{
+		closesocket(clientSocket);
+		std::cout << "Connection lost: " << "UNKNOWN" << std::endl;
 	}
 	
 }

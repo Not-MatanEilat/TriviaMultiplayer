@@ -25,7 +25,7 @@ bool RoomMemberRequestHandler::isRequestRelevant(RequestInfo info)
 }
 
 /**
- * \brief Handlers the request as the menu
+ * \brief Handlers the request as the member
  * \param info the info of request
  * \return The result for request
  */
@@ -107,7 +107,25 @@ RequestResult RoomMemberRequestHandler::getRoomState(RequestInfo info)
 	response.questionCount = m_room.getRoomData().numOfQuestionsInGame;
 	response.status = SUCCESS;
 
-	result.newHandler = this;
+	if (response.hasGameBegun)
+	{
+		GameManager& gameManager = m_handlerFactory.getGameManager();
+		result.newHandler = m_handlerFactory.createGameRequestHandler(m_user, gameManager.getGame(m_user));
+
+		Room& room = m_handlerFactory.getRoomManager().getRoomOfUser(m_user.getUsername());
+		room.removeUser(m_user.getUsername());
+
+		// if empty, all left, we can delete that now then
+		if (room.getAllUsers().empty())
+		{
+			m_handlerFactory.getRoomManager().deleteRoom(room.getRoomData().id);
+		}
+	}
+	else
+	{
+		result.newHandler = this;
+	}
+
 	result.response = JsonResponsePacketSerializer::serializeResponse(response);
 
 	string playersStr = "";

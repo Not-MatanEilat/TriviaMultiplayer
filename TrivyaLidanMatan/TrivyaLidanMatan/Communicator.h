@@ -2,6 +2,7 @@
 
 
 #include <map>
+#include <mutex>
 #include <thread>
 #include <iostream>
 #include <WinSock2.h>
@@ -13,9 +14,6 @@
 
 using std::vector;
 using std::string;
-
-typedef unsigned char byte;
-typedef vector<byte> Buffer;
 
 enum RESPONSE_CODES
 {
@@ -32,7 +30,17 @@ enum RESPONSE_CODES
 	CLOSE_ROOM_CODE = 10,
 	START_GAME_CODE = 11,
 	ROOM_STATE_CODE = 12,
-	LEAVE_ROOM_CODE = 13
+	LEAVE_ROOM_CODE = 13,
+	LEAVE_GAME_CODE = 14,
+	GET_QUESTION_CODE = 15,
+	SUBMIT_ANSWER_CODE = 16,
+	GET_GAME_RESULTS_CODE = 17,
+	PLAYER_RESULTS_CODE = 18,
+	ADD_QUESTION_CODE = 19,
+	HTH_GET_STATE_CODE = 20,
+	JOIN_HTH_CODE = 21,
+	LEAVE_HTH_CODE = 22,
+
 };
 
 class RequestHandlerFactory;
@@ -40,9 +48,11 @@ class RequestHandlerFactory;
 class Communicator
 {
 public:
+	~Communicator();
 	void startHandleRequests();
 
 	Communicator(RequestHandlerFactory& handlerFactory);
+	void disconnectSocket(SOCKET clientSocket);
 
 private:
 	void bindAndListen();

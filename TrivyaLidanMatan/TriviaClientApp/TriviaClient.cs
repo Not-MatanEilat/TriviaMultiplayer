@@ -15,7 +15,7 @@ namespace TriviaClientApp
         public const string SERVER_IP = "localhost";
         public const int SERVER_PORT = 8826;
         public const int BYTE_SIZE = 1024;
-        public const int TIMEOUT = 5000;
+        public const int TIMEOUT = 60000;
 
         public const int ERROR_CODE = 0;
         public const int SUCCESS_CODE = 1;
@@ -35,7 +35,16 @@ namespace TriviaClientApp
             CLOSE_ROOM_CODE = 10,
             START_GAME_CODE = 11,
             ROOM_STATE_CODE = 12,
-            LEAVE_ROOM_CODE = 13
+            LEAVE_ROOM_CODE = 13,
+            LEAVE_GAME_CODE = 14,
+            GET_QUESTION_CODE = 15,
+            SUBMIT_ANSWER_CODE = 16,
+            GET_GAME_RESULTS_CODE = 17,
+            PLAYER_RESULTS_CODE = 18,
+            ADD_QUESTION_CODE = 19,
+            HTH_GET_STATE_CODE = 20,
+            JOIN_HTH_CODE = 21,
+            LEAVE_HTH_CODE = 22,
         }
 
         private static TriviaClient? instance = null;
@@ -59,6 +68,7 @@ namespace TriviaClientApp
         private Socket socket;
 
         public string Username { get; private set; }
+        private bool lostConnection = false;
 
         public TriviaClient()
         {
@@ -144,9 +154,13 @@ namespace TriviaClientApp
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e);
-                MessageBox.Show("Failed to connect to server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Environment.Exit(1);
+                if (!lostConnection)
+                {
+                    lostConnection = true;
+                    Debug.WriteLine(e);
+                    MessageBox.Show("Failed to connect to server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                }
             }
         }
 
@@ -163,9 +177,14 @@ namespace TriviaClientApp
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e);
-                MessageBox.Show("Failed to send to server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Environment.Exit(1);
+                if (!lostConnection)
+                {
+                    lostConnection = true;
+                    Debug.WriteLine(e);
+                    MessageBox.Show("Failed to send to server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                }
             }
 
             return ReceiveResponseBytes();
@@ -191,9 +210,14 @@ namespace TriviaClientApp
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e);
-                MessageBox.Show("Failed to receive from server: " + e.Message, "Connection ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Environment.Exit(1);
+                if (!lostConnection)
+                {
+                    lostConnection = true;
+                    Debug.WriteLine(e);
+                    MessageBox.Show("Failed to receive from server: " + e.Message, "Connection ERROR",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                }
             }
             return receivedData;
         }
@@ -226,6 +250,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Login to the server.
+        /// {"status" : status}
         /// </summary>
         /// <param name="username">username</param>
         /// <param name="password">password</param>
@@ -243,6 +268,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Signup to the server.
+        /// {"status" : status}
         /// </summary>
         /// <param name="username">username</param>
         /// <param name="password">password</param>
@@ -261,6 +287,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Logout from the server.
+        /// {"status" : status}
         /// </summary>
         /// <returns>response</returns>
         public JObject Logout()
@@ -271,6 +298,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Get the room list.
+        /// {"status" : status, "rooms" : {"isActive" : isActive, "name" : name, "maxPlayers" : maxPlayers, "numOfQuestionsInGame" : numOfQuestionsInGame, "timePerQuestion" : timePerQuestion, "id" : id}}
         /// </summary>
         /// <returns>response</returns>
         public JObject GetRoomsList()
@@ -280,6 +308,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Get the players in a room.
+        /// {"status" : status, "players" : players}
         /// </summary>
         /// <param name="roomId">room id</param>
         /// <returns>response</returns>
@@ -292,6 +321,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Get the high scores.
+        /// {"status" : status, "highscores" : players}
         /// </summary>
         /// <returns>response</returns>
         public JObject GetHighScores()
@@ -301,6 +331,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Get the personal stats.
+        /// {status" : status, "statistics" : statistics}
         /// </summary>
         /// <returns>response</returns>
         public JObject GetPersonalStats()
@@ -310,6 +341,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Join a room.
+        /// {"status" : status}
         /// </summary>
         /// <param name="roomId">room id</param>
         /// <returns>response</returns>
@@ -321,6 +353,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Create a room.
+        /// {"status" : status}
         /// </summary>
         /// <param name="roomName">room name</param>
         /// <param name="maxUsers">max players</param>
@@ -335,6 +368,8 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will get room state
+        ///  {"status" : status, "has
+        /// Begun" : hasGameBegun, "players" : players, "questionCount" : questionCount, "answerTimeout" : answerTimeout}
         /// </summary>
         /// <returns>response</returns>
         public JObject GetRoomState()
@@ -344,6 +379,7 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will leave the room
+        /// {"status" : status}
         /// </summary>
         /// <returns>response</returns>
         public JObject LeaveRoom(){
@@ -352,12 +388,117 @@ namespace TriviaClientApp
 
         /// <summary>
         /// Will close the room
+        /// {"status" : status}
         /// </summary>
         /// <returns>response</returns>
         public JObject CloseRoom()
         {
             return SendRequestDict((byte)RequestCodes.CLOSE_ROOM_CODE);
         }
+
+        /// <summary>
+        /// Will start the game
+        /// {"status" : status}
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject StartGame()
+        {
+            return SendRequestDict((byte)RequestCodes.START_GAME_CODE);
+        }
+
+        /// <summary>
+        /// Will get the question
+        /// {"status" : status, "question" : question, "answers" : [["answerNumber", "Answer"], ["answerNumber", "Answer"], ["answerNumber", "Answer"], ["answerNumber", "Answer"]]}
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject GetQuestion()
+        {
+            return SendRequestDict((byte)RequestCodes.GET_QUESTION_CODE);
+        }
+
+        /// <summary>
+        /// Will submit the answer
+        /// {"status" : status, "correctAnswer" : correctAnswer}
+        /// </summary>
+        /// <param name="answerId">answer id</param>
+        /// <returns>response</returns>
+        public JObject SubmitAnswer(int answerId)
+        {
+            JObject data = new JObject() { { "answerId", answerId } };
+            return SendRequestDict((byte)RequestCodes.SUBMIT_ANSWER_CODE, data);
+        }
+
+        /// <summary>
+        /// Will get the game results
+        /// {"status" : status, "results" :
+        /// {"username" : username, "correctAnswerCount" : correctAnswerCount", "wrongAnswerCount" : wrongAnswerCount, "AverageAnswerTime" : AverageAnswerTime}}
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject GetGameResults()
+        {
+            return SendRequestDict((byte)RequestCodes.GET_GAME_RESULTS_CODE);
+        }
+
+        /// <summary>
+        /// Will leave the game
+        /// {"status" : status}
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject LeaveGame()
+        {
+            return SendRequestDict((byte)RequestCodes.LEAVE_GAME_CODE);
+        }
+
+        /// <summary>
+        /// Will get the room state
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject GetRoomUsers()
+        {
+            return SendRequestDict((byte)RequestCodes.PLAYER_RESULTS_CODE);
+        }
+
+        /// <summary>
+        /// Will add a question
+        /// {"status" : status}
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject AddQuestion(string question, string correctAnswer, string answer2, string answer3, string answer4)
+        {
+            JObject data = new JObject() { { "question", question }, { "correctAns", correctAnswer }, { "ans2", answer2 }, { "ans3", answer3 }, { "ans4", answer4 } };
+            return SendRequestDict((byte)RequestCodes.ADD_QUESTION_CODE, data);
+        }
+
+        /// <summary>
+        /// Will join the hth
+        /// {"status" : status}
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject JoinHeadToHead()
+        {
+            return SendRequestDict((byte)RequestCodes.JOIN_HTH_CODE);
+        }
+
+        /// <summary>
+        /// Will get hth state
+        /// {"status" : status, "hasGameBegun" : hasGameBegun, "questionsAmount" : questionsAmount, "players" : players, "timePerQuestion" : timePerQuestion}
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject GetHeadToHeadState()
+        {
+            return SendRequestDict((byte)RequestCodes.HTH_GET_STATE_CODE);
+        }
+
+        /// <summary>
+        /// Will leave the hth
+        /// {"status" : status}
+        /// </summary>
+        /// <returns>response</returns>
+        public JObject LeaveHeadToHead()
+        {
+            return SendRequestDict((byte)RequestCodes.LEAVE_HTH_CODE);
+        }
+
 
         /// <summary>
         /// The function will return a boolean based no if the result given was a success or not.

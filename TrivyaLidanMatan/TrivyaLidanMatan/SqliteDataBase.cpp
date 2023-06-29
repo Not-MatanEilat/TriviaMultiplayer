@@ -8,6 +8,11 @@ SqliteDataBase::SqliteDataBase() : _db(DB_PATH)
 {
 }
 
+SqliteDataBase::~SqliteDataBase()
+{
+	close();
+}
+
 /**
  * \brief Will open the database
  * \return True or False, if the database opened
@@ -136,18 +141,18 @@ std::vector<string> SqliteDataBase::getHighScores()
  */
 std::vector<Question> SqliteDataBase::getQuestions(int questionsNo)
 {
-	const string sqlStatement = "SELECT * FROM questions LIMIT $0";
+	const string sqlStatement = "SELECT * FROM questions ORDER BY random() LIMIT $0";
 	vector<string> params = { std::to_string(questionsNo) };
 	Result res = _db.exec(sqlStatement, params);
 	std::vector<Question> questions;
 	for (Row& row : res)
 	{
-		Question question;
-		question.question = row["question"];
-		question.correctAnswer = row["correctAnswer"];
-		question.answer2 = row["answer2"];
-		question.answer3 = row["answer3"];
-		question.answer4 = row["answer4"];
+		vector<string> answers;
+		answers.push_back(row["correctAnswer"]);
+		answers.push_back(row["answer2"]);
+		answers.push_back(row["answer3"]);
+		answers.push_back(row["answer4"]);
+		Question question(row["question"], answers);
 		questions.push_back(question);
 	}
 	return questions;
@@ -213,6 +218,13 @@ int SqliteDataBase::getPlayerScore(string const& username)
 	return score;
 }
 
+void SqliteDataBase::setPlayerStatistics(string const& username, Row stats)
+{
+	const string sqlStatement = "UPDATE Statistics SET averageAnswerTime = $0, correctAnswers = $1, totalAnswers = $2, games = $3 WHERE username == '$4'";
+	vector<string> params = { stats["averageAnswerTime"], stats["correctAnswers"], stats["totalAnswers"], stats["games"], username };
+	_db.exec(sqlStatement, params);
+}
+
 /**
  * \brief get player statistics from the database
  * \param username username
@@ -230,3 +242,19 @@ Row SqliteDataBase::getPlayerStatistics(string const& username)
 
 	return res[0];
 }
+
+/**
+ * \brief Function adds a question to the database
+ * \param question the question to add
+ * \param correctAns the correct answer of the given question
+ * \param ans2 a possible but wrong answer for question
+ * \param ans3 a possible but wrong answer for question
+ * \param ans4 a possible but wrong answer for question
+ */
+void SqliteDataBase::addQuestion(string const& question, string const& correctAns, string const& ans2, string const& ans3, string const& ans4)
+{
+	const string sqlStatement = "INSERT INTO questions (question, correctAnswer, answer2, answer3, answer4) VALUES ('$0', '$1', '$2', '$3', '$4')";
+	vector<string> params = { question, correctAns, ans2, ans3, ans4 };
+	_db.exec(sqlStatement, params);
+}
+

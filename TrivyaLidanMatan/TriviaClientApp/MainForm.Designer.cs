@@ -48,7 +48,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "MainForm";
-            Text = "MainForm";
+            Text = "Trivia Client";
             Load += MainForm_Load;
             ResumeLayout(false);
         }

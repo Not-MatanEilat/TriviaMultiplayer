@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
@@ -18,12 +19,15 @@ namespace TriviaClientApp
         private const int PLAYER_LABEL_BASE_X = 10;
         private const int PLAYER_LABEL_BASE_Y = 20;
         private const int PLAYER_LABEL_MARGIN = 20;
+        private const int DEFAULT_TIME_PER_QUESTION = 100;
 
         private string roomName;
-        private Mutex mutex = new();
         private List<string> players = new();
         private string roomCreatorName;
         private int roomId;
+
+        private RoomData? roomData = null;
+
         public Room(int roomId, string roomName, string roomCreatorName)
         {
             InitializeComponent();
@@ -39,7 +43,18 @@ namespace TriviaClientApp
 
         private void Room_Load(object sender, EventArgs e)
         {
-            Thread loader = new Thread(loadAllNames);
+            TriviaClient client = TriviaClient.GetClient();
+            JObject result = client.GetRoomState();
+
+            if (TriviaClient.IsSuccessResponse(result, false))
+            {
+            }
+            else
+            // if failed, set to default time
+            {
+            }
+
+            Thread loader = new Thread(roomHandler);
             loader.Start();
 
             roomNameLabel.Text = roomName;
@@ -48,46 +63,23 @@ namespace TriviaClientApp
 
             roomIdLabel.Text = roomId.ToString();
 
+            if (IsAdmin())
+            {
+                startGameButton.Visible = true;
+            }
+            else
+            {
+                startGameButton.Visible = false;
+            }
         }
 
         /// <summary>
         /// load all the names of the players in the room
         /// </summary>
-        private void loadAllNames()
+        /// <param name="roomState">The current state of the room</param>
+        private void LoadAllNames(JObject roomState)
         {
-            try
-            {
-                mutex.WaitOne();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                return;
-            }
-
-            TriviaClient client = TriviaClient.GetClient();
-            JObject result = client.GetRoomState();
-            if (!TriviaClient.IsSuccessResponse(result, false))
-            {
-                try
-                {
-                    Invoke(() =>
-                    {
-                        MainMenu mainMenu = new MainMenu();
-                        main.ChangePage(mainMenu);
-                    });
-
-                    mutex.ReleaseMutex();
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e.Message);
-                }
-                
-                return;
-            }
-
-            JToken playersJson = result["message"]["players"];
+            JToken playersJson = roomState["message"]["players"];
             players.Clear();
             List<Control> controls = new();
 
@@ -96,14 +88,14 @@ namespace TriviaClientApp
                 int i = 0;
                 foreach (string player in playersJson)
                 {
+                    Label playerLabel = new Label();
+                    playerLabel.Text = player;
+                    playerLabel.Location = new Point(PLAYER_LABEL_BASE_X, PLAYER_LABEL_BASE_Y + i * PLAYER_LABEL_MARGIN);
                     if (i == 0)
                     {
                         roomCreatorName = player;
+                        playerLabel.Text += "👑";
                     }
-                    Label playerLabel = new Label();
-                    playerLabel.Text = player;
-                    // change to consts later
-                    playerLabel.Location = new Point(PLAYER_LABEL_BASE_X, PLAYER_LABEL_BASE_Y + i * PLAYER_LABEL_MARGIN);
 
                     controls.Add(playerLabel);
 
@@ -111,22 +103,51 @@ namespace TriviaClientApp
                     players.Add(player);
                 }
             }
-
-            try
+            InvokeSafe(() =>
             {
-                Invoke(() =>
+                DoubleBuffered = false;
+                namesListFlow.Controls.Clear();
+                namesListFlow.Controls.AddRange(controls.ToArray());
+            });
+
+        }
+
+        /// <summary>
+        /// Function to check if the game has begun, if it did begin, go into its page's
+        /// </summary>
+        /// <param name="roomState">The current state of the room</param>
+        private void CheckGameHasBegun(JObject roomState)
+        {
+            if (roomState["message"]["hasGameBegun"].Value<bool>())
+            {
+                InvokeSafe(() =>
                 {
-                    DoubleBuffered = false;
-                    namesListFlow.Controls.Clear();
-                    namesListFlow.Controls.AddRange(controls.ToArray());
+                    main.ChangePage(new Game(roomData));
                 });
-
-                mutex.ReleaseMutex();
             }
-            catch (Exception e)
+        }
+
+        /// <summary>
+        /// functions that happens on each clock timer (3 seconds)
+        /// </summary>
+        private void roomHandler()
+        {
+            TriviaClient client = TriviaClient.GetClient();
+            JObject result = client.GetRoomState();
+            if (TriviaClient.IsSuccessResponse(result, false))
             {
-                Debug.WriteLine(e.Message);
-                return;
+                roomData = JsonConvert.DeserializeObject<RoomData>(result["message"].ToString());
+
+                LoadAllNames(result);
+                CheckGameHasBegun(result);
+            }
+            else
+            {
+                InvokeSafe(() =>
+                {
+                    MainMenu mainMenu = new MainMenu();
+                    main.ChangePage(mainMenu);
+                });
             }
         }
 
@@ -137,10 +158,12 @@ namespace TriviaClientApp
 
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             TriviaClient client = TriviaClient.GetClient();
 
             JObject result;
-            
+
             if (players.Count == 0)
             {
                 MessageBox.Show("Something went wrong", "Room ERROR", MessageBoxButtons.OK,
@@ -148,8 +171,7 @@ namespace TriviaClientApp
             }
             else
             {
-                // this is for checking if the player is an admin, the admin is always the first player in the current room
-                if (client.Username == players[0])
+                if (IsAdmin())
                 {
                     client.CloseRoom();
                 }
@@ -177,8 +199,48 @@ namespace TriviaClientApp
 
         private void autoRefresh_Tick(object sender, EventArgs e)
         {
-            Thread loader = new Thread(loadAllNames);
+            Thread loader = new Thread(roomHandler);
             loader.Start();
         }
+
+        /// <summary>
+        /// Returns true or false based on if the current player is the admin of the room
+        /// </summary>
+        /// <returns>True Or False</returns>
+        private bool IsAdmin()
+        {
+            return roomCreatorName == TriviaClient.GetClient().Username;
+        }
+
+        private void startGameButton_Click(object sender, EventArgs e)
+        {
+
+            if (roomData == null)
+            {
+                MessageBox.Show("Cannot start Room try again later!", "Room ERROR", MessageBoxButtons.OK,
+                                       MessageBoxIcon.Error);
+                return;
+            }
+            startGameButton.Enabled = false;
+
+            TriviaClient client = TriviaClient.GetClient();
+
+            client.StartGame();
+            JObject result = client.GetRoomState();
+
+
+
+            Thread.Sleep(500);
+            main.ChangePage(new Game(roomData));
+        }
+    }
+
+    public class RoomData
+    {
+        public int answerTimeout;
+        public bool hasGameBegun;
+        public List<string> players;
+        public int questionCount;
+        public int status;
     }
 }

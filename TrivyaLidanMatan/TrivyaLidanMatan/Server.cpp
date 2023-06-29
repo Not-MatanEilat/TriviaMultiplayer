@@ -17,10 +17,10 @@ void Server::run()
 	// create new thread for client	and detach from it
 	std::thread communicatorThread(&Communicator::startHandleRequests, m_communicator);
 	communicatorThread.detach();
-
+	std::string input;
 	while(true)
 	{
-		std::string input;
+		input.clear();
 		std::cin >> input;
 		if (input == "EXIT")
 		{

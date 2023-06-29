@@ -28,5 +28,7 @@ private:
 	RequestResult getPersonalStats(RequestInfo const& info);
 	RequestResult joinRoom(RequestInfo const& info);
 	RequestResult createRoom(RequestInfo const& info);
+	RequestResult addQuestion(RequestInfo const& info);
+	RequestResult joinHeadToHead(RequestInfo const& info);
 };
 

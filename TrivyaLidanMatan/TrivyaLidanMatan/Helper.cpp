@@ -66,6 +66,7 @@ Buffer Helper::getBufferPartFromSocket(const SOCKET sc, const int bytesNum)
 	{
 		std::string s = "Error while recieving from socket: ";
 		s += std::to_string(sc);
+		delete[] data;
 		throw std::exception(s.c_str());
 	}
 	data[bytesNum] = 0;

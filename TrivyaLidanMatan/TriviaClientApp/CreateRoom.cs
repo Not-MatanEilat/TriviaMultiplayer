@@ -16,7 +16,6 @@ namespace TriviaClientApp
         public CreateRoom()
         {
             InitializeComponent();
-            main.AcceptButton = createRoomButton;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -26,12 +25,14 @@ namespace TriviaClientApp
 
         private void button1_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             if (AreInputsValid())
             {
                 string roomName = nameRoomTextBox.Text;
-                int questionsAmount = int.Parse(amountQuestionsTextBox.Text);
-                int questionTime = int.Parse(amountQuestionsTextBox.Text);
-                int maxPlayers = int.Parse(maxPlayersTextBox.Text);
+                int questionsAmount = (int)questionAmountBox.Value;
+                int questionTime = (int)timePerQuestionBox.Value;
+                int maxPlayers = (int)maxPlayersBox.Value;
 
                 TriviaClient client = TriviaClient.GetClient();
                 JObject result = client.CreateRoom(roomName, maxPlayers, questionsAmount, questionTime);
@@ -42,8 +43,6 @@ namespace TriviaClientApp
                     Room room = new Room(roomId, roomName, client.Username);
                     main.ChangePage(room);
                 }
-
-
             }
         }
 
@@ -59,54 +58,9 @@ namespace TriviaClientApp
         private bool AreInputsValid()
         {
             string roomName = nameRoomTextBox.Text;
-            string questionsAmount = amountQuestionsTextBox.Text;
-            string questionTime = amountQuestionsTextBox.Text;
-            string maxPlayers = maxPlayersTextBox.Text;
-            if (roomName == "" || questionTime == "" || questionsAmount == "" || maxPlayers == "")
+            if (roomName == "")
             {
                 MessageBox.Show("Please fill all of the fields");
-                return false;
-            }
-
-            if (int.TryParse(questionTime, out int questionTimeInt))
-            {
-                if (questionTimeInt < 6)
-                {
-                    MessageBox.Show("Question time must be at least 6 seconds");
-                    return false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Question time must be a number");
-                return false;
-            }
-
-            if (int.TryParse(questionsAmount, out int questionsAmountInt))
-            {
-                if (questionsAmountInt < 3)
-                {
-                    MessageBox.Show("Questions Amount must be at least 3");
-                    return false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Questions Amount must be a number");
-                return false;
-            }
-
-            if (int.TryParse(maxPlayers, out int maxPlayersInt))
-            {
-                if (maxPlayersInt < 2)
-                {
-                    MessageBox.Show("Max players must be at least 2");
-                    return false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Max players must be a number");
                 return false;
             }
             return true;
@@ -120,8 +74,18 @@ namespace TriviaClientApp
 
         private void BackButtonPress_Click(object sender, EventArgs e)
         {
+            soundManager.PlayButtonClickSound();
+
             MainMenu mainMenu = new MainMenu();
             main.ChangePage(mainMenu);
+        }
+
+        private void Enter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(sender, e);
+            }
         }
     }
 }

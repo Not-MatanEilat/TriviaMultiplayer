@@ -18,4 +18,13 @@ string LoggedUser::getUsername() const
 	return m_username;
 }
 
-
+/**
+ * \brief operator < for LoggedUser
+ * \param lhs left side
+ * \param rhs right side
+ * \return true if left smaller than right
+ */
+bool operator<(const LoggedUser& lhs, const LoggedUser& rhs)
+{
+	return lhs.m_username < rhs.m_username;
+}
