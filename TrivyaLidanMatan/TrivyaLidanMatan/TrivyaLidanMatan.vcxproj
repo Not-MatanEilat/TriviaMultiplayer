@@ -132,6 +132,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameRequestHandler.h" />
     <ClInclude Include="HeadToHeadRoomHandler.h" />
+    <ClInclude Include="ICryptoAlgorithm.h" />
     <ClInclude Include="Matchmaker.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="RoomAdminRequestHandler.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameRequestHandler.cpp" />
     <ClCompile Include="HeadToHeadRoomHandler.cpp" />
+    <ClCompile Include="ICryptoAlgorithm.cpp" />
     <ClCompile Include="Matchmaker.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="RoomAdminRequestHandler.cpp" />
