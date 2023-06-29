@@ -24,6 +24,9 @@ namespace TriviaClientApp
             this.results = results;
         }
 
+        /// <summary>
+        /// Load Results
+        /// </summary>
         public void LoadResults()
         {
             resultsFlow.Controls.Clear();

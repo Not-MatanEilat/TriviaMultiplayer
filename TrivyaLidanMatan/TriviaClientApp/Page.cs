@@ -24,6 +24,10 @@ namespace TriviaClientApp
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Invoke a method on the main thread
+        /// </summary>
+        /// <param name="action">the action</param>
         public void InvokeSafe(Action action)
         {
             try

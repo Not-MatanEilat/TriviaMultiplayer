@@ -54,6 +54,11 @@ void GameManager::deleteGame(unsigned gameId)
 	throw std::exception("Game not found");
 }
 
+/**
+ * \brief get the games results
+ * \param gameId the game id
+ * \return the game results
+ */
 vector<PlayerResults> GameManager::getGamesResults(unsigned gameId)
 {
 	vector<PlayerResults> results;

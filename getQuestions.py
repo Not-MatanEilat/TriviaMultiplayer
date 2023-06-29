@@ -11,7 +11,7 @@ def custom_unescape(string: str) -> str:
     :param string: the string to unescape
     :return: the unescaped string
     """
-    # do something with the unescaped string
+    # unescape the string and replace the quotes
     string = unescape(string)
     string = string.replace('"', '""')
     return string
@@ -22,7 +22,7 @@ def custom_decoder(dct: dict) -> dict:
     :param dct: the dictionary to decode
     :return: the decoded dictionary
     """
-    # do something with the decoded dictionary
+    # if the key is question, unescape it
     if "question" in dct:
         dct["question"] = custom_unescape(dct["question"])
         dct["correct_answer"] = custom_unescape(dct["correct_answer"])

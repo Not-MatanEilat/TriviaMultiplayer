@@ -275,7 +275,7 @@ RequestResult MenuRequestHandler::addQuestion(RequestInfo const& info)
 	if (request.question.size() == 0 || request.correctAns.size() == 0 || request.ans2.size() == 0 ||
 				request.ans3.size() == 0 || request.ans4.size() == 0)
 	{
-		throw std::exception("A filed cannot be empty");
+		throw std::exception("A field cannot be empty");
 	}
 
 	if (request.question.size() > MAX_QUESTION_CHARS)

@@ -10,9 +10,9 @@ Matchmaker::Matchmaker(int playersPerGame, int questionsAmount, int questionTime
 	
 }
 
-
-
-
+/**
+ * \brief handle matchmaking
+ */
 void Matchmaker::handleMatchmaking()
 {
 	// if enough users in queue to make a new game here

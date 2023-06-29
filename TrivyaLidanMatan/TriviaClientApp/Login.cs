@@ -18,7 +18,7 @@ namespace TriviaClientApp
         {
             client = TriviaClient.GetClient();
 
-            if (File.Exists("SuperSecretTextFile.txt"))
+            if (File.Exists(SECRET_SUPER_FILE_PATH))
             {
                 rememberMeToggle.Checked = true;
                 try

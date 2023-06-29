@@ -91,11 +91,7 @@ unsigned Game::getGameId() const
  */
 bool Game::isGameOver(const string& username)
 {
-	if (amountOfQuestionsLeft(username) <= 0)
-	{
-		return true;
-	}
-	return false;
+	return amountOfQuestionsLeft(username) <= 0;
 }
 
 /**

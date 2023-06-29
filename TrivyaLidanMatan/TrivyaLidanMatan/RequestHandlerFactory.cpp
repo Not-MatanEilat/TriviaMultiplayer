@@ -15,7 +15,7 @@ RequestHandlerFactory::RequestHandlerFactory(IDataBase* mDatabase) : m_database(
 
 /**
  * \brief Creates a new Login handler a returns it with the current handler
- * \return 
+ * \return The new LoginRequestHandler
  */
 LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
 {
@@ -24,7 +24,7 @@ LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
 
 /**
  * \brief Creates a new Menu handler a returns it with the current handler
- * \return 
+ * \return The new MenuRequestHandler
  */
 MenuRequestHandler* RequestHandlerFactory::createMenuRequestHandler(const LoggedUser& loggedUser)
 {
@@ -109,6 +109,11 @@ GameRequestHandler* RequestHandlerFactory::createGameRequestHandler(const Logged
 	return new GameRequestHandler(*this, loggedUser, game);
 }
 
+/**
+ * \brief Creates a new Head To Head handler and returns it with the current handler
+ * \param loggedUser the logged user
+ * \return the new HeadToHeadRoomHandler
+ */
 HeadToHeadRoomHandler* RequestHandlerFactory::createHeadToHeadRoomHandler(const LoggedUser& loggedUser)
 {
 	return new HeadToHeadRoomHandler(*this, loggedUser, m_headToHeadMatchmaker);

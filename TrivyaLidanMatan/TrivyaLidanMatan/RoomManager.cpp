@@ -191,9 +191,9 @@ Room& RoomManager::getRoom(int id)
 }
 
 /**
- * \brief 
+ * \brief get room by user
  * \param username 
- * \return 
+ * \return the room the user is in
  */
 Room& RoomManager::getRoomOfUser(const string& username)
 {
