@@ -3,6 +3,7 @@
 #include "OTPCryptoAlgorithm.h"
 #include "WSAInitializer.h"
 #include "Server.h"
+#include <cryptopp/aes.h>
 
 int main()
 {
