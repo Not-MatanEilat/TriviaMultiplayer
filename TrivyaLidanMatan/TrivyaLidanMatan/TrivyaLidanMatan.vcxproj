@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AESCryptoLib.h" />
     <ClInclude Include="Communicator.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameManager.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="WSAInitializer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AESCryptoLib.cpp" />
     <ClCompile Include="Communicator.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameManager.cpp" />

@@ -5,6 +5,11 @@ OTPCryptoAlgorithm::OTPCryptoAlgorithm(IDataBase& db): _db(db)
 {
 }
 
+/**
+ * \brief encrypts a message using the OTP algorithm
+ * \param m the message to encrypt
+ * \return encrypted message
+ */
 string OTPCryptoAlgorithm::encrypt(string m)
 {
 	string key;
@@ -17,12 +22,23 @@ string OTPCryptoAlgorithm::encrypt(string m)
 	return m;
 }
 
+/**
+ * \brief decrypts a message using the OTP algorithm
+ * \param m the message to decrypt
+ * \return decrypted message
+ */
 string OTPCryptoAlgorithm::decrypt(string m)
 {
 	string key = _db.getSecurityKey(m);
 	return decrypt(m, key);
 }
 
+/**
+ * \brief decrypts a message using the OTP algorithm
+ * \param m the message to decrypt
+ * \param key the key
+ * \return decrypted message
+ */
 string OTPCryptoAlgorithm::decrypt(string m, string key)
 {
 	for (int i = 0; i < m.size(); i++)
@@ -32,6 +48,12 @@ string OTPCryptoAlgorithm::decrypt(string m, string key)
 	return m;
 }
 
+/**
+ * \brief generates a random number between min and max
+ * \param min minimum value
+ * \param max maximum value
+ * \return random number between min and max
+ */
 int OTPCryptoAlgorithm::getRand(int min, int max)
 {
 	std::random_device rd;
