@@ -38,6 +38,7 @@ public:
 	static bool isValidPassword(const string& username);
 	static bool isValidEmail(const string& email);
 	static bool isValidUsername(const string& username);
-
+	virtual string getSecurityKey(string encryptedText) = 0;
+	virtual void setSecurityKey(string encryptedText, string key, string type) = 0;
 };
 

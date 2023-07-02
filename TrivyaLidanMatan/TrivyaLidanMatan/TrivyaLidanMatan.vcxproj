@@ -104,10 +104,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -132,7 +134,9 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameRequestHandler.h" />
     <ClInclude Include="HeadToHeadRoomHandler.h" />
+    <ClInclude Include="ICryptoAlgorithm.h" />
     <ClInclude Include="Matchmaker.h" />
+    <ClInclude Include="OTPCryptoAlgorithm.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="RoomAdminRequestHandler.h" />
     <ClInclude Include="RoomMemberRequestHandler.h" />
@@ -162,7 +166,9 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameRequestHandler.cpp" />
     <ClCompile Include="HeadToHeadRoomHandler.cpp" />
+    <ClCompile Include="ICryptoAlgorithm.cpp" />
     <ClCompile Include="Matchmaker.cpp" />
+    <ClCompile Include="OTPCryptoAlgorithm.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="RoomAdminRequestHandler.cpp" />
     <ClCompile Include="RoomMemberRequestHandler.cpp" />
